@@ -1,1 +1,1 @@
-Skeleton for a Phalcon single module application
+Content Management System (CMS) for Blogs developed in php with Phalcon Framework.

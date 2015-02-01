@@ -23,4 +23,8 @@ class SetupController extends \Phalcon\Mvc\Controller{
         
         return $count_users == 0 ? true : false;
     }
+    
+    public function databaseSettingsAction(){
+        
+    }
 }

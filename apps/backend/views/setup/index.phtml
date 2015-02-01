@@ -1,1 +1,36 @@
-<h1>Welcome to Setup/Index!</h1>
+<header clas="container">
+    <div class="content">
+        <h1 class="main_logo text-center">
+            <img width="20%" src="img/logo.png"/>
+        </h1>
+    </div>
+</header>
+
+<script>
+$(document).ready(function(){
+    $('#prosseguir').on("click", function(){
+       window.location.href = "setup/databaseSettings"; 
+    });
+});
+</script>
+
+<div class="container">
+    <div class="content center-block">
+        <article class=" content">
+            <p class="text-justify">Bem vindo ao Pluton, antes de iniciar são necessárias 
+                informar alguns dados a respeito do banco de dados e criação da conta de administrador:</p>
+            <ul>
+                <li>Nome do banco de dados</li>
+                <li>Usuário e senha do banco de dados</li>
+                <li>Email válido para criação da conta de administrador</li>
+                <li>Nome de usuário e senha para conta de administrador</li>
+                <li>Nome do blog que deseja criar</li>
+            </ul>
+        </article>
+        <div class="form-group">
+            <div class="col-sm-offset-5">
+                <button type="button" class="btn btn-default" id="prosseguir" > Prosseguir</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,26 +27,27 @@ class Application extends \Phalcon\Mvc\Application{
 
 			$router = new \Phalcon\Mvc\Router();
 
-			$router->setDefaultModule("backend");
+			$router->setDefaultModule("frontend");
 
 			$router->add('/:controller/:action', array(
 				'module' => 'frontend',
 				'controller' => 1,
 				'action' => 2,
 			));
-
+                        
+                        $router->add('/:controller/:action', array(
+				'module' => 'backend',
+				'controller' => 1,
+				'action' => 2,
+			));
+                        
 			$router->add("/settings", array(
 				'module' => 'backend',
 				'controller' => 'index',
 				'action' => 'index',
 			));
-			/*$router->add("/admin/products/:action", array(
-				'module' => 'backend',
-				'controller' => 'products',
-				'action' => 1,
-			));
 
-			$router->add("/products/:action", array(
+			/*$router->add("/products/:action", array(
 				'module' => 'frontend',
 				'controller' => 'products',
 				'action' => 1,
