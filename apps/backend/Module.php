@@ -18,16 +18,15 @@ class Module {
     }
 
     /**
-     * Register the services here to make them general or register in the ModuleDefinition to make them module-specific
+     * Registra os serviços específicos para este módulo
      */
     public function registerServices($di) {
 
-        //Registering a dispatcher
+        //Registra o dispatcher
         $di->set('dispatcher', function() {
 
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
 
-            //Attach a event listener to the dispatcher
             $eventManager = new \Phalcon\Events\Manager();
             $eventManager->attach('dispatch', new \Acl('backend'));
 
@@ -36,19 +35,16 @@ class Module {
             return $dispatcher;
         });
 
-        //Registering the view component
+        //Registra os diretórios das views
         $di->set('view', function() {
             $view = new \Phalcon\Mvc\View();
             $view->setViewsDir('../apps/backend/views/');
-            $view->setLayoutsDir('layout/');
-            $view->setLayout('index');
-            $view->registerEngines(array(
-                ".phtml" => 'Phalcon\Mvc\View\Engine\Volt'
-            ));
+            $view->setLayoutsDir('layout');
+            //$view->setLayout('index');
             return $view;
         });
 
-        //Set a different connection in each module
+        //Seta uma conexão diferente para o módulo backend
         $di->set('db', function() {
             return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
                 "host" => "localhost",

@@ -1,22 +1,23 @@
 <!doctype html>
 
 <html lang="br">
-<head>
-  <meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-  <title>Pluton Configurações</title>
-  <meta name="description" content="Pluton Configurações">
-  <meta name="author" content="viniciusilveira">
+        <title>Pluton</title>
+        <meta name="description" content="Pluton Configurações">
+        <meta name="author" content="viniciusilveira">
 
-  <link rel="stylesheet" href="{{static_url('public/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
 
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-</head>
+        <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
 
-<body>
-  <script src="{{static_url('public/jquery-2.1.3.min.js')}}"></script>
-  <script src="{{static_url('public/bootstrap.min.js')}}"></script>
-</body>
+    <body>
+        <?= $this->getContent(); ?>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>

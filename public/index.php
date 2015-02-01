@@ -27,7 +27,7 @@ class Application extends \Phalcon\Mvc\Application{
 
 			$router = new \Phalcon\Mvc\Router();
 
-			$router->setDefaultModule("frontend");
+			$router->setDefaultModule("backend");
 
 			$router->add('/:controller/:action', array(
 				'module' => 'frontend',
