@@ -2,32 +2,83 @@
 
 error_reporting(E_ALL);
 
-try {
+class Application extends \Phalcon\Mvc\Application{
 
 	/**
-	 * Read the configuration
+	 * Register the services here to make them general or register in the ModuleDefinition to make them module-specific
 	 */
-	$config = require __DIR__ . "/../app/config/config.php";
+	protected function _registerServices(){
 
-	/**
-	 * Include loader
-	 */
-	require __DIR__ . '/../app/config/loader.php';
+		$di = new \Phalcon\DI\FactoryDefault();
 
-	/**
-	 * Include services
-	 */
-	require __DIR__ . '/../app/config/services.php';
+		$loader = new \Phalcon\Loader();
 
-	/**
-	 * Handle the request
-	 */
-	$application = new \Phalcon\Mvc\Application();
-	$application->setDI($di);
-	echo $application->handle()->getContent();
+		/**
+		 * We're a registering a set of directories taken from the configuration file
+		 */
+		$loader->registerDirs(
+			array(
+				__DIR__ . '/../apps/library/'
+			)
+		)->register();
 
-} catch (Phalcon\Exception $e) {
-	echo $e->getMessage();
-} catch (PDOException $e){
-	echo $e->getMessage();
+		//Registering a router
+		$di->set('router', function(){
+
+			$router = new \Phalcon\Mvc\Router();
+
+			$router->setDefaultModule("frontend");
+
+			$router->add('/:controller/:action', array(
+				'module' => 'frontend',
+				'controller' => 1,
+				'action' => 2,
+			));
+
+			$router->add("/settings", array(
+				'module' => 'backend',
+				'controller' => 'index',
+				'action' => 'index',
+			));
+			/*$router->add("/admin/products/:action", array(
+				'module' => 'backend',
+				'controller' => 'products',
+				'action' => 1,
+			));
+
+			$router->add("/products/:action", array(
+				'module' => 'frontend',
+				'controller' => 'products',
+				'action' => 1,
+			));*/
+
+			return $router;
+
+		});
+
+		$this->setDI($di);
+	}
+
+	public function main(){
+
+		$this->_registerServices();
+
+		//Register the installed modules
+		$this->registerModules(array(
+			'frontend' => array(
+				'className' => 'Multiple\Frontend\Module',
+				'path' => '../apps/frontend/Module.php'
+			),
+			'backend' => array(
+				'className' => 'Multiple\Backend\Module',
+				'path' => '../apps/backend/Module.php'
+			)
+		));
+
+		echo $this->handle()->getContent();
+	}
+
 }
+
+$application = new Application();
+$application->main();
