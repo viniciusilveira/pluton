@@ -39,8 +39,6 @@ class Module {
         $di->set('view', function() {
             $view = new \Phalcon\Mvc\View();
             $view->setViewsDir('../apps/backend/views/');
-            $view->setLayoutsDir('layout');
-            //$view->setLayout('index');
             return $view;
         });
 
