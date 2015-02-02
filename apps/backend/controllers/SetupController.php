@@ -14,7 +14,7 @@ class SetupController extends \Phalcon\Mvc\Controller{
     
     /**
      * Caso seja o primeiro acesso, ou seja não exista usuário ou blog configurado
-     * no banco de dados, redireciona para pagina de configuração
+     * no banco de dados, retorna true, caso contrário retorna false
      */
     public function verifyFirstAccess(){
         
