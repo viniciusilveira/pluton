@@ -2,6 +2,8 @@
 
 error_reporting(E_ALL);
 
+define('URL_PROJECT', 'http://'. $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/pluton/');
+
 class Application extends \Phalcon\Mvc\Application {
 
     /**
