@@ -7,17 +7,18 @@
         <title>Pluton</title>
         <meta name="description" content="Pluton Configurações">
         <meta name="author" content="viniciusilveira">
-        <link rel="shortcut icon" href="img/logo.png"/>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="shortcut icon" href="<?= URL_PROJECT ?>img/logo.png"/>
+        <link rel="stylesheet" href="<?= URL_PROJECT ?>css/style.css">
+        <link rel="stylesheet" href="<?= URL_PROJECT ?>css/bootstrap.min.css">
 
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     </head>
 
-    <body>
-        <script src="js/jquery-2.1.3.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+    <body  class="bg-gray">
+        <script src="<?= URL_PROJECT ?>js/jquery-2.1.3.min.js"></script>
+        <script src="<?= URL_PROJECT ?>js/bootstrap.min.js"></script>
         
         <?= $this->getContent(); ?>
     </body>

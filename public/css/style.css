@@ -1,0 +1,16 @@
+/* 
+    Created on : 04/02/2015, 20:06:16
+    Author     : Marcos Vinicius O. Silveira
+*/
+
+*, *:before, *:after{margin: 0; padding: 0;}
+
+.container{float: center; width: 100%;}
+.content{width: 80%; margin: 0 10%; padding: 40px 0;}
+
+.bg-gray{background-color: #444444; color: #fff;}
+.bg-light{background-color: #E6E4D9; color: #444;}
+
+.clear{clear: both;}
+
+.fontzero{font-size: 0em;}

@@ -9,29 +9,29 @@
 <div class="container">
     <div class="content">
         <article>
-            <h3 class="text-center">Informe os dados do banco de dados</h3>
-            <form class="form-horizontal" action="databaseCreate" method="POST">
+            <h3 class="text-center">Informe os dados do Usuário</h3>
+            <form class="form-horizontal" action="setup/userCreate" method="POST">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Nome:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control col-sm-3" name="database_name">
+                        <input type="text" class="form-control col-sm-3" name="user_name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Usuário:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control col-sm-3" name="database_user">
+                        <input type="text" class="form-control col-sm-3" name="user_email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Senha:</label>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control col-sm-3" name="database_password">
+                        <input type="password" class="form-control col-sm-3" name="user_password">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-5">
-                        <button type="submit" class="btn btn-default" id="prosseguir" > Prosseguir</button>
+                        <button type="button" class="btn btn-default" id="prosseguir" > Prosseguir</button>
                     </div>
                 </div>
             </form>

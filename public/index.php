@@ -2,6 +2,9 @@
 
 error_reporting(E_ALL);
 
+/**
+ * Define uma variável acessível em todo o projeto direcionando para a pasta principal do mesmo.
+ */
 define('URL_PROJECT', 'http://'. $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/pluton/');
 
 class Application extends \Phalcon\Mvc\Application {
