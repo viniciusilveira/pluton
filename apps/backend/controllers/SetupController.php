@@ -46,14 +46,21 @@ class SetupController extends \Phalcon\Mvc\Controller{
         $this->view->render('setup','userSettings');
     }
     
-    public function userSettings(){
+    public function userSettingsAction(){
         
     }
     
+    public function userCreateAction(){
+        $user_name = $this->request->getPost('user_name');
+        $user_email = $this->request->getPost('user_email');
+        $user_password = $this->request->getPost('user_password');
+        
+        $this->view->render('login', 'index');
+    }
     /**
      * Seta os valores do banco de dados do blog no módulo frontend
      */
-    public function setDatabaseBlog(){
+    public function setDatabaseBlogAction(){
         
     }
 }
