@@ -1,4 +1,0 @@
-#ignora arquivos e pastas relacionadas ao composer
-vendor/
-composer.json
-composer.lock

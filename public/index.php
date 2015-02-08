@@ -15,8 +15,8 @@ class Application extends \Phalcon\Mvc\Application {
     protected function _registerServices() {
 
         $di = new \Phalcon\DI\FactoryDefault();
-
         $loader = new \Phalcon\Loader();
+
 
         /**
          * We're a registering a set of directories taken from the configuration file
