@@ -2,15 +2,62 @@
     Created on : 04/02/2015, 20:06:16
     Author     : Marcos Vinicius O. Silveira
 */
-
+/************** Common **************************/
 *, *:before, *:after{margin: 0; padding: 0;}
 
 .container{float: center; width: 100%;}
-.content{width: 80%; margin: 0 10%; padding: 40px 0;}
+.content{width: 70%; margin: 0 15% 0; padding: 10px 0;}
 
 .bg-gray{background-color: #444444; color: #fff;}
 .bg-light{background-color: #E6E4D9; color: #444;}
 
-.clear{clear: both;}
 
-.fontzero{font-size: 0em;}
+.border{
+    -moz-box-shadow: 0 0 2px gray;
+    -webkit-box-shadow: 0 0 2px gray;
+    box-shadow: 0 0 2px gray;
+    border-radius: 5px;
+}
+
+/************** End Common **************************/
+
+/*************** Login Style ********************/
+.form-signin{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-control{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus{
+    z-index: 2;
+}
+.form-signin input[type="text"]{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.profile-img{
+    width: 114px;
+    height: 114px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+/*************** End Login Style ********************/

@@ -1,5 +1,0 @@
-{
-    "PHP": {
-        "phpExtraPaths": ["/../Vendor/phalcon/devtools/ide/1.3.4/"],
-    }
-}

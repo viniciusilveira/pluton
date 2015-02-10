@@ -6,32 +6,28 @@
     </div>
 </header>
 
-<script>
-$(document).ready(function(){
-    $('#prosseguir').on("click", function(){
-       window.location.href = "setup/databaseSettings"; 
-    });
-});
-</script>
 
-<div class="container">
-    <div class="content center-block">
-        <article class=" content">
-            <h1 class="fontzero">Informações Iniciais</h1>
-            <p class="text-justify">Bem vindo ao Pluton, antes de iniciar são necessárias 
-                informar alguns dados a respeito do banco de dados e criação da conta de administrador:</p>
-            <ul>
-                <li>Nome do banco de dados</li>
-                <li>Usuário e senha do banco de dados</li>
-                <li>Email válido para criação da conta de administrador</li>
-                <li>Nome de usuário e senha para conta de administrador</li>
-                <li>Nome do blog que deseja criar</li>
-            </ul>
+<div class="container-fluidr">
+    <div class="modal-content col-sm-5 text-center">
+        <article class="content">
+            <h1 class="hidden">Bem Vindo</h1>
+            <p class="text-justify">Bem vindo ao Pluton, antes de prosseguir precisamos de algumas informações a respeito do banco de dados. É necessário ter conhecimento sobre os seguintes itens:</p>
         </article>
-        <div class="form-group">
-            <div class="col-sm-offset-5">
-                <button type="button" class="btn btn-default" id="prosseguir" > Prosseguir</button>
+        <article class=" text-primary">
+            <ul>
+            <h1 class="hidden">Dados Necessários</h1>
+                <li>Nome do Banco de Dados</li>
+                <li>Nome de Usuário do Banco de Dados</li>
+                <li>Senha do Banco de Dados</li>
+                <li>Servidor do Banco de Dados</li>
+            </ul>
+            <div class="form-group">
+                <div class="col-sm-offset-5">
+                    <input type="submit" class="btn btn-lg btn-default" id="prosseguir" value="Prossseguir" />
+                </div>
             </div>
-        </div>
+
+        </article>
     </div>
+    <div class="clearfix"></div>
 </div>
