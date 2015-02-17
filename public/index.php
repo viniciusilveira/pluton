@@ -3,9 +3,14 @@
 error_reporting(E_ALL);
 
 /**
- * Define uma variável acessível em todo o projeto direcionando para a pasta principal do mesmo.
+ * Define uma URL padrão para acesso ao projeto
  */
-define('URL_PROJECT', 'http://'. $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/pluton/');
+define('URL_PROJECT', 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/pluton/');
+
+/**
+ * Define uma variável contendo o diretório raiz do projeto
+ */
+define('FOLDER_PROJECT', __DIR__ . '/../');
 
 class Application extends \Phalcon\Mvc\Application {
 
@@ -68,6 +73,21 @@ class Application extends \Phalcon\Mvc\Application {
 
             return $router;
         });
+
+        if (file_exists('../apps/config/config.ini')) {
+            $config = new \Phalcon\Config\Adapter\Ini('../apps/config/config.ini');
+
+            //Seta a conexão com o banco de dados
+            $di->set('db', function() use ($config) {
+                $dbclass = 'Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
+                return new $dbclass(array(
+                    "host" => $config->database->host,
+                    "username" => $config->database->username,
+                    "password" => $config->database->password,
+                    "dbname" => $config->database->name
+                ));
+            });
+        } 
 
         $this->setDI($di);
     }

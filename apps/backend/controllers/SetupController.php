@@ -24,18 +24,55 @@ class SetupController extends  \Phalcon\DI\Injectable {
     }
     
     public function indexAction(){
-        
+        // view/setup/index.phtml
     }
     
     /**
-     * Caso seja o primeiro acesso, ou seja não exista usuário ou blog configurado
-     * no banco de dados, retorna true, caso contrário retorna false
+     * Verifica os dados do banco para saber se existe usuário e blog já criados.
+     * @return string contendo o dado não criado no banco de dados, ou 'ok' caso
+     * já esteja tudo criado
      */
-    public function verifyFirstAccess(){
-
-        $count_users = $this->users->count();
+    public function verifyDataBaseAction(){
+        echo FOLDER_PROJECT;
+        if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
+            if(!$this->verifyBlogExistAction()){
+                return 'blog';
+            } elseif(!$this->verifyUserExistAction()){
+                return 'user';
+            } else{
+                return 'ok';
+            }
+        } else{
+            return 'file';
+        }   
+    }
+    
+    public function verifyUserExistAction(){
+        $users = new \Multiple\Backend\Models\Users();
+        $qtd_users = $users->count();
+        if($qtd_users > 0){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
+    public function verifyBlogExistAction(){
+        $blogs = new \Multiple\Backend\Models\Blog();
+        $qtd_blog = $blogs->count();
+        if($qtd_blog > 0){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
+    public function databaseConfigAction(){
+        // views/setup/databaseConfig.phtml
+    }
+    
+    public function ConfigFileCreateAction(){
         
-        return $count_users == 0 ? true : false;
     }
     
     public function userCreateAction(){

@@ -41,16 +41,6 @@ class Module {
             $view->setViewsDir('../apps/backend/views/');
             return $view;
         });
-
-        //Seta uma conexão diferente para o módulo backend
-        $di->set('db', function() {
-            return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
-                "host" => "localhost",
-                "username" => "root",
-                "password" => "dbkai0805",
-                "dbname" => "pluton"
-            ));
-        });
     }
 
 }

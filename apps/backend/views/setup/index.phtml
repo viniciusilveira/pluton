@@ -7,27 +7,36 @@
 </header>
 
 
-<div class="container-fluidr">
-    <div class="modal-content col-sm-5 text-center">
+<div class="container container-fluidr center-block">
+    <div class="content modal-content">
         <article class="content">
             <h1 class="hidden">Bem Vindo</h1>
             <p class="text-justify">Bem vindo ao Pluton, antes de prosseguir precisamos de algumas informações a respeito do banco de dados. É necessário ter conhecimento sobre os seguintes itens:</p>
         </article>
-        <article class=" text-primary">
-            <ul>
+        <article class="text-primary content col-sm-offset-5">
+            <ol type="1">
             <h1 class="hidden">Dados Necessários</h1>
                 <li>Nome do Banco de Dados</li>
                 <li>Nome de Usuário do Banco de Dados</li>
                 <li>Senha do Banco de Dados</li>
                 <li>Servidor do Banco de Dados</li>
-            </ul>
+            </ol>
+        </article>
+        <article class="content text-justify">
+            <h1 class="hidden">Informações Adicionais</h1>
+            <p>Esses dados serão utilizados para criar um arquivo de configuração na pasta <b>projeto/apps/config/</b> nomeado <b>config.ini</b>. Caso ocorra algum erro
+            na configuração via interface gráfica, este arquivo pode ser alterado manualmente. </p>
             <div class="form-group">
                 <div class="col-sm-offset-5">
                     <input type="submit" class="btn btn-lg btn-default" id="prosseguir" value="Prossseguir" />
                 </div>
             </div>
-
         </article>
     </div>
     <div class="clearfix"></div>
 </div>
+<script>
+    $("#prosseguir").click(function(){
+       window.location.href = 'setup/databaseConfig';
+    });
+</script>
