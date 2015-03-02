@@ -2,6 +2,6 @@
 
 namespace Multiple\Backend\Models;
 
-class Blog extends \Phalcon\Mvc\Model{
+class Blogs extends \Phalcon\Mvc\Model{
     
 }

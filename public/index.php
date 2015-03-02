@@ -63,20 +63,12 @@ class Application extends \Phalcon\Mvc\Application {
                 'action' => 'index',
             ));
 
-
-
-            /* $router->add("/products/:action", array(
-              'module' => 'frontend',
-              'controller' => 'products',
-              'action' => 1,
-              )); */
-
             return $router;
         });
-
+        
         if (file_exists('../apps/config/config.ini')) {
             $config = new \Phalcon\Config\Adapter\Ini('../apps/config/config.ini');
-
+            
             //Seta a conexão com o banco de dados
             $di->set('db', function() use ($config) {
                 $dbclass = 'Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
@@ -96,7 +88,7 @@ class Application extends \Phalcon\Mvc\Application {
 
         $this->_registerServices();
 
-        //Register the installed modules
+        //Registra os módulos existentes
         $this->registerModules(array(
             'frontend' => array(
                 'className' => 'Multiple\Frontend\Module',
