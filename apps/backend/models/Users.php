@@ -2,6 +2,13 @@
 
 namespace Multiple\Backend\Models;
 
-class Users extends \Phalcon\Mvc\Model{
+use \Phalcon\Db\Column as Column;
+
+/**
+ * Class Users 
+* @package Multiple\Backend\Models
+ */
+class Users extends \Phalcon\Mvc\Model {
+    
     
 }

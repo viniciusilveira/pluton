@@ -1,5 +1,4 @@
 <?php
-
 namespace Multiple\Backend\Controllers;
 
 /**
@@ -11,17 +10,20 @@ namespace Multiple\Backend\Controllers;
  */
 class SetupController extends \Phalcon\DI\Injectable {
 
-    private $users;
-    private $blogs;
+    private $connection;
+    private $config;
+    private $user;
+    private $blog;
+    private $tables;
 
     /**
-     * Construct necessário para objetos
+     * Construct necessário para iniciar objetos de outras classes
      */
     public function __construct() {
-
-        $this->users = new \Multiple\Backend\Models\Users;
-        $this->blogs = new \Multiple\Backend\Models\Blogs;
-        $di = $this->getDI();
+        
+        $this->user = new \Multiple\Backend\Models\Users;
+        $this->blog = new \Multiple\Backend\Models\Blogs;
+        $this->tables = new \Multiple\Library\Tables;
     }
 
     public function indexAction() {
@@ -34,11 +36,10 @@ class SetupController extends \Phalcon\DI\Injectable {
      * já esteja tudo criado
      */
     public function verifyDataBaseAction() {
-        echo FOLDER_PROJECT;
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
-            if (!$this->verifyUserExistAction()) {
+            if (!$this->user->verifyUserExistAction()) {
                 return 'user';
-            } elseif (!$this->verifyBlogExistAction()) {
+            } elseif (!$this->blog->verifyBlogExistAction()) {
                 return 'blog';
             } else {
                 return 'ok';
@@ -48,38 +49,21 @@ class SetupController extends \Phalcon\DI\Injectable {
         }
     }
 
-    /**
-     * Verifica se existe um usuário super-administrador criado no banco de dados
-     * @return boolean true caso exista, e falso caso não exista
-     */
-    public function verifyUserExistAction() {
-        $users = new \Multiple\Backend\Models\Users();
-        $qtd_users = $users->count();
-        if ($qtd_users > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Verifica se existe blog criado no banco de dados
-     * @return boolean true caso exista, e falso caso não exista
-     */
-    public function verifyBlogExistAction() {
-        $blogs = new \Multiple\Backend\Models\Blogs();
-        $blog_exists = $blogs->count();
-        if ($blog_exists > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function databaseConfigAction() {
         // views/setup/databaseConfig.phtml
     }
     
+    /**
+     * Seta o arquivo de configuração e chama as Actions responsáveis pela conexão
+     * com o banco de dados e criação das tabelas necessárias
+     */
+    public function databaseSettings(){
+        $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
+        $this->databaseConnectAction();
+
+        $this->createTablesAction();
+    }
+
     /**
      * Cria um arquivo de configuração com os dados para conexão com o banco de dados
      * através de informações recebidas via POST, e utiliza essas informações para se 
@@ -94,59 +78,61 @@ class SetupController extends \Phalcon\DI\Injectable {
      * name     = pluton
      */
     public function configFileCreateAction() {
+        
         $database_name = $this->request->getPost('database_name');
         $database_user = $this->request->getPost('database_user');
         $database_passwd = $this->request->getPost('database_passwd');
         $database_host = $this->request->getPost('database_host');
-        
+
         $config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w') or die("Unable to open file!");
-        
-        $writing_file  = "[database]\n";
+        $writing_file = "[database]\n";
         $writing_file .= "adapter  = Mysql\n";
         $writing_file .= "host     = {$database_host}\n";
         $writing_file .= "username = {$database_user}\n";
         $writing_file .= "password = {$database_passwd}\n";
         $writing_file .= "name     = {$database_name}\n";
-        
+
         fwrite($config_file, $writing_file);
         fclose($config_file);
 
-        $config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
-        $this->databaseConnectAction($config);
+        $this->databaseSettings();
         
-        $this->TablesCreateAction();
     }
-    
+
     /**
      * Executa conexão com o banco de dados.
      * @param type $config objeto tipo \Phalcon\Config\Adapter\Ini contendo
      * informações do banco de dados.
      */
-    public function databaseConnectAction($config){
-        //Seta a conexão com o banco de dados
-        $this->di->set('db', function() use ($config) {
-            $dbclass = 'Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
-            return new $dbclass(array(
-                "host" => $config->database->host,
-                "username" => $config->database->username,
-                "password" => $config->database->password,
-                "dbname" => $config->database->name
-            ));
-        });
+    public function databaseConnectAction() {
+
+
+        $db_conn = array(
+            "host" => $this->config->database->host,
+            "username" => $this->config->database->username,
+            "password" => $this->config->database->password,
+            "dbname" => $this->config->database->name
+        );
+        $db_conn["persistent"] = false;
+        $this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql($db_conn);
     }
-    
+
     /**
      * Cria as tabelas necessárias para o funcionamento do sistema
      */
-    public function TablesCreateAction(){
+    public function createTablesAction() {
         
+        $this->connection->tableExists('layouts') ? $this->tables->createTableLayouts($this->connection) : NULL;
+        $this->connection->tableExists('blogs') ? $this->tables->createTableBlogs($this->connection) : NULL ;
+        $this->connection->tableExists('users') ? $this->tables->createTableUsers($this->connection) : NULL;
+        $this->connection->tableExists('posts') ? $this->tables->createTablePosts($this->connection) : NULL;
     }
 
     public function newBlogAction() {
         // views/setup/newBlog.phtml
     }
-    
-    public function newUserAction(){
+
+    public function newUserAction() {
         // views/setup/newUser.phtml
     }
 

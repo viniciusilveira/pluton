@@ -12,6 +12,7 @@ class Module {
             'Multiple\Backend\Controllers' => '../apps/backend/controllers/',
             'Multiple\Backend\Models' => '../apps/backend/models/',
             'Multiple\Backend\Plugins' => '../apps/backend/plugins/',
+            'Multiple\Library' => '../apps/library/'
         ));
 
         $loader->register();

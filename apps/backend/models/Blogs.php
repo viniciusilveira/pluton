@@ -1,7 +1,10 @@
 <?php
-
 namespace Multiple\Backend\Models;
 
-class Blogs extends \Phalcon\Mvc\Model{
-    
+/**
+ * Class Blogs
+ * @package Multiple\Backend\Models
+ */
+class Blogs extends \Phalcon\Mvc\Model {
+
 }
