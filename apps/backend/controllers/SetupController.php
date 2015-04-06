@@ -1,5 +1,6 @@
 <?php
 namespace Multiple\Backend\Controllers;
+use Phalcon\Exception;
 
 /**
  * Classe para conexão e configuração dos dados necessários para inicialização
@@ -52,38 +53,21 @@ class SetupController extends \Phalcon\DI\Injectable {
     public function databaseConfigAction() {
         // views/setup/databaseConfig.phtml
     }
-    
-    /**
-     * Seta o arquivo de configuração e chama as Actions responsáveis pela conexão
-     * com o banco de dados e criação das tabelas necessárias
-     */
-    public function databaseSettings(){
-        $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
-        $this->databaseConnectAction();
-
-        $this->createTablesAction();
-    }
 
     /**
-     * Cria um arquivo de configuração com os dados para conexão com o banco de dados
-     * através de informações recebidas via POST, e utiliza essas informações para se 
-     * conectar ao banco.
-     * Exemplo de arquivo:
-     * 
-     * [database]
-     * adapter  = Mysql
-     * host     = localhost
-     * username = root
-     * password = 
-     * name     = pluton
+     * Recebe os dados do banco de dados via post;
+     * Cria o arquivo de configuração do banco de dados com os arquivos recebidos
+     * Conecta com o banco de dados
      */
-    public function configFileCreateAction() {
-        
+    public function databaseSettingsAction() {
+
+        //Dados do banco de dados recebidos via POST;
         $database_name = $this->request->getPost('database_name');
         $database_user = $this->request->getPost('database_user');
         $database_passwd = $this->request->getPost('database_passwd');
         $database_host = $this->request->getPost('database_host');
 
+        //Cria o arquivo de conexão com o banco de dados;
         $config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w') or die("Unable to open file!");
         $writing_file = "[database]\n";
         $writing_file .= "adapter  = Mysql\n";
@@ -95,37 +79,51 @@ class SetupController extends \Phalcon\DI\Injectable {
         fwrite($config_file, $writing_file);
         fclose($config_file);
 
-        $this->databaseSettings();
-        
-    }
+        //Seta a configuração do banco de dados.
+        $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
 
-    /**
-     * Executa conexão com o banco de dados.
-     * @param type $config objeto tipo \Phalcon\Config\Adapter\Ini contendo
-     * informações do banco de dados.
-     */
-    public function databaseConnectAction() {
-
-
+        //Cria um array com os dados do banco
         $db_conn = array(
             "host" => $this->config->database->host,
             "username" => $this->config->database->username,
             "password" => $this->config->database->password,
-            "dbname" => $this->config->database->name
+            "dbname" => $this->config->database->name,
+
         );
         $db_conn["persistent"] = false;
-        $this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql($db_conn);
+
+        //Efetua a conexão com o banco de dados
+        try{
+            $this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql($db_conn);
+            $this->createTablesAction();
+            $data['connection'] = true;
+            $data['message'] = 'Banco de dados conectado e configurado!';
+            echo json_encode($data);
+            //Die necessário para que a mensagem seja enviada. Sem ele o ajax não exibe a mensagem.
+            die();
+        }catch(\PDOException $e){
+            unlink(FOLDER_PROJECT . 'apps/config/config.ini');
+            $data['connection'] = false;
+            $data['message'] = 'Erro ao conectar ao banco de dados! Por favor verifique se os dados informados
+                                estão corretos e tente novamente!';
+            echo json_encode($data);
+            //Die necessário para que a mensagem seja enviada. Sem ele o ajax não exibe a mensagem.
+            die();
+        }
     }
 
     /**
      * Cria as tabelas necessárias para o funcionamento do sistema
      */
     public function createTablesAction() {
-        
-        $this->connection->tableExists('layouts') ? $this->tables->createTableLayouts($this->connection) : NULL;
-        $this->connection->tableExists('blogs') ? $this->tables->createTableBlogs($this->connection) : NULL ;
-        $this->connection->tableExists('users') ? $this->tables->createTableUsers($this->connection) : NULL;
-        $this->connection->tableExists('posts') ? $this->tables->createTablePosts($this->connection) : NULL;
+
+            $this->connection->tableExists('layouts') ? NULL : $this->tables->createTableLayouts($this->connection);
+            $this->connection->tableExists('blogs') ? NULL : $this->tables->createTableBlogs($this->connection);
+            $this->connection->tableExists('users') ? NULL : $this->tables->createTableUsers($this->connection);
+            $this->connection->tableExists('users_blogs') ? NULL : $this->tables->createTableUsersBlogs($this->connection);
+            $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
+            $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
+
     }
 
     public function newBlogAction() {
@@ -134,6 +132,19 @@ class SetupController extends \Phalcon\DI\Injectable {
 
     public function newUserAction() {
         // views/setup/newUser.phtml
+    }
+
+
+    /**
+     * Cria o primeiro usuário do sistema (Super Administrador)
+     */
+    public function createSuperAdmin(){
+        $user_name = $this->request->getPost('user_name');
+        $user_email = $this->request->getPost('user_email');
+        $user_login = $this->request->getPost('user_login');
+        $user_passwd = $this->request->getPost('user_passwd');
+
+        $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, 'SA');
     }
 
 }

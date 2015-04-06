@@ -2,6 +2,7 @@
 
 error_reporting(E_ALL);
 
+(new \Phalcon\Debug)->listen();
 /**
  * Define uma URL padrão para acesso ao projeto
  */

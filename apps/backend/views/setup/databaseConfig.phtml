@@ -11,7 +11,7 @@
     <div class="content modal-content">
         <article class="content">
             <h1 class="h3 text-center">Informações do Banco de Dados</h1>
-            <form class="form-horizontal center-block" id="user_create" name="user_create" action="configFileCreate" method="post">
+            <form class="form-horizontal center-block" id="config_file_create" name="config_file_create">
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Banco de Dados: </label>
                     <div class="col-sm-7">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-5">
-                        <input type="submit" class="btn btn-lg btn-default" id="prosseguir" value="Prossseguir" />
+                        <input type="button" class="btn btn-lg btn-default" id="prosseguir" value="Prossseguir" />
                     </div>
                 </div>
             </form>
@@ -49,3 +49,53 @@
     </div>
     <div class="clearfix"></div>
 </div>
+
+<script>
+    $("#prosseguir").on("click", function(){
+        //monta um array para verificação dos dados
+        var array_form = $("#config_file_create").serializeArray();
+        //cria um texto json para envio dos dados para a action de configuração do banco de dados;
+        var text_form = $("#config_file_create").serialize();
+        var validate = true;
+        $.each(array_form, function(i, field){
+            if(field.value == '' && field.name != 'database_passwd'){
+                swal({
+                    title: "Atenção!",
+                    text: "Por favor, preencha todos os dados antes de prosseguir!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+                validate = false;
+            }
+        });
+        if(validate){
+            $.ajax({
+               url: 'databaseSettings',
+               data: text_form,
+               type: 'POST',
+               dataType: 'json',
+               success: function(data){
+                   if(!data.connection){
+                       swal({
+                           title: "Erro! =(",
+                           text: data.message,
+                           type: "error",
+                           confirmButtonText: "OK"
+                       });
+                   } else{
+                       swal({
+                           title: "Sucesso! =)",
+                           text: data.message,
+                           type: "success",
+                           confirmButtonText: "OK"
+                       });
+                       $(".confirm").on("click", function(){
+                           window.location.href = 'newUser';
+                       });
+                   }
+
+               }
+            });
+        }
+    });
+</script>

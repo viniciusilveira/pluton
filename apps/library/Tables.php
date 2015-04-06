@@ -12,115 +12,10 @@ use Phalcon\Db\Reference as Reference;
  * @package Multiple\Library
  */
 class Tables {
-
-    public function createTableBlogs($connection) {
-
-        $table = array(
-            "columns" => array(
-                new Column("blog_id", array(
-                    "type" => Column::TYPE_INTEGER,
-                    "primary" => true,
-                    "size" => 10,
-                    "notNull" => true,
-                    "autoIncrement" => true,
-                        )
-                ),
-                new Column("blog_name", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "size" => 50,
-                    "notNull" => true,
-                        )
-                ),
-                new Column("blog_layout", array(
-                    "type" => Column::TYPE_INTEGER,
-                    "size" => 10,
-                    "notNull" => true,
-                        )
-                ),
-            ),
-            "indexes" => array(
-                new Index(
-                        "blog_layout", array("blog_layout")
-                )
-            ),
-            "references" => array(
-                new Reference(
-                        "blog_fk_layout", array(
-                    "referencedTable" => "layouts",
-                    "columns" => array("blog_layout"),
-                    "referencedColumns" => array("layout_id"),
-                        )
-                )
-            )
-        );
-        $connection->createTable("blogs", NULL, $table);
-    }
-
-    public function createTableUsers($connection) {
-        $table = array(
-            "columns" => array(
-                new Column("user_id", array(
-                    "type" => Column::TYPE_INTEGER,
-                    "primary" => true,
-                    "size" => 10,
-                    "notNull" => true,
-                    "autoIncrement" => true,
-                        )
-                ),
-                new Column("user_name", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "size" => 250,
-                    "notNull" => true
-                        )
-                ),
-                new Column("user_login", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "size" => 12,
-                    "notNull" => true
-                        )
-                ),
-                new Column("user_email", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "size" => 50,
-                    "notNull" => true
-                        )
-                ),
-                new Column("user_passwd", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "size" => 16,
-                    "notNull" => true
-                        )
-                ),
-                new Column("user_type", array(
-                    "type" => Column::TYPE_CHAR,
-                    "notNull" => true
-                        )
-                ),
-                new Column("user_blog", array(
-                    "type" => Column::TYPE_INTEGER,
-                    "size" => 10,
-                    "notNull" => false
-                        )
-                )
-            ),
-            "indexes" => array(
-                new Index(
-                        "user_blog", array("user_blog")
-                )
-            ),
-            "references" => array(
-                new Reference(
-                        "user_fk_blog", array(
-                    "referencedTable" => "blogs",
-                    "columns" => array("user_blog"),
-                    "referencedColumns" => array("blog_id"),
-                        )
-                )
-            )
-        );
-        $connection->createTable("users", NULL, $table);
-    }
-
+    /**
+     * Cria a tabela Layouts
+     * @param $connection => variável de conexão com o banco de dados
+     */
     public function createTableLayouts($connection) {
 
         $table = array(
@@ -191,17 +86,168 @@ class Tables {
                     "notNull" => false
                         )
                 )
-            )/* ,
-                  "indexes" => array(
-                  new Index(
-                  "PRIMARY",
-                  array("layout_id")
-                  )
-                  ) */
+            )
         );
         $connection->createTable("layouts", NULL, $table);
     }
 
+    /**
+     * Cria a tabela blogs
+     * @param $connection => Variável de conexão com o banco de dados
+     */
+    public function createTableBlogs($connection) {
+
+        $table = array(
+            "columns" => array(
+                new Column("blog_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true,
+                        )
+                ),
+                new Column("blog_name", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 50,
+                    "notNull" => true,
+                        )
+                ),
+                new Column("blog_layout", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10,
+                    "notNull" => true,
+                        )
+                ),
+            ),
+            "indexes" => array(
+                new Index(
+                    "blog_layout", array("blog_layout")
+                )
+            ),
+            "references" => array(
+                new Reference(
+                    "blog_fk_layout", array(
+                        "referencedTable" => "layouts",
+                        "columns" => array("blog_layout"),
+                        "referencedColumns" => array("layout_id"),
+                    )
+                )
+            )
+        );
+        $connection->createTable("blogs", NULL, $table);
+    }
+
+    /**
+     * Cria a tabela users
+     * @param $connection => Variável de conexão com o banco de dados
+     */
+    public function createTableUsers($connection) {
+        $table = array(
+            "columns" => array(
+                new Column("user_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true,
+                        )
+                ),
+                new Column("user_name", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
+                    "notNull" => true
+                        )
+                ),
+                new Column("user_login", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 12,
+                    "notNull" => true
+                        )
+                ),
+                new Column("user_email", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 50,
+                    "notNull" => true
+                        )
+                ),
+                new Column("user_passwd", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 16,
+                    "notNull" => true
+                        )
+                ),
+                new Column("user_type", array(
+                    "type" => Column::TYPE_CHAR,
+                    "notNull" => true
+                        )
+                ),
+                new Column("user_blog", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10
+                        )
+                )
+            )
+        );
+        $connection->createTable("users", NULL, $table);
+    }
+
+    /**
+     * Cria a tabela users_blogs
+     * @param $connection => Variável de conexão com o banco de dados
+     */
+    public function createTableUsersBlogs($connection){
+        $table = array(
+            "columns" => array(
+                new Column("user_blog_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true,
+                    )
+                ),
+                new Column("blog_id", array(
+                        "type" => Column::TYPE_INTEGER,
+                        "size" => 10,
+                        "notNull" => true
+                        )
+                ),
+                new Column("user_id", array(
+                        "type" => Column::TYPE_INTEGER,
+                        "size" => 10,
+                        "notNull" => true
+                    )
+                )
+            ),
+            "indexes" => array(
+                new Index("blog_id", array("blog_id")
+                ),
+                new Index("user_id", array("user_id")
+                )
+            ),
+            "references" => array(
+                new Reference("blog_fk_user_blog", array(
+                        "referencedTable" => "blogs",
+                        "columns" => array("blog_id"),
+                        "referencedColumns" => array("blog_id"),
+                    )
+                ),
+                new Reference("user_fk_user_blog", array(
+                        "referencedTable" => "users",
+                        "columns" => array("user_id"),
+                        "referencedColumns" => array("user_id"),
+                    )
+                )
+            )
+        );
+        $connection->createTable("users_blogs", NULL, $table);
+    }
+
+    /**
+     * Cria a tabela posts
+     * @param $connection => Variável de conexão com o banco de dados
+     */
     public function createTablePosts($connection) {
         $table = array(
             "columns" => array(
@@ -250,6 +296,7 @@ class Tables {
                         )
                 )
             ),
+
             "indexes" => array(
                 new Index(
                         "post_author", array("post_author")
@@ -278,4 +325,61 @@ class Tables {
         $connection->createTable("posts", NULL, $table);
     }
 
+    /**
+     * Cria a tabela social_network
+     * @param $connection => Variável de conexão com o banco de dados
+     */
+    public function createTableSocialNetwork($connection){
+        $table = array(
+            "columns" => array(
+                new Column("social_network_id", array(
+                        "type" => Column::TYPE_INTEGER,
+                        "primary" => true,
+                        "size" => 10,
+                        "notNull" => true,
+                        "autoIncrement" => true,
+                    )
+                ),
+                new Column("social_network_name", array(
+                        "type" => Column::TYPE_VARCHAR,
+                        "size" => 50,
+                        "notNull" => true,
+                    )
+                ),
+                new Column("social_network_login", array(
+                        "type" => Column::TYPE_VARCHAR,
+                        "size" => 20,
+                        "notNull" => true,
+                    )
+                ),
+                new Column("social_network_passwd", array(
+                        "type" => Column::TYPE_VARCHAR,
+                        "size" => 20,
+                        "notNull" => true,
+                    )
+                ),
+                new Column("social_network_blog", array(
+                        "type" => Column::TYPE_INTEGER,
+                        "size" => 10,
+                        "notNull" => true
+                    )
+                )
+            ),
+            "indexes" => array(
+                new Index(
+                    "social_network_blog", array("social_network_blog")
+                )
+            ),
+            "references" => array(
+                new Reference(
+                    "social_network_fk_blog", array(
+                        "referencedTable" => "blogs",
+                        "columns" => array("social_network_blog"),
+                        "referencedColumns" => array("blog_id"),
+                    )
+                )
+            )
+        );
+        $connection->createTable("social_network", NULL, $table);
+    }
 }
