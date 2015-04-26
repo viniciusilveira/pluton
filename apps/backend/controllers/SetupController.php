@@ -1,5 +1,7 @@
 <?php
+
 namespace Multiple\Backend\Controllers;
+
 use Phalcon\Exception;
 
 /**
@@ -21,7 +23,7 @@ class SetupController extends \Phalcon\DI\Injectable {
      * Construct necessário para iniciar objetos de outras classes
      */
     public function __construct() {
-        
+
         $this->user = new \Multiple\Backend\Models\Users;
         $this->blog = new \Multiple\Backend\Models\Blogs;
         $this->tables = new \Multiple\Library\Tables;
@@ -88,12 +90,11 @@ class SetupController extends \Phalcon\DI\Injectable {
             "username" => $this->config->database->username,
             "password" => $this->config->database->password,
             "dbname" => $this->config->database->name,
-
         );
         $db_conn["persistent"] = false;
 
         //Efetua a conexão com o banco de dados
-        try{
+        try {
             $this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql($db_conn);
             $this->createTablesAction();
             $data['connection'] = true;
@@ -101,7 +102,7 @@ class SetupController extends \Phalcon\DI\Injectable {
             echo json_encode($data);
             //Die necessário para que a mensagem seja enviada. Sem ele o ajax não exibe a mensagem.
             die();
-        }catch(\PDOException $e){
+        } catch (\PDOException $e) {
             unlink(FOLDER_PROJECT . 'apps/config/config.ini');
             $data['connection'] = false;
             $data['message'] = 'Erro ao conectar ao banco de dados! Por favor verifique se os dados informados
@@ -117,13 +118,12 @@ class SetupController extends \Phalcon\DI\Injectable {
      */
     public function createTablesAction() {
 
-            $this->connection->tableExists('layouts') ? NULL : $this->tables->createTableLayouts($this->connection);
-            $this->connection->tableExists('blogs') ? NULL : $this->tables->createTableBlogs($this->connection);
-            $this->connection->tableExists('users') ? NULL : $this->tables->createTableUsers($this->connection);
-            $this->connection->tableExists('users_blogs') ? NULL : $this->tables->createTableUsersBlogs($this->connection);
-            $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
-            $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
-
+        $this->connection->tableExists('layouts') ? NULL : $this->tables->createTableLayouts($this->connection);
+        $this->connection->tableExists('blogs') ? NULL : $this->tables->createTableBlogs($this->connection);
+        $this->connection->tableExists('users') ? NULL : $this->tables->createTableUsers($this->connection);
+        $this->connection->tableExists('users_blogs') ? NULL : $this->tables->createTableUsersBlogs($this->connection);
+        $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
+        $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
     }
 
     public function newBlogAction() {
@@ -134,17 +134,72 @@ class SetupController extends \Phalcon\DI\Injectable {
         // views/setup/newUser.phtml
     }
 
-
     /**
-     * Cria o primeiro usuário do sistema (Super Administrador)
+     * Cria um usuário para utilização do sistema
      */
-    public function createSuperAdmin(){
+    public function createNewUserAction() {
+        $data['funciona'] = 'funcionou!';
+        echo json_encode($data);
         $user_name = $this->request->getPost('user_name');
         $user_email = $this->request->getPost('user_email');
         $user_login = $this->request->getPost('user_login');
         $user_passwd = $this->request->getPost('user_passwd');
+        $user_type = !empty($this->request->getPost('user_type')) ? $this->request->getPost('user_type') : 'SA';
+        $data['success'] = true;
 
-        $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, 'SA');
+        //Verifica se há upload de arquivos
+        if ($this->request->hasFiles()) {
+
+            foreach ($this->request->getUploadedFiles() as $file) {
+                $upload_image = $this->uploadImageAction($file, 150, 180, 3000);
+            }
+            //Caso o retorno da função uploadImage seja diferente de uma string ocorreu um erro ao armazenar a imagem
+            //e o mesmo deve ser retornado para a view
+            if(gettype($upload_image) != 'string'){
+                $data['success'] = false;
+                $data['error'] = $upload_image;
+                echo json_encode($data);
+                die();
+            }
+        }
+        $data['success'] = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, $type, $user_img);
+        echo json_encode($data);
+        die();
+    }
+
+    public function uploadImageAction($file, $width, $heigth, $size){
+        // Verifica se o arquivo é uma imagem
+        if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getExtension())) {
+            $error[1] = "Arquivo Inválido!";
+        }
+
+        // Pega as dimensões da imagem
+        $dimensions = getimagesize($file->getTempName());
+
+        // Verifica se a largura da imagem é maior que a largura permitida
+        if ($dimensions[0] > $width) {
+            $error[2] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
+        }
+
+        // Verifica se a altura da imagem é maior que a altura permitida
+        if ($dimensions[1] > $heigth) {
+            $error[3] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
+        }
+
+        // Verifica se o tamanho da imagem é maior que o tamanho permitido
+        if ($file->getSize() > $size) {
+            $error[4] = "A imagem deve ter no máximo " . $size/1024 . "0 MB!";
+        }
+        if(count($error == 0)){
+            $ext = $file->getExtension();
+            $name_img = $file->getName();
+            if(!file_exists(FOLDER_PROJECT . 'public/img/users')) mkdir(FOLDER_PROJECT . 'public/img/users');
+            $path_img = FOLDER_PROJECT . 'public/img/users/'.$user_login . $file->getExteionsion();
+            $file->moveTo($path_img);
+            return $name_img;
+        } else{
+            return $error;
+        }
     }
 
 }

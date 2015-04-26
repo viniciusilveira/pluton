@@ -7,7 +7,7 @@ use Phalcon\Db\Index as Index;
 use Phalcon\Db\Reference as Reference;
 
 /**
- * Class Tables 
+ * Class Tables
  * Library Responsável por criar todas as tabelas necessárias para o projeto.
  * @package Multiple\Library
  */
@@ -185,6 +185,11 @@ class Tables {
                 new Column("user_blog", array(
                     "type" => Column::TYPE_INTEGER,
                     "size" => 10
+                        )
+                ),
+                new Column("user_img", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 150
                         )
                 )
             )

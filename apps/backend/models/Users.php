@@ -29,7 +29,7 @@ class Users extends \Phalcon\Mvc\Model {
      * @param null $user_blog
      * @return bool
      */
-    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type, $user_blog = NULL){
+    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type, $user_img = NULL, $user_blog = NULL){
         $user = new Users();
 
         $user->user_name = $user_name;
@@ -38,6 +38,7 @@ class Users extends \Phalcon\Mvc\Model {
         $user->user_passwd = $user_passwd;
         $user->user_type = $user_type;
         $user->user_blog = $user_blog;
+        $user->user_img = $user_img;
 
         $success = $user->create();
 

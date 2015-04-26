@@ -11,7 +11,7 @@
     <div class="content modal-content">
         <article class="content">
             <h1 class="h3 text-center">Dados do Usuário</h1>
-            <form class="form-horizontal center-block" id="user_create" name="user_create" action="createSuperAdmin" method="post">
+            <form class="form-horizontal center-block" id="user_create" name="user_create" enctype="multipart/form-data">
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Nome: </label>
                     <div class="col-sm-7">
@@ -39,12 +39,12 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Imagem de Perfil: </label>
                     <div class="col-sm-7">
-                        <input type="file" class="filestyle" name="user_img" id="user_img" data-buttonName="btn-primary">
+                        <input type="file" name="user_img" id="user_img" data-buttonName="btn-primary">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-5">
-                        <input type="submit" class="btn btn-lg btn-default" id="prosseguir" value="Prossseguir" />
+                        <input type="button" class="btn btn-lg btn-default" id="prosseguir" value="Prossseguir" />
                     </div>
                 </div>
             </form>
@@ -54,5 +54,37 @@
 </div>
 
 <script>
+    $(':file').filestyle({
+       buttonText: "Buscar Imagem"
+    });
 
+    $("#prosseguir").on("click", function(){
+        var validate = true;
+        console.log("Clicou!");
+        //Verifica se todos os campos do formulário foi preenchido
+        $.each($("#user_create").serializeArray(), function(i, field){
+            if(field.value == ''){
+                swal({
+                    title: "Atenção!",
+                    text: "Por favor, preencha todos os dados antes de prosseguir!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+                validate = false;
+            }
+        });
+
+        if(validate){
+            $.ajax({
+               url: 'createNewUser',
+               data: $("#user_create").serialize(),
+               type: 'POST',
+               dataType: 'json',
+               success: function(data){
+                   console.log(data.funciona);
+
+               }
+            });
+        }
+    });
 </script>
