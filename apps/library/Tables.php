@@ -161,7 +161,7 @@ class Tables {
                 ),
                 new Column("user_login", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 12,
+                    "size" => 20,
                     "notNull" => true
                         )
                 ),
@@ -178,8 +178,9 @@ class Tables {
                         )
                 ),
                 new Column("user_type", array(
-                    "type" => Column::TYPE_CHAR,
-                    "notNull" => true
+                    "type" => Column::TYPE_VARCHAR,
+                    "notNull" => true,
+                    "size" => 2
                         )
                 ),
                 new Column("user_blog", array(

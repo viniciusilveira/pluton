@@ -1,66 +1,52 @@
 <header class="container">
     <div class="content">
         <h1 class="main_logo text-center">
-            <img width="30%" src="<?= URL_PROJECT ?>img/logo.png"/>
+        <img width="30%" src="<?= URL_PROJECT ?>img/logo.png"/>
         </h1>
     </div>
 </header>
-
-
 <div class="container container-fluidr center-block">
     <div class="content modal-content">
         <article class="content">
-            <h1 class="h3 text-center">Dados do Usuário</h1>
-            <form class="form-horizontal center-block" id="user_create" name="user_create" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Nome: </label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" name="user_name" id="user_name">
-                    </div>
+        <h1 class="h3 text-center">Dados do Usuário</h1>
+        <form class="form-horizontal center-block" id="user_create" name="user_create">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Nome: </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" name="user_name" id="user_name">
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">E-mail: </label>
-                    <div class="col-sm-7">
-                        <input type="email" class="form-control" name="user_email" id="user_email" >
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">E-mail: </label>
+                <div class="col-sm-7">
+                    <input type="email" class="form-control" name="user_email" id="user_email" >
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Login: </label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" name="user_login" id="user_login">
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Login: </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" name="user_login" id="user_login" maxlength="16">
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Senha: </label>
-                    <div class="col-sm-7">
-                        <input type="password" class="form-control" name="user_passwd" id="user_passwd">
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Senha: </label>
+                <div class="col-sm-7">
+                    <input type="password" class="form-control" name="user_passwd" id="user_passwd">
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Imagem de Perfil: </label>
-                    <div class="col-sm-7">
-                        <input type="file" name="user_img" id="user_img" data-buttonName="btn-primary">
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5">
+                    <input type="button" class="btn btn-lg btn-default" id="prosseguir" value="Prosseguir" />
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-5">
-                        <input type="button" class="btn btn-lg btn-default" id="prosseguir" value="Prossseguir" />
-                    </div>
-                </div>
-            </form>
+            </div>
+        </form>
         </article>
     </div>
     <div class="clearfix"></div>
 </div>
-
 <script>
-    $(':file').filestyle({
-       buttonText: "Buscar Imagem"
-    });
-
     $("#prosseguir").on("click", function(){
         var validate = true;
-        console.log("Clicou!");
         //Verifica se todos os campos do formulário foi preenchido
         $.each($("#user_create").serializeArray(), function(i, field){
             if(field.value == ''){
@@ -73,17 +59,32 @@
                 validate = false;
             }
         });
-
         if(validate){
             $.ajax({
-               url: 'createNewUser',
-               data: $("#user_create").serialize(),
-               type: 'POST',
-               dataType: 'json',
-               success: function(data){
-                   console.log(data.funciona);
-
-               }
+            url: 'createNewUser',
+            data: $("#user_create").serialize(),
+            type: 'POST',
+            dataType: 'json',
+            success: function(data){
+                if(!data.success){
+                    swal({
+                        title: "Erro! =(",
+                        text: data.message,
+                        type: "error",
+                        confirmButtonText: "OK"
+                    });
+                } else{
+                    swal({
+                        title: "Sucesso! =)",
+                        text: 'Usuário criado com Sucesso!',
+                        type: "success",
+                        confirmButtonText: "OK"
+                    });
+                    $(".confirm").on("click", function(){
+                        window.location.href = 'login/index';
+                    });
+                }
+            }
             });
         }
     });
