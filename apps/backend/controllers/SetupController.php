@@ -1,7 +1,7 @@
 <?php
 namespace Multiple\Backend\Controllers;
 
-use Phalcon\Exception;
+use Multiple\Backend\Models\Users, \Phalcon\Crypt AS Crypt;
 
 /**
  * Classe para conexão e configuração dos dados necessários para inicialização
@@ -32,8 +32,10 @@ class SetupController extends \Phalcon\DI\Injectable
     public function indexAction() {
         
         // view/setup/index.phtml
+        
+        
     }
-
+    
     /**
      * Verifica os dados do banco para saber se existe usuário e blog já criados.
      * @return string contendo o dado não criado no banco de dados, ou 'ok' caso
@@ -41,16 +43,16 @@ class SetupController extends \Phalcon\DI\Injectable
      */
     public function verifyDataBaseAction() {
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
-            if (!$this->user->verifyUserExistAction()) {
+            if (!$this->user->verifyUsersExistAction()) {
                 return 'user';
-            }
+            } 
             elseif (!$this->blog->verifyBlogExistAction()) {
                 return 'blog';
-            }
+            } 
             else {
                 return 'ok';
             }
-        }
+        } 
         else {
             return 'file';
         }
@@ -62,6 +64,8 @@ class SetupController extends \Phalcon\DI\Injectable
     public function databaseConfigAction() {
         
         // views/setup/databaseConfig.phtml
+        
+        
     }
     
     /**
@@ -70,6 +74,9 @@ class SetupController extends \Phalcon\DI\Injectable
      * Conecta com o banco de dados
      */
     public function databaseSettingsAction() {
+        
+        //Informa que a action não possui nenhuma view para exibição
+        $this->view->disable();
         
         //Dados do banco de dados recebidos via POST;
         $database_name = $this->request->getPost('database_name');
@@ -108,9 +115,6 @@ class SetupController extends \Phalcon\DI\Injectable
             $data['connection'] = true;
             $data['message'] = 'Banco de dados conectado e configurado!';
             echo json_encode($data);
-            
-            //Die necessário para que a mensagem seja enviada. Sem ele o ajax não exibe a mensagem.
-            die();
         }
         catch(\PDOException $e) {
             unlink(FOLDER_PROJECT . 'apps/config/config.ini');
@@ -118,9 +122,6 @@ class SetupController extends \Phalcon\DI\Injectable
             $data['message'] = 'Erro ao conectar ao banco de dados! Por favor verifique se os dados informados
                                 estão corretos e tente novamente!';
             echo json_encode($data);
-            
-            //Die necessário para que a mensagem seja enviada. Sem ele o ajax não exibe a mensagem.
-            die();
         }
     }
     
@@ -140,11 +141,15 @@ class SetupController extends \Phalcon\DI\Injectable
     public function newBlogAction() {
         
         // views/setup/newBlog.phtml
+        
+        
     }
     
     public function newUserAction() {
         
         // views/setup/newUser.phtml
+        
+        
     }
     
     /**
@@ -152,20 +157,39 @@ class SetupController extends \Phalcon\DI\Injectable
      */
     public function createNewUserAction() {
 
+        //Informa que a action não possui nenhuma view para exibição
+        $this->view->disable();
+        
+        $crypt = new Crypt();
+        
         $user_name = $this->request->getPost('user_name');
         $user_email = $this->request->getPost('user_email');
         $user_login = $this->request->getPost('user_login');
-        $user_passwd = $this->request->getPost('user_passwd');
+        $user_passwd = $crypt->encrypt('p1u70ncm5', $this->request->getPost('user_passwd'));
         $user_type = !empty($this->request->getPost('user_type')) ? $this->request->getPost('user_type') : 'SA';
         
-        $data['success'] = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, $user_type);
-        
-        echo json_encode($data);
-
-        //Die necessário para que a mensagem seja enviada. Sem ele o ajax não exibe a mensagem.
-        die();
+        //Verifica se já existe um usuário no banco de dados; Caso exista retorna uma menssagem informando.
+        //Se não cria o usuário e retorna uma menssagem informando.
+        if (empty(Users::findFirst())) {
+            
+            try {
+                $data['success'] = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, $user_type);
+                $data['message'] = $data['success'] ? 'Usuário criado com sucesso!' : 'Ocorreu um erro ao criar o usuário. Por favor tente novamente';
+                echo json_encode($data);
+            }
+            catch(\PDOException $e) {
+                $data['success'] = false;
+                $data['message'] = "Ocorreu um erro: " . $e;
+                echo json_encode($data);
+            }
+        } 
+        else {
+            $data['success'] = false;
+            $data['message'] = 'Já existe um usuário no banco de dados! Por favor verifique os dados informados e tente novamente!';
+            echo json_encode($data);
+        }
     }
-
+    
     /**
      * Action para upload de imagens para o servidor (Ainda não utilizado - Talvez seja movido para outra classe)
      * @param  file $file   imagem
@@ -205,7 +229,7 @@ class SetupController extends \Phalcon\DI\Injectable
             $path_img = FOLDER_PROJECT . 'public/img/users/' . $user_login . $file->getExteionsion();
             $file->moveTo($path_img);
             return $name_img;
-        }
+        } 
         else {
             return $error;
         }

@@ -10,7 +10,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phalcon/phalcon-devtools/zipball/a36ad71c21abfe3d41f4f622e3309018efa4a47e",
+            "url": "https://api.github.com/repos/phalcon/phalcon-devtools/zipball/3a1bffee4e7033dddd137cd00e80afe6a9eb84a3",
             "reference": "a36ad71c21abfe3d41f4f622e3309018efa4a47e",
             "shasum": ""
         },
@@ -43,6 +43,60 @@
         "keywords": [
             "framework",
             "phalcon"
+        ]
+    },
+    {
+        "name": "swiftmailer/swiftmailer",
+        "version": "v5.4.0",
+        "version_normalized": "5.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/swiftmailer/swiftmailer.git",
+            "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/31454f258f10329ae7c48763eb898a75c39e0a9f",
+            "reference": "31454f258f10329ae7c48763eb898a75c39e0a9f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9.1"
+        },
+        "time": "2015-03-14 06:06:39",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/swift_required.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Chris Corbyn"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Swiftmailer, free feature-rich PHP mailer",
+        "homepage": "http://swiftmailer.org",
+        "keywords": [
+            "mail",
+            "mailer"
         ]
     }
 ]

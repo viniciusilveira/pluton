@@ -1,24 +1,24 @@
 <?php
-
 namespace Multiple\Backend\Models;
 
 use \Phalcon\Db\Column as Column;
 
 /**
- * Class Users 
-* @package Multiple\Backend\Models
+ * Class Users
+ * @package Multiple\Backend\Models
  */
-class Users extends \Phalcon\Mvc\Model {
-
+class Users extends \Phalcon\Mvc\Model
+{
+    
     /**
      * Verifica se existe usuários criado no banco de dados
      * @return bool true caso exista, false caso não exista nenhum
      */
-    public function verifyUserExistAction(){
-
-        return $this->count() > 0 ?  true : false;
+    public function verifyUsersExistAction() {
+        
+        return $this->count() > 0 ? true : false;
     }
-
+    
     /**
      * Cria um novo usuário no banco de dados
      * @param  string $user_name   Nome do Usuário
@@ -30,24 +30,19 @@ class Users extends \Phalcon\Mvc\Model {
      * @param  int    $user_blog   Id do blog de acesso do usuário
      * @return bool   $success     true caso o usuário seja criado, ou false caso ocorra algum erro.
      */
-    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type, $user_img = NULL, $user_blog = NULL){
-        /**
-         * Objeto da classe Users()
-         * @var Users
-         */
-        $user = new Users();
-
-        $user->user_name = $user_name;
-        $user->user_email = $user_email;
-        $user->user_login = $user_login;
-        $user->user_passwd = $user_passwd;
-        $user->user_type = $user_type;
-
-        if(!empty($user_blog)) $user->user_blog = $user_blog;
-        if(!empty($user_img)) $user->user_img = $user_img;
-
-        $success = $user->create();
-
+    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type, $user_img = NULL, $user_blog = NULL) {
+        
+        $this->user_name = $user_name;
+        $this->user_email = $user_email;
+        $this->user_login = $user_login;
+        $this->user_passwd = $user_passwd;
+        $this->user_type = $user_type;
+        
+        if (!empty($user_blog)) $this->user_blog = $user_blog;
+        if (!empty($user_img)) $this->user_img = $user_img;
+        
+        $success = $this->create();
+        
         return $success;
     }
 }

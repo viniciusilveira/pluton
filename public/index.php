@@ -13,27 +13,24 @@ define('URL_PROJECT', 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERV
  */
 define('FOLDER_PROJECT', __DIR__ . '/../');
 
+
+
 class Application extends \Phalcon\Mvc\Application {
 
-    /**
-     * Register the services here to make them general or register in the ModuleDefinition to make them module-specific
-     */
     protected function _registerServices() {
 
         $di = new \Phalcon\DI\FactoryDefault();
+        
         $loader = new \Phalcon\Loader();
-
-
-        /**
-         * We're a registering a set of directories taken from the configuration file
-         */
         $loader->registerDirs(
                 array(
-                    __DIR__ . '/../apps/library/'
+                    FOLDER_PROJECT . '/apps/library/'
                 )
         )->register();
 
-        //Registering a router
+        //usando autoloader do composer para carregar as classes do vendor
+        require_once FOLDER_PROJECT . 'vendor/autoload.php';
+
         $di->set('router', function() {
 
             $router = new \Phalcon\Mvc\Router();
@@ -66,7 +63,10 @@ class Application extends \Phalcon\Mvc\Application {
 
             return $router;
         });
-        
+        /**
+         * Caso exista o arquivo de configuração config.ini coleta os dados existentes nele e 
+         * conecta com o banco de dados
+         */
         if (file_exists('../apps/config/config.ini')) {
             $config = new \Phalcon\Config\Adapter\Ini('../apps/config/config.ini');
             

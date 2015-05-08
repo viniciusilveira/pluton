@@ -1,5 +1,6 @@
 {
     "require": {
-        "phalcon/devtools": "dev-master"
+        "phalcon/devtools": "dev-master",
+        "swiftmailer/swiftmailer": "^5.4"
     }
 }

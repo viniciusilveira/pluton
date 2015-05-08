@@ -29,5 +29,6 @@ class IndexController extends \Phalcon\Mvc\Controller {
                 $this->view->render('login', 'index');
                 break;
         }
+
     }
 }
