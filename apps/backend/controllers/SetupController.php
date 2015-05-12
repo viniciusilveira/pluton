@@ -46,9 +46,6 @@ class SetupController extends \Phalcon\DI\Injectable
             if (!$this->user->verifyUsersExistAction()) {
                 return 'user';
             } 
-            elseif (!$this->blog->verifyBlogExistAction()) {
-                return 'blog';
-            } 
             else {
                 return 'ok';
             }
@@ -156,7 +153,7 @@ class SetupController extends \Phalcon\DI\Injectable
      * Cria um usuário para utilização do sistema
      */
     public function createNewUserAction() {
-
+        
         //Informa que a action não possui nenhuma view para exibição
         $this->view->disable();
         

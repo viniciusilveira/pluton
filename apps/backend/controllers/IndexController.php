@@ -15,6 +15,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
          * Caso não exista nenhum usuário redireciona para tela de criação de usuários.
          * Caso ambos estejam OK, redireciona para tela de login.
          */
+        
         switch ($database){
             case 'file':
                 $this->view->render('setup', 'index');
