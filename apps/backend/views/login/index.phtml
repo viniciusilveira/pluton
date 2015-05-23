@@ -15,20 +15,3 @@
     </div>
 </div>
 
-<script>
-$("#login").on("click", function(){
-    efetuarLogin();
-});
-
-function efetuarLogin(user, passwd){
-    $.ajax({
-        url: 'settings/login',
-        data: '',
-        type: 'POST',
-        dataType: 'json',
-        success: function(data){
-            window.location('settings/index');
-        }
-    })
-}
-</script>
