@@ -45,4 +45,9 @@ class Users extends \Phalcon\Mvc\Model
         
         return $success;
     }
+
+    public function getUser($user_name, $user_passwd){
+        $return = sers::find(array('user_name' => $user_name, 'user_passwd' => $user_passwd));
+        print_r($return); die();
+    }
 }

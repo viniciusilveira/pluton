@@ -61,7 +61,7 @@
         });
         if(validate){
             $.ajax({
-            url: 'createNewUser',
+            url: 'setup/createNewUser',
             data: $("#user_create").serialize(),
             type: 'POST',
             dataType: 'json',
@@ -81,7 +81,7 @@
                         confirmButtonText: "OK"
                     });
                     $(".confirm").on("click", function(){
-                        window.location.href = "<?= URL_PROJECT ?>Login/index";
+                        window.location.href = "<?= URL_PROJECT ?>login/index";
                     });
                 }
             }

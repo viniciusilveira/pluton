@@ -4,13 +4,14 @@
  * Function list:
  * - __construct()
  * - indexAction()
- * - verifyDataBaseAction()
  * - databaseConfigAction()
+ * - newBlogAction()
+ * - newUserAction()
+ * - errorAction()
+ * - verifyDataBaseAction()
  * - databaseSettingsAction()
  * - connectDatabase()
  * - createTablesAction()
- * - newBlogAction()
- * - newUserAction()
  * - createNewUserAction()
  * - uploadImageAction()
  * Classes list:
@@ -53,26 +54,6 @@ class SetupController extends \Phalcon\DI\Injectable {
     }
     
     /**
-     * Verifica os dados do banco para saber se existe usuário e blog já criados.
-     * @return string contendo o dado não criado no banco de dados, ou 'ok' caso
-     * já esteja tudo criado
-     */
-    public function verifyDataBaseAction() {
-        
-        if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
-            if (!$this->connectDatabase()) return 'connect';
-            $this->createTablesAction();
-            
-            $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
-        } 
-        else {
-            $return = 'file';
-        }
-        
-        return $return;
-    }
-    
-    /**
      * Carrega a view para inserção dos dados de conexão com o banco de dados
      */
     public function databaseConfigAction() {
@@ -80,6 +61,48 @@ class SetupController extends \Phalcon\DI\Injectable {
         // views/setup/databaseConfig.phtml
         
         
+    }
+    
+    public function newBlogAction() {
+        
+        // views/setup/newBlog.phtml
+        
+        
+    }
+    
+    public function newUserAction() {
+        
+        // views/setup/newUser.phtml
+        
+        
+    }
+    
+    public function errorAction() {
+        die("Erro conexão");
+    }
+    
+    /**
+     * Verifica os dados do banco para saber se existe usuário e blog já criados.
+     * @return string contendo o dado não criado no banco de dados, ou 'ok' caso
+     * já esteja tudo criado
+     */
+    public function verifyDataBaseAction() {
+        
+        if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
+            $connect = $this->connectDatabase();
+            if (!$connect['connection']) {
+                $return  = 'connect';
+            } 
+            else {
+                $this->createTablesAction();
+                $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
+            }
+        } 
+        else {
+            $return = 'file';
+        }
+        
+        return $return;
     }
     
     /**
@@ -124,9 +147,6 @@ class SetupController extends \Phalcon\DI\Injectable {
      */
     public function connectDatabase() {
         
-        //Informa que a action não possui nenhuma view para exibição
-        $this->view->disable();
-        
         //Seta a configuração do banco de dados.
         $this->config     = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
         
@@ -160,29 +180,12 @@ class SetupController extends \Phalcon\DI\Injectable {
      */
     public function createTablesAction() {
         
-        //Informa que a action não possui nenhuma view para exibição
-        $this->view->disable();
-        
         $this->connection->tableExists('layouts') ? NULL : $this->tables->createTableLayouts($this->connection);
         $this->connection->tableExists('blogs') ? NULL : $this->tables->createTableBlogs($this->connection);
         $this->connection->tableExists('users') ? NULL : $this->tables->createTableUsers($this->connection);
         $this->connection->tableExists('users_blogs') ? NULL : $this->tables->createTableUsersBlogs($this->connection);
         $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
         $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
-    }
-    
-    public function newBlogAction() {
-        
-        // views/setup/newBlog.phtml
-        
-        
-    }
-    
-    public function newUserAction() {
-        //die("USER");
-        // views/setup/newUser.phtml
-        
-        
     }
     
     /**

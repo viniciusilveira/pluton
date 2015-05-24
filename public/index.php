@@ -54,7 +54,9 @@ class Application extends \Phalcon\Mvc\Application {
                 'controller' => 'index',
                 'action' => 'index',
             ));
-
+            /**
+             * @todo: Verificar se esse router está ocasionando conflito ao carregar Actions
+             */
             $router->add("/login", array(
                 'module' => 'backend',
                 'controller' => 'login',

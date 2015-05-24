@@ -1,51 +1,5 @@
 [
     {
-        "name": "phalcon/devtools",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phalcon/phalcon-devtools.git",
-            "reference": "a36ad71c21abfe3d41f4f622e3309018efa4a47e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phalcon/phalcon-devtools/zipball/3a1bffee4e7033dddd137cd00e80afe6a9eb84a3",
-            "reference": "a36ad71c21abfe3d41f4f622e3309018efa4a47e",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.6"
-        },
-        "time": "2015-01-31 22:20:02",
-        "bin": [
-            "phalcon.php"
-        ],
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Phalcon": "scripts/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3"
-        ],
-        "authors": [
-            {
-                "name": "Phalcon Team",
-                "email": "team@phalconphp.com"
-            }
-        ],
-        "description": "This tools provide you useful scripts to generate code helping to develop faster and easy applications that use with Phalcon framework.",
-        "homepage": "http://phalconphp.com",
-        "keywords": [
-            "framework",
-            "phalcon"
-        ]
-    },
-    {
         "name": "swiftmailer/swiftmailer",
         "version": "v5.4.0",
         "version_normalized": "5.4.0.0",
@@ -97,6 +51,52 @@
         "keywords": [
             "mail",
             "mailer"
+        ]
+    },
+    {
+        "name": "phalcon/devtools",
+        "version": "1.3.x-dev",
+        "version_normalized": "1.3.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phalcon/phalcon-devtools.git",
+            "reference": "f7e231d866ae2bdb2d175a7907cb229bed52d187"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phalcon/phalcon-devtools/zipball/f7e231d866ae2bdb2d175a7907cb229bed52d187",
+            "reference": "f7e231d866ae2bdb2d175a7907cb229bed52d187",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.6"
+        },
+        "time": "2014-03-19 21:41:17",
+        "bin": [
+            "phalcon.php"
+        ],
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Phalcon": "scripts/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3"
+        ],
+        "authors": [
+            {
+                "name": "Phalcon Team",
+                "email": "team@phalconphp.com"
+            }
+        ],
+        "description": "This tools provide you useful scripts to generate code helping to develop faster and easy applications that use with Phalcon framework.",
+        "homepage": "http://phalconphp.com",
+        "keywords": [
+            "framework",
+            "phalcon"
         ]
     }
 ]
