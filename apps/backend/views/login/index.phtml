@@ -30,14 +30,17 @@
     <div class="clearfix"></div>
 </div>
 <script>
+    /**
+     * @todo: tratar o resultado retornado por login para alertar em caso de erro ou redirecionar para tela inicial em caso de sucesso;
+     */
     $("#prosseguir").click(function(){
         $.ajax({
             url: 'login/login',
             data: $("#login").serialize(),
-            //dataType: 'json',
+            dataType: 'json',
             type: 'POST',
             success: function(data){
-
+                alert(data);
             }
         })
     });

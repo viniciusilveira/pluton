@@ -1,4 +1,12 @@
 <?php
+/**
+* Class and Function List:
+* Function list:
+* - verifyUsersExistAction()
+* - createUser()
+* Classes list:
+* - Users extends \
+*/
 namespace Multiple\Backend\Models;
 
 use \Phalcon\Db\Column as Column;
@@ -7,8 +15,7 @@ use \Phalcon\Db\Column as Column;
  * Class Users
  * @package Multiple\Backend\Models
  */
-class Users extends \Phalcon\Mvc\Model
-{
+class Users extends \Phalcon\Mvc\Model {
     
     /**
      * Verifica se existe usuários criado no banco de dados
@@ -30,24 +37,19 @@ class Users extends \Phalcon\Mvc\Model
      * @param  int    $user_blog   Id do blog de acesso do usuário
      * @return bool   $success     true caso o usuário seja criado, ou false caso ocorra algum erro.
      */
-    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type, $user_img = NULL, $user_blog = NULL) {
+    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type, $user_img          = NULL, $user_blog         = NULL) {
         
-        $this->user_name = $user_name;
-        $this->user_email = $user_email;
-        $this->user_login = $user_login;
+        $this->user_name   = $user_name;
+        $this->user_email  = $user_email;
+        $this->user_login  = $user_login;
         $this->user_passwd = $user_passwd;
-        $this->user_type = $user_type;
+        $this->user_type   = $user_type;
         
-        if (!empty($user_blog)) $this->user_blog = $user_blog;
-        if (!empty($user_img)) $this->user_img = $user_img;
+        if (!empty($user_blog)) $this->user_blog   = $user_blog;
+        if (!empty($user_img)) $this->user_img    = $user_img;
         
-        $success = $this->create();
+        $success           = $this->create();
         
         return $success;
-    }
-
-    public function getUser($user_name, $user_passwd){
-        $return = sers::find(array('user_name' => $user_name, 'user_passwd' => $user_passwd));
-        print_r($return); die();
     }
 }
