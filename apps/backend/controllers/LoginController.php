@@ -1,49 +1,52 @@
 <?php
 /**
-* Class and Function List:
-* Function list:
-* - indexAction()
-* Classes list:
-* - LoginController extends \
-*/
+ * Class and Function List:
+ * Function list:
+ * - indexAction()
+ * - loginAction()
+ * - creatSession()
+ * Classes list:
+ * - LoginController extends \
+ */
 namespace Multiple\Backend\Controllers;
-use Multiple\Backend\Models\Users AS Users;
+use Multiple\Backend\Models\Users AS Users, \Phalcon\Crypt AS Crypt;;
 
-class LoginController extends \Phalcon\Mvc\Controller {
+class LoginController extends SetupController {
 	
 	public function indexAction() {
+		
 		// view/login/index.phtml
+		
+		
 	}
-
+	
 	/**
 	 * Efetua o login no sistema
 	 * @return json_encode array para o jquery
 	 */
-	public function loginAction(){
+	public function loginAction() {
 
 		$this->view->disable();
 
-		$parameters['user_name']   = $this->request->getPost('user_name');
-        $parameters['user_passwd'] = $this->request->getPost('user_passwd');
-        $conditions = "user_name = :user_name: AND user_passwd = :user_passwd:";
-		$result = Users::find(array($conditions, 'bind' => $parameters));
-		
-		/**
-		 * @todo: Verificar maneira de tratar o resultado do método find usado na linha 29
-		 */
+		$crypt       = new Crypt();
+		$users       = new Users();
 
-		if(empty($result->toArray())){
-			$data['success'] = false;
-			$data['message'] = 'Usuário ou senha invalido!';
-		} else{
-			$this->creatSession($parameters['user_name']);
-			$data['sucess'] = true;
+		$user_login  = $this->request->getPost('user_login');
+		$user_passwd = md5($this->request->getPost('user_passwd'));
+		$success     = $users::findFirst("(user_login = '$user_login' OR user_email = '$user_login') AND user_passwd = '$user_passwd'");
+		if ($success) {
+			//$this->creatSession($user_name);
+			$data['success']             = true;
+			$data['message']             = 'Login efetuado com sucesso';
+		} 
+		else {
+			$data['success']             = false;
+			$data['message']             = 'Usuário ou senha invalido!';
 		}
-
+		
 		echo json_encode($data);
 	}
-
-	public function creatSession($user_name){
-
+	
+	public function creatSession($user_name) {
 	}
 }

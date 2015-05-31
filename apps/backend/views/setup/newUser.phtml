@@ -61,7 +61,7 @@
         });
         if(validate){
             $.ajax({
-            url: 'setup/createNewUser',
+            url: $.verifySettingsURL(window.location.href,'setup', 'createNewUser'),
             data: $("#user_create").serialize(),
             type: 'POST',
             dataType: 'json',

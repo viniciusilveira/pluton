@@ -17,6 +17,11 @@ use \Phalcon\Db\Column as Column;
  */
 class Users extends \Phalcon\Mvc\Model {
     
+    private $user_name;
+    private $user_email;
+    private $user_login;
+    private $user_passwd;
+    private $user_type;
     /**
      * Verifica se existe usuários criado no banco de dados
      * @return bool true caso exista, false caso não exista nenhum

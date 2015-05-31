@@ -1,0 +1,433 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"User",
+				"Users〔class〕"
+			],
+			[
+				"col-xs-o",
+				"col-xs-offset-2	BootstrapClass"
+			],
+			[
+				"M",
+				"Mvc〔namespace〕"
+			],
+			[
+				"connect",
+				"connectDatabase〔function〕"
+			],
+			[
+				"conne",
+				"connectDatabase〔function〕"
+			],
+			[
+				"createTab",
+				"createTablesAction"
+			],
+			[
+				"Pdo",
+				"PDOException"
+			],
+			[
+				"up",
+				"$upload_image〔variable〕"
+			],
+			[
+				"Adap",
+				"Phalcon\\Image\\Adapter"
+			],
+			[
+				"conten",
+				"modal-content	BootstrapClass"
+			],
+			[
+				"containe",
+				"container-fluid	BootstrapClass"
+			],
+			[
+				"text-",
+				"text-primary	BootstrapClass"
+			],
+			[
+				"mar",
+				"modal-header	BootstrapClass"
+			],
+			[
+				"list-group-item",
+				"list-group-item-heading	BootstrapClass"
+			],
+			[
+				"list-group",
+				"list-group-item-text	BootstrapClass"
+			],
+			[
+				"list-gr",
+				"list-group-item	BootstrapClass"
+			],
+			[
+				"respons",
+				"Phalcon\\Http\\Response"
+			],
+			[
+				"A",
+				"Phalcon\\Acl"
+			],
+			[
+				"PhalconTagfrien",
+				"Phalcon\\Tag::friendlyTitle"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 201.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"todo",
+				"TodoReview: Project Files"
+			],
+			[
+				"git",
+				"GitGutter: Compare Against Commit"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove ",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove package",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 476.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/var/www/html/pluton"
+	],
+	"file_history":
+	[
+		"/var/www/html/pluton/pluton.sublime-project",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/Xdebug.sublime-settings",
+		"/home/vinicius/sublimeProjects/pluton.sublime-project",
+		"/var/www/html/pluton/apps/backend/views/login/index.phtml",
+		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
+		"/var/www/html/pluton/apps/backend/models/Users.php",
+		"/var/www/html/pluton/apps/backend/controllers/IndexController.php",
+		"/var/www/html/pluton/apps/backend/controllers/SetupController.php",
+		"/var/www/html/pluton/public/css/style.css",
+		"/var/www/html/pluton/apps/backend/views/index.phtml",
+		"/var/www/html/pluton/vendor/phalcon/devtools/ide/1.3.0/Phalcon/Mvc/View.php",
+		"/var/www/html/pluton/vendor/phalcon/devtools/ide/1.3.0/Phalcon/Mvc/ViewInterface.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/Better Completion/sbc-setting.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/sbc-setting.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
+		"/var/www/html/pluton/apps/backend/views/setup/newUser.phtml",
+		"/var/www/html/pluton/apps/config/config.ini",
+		"/var/www/html/pluton/composer.json",
+		"/var/www/html/pluton/public/index.php",
+		"/var/www/html/pluton/apps/backend/views/setup/databaseConfig.phtml",
+		"/var/www/html/pluton/apps/backend/Module.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/GitGutter/Default (Linux).sublime-keymap",
+		"/home/vinicius/.config/sublime-text-3/Packages/GitGutter/GitGutter.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
+		"/var/www/html/pluton/apps/backend/views/setup/index.phtml",
+		"/var/www/html/pluton/apps/backend/models/Blogs.php",
+		"/home/vinicius/pluton.wiki/home.markdown",
+		"/var/www/html/pluton/vendor/phalcon/devtools/ide/1.3.4/Phalcon/Mvc/Model.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings",
+		"/var/www/html/pluton/apps/backend/models/Layouts.php",
+		"/var/www/html/pluton/apps/backend/models/teste.php",
+		"/var/www/html/pluton/vendor/autoload.php",
+		"/var/www/html/pluton/apps/library/Mail.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/SublimeCodeIntel.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/Default (Linux).sublime-mousemap",
+		"/var/www/html/pluton/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Plugins/PopBeforeSmtpPlugin.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/Base File.sublime-settings",
+		"/var/www/html/pluton/apps/backend/models/Posts.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/var/www/html/pluton/vendor/composer/autoload_namespaces.php",
+		"/var/www/html/pluton/apps/backend/views/setup/newBlog.phtml",
+		"/var/www/html/pluton/apps/library/Tables.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/CodeFormatter/Default (Linux).sublime-keymap",
+		"/var/www/html/pluton/vendor/phalcon/devtools/ide/0.5.0/Phalcon/Mvc/Model.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/var/www/html/pluton/vendor/phalcon/devtools/ide/0.6.0/Phalcon/Mvc/Model.php",
+		"/var/www/html/pluton/vendor/phalcon/devtools/ide/0.4.0/inspector.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/Distraction Free.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/CodeFormatter.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/DocBlockr/Base File.sublime-settings",
+		"/var/www/html/pluton/vendor/phalcon/devtools/ide/0.4.2/inspector.php",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yanim/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yanim/AUTHORS",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yanim/configure.ac",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yanim/src/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yanim/src/main.c",
+		"/home/vinicius/Downloads/james/Prova-01/src/yanim.c",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yanim/main.c",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yanim/Makefile.in",
+		"/home/vinicius/Downloads/james/Prova-01/src/Makefile.am",
+		"/home/vinicius/Downloads/james/Prova-01/configure.ac",
+		"/home/vinicius/Downloads/james/Prova-01/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yamin/ChangeLog",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yamin/AUTHORS",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yamin/src/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yamin/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yamin/src/main.c",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yamin/INSTALL",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yamin/NEWS",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/yamin/README",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/configure.ac",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/scripts/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/man/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/src/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/examples/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/doc/Makefile.am",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/doc/README",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/doc/DONTS",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/src/main.c",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/leArquivo/src/main.C",
+		"/home/vinicius/Documentos/TECII/Trabalhos/C/le_arquivo.C",
+		"/home/vinicius/Downloads/sublimetheme/build.info",
+		"/home/vinicius/Downloads/sublimetheme/enabledItems.info",
+		"/var/www/html/pluton/vendor/phalcon/devtools/resources/jquery/jquery.js",
+		"/var/www/html/pluton/vendor/phalcon/devtools/resources/codemirror/mode/http/http.js",
+		"/home/vinicius/.config/sublime-text-3/Packages/SublimeCodeIntel/Default (Linux).sublime-keymap",
+		"/var/www/html/pluton/apps/backend/views/setup/databaseSettings.phtml",
+		"/var/www/html/pluton/apps/backend/views/setup/userSettings.phtml",
+		"/var/www/html/sweetalert/bootstrap/variables.less",
+		"/var/www/html/invo/app/views/companies/edit.volt",
+		"/var/www/html/pluton/vendor/composer/autoload_real.php",
+		"/var/www/html/invo/app/views/register/index.volt",
+		"/var/www/html/invo/app/forms/RegisterForm.php",
+		"/var/www/html/pluton/apps/backend/plugins/AclListener.php",
+		"/var/www/html/sweetalert/index.html",
+		"/var/www/html/pluton/public/.htaccess",
+		"/var/www/html/pluton/.htaccess",
+		"/var/www/html/invo/.htaccess",
+		"/var/www/html/sweetalert/lib/sweet-alert.css",
+		"/var/www/html/invo/app/config/services.php",
+		"/var/www/html/phalconcms/app/config/services.php",
+		"/var/www/html/phalconcms/public/index.php",
+		"/var/www/html/invo/public/index.php",
+		"/var/www/html/phalconcms/index.html",
+		"/var/www/html/phalconcms/config/loader.php",
+		"/var/www/html/invo/app/controllers/CompaniesController.php",
+		"/var/www/html/invo/app/library/Elements.php",
+		"/var/www/html/invo/app/config/loader.php",
+		"/var/www/html/phalconcms/config/services.php",
+		"/var/www/html/phalconcms/config/config.ini",
+		"/var/www/html/invo/app/config/config.ini",
+		"/var/www/html/phalconcms/README.md",
+		"/var/www/html/phalconcms/.htaccess",
+		"/var/www/html/phalconcms/app/views/index/index.phtml",
+		"/var/www/html/phalconcms/app/config/config.php",
+		"/var/www/html/phalconcms/public/bootstrap/css/bootstrap-theme.css",
+		"/var/www/html/phalconcms/app/controllers/ControllerBase.php",
+		"/var/www/html/phalconcms/app/controllers/IndexController.php"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"newUserAction",
+			"login",
+			"login,",
+			"php",
+			"$this->tables",
+			"$config",
+			"config",
+			"php",
+			"phpExtraPaths",
+			"createUser",
+			" $",
+			"sincos",
+			"getMenu"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 112.0
+	},
+	"pinned_build_system": "",
+	"project": "pluton.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"xdebug":
+		{
+			"hide_conflict": false
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 254.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

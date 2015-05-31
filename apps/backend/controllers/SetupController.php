@@ -156,6 +156,7 @@ class SetupController extends \Phalcon\DI\Injectable {
             "username"                  => $this->config->database->username,
             "password"                  => $this->config->database->password,
             "dbname"                  => $this->config->database->name,
+            "charset" => 'utf8'
         );
         $db_conn["persistent"]                  = false;
         
@@ -201,7 +202,7 @@ class SetupController extends \Phalcon\DI\Injectable {
         $user_name   = $this->request->getPost('user_name');
         $user_email  = $this->request->getPost('user_email');
         $user_login  = $this->request->getPost('user_login');
-        $user_passwd = $crypt->encrypt('p1u70ncm5', $this->request->getPost('user_passwd'));
+        $user_passwd = md5($this->request->getPost('user_passwd'));
         $user_type   = !empty($this->request->getPost('user_type')) ? $this->request->getPost('user_type') : 'SA';
         
         try {

@@ -173,7 +173,7 @@ class Tables {
                 ),
                 new Column("user_passwd", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 16,
+                    "size" => 250,
                     "notNull" => true
                         )
                 ),
