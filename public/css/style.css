@@ -2,7 +2,7 @@
     Created on : 04/02/2015, 20:06:16
     Author     : Marcos Vinicius O. Silveira
 */
-/************** Common **************************/
+/******************** Global **************************/
 *, *:before, *:after{margin: 0; padding: 0;}
 
 .container{float: center; width: 100%;}
@@ -20,8 +20,15 @@
     border-radius: 5px;
 }
 
-/************** End Common **************************/
+/******************** Forms **************************/
 
 .input-login{
     margin: auto;
+}
+
+/******************** Layouts ************************/
+
+.border-lateral{
+	width: 50%;
+	background-color: black;
 }

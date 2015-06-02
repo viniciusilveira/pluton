@@ -1,5 +1,5 @@
 /**
- * Funções js do projeto
+ * plugins JQuery
  */
 (function($) {
 	$.verifySettingsURL = function(url, controller, action) {

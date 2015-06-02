@@ -4,6 +4,66 @@
 		"selected_items":
 		[
 			[
+				"set",
+				"set〔function〕"
+			],
+			[
+				"Ad",
+				"Adapter〔namespace〕"
+			],
+			[
+				"session_destro",
+				"session_destroy()	session Function"
+			],
+			[
+				"_Se",
+				"$_SESSION〔variable〕"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"container",
+				"container-fluid	BootstrapClass"
+			],
+			[
+				"bakcg",
+				"background-color: 〔property〕"
+			],
+			[
+				"navbar-",
+				"navbar-brand	BootstrapClass"
+			],
+			[
+				"wid",
+				"width: 〔property〕"
+			],
+			[
+				"dec",
+				"decryptBase64〔function〕"
+			],
+			[
+				"encr",
+				"encryptBase64〔function〕"
+			],
+			[
+				"PDO",
+				"PDO	PDO Class"
+			],
+			[
+				"condition",
+				"$conditions〔variable〕"
+			],
+			[
+				"crypt",
+				"$crypt〔variable〕"
+			],
+			[
+				"user_passwd",
+				"$user_passwd〔variable〕"
+			],
+			[
 				"User",
 				"Users〔class〕"
 			],
@@ -83,6 +143,46 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "apps/backend/views/settings/index.phtml",
+			"settings":
+			{
+				"buffer_size": 3055,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/css/style.css",
+			"settings":
+			{
+				"buffer_size": 801,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apps/backend/controllers/LoginController.php",
+			"settings":
+			{
+				"buffer_size": 1966,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apps/backend/controllers/SettingsController.php",
+			"settings":
+			{
+				"buffer_size": 643,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/custom.js",
+			"settings":
+			{
+				"buffer_size": 922,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -91,10 +191,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 201.0,
-		"last_filter": "install",
+		"height": 117.0,
+		"last_filter": "remove",
 		"selected_items":
 		[
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -106,10 +210,6 @@
 			[
 				"git",
 				"GitGutter: Compare Against Commit"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
 			],
 			[
 				"Install",
@@ -162,36 +262,59 @@
 	},
 	"expanded_folders":
 	[
-		"/var/www/html/pluton"
+		"/var/www/html/pluton",
+		"/var/www/html/pluton/apps",
+		"/var/www/html/pluton/apps/backend",
+		"/var/www/html/pluton/apps/backend/controllers",
+		"/var/www/html/pluton/apps/backend/views",
+		"/var/www/html/pluton/apps/backend/views/login",
+		"/var/www/html/pluton/apps/backend/views/settings",
+		"/var/www/html/pluton/apps/backend/views/setup",
+		"/var/www/html/pluton/public",
+		"/var/www/html/pluton/public/css",
+		"/var/www/html/pluton/public/js"
 	],
 	"file_history":
 	[
-		"/var/www/html/pluton/pluton.sublime-project",
-		"/home/vinicius/.config/sublime-text-3/Packages/User/Xdebug.sublime-settings",
-		"/home/vinicius/sublimeProjects/pluton.sublime-project",
-		"/var/www/html/pluton/apps/backend/views/login/index.phtml",
-		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
-		"/var/www/html/pluton/apps/backend/models/Users.php",
-		"/var/www/html/pluton/apps/backend/controllers/IndexController.php",
-		"/var/www/html/pluton/apps/backend/controllers/SetupController.php",
-		"/var/www/html/pluton/public/css/style.css",
 		"/var/www/html/pluton/apps/backend/views/index.phtml",
+		"/var/www/html/pluton/apps/backend/views/setup/index.phtml",
+		"/var/www/html/pluton/public/index.php",
+		"/var/www/html/pluton/apps/backend/controllers/SettingsController.php",
+		"/var/www/html/pluton/apps/backend/views/settings/index.phtml",
+		"/var/www/html/pluton/public/js/custom.js",
+		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
+		"/var/www/html/pluton/apps/backend/views/login/index.phtml",
+		"/var/www/html/pluton/apps/backend/models/Users.php",
+		"/var/www/html/pluton/apps/library/Tables.php",
+		"/var/www/html/pluton/apps/backend/views/setup/databaseConfig.phtml",
+		"/var/www/html/pluton/apps/backend/controllers/SetupController.php",
+		"/var/www/html/pluton/vendor/phalcon/devtools/resources/jquery/jquery.js",
+		"/home/vinicius/Downloads/base64.sql",
+		"/var/www/html/pluton/apps/library/Database.php",
+		"/var/www/html/pluton/apps/backend/controllers/ErrorsController.php",
+		"/var/www/html/pluton/apps/backend/views/errors/index.phtml",
+		"/var/www/html/pluton/apps/backend/views/setup/newUser.phtml",
+		"/var/www/html/pluton/vendor/phalcon/devtools/scripts/Phalcon/Web/Tools/controllers/ControllerBase.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/Xdebug.sublime-settings",
+		"/home/vinicius/.config/sublime-text-3/Packages/Xdebug Client/Xdebug.sublime-settings",
+		"/var/www/html/pluton/pluton.sublime-project",
+		"/home/vinicius/sublimeProjects/pluton.sublime-project",
+		"/var/www/html/pluton/apps/backend/controllers/IndexController.php",
+		"/var/www/html/pluton/public/css/style.css",
 		"/var/www/html/pluton/vendor/phalcon/devtools/ide/1.3.0/Phalcon/Mvc/View.php",
 		"/var/www/html/pluton/vendor/phalcon/devtools/ide/1.3.0/Phalcon/Mvc/ViewInterface.php",
 		"/home/vinicius/.config/sublime-text-3/Packages/Better Completion/sbc-setting.sublime-settings",
 		"/home/vinicius/.config/sublime-text-3/Packages/User/sbc-setting.sublime-settings",
 		"/home/vinicius/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/home/vinicius/.config/sublime-text-3/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
-		"/var/www/html/pluton/apps/backend/views/setup/newUser.phtml",
 		"/var/www/html/pluton/apps/config/config.ini",
 		"/var/www/html/pluton/composer.json",
-		"/var/www/html/pluton/public/index.php",
-		"/var/www/html/pluton/apps/backend/views/setup/databaseConfig.phtml",
 		"/var/www/html/pluton/apps/backend/Module.php",
 		"/home/vinicius/.config/sublime-text-3/Packages/GitGutter/Default (Linux).sublime-keymap",
 		"/home/vinicius/.config/sublime-text-3/Packages/GitGutter/GitGutter.sublime-settings",
 		"/home/vinicius/.config/sublime-text-3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
-		"/var/www/html/pluton/apps/backend/views/setup/index.phtml",
 		"/var/www/html/pluton/apps/backend/models/Blogs.php",
 		"/home/vinicius/pluton.wiki/home.markdown",
 		"/var/www/html/pluton/vendor/phalcon/devtools/ide/1.3.4/Phalcon/Mvc/Model.php",
@@ -205,11 +328,8 @@
 		"/var/www/html/pluton/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Plugins/PopBeforeSmtpPlugin.php",
 		"/home/vinicius/.config/sublime-text-3/Packages/User/Base File.sublime-settings",
 		"/var/www/html/pluton/apps/backend/models/Posts.php",
-		"/home/vinicius/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
-		"/home/vinicius/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/var/www/html/pluton/vendor/composer/autoload_namespaces.php",
 		"/var/www/html/pluton/apps/backend/views/setup/newBlog.phtml",
-		"/var/www/html/pluton/apps/library/Tables.php",
 		"/home/vinicius/.config/sublime-text-3/Packages/CodeFormatter/Default (Linux).sublime-keymap",
 		"/var/www/html/pluton/vendor/phalcon/devtools/ide/0.5.0/Phalcon/Mvc/Model.php",
 		"/home/vinicius/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
@@ -253,7 +373,6 @@
 		"/home/vinicius/Documentos/TECII/Trabalhos/C/le_arquivo.C",
 		"/home/vinicius/Downloads/sublimetheme/build.info",
 		"/home/vinicius/Downloads/sublimetheme/enabledItems.info",
-		"/var/www/html/pluton/vendor/phalcon/devtools/resources/jquery/jquery.js",
 		"/var/www/html/pluton/vendor/phalcon/devtools/resources/codemirror/mode/http/http.js",
 		"/home/vinicius/.config/sublime-text-3/Packages/SublimeCodeIntel/Default (Linux).sublime-keymap",
 		"/var/www/html/pluton/apps/backend/views/setup/databaseSettings.phtml",
@@ -284,14 +403,11 @@
 		"/var/www/html/phalconcms/README.md",
 		"/var/www/html/phalconcms/.htaccess",
 		"/var/www/html/phalconcms/app/views/index/index.phtml",
-		"/var/www/html/phalconcms/app/config/config.php",
-		"/var/www/html/phalconcms/public/bootstrap/css/bootstrap-theme.css",
-		"/var/www/html/phalconcms/app/controllers/ControllerBase.php",
-		"/var/www/html/phalconcms/app/controllers/IndexController.php"
+		"/var/www/html/phalconcms/app/config/config.php"
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -335,8 +451,154 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "apps/backend/views/settings/index.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3055,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2446,
+								2446
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "public/css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 801,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								798,
+								798
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "apps/backend/controllers/LoginController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1966,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								658,
+								699
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 663.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "apps/backend/controllers/SettingsController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 643,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								411,
+								411
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "public/js/custom.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 922,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								261,
+								261
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -379,6 +641,10 @@
 	{
 		"height": 112.0
 	},
+	"output.xdebug":
+	{
+		"height": 0.0
+	},
 	"pinned_build_system": "",
 	"project": "pluton.sublime-project",
 	"replace":
@@ -406,26 +672,66 @@
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 710.0
 	},
 	"selected_group": 0,
 	"settings":
 	{
 		"xdebug":
 		{
-			"hide_conflict": false
+			"hide_conflict": false,
+			"restore_index":
+			{
+				"24":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"25":
+				{
+					"group": 0,
+					"index": 0
+				},
+				"26":
+				{
+					"group": 0,
+					"index": 2
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			}
 		}
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 254.0,
+	"side_bar_width": 221.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
