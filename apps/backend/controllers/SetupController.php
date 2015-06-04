@@ -30,7 +30,7 @@ use Multiple\Backend\Models\Users, \Phalcon\Crypt AS Crypt;
  */
 class SetupController extends \Phalcon\DI\Injectable {
     
-    private $connection;
+    public $connection;
     private $config;
     private $user;
     private $blog;

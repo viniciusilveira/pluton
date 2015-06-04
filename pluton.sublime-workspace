@@ -147,39 +147,31 @@
 			"file": "apps/backend/views/settings/index.phtml",
 			"settings":
 			{
-				"buffer_size": 3055,
+				"buffer_size": 51164,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/css/style.css",
+			"file": "apps/backend/views/index.phtml",
 			"settings":
 			{
-				"buffer_size": 801,
+				"buffer_size": 1617,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "apps/backend/controllers/LoginController.php",
+			"file": "public/css/font-awesome.min.css",
 			"settings":
 			{
-				"buffer_size": 1966,
+				"buffer_size": 21984,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "apps/backend/controllers/SettingsController.php",
+			"file": "public/css/morris.css",
 			"settings":
 			{
-				"buffer_size": 643,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/js/custom.js",
-			"settings":
-			{
-				"buffer_size": 922,
+				"buffer_size": 433,
 				"line_ending": "Unix"
 			}
 		}
@@ -265,29 +257,30 @@
 		"/var/www/html/pluton",
 		"/var/www/html/pluton/apps",
 		"/var/www/html/pluton/apps/backend",
-		"/var/www/html/pluton/apps/backend/controllers",
 		"/var/www/html/pluton/apps/backend/views",
-		"/var/www/html/pluton/apps/backend/views/login",
 		"/var/www/html/pluton/apps/backend/views/settings",
-		"/var/www/html/pluton/apps/backend/views/setup",
 		"/var/www/html/pluton/public",
-		"/var/www/html/pluton/public/css",
-		"/var/www/html/pluton/public/js"
+		"/var/www/html/pluton/public/css"
 	],
 	"file_history":
 	[
+		"/var/www/html/pluton/public/css/sb-admin-2.css",
+		"/var/www/html/pluton/public/css/timeline.css",
+		"/var/www/html/pluton/public/css/metisMenu.css",
+		"/var/www/html/pluton/public/js/custom.js",
+		"/var/www/html/pluton/apps/backend/controllers/SettingsController.php",
+		"/var/www/html/pluton/apps/backend/controllers/IndexController.php",
+		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
+		"/var/www/html/pluton/public/css/style.css",
+		"/var/www/html/pluton/apps/backend/views/settings/index.phtml",
+		"/var/www/html/pluton/apps/backend/controllers/SetupController.php",
 		"/var/www/html/pluton/apps/backend/views/index.phtml",
 		"/var/www/html/pluton/apps/backend/views/setup/index.phtml",
 		"/var/www/html/pluton/public/index.php",
-		"/var/www/html/pluton/apps/backend/controllers/SettingsController.php",
-		"/var/www/html/pluton/apps/backend/views/settings/index.phtml",
-		"/var/www/html/pluton/public/js/custom.js",
-		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
 		"/var/www/html/pluton/apps/backend/views/login/index.phtml",
 		"/var/www/html/pluton/apps/backend/models/Users.php",
 		"/var/www/html/pluton/apps/library/Tables.php",
 		"/var/www/html/pluton/apps/backend/views/setup/databaseConfig.phtml",
-		"/var/www/html/pluton/apps/backend/controllers/SetupController.php",
 		"/var/www/html/pluton/vendor/phalcon/devtools/resources/jquery/jquery.js",
 		"/home/vinicius/Downloads/base64.sql",
 		"/var/www/html/pluton/apps/library/Database.php",
@@ -301,8 +294,6 @@
 		"/home/vinicius/.config/sublime-text-3/Packages/Xdebug Client/Xdebug.sublime-settings",
 		"/var/www/html/pluton/pluton.sublime-project",
 		"/home/vinicius/sublimeProjects/pluton.sublime-project",
-		"/var/www/html/pluton/apps/backend/controllers/IndexController.php",
-		"/var/www/html/pluton/public/css/style.css",
 		"/var/www/html/pluton/vendor/phalcon/devtools/ide/1.3.0/Phalcon/Mvc/View.php",
 		"/var/www/html/pluton/vendor/phalcon/devtools/ide/1.3.0/Phalcon/Mvc/ViewInterface.php",
 		"/home/vinicius/.config/sublime-text-3/Packages/Better Completion/sbc-setting.sublime-settings",
@@ -400,10 +391,7 @@
 		"/var/www/html/phalconcms/config/services.php",
 		"/var/www/html/phalconcms/config/config.ini",
 		"/var/www/html/invo/app/config/config.ini",
-		"/var/www/html/phalconcms/README.md",
-		"/var/www/html/phalconcms/.htaccess",
-		"/var/www/html/phalconcms/app/views/index/index.phtml",
-		"/var/www/html/phalconcms/app/config/config.php"
+		"/var/www/html/phalconcms/README.md"
 	],
 	"find":
 	{
@@ -414,6 +402,7 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"/var/www/html/pluton/apps"
 		]
 	},
 	"find_state":
@@ -421,6 +410,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"render",
 			"newUserAction",
 			"login",
 			"login,",
@@ -451,7 +441,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -460,44 +450,105 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3055,
+						"buffer_size": 51164,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2446,
-								2446
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 255.0,
+						"translation.y": 204.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "apps/backend/views/index.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1617,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								976,
+								976
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "public/css/style.css",
+					"buffer": 2,
+					"file": "public/css/font-awesome.min.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 801,
+						"buffer_size": 21984,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								798,
-								798
+								163,
+								163
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 8.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/css/morris.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 433,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								433,
+								433
 							]
 						],
 						"settings":
@@ -509,94 +560,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "apps/backend/controllers/LoginController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1966,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								658,
-								699
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": -0.0,
-						"translation.y": 663.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "apps/backend/controllers/SettingsController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 643,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								411,
-								411
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "public/js/custom.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 922,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								261,
-								261
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
 					"type": "text"
 				}
 			]

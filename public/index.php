@@ -31,10 +31,11 @@ class Application extends \Phalcon\Mvc\Application {
         
         $loader = new \Phalcon\Loader();
         $loader->registerDirs(array(
-            FOLDER_PROJECT . '/apps/library/'
+            FOLDER_PROJECT . '/apps/library/',
+            FOLDER_PROJECT . '/apps/backend/models'
         ))->register();
         
-        //usando autoloader do composer para carregar as classes do vendor
+        //usando autoloader do composer para carregar as depêndencias instaladas via composer
         require_once FOLDER_PROJECT . 'vendor/autoload.php';
         
         $di->set('router', function () {

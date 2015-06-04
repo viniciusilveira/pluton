@@ -9,7 +9,7 @@
 */
 namespace Multiple\Backend\Models;
 
-use \Phalcon\Db\Column as Column;
+use \Phalcon\Mvc\Model\Query;
 
 /**
  * Class Users
@@ -56,5 +56,13 @@ class Users extends \Phalcon\Mvc\Model {
         $success           = $this->create();
         
         return $success;
+    }
+
+    public function getUser($user_login){
+        $sql = "SELECT * FROM Users WHERE user_login = '$user_login' OR user_name = '$user_login'";
+        $query = new Query($sql, $this->getDI());
+
+        $result = $query->execute();
+        return $result;
     }
 }
