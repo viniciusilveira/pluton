@@ -88,7 +88,7 @@ class Tables {
                 )
             )
         );
-        $connection->createTable("layouts", NULL, $table);
+        $connection->createTable("Layouts", NULL, $table);
     }
 
     /**
@@ -135,7 +135,7 @@ class Tables {
                 )
             )
         );
-        $connection->createTable("blogs", NULL, $table);
+        $connection->createTable("Blogs", NULL, $table);
     }
 
     /**
@@ -143,6 +143,7 @@ class Tables {
      * @param $connection => Variável de conexão com o banco de dados
      */
     public function createTableUsers($connection) {
+        
         $table = array(
             "columns" => array(
                 new Column("user_id", array(
@@ -195,7 +196,7 @@ class Tables {
                 )
             )
         );
-        $connection->createTable("users", NULL, $table);
+        $connection->createTable("Users", NULL, $table);
     }
 
     /**
@@ -247,7 +248,7 @@ class Tables {
                 )
             )
         );
-        $connection->createTable("users_blogs", NULL, $table);
+        $connection->createTable("Users_blogs", NULL, $table);
     }
 
     /**
@@ -328,7 +329,7 @@ class Tables {
                 )
             )
         );
-        $connection->createTable("posts", NULL, $table);
+        $connection->createTable("Posts", NULL, $table);
     }
 
     /**
@@ -386,6 +387,6 @@ class Tables {
                 )
             )
         );
-        $connection->createTable("social_network", NULL, $table);
+        $connection->createTable("Social_network", NULL, $table);
     }
 }

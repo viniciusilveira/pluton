@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class and Function List:
  * Function list:
@@ -28,7 +29,8 @@ use Multiple\Backend\Models\Users, \Phalcon\Crypt AS Crypt;
  * OBSERVAÇÃO: Necessário extender a classe Injectable ao invés da Controllers para
  * ser possivel sobescrever o método __construct
  */
-class SetupController extends \Phalcon\DI\Injectable {
+class SetupController extends \Phalcon\DI\Injectable
+{
     
     public $connection;
     private $config;
@@ -41,8 +43,8 @@ class SetupController extends \Phalcon\DI\Injectable {
      */
     public function __construct() {
         
-        $this->user   = new \Multiple\Backend\Models\Users;
-        $this->blog   = new \Multiple\Backend\Models\Blogs;
+        $this->user = new \Multiple\Backend\Models\Users;
+        $this->blog = new \Multiple\Backend\Models\Blogs;
         $this->tables = new \Multiple\Library\Tables;
     }
     
@@ -91,7 +93,7 @@ class SetupController extends \Phalcon\DI\Injectable {
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
             $connect = $this->connectDatabase();
             if (!$connect['connection']) {
-                $return  = 'connect';
+                $return = 'connect';
             } 
             else {
                 $this->createTablesAction();
@@ -117,15 +119,15 @@ class SetupController extends \Phalcon\DI\Injectable {
         
         //Dados do banco de dados recebidos via POST;
         
-        $database_name   = $this->request->getPost('database_name');
-        $database_user   = $this->request->getPost('database_user');
+        $database_name = $this->request->getPost('database_name');
+        $database_user = $this->request->getPost('database_user');
         $database_passwd = $this->request->getPost('database_passwd');
-        $database_host   = $this->request->getPost('database_host');
+        $database_host = $this->request->getPost('database_host');
         
         //Cria o arquivo de conexão com o banco de dados;
         if (!file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
-            $config_file     = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w') or die("Unable to open file!");
-            $writing_file    = "[database]\n";
+            $config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w') or die("Unable to open file!");
+            $writing_file = "[database]\n";
             $writing_file.= "adapter  = Mysql\n";
             $writing_file.= "host     = {$database_host}\n";
             $writing_file.= "username = {$database_user}\n";
@@ -148,17 +150,17 @@ class SetupController extends \Phalcon\DI\Injectable {
     public function connectDatabase() {
         
         //Seta a configuração do banco de dados.
-        $this->config     = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
+        $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
         
         //Cria um array com os dados do banco
-        $db_conn          = array(
-            "host"                  => $this->config->database->host,
-            "username"                  => $this->config->database->username,
-            "password"                  => $this->config->database->password,
-            "dbname"                  => $this->config->database->name,
+        $db_conn = array(
+            "host" => $this->config->database->host,
+            "username" => $this->config->database->username,
+            "password" => $this->config->database->password,
+            "dbname" => $this->config->database->name,
             "charset" => 'utf8'
         );
-        $db_conn["persistent"]                  = false;
+        $db_conn["persistent"] = false;
         
         //Efetua a conexão com o banco de dados
         try {
@@ -171,7 +173,7 @@ class SetupController extends \Phalcon\DI\Injectable {
         catch(\PDOException $e) {
             unlink(FOLDER_PROJECT . 'apps/config/config.ini');
             $data['connection'] = false;
-            $data['message'] = "Ocorreu um problema ao conectar com o banco de dados. Verifique os dados informados!";
+            $data['message'] = "Ocorreu um problema ao conectar com o banco de dados. Verifique os dados informados!<br/>" . $e;
             return $data;
         }
     }
@@ -197,17 +199,17 @@ class SetupController extends \Phalcon\DI\Injectable {
         //Informa que a action não possui nenhuma view para exibição
         $this->view->disable();
         
-        $crypt       = new Crypt();
+        $crypt = new Crypt();
         
-        $user_name   = $this->request->getPost('user_name');
-        $user_email  = $this->request->getPost('user_email');
-        $user_login  = $this->request->getPost('user_login');
+        $user_name = $this->request->getPost('user_name');
+        $user_email = $this->request->getPost('user_email');
+        $user_login = $this->request->getPost('user_login');
         $user_passwd = md5($this->request->getPost('user_passwd'));
-        $user_type   = !empty($this->request->getPost('user_type')) ? $this->request->getPost('user_type') : 'SA';
+        $user_type = !empty($this->request->getPost('user_type')) ? $this->request->getPost('user_type') : 'SA';
         
         try {
-            $data['success']             = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, $user_type);
-            $data['message']             = $data['success'] ? 'Usuário criado com sucesso!' : 'Ocorreu um erro ao criar o usuário. Por favor tente novamente';
+            $data['success'] = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, $user_type);
+            $data['message'] = $data['success'] ? 'Usuário criado com sucesso!' : 'Ocorreu um erro ao criar o usuário. Por favor tente novamente';
             echo json_encode($data);
         }
         catch(\PDOException $e) {
@@ -229,7 +231,7 @@ class SetupController extends \Phalcon\DI\Injectable {
         
         // Verifica se o arquivo é uma imagem
         if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getExtension())) {
-            $error[1]            = "Arquivo Inválido!";
+            $error[1] = "Arquivo Inválido!";
         }
         
         // Pega as dimensões da imagem
@@ -237,21 +239,21 @@ class SetupController extends \Phalcon\DI\Injectable {
         
         // Verifica se a largura da imagem é maior que a largura permitida
         if ($dimensions[0] > $width) {
-            $error[2]            = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
+            $error[2] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
         }
         
         // Verifica se a altura da imagem é maior que a altura permitida
         if ($dimensions[1] > $heigth) {
-            $error[3]            = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
+            $error[3] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
         }
         
         // Verifica se o tamanho da imagem é maior que o tamanho permitido
         if ($file->getSize() > $size) {
-            $error[4]            = "A imagem deve ter no máximo " . $size / 1024 . "0 MB!";
+            $error[4] = "A imagem deve ter no máximo " . $size / 1024 . "0 MB!";
         }
         if (count($error == 0)) {
-            $ext        = $file->getExtension();
-            $name_img   = $file->getName();
+            $ext = $file->getExtension();
+            $name_img = $file->getName();
             if (!file_exists(FOLDER_PROJECT . 'public/img/users')) mkdir(FOLDER_PROJECT . 'public/img/users');
             $path_img = FOLDER_PROJECT . 'public/img/users/' . $user_login . $file->getExteionsion();
             $file->moveTo($path_img);

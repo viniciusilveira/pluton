@@ -1,12 +1,13 @@
 <?php
+
 /**
-* Class and Function List:
-* Function list:
-* - verifyUsersExistAction()
-* - createUser()
-* Classes list:
-* - Users extends \
-*/
+ * Class and Function List:
+ * Function list:
+ * - verifyUsersExistAction()
+ * - createUser()
+ * Classes list:
+ * - Users extends \
+ */
 namespace Multiple\Backend\Models;
 
 use \Phalcon\Mvc\Model\Query;
@@ -15,13 +16,15 @@ use \Phalcon\Mvc\Model\Query;
  * Class Users
  * @package Multiple\Backend\Models
  */
-class Users extends \Phalcon\Mvc\Model {
+class Users extends \Phalcon\Mvc\Model
+{
     
     private $user_name;
     private $user_email;
     private $user_login;
     private $user_passwd;
     private $user_type;
+    
     /**
      * Verifica se existe usuários criado no banco de dados
      * @return bool true caso exista, false caso não exista nenhum
@@ -42,27 +45,28 @@ class Users extends \Phalcon\Mvc\Model {
      * @param  int    $user_blog   Id do blog de acesso do usuário
      * @return bool   $success     true caso o usuário seja criado, ou false caso ocorra algum erro.
      */
-    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type, $user_img          = NULL, $user_blog         = NULL) {
+    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type, $user_img = NULL, $user_blog = NULL) {
         
-        $this->user_name   = $user_name;
-        $this->user_email  = $user_email;
-        $this->user_login  = $user_login;
+        $this->user_name = $user_name;
+        $this->user_email = $user_email;
+        $this->user_login = $user_login;
         $this->user_passwd = $user_passwd;
-        $this->user_type   = $user_type;
+        $this->user_type = $user_type;
         
-        if (!empty($user_blog)) $this->user_blog   = $user_blog;
-        if (!empty($user_img)) $this->user_img    = $user_img;
+        if (!empty($user_blog)) $this->user_blog = $user_blog;
+        if (!empty($user_img)) $this->user_img = $user_img;
         
-        $success           = $this->create();
+        $success = $this->create();
         
         return $success;
     }
-
-    public function getUser($user_login){
-        $sql = "SELECT * FROM Users WHERE user_login = '$user_login' OR user_name = '$user_login'";
-        $query = new Query($sql, $this->getDI());
-
-        $result = $query->execute();
+    
+    public function getUser($user_login) {
+        
+        $result = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_login:")->bind(array(
+            "user_login" => $user_login
+        ))->execute();
+        
         return $result;
     }
 }
