@@ -19,11 +19,11 @@ use \Phalcon\Mvc\Model\Query;
 class Users extends \Phalcon\Mvc\Model
 {
     
-    private $user_name;
-    private $user_email;
-    private $user_login;
-    private $user_passwd;
-    private $user_type;
+    public $user_name;
+    public $user_email;
+    public $user_login;
+    public $user_passwd;
+    public $user_type;
     
     /**
      * Verifica se existe usuários criado no banco de dados
@@ -63,10 +63,10 @@ class Users extends \Phalcon\Mvc\Model
     
     public function getUser($user_login) {
         
-        $result = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_login:")->bind(array(
+        $user = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_login:")->bind(array(
             "user_login" => $user_login
         ))->execute();
         
-        return $result;
+        return $user->getFirst()->user_name;
     }
 }

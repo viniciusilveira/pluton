@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class and Function List:
  * Function list:
@@ -8,7 +9,8 @@
  */
 namespace Multiple\Backend\Controllers;
 
-class IndexController extends \Phalcon\Mvc\Controller {
+class IndexController extends \Phalcon\Mvc\Controller
+{
     
     /**
      * Verifica para qual pagina deve ser redirecionado o acesso de acordo com
@@ -19,28 +21,31 @@ class IndexController extends \Phalcon\Mvc\Controller {
      * Caso ambos estejam OK, redireciona para tela de login.
      */
     public function indexAction() {
-
-        $setup      = new SetupController();
-        $database   = $setup->verifyDataBaseAction();
+        
+        $setup = new SetupController();
+        $database = $setup->verifyDataBaseAction();
         switch ($database) {
             case 'file':
                 $dispatcher = array(
                     'controller' => 'setup',
                     'action' => 'index'
                 );
-            break;
+                break;
+
             case 'user':
                 $dispatcher = array(
                     'controller' => 'setup',
                     'action' => 'newUser'
                 );
-            break;
+                break;
+
             case 'ok':
                 $dispatcher = array(
                     'controller' => 'login',
                     'action' => 'index'
                 );
-            break;
+                break;
+
             case 'error':
                 $dispatcher = array(
                     'controller' => 'setup',

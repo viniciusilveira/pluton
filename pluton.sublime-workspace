@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Users",
+				"Users〔class〕"
+			],
+			[
 				"set",
 				"set〔function〕"
 			],
@@ -144,34 +148,45 @@
 	"buffers":
 	[
 		{
-			"file": "apps/backend/views/settings/index.phtml",
+			"file": "apps/library/Tables.php",
 			"settings":
 			{
-				"buffer_size": 51164,
+				"buffer_size": 12850,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "apps/backend/views/index.phtml",
+			"contents": "<?php\n\n/**\n * Class and Function List:\n * Function list:\n * - indexAction()\n * Classes list:\n * - SettingsController extends \\\n */\nnamespace Multiple\\Backend\\Controllers;\nuse Multiple\\Backend\\Models\\Users AS Users, \\Phalcon\\Mvc\\View AS View, \\Phalcon\\Mvc\\Model\\Query;\nclass SettingsController extends \\Phalcon\\Mvc\\Controller\n{\n    \n    public function indexAction() {\n        session_start();\n        $user_login = $_SESSION['user_login'];\n        $user_passwd = $_SESSION['user_passwd'];\n        \n        if (Users::findFirst(\"(user_login = '$user_login' OR user_email = '$user_login') AND user_passwd = '$user_passwd'\")) {\n            $users = new Users();\n            $vars['user'] = $users->getUser($user_login);\n            echo \"<pre>\";\n            print_r($vars);\n            die();\n            \n            //$this->view->setVar($vars);\n            $this->view->pick('settings/index');\n        } \n        else {\n            $this->view->render('login', 'index');\n        }\n    }\n}\n",
+			"file": "apps/backend/controllers/SettingsController.php",
+			"file_size": 898,
+			"file_write_time": 130781033542495199,
 			"settings":
 			{
-				"buffer_size": 1617,
+				"buffer_size": 989,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/css/font-awesome.min.css",
+			"file": "apps/backend/controllers/SetupController.php",
 			"settings":
 			{
-				"buffer_size": 21984,
+				"buffer_size": 9383,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/css/morris.css",
+			"file": "apps/backend/models/Users.php",
 			"settings":
 			{
-				"buffer_size": 433,
+				"buffer_size": 2244,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apps/backend/controllers/IndexController.php",
+			"settings":
+			{
+				"buffer_size": 1665,
 				"line_ending": "Unix"
 			}
 		}
@@ -254,36 +269,41 @@
 	},
 	"expanded_folders":
 	[
-		"/var/www/html/pluton",
 		"/var/www/html/pluton/apps",
 		"/var/www/html/pluton/apps/backend",
-		"/var/www/html/pluton/apps/backend/views",
-		"/var/www/html/pluton/apps/backend/views/settings",
-		"/var/www/html/pluton/public",
-		"/var/www/html/pluton/public/css"
+		"/var/www/html/pluton/apps/backend/controllers",
+		"/var/www/html/pluton/public"
 	],
 	"file_history":
 	[
+		"/home/vinicius/.config/sublime-text-3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
+		"/var/www/html/pluton/vendor/phalcon/devtools/ide/0.6.0/Phalcon/Db.php",
+		"/var/www/html/pluton/vendor/phalcon/devtools/ide/2.0.0/Phalcon/db/dialect/MySQL.php",
+		"/var/www/html/pluton/apps/backend/controllers/SetupController.php",
+		"/var/www/html/pluton/apps/backend/controllers/IndexController.php",
+		"/var/www/html/pluton/public/index.php",
+		"/var/www/html/pluton/apps/backend/Module.php",
+		"/var/www/html/pluton/apps/backend/views/setup/databaseConfig.phtml",
+		"/var/www/html/pluton/apps/backend/models/Users.php",
+		"/var/www/html/pluton/apps/library/Tables.php",
+		"/var/www/html/pluton/apps/library/Database.php",
+		"/var/www/html/pluton/apps/backend/plugins/AclListener.php",
+		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
+		"/var/www/html/pluton/apps/backend/controllers/SettingsController.php",
+		"/var/www/html/pluton/apps/backend/views/settings/index.phtml",
+		"/var/www/html/pluton/composer.json",
+		"/var/www/html/pluton/apps/backend/views/index.phtml",
+		"/var/www/html/pluton/public/css/morris.css",
+		"/var/www/html/pluton/public/css/font-awesome.min.css",
 		"/var/www/html/pluton/public/css/sb-admin-2.css",
 		"/var/www/html/pluton/public/css/timeline.css",
 		"/var/www/html/pluton/public/css/metisMenu.css",
 		"/var/www/html/pluton/public/js/custom.js",
-		"/var/www/html/pluton/apps/backend/controllers/SettingsController.php",
-		"/var/www/html/pluton/apps/backend/controllers/IndexController.php",
-		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
 		"/var/www/html/pluton/public/css/style.css",
-		"/var/www/html/pluton/apps/backend/views/settings/index.phtml",
-		"/var/www/html/pluton/apps/backend/controllers/SetupController.php",
-		"/var/www/html/pluton/apps/backend/views/index.phtml",
 		"/var/www/html/pluton/apps/backend/views/setup/index.phtml",
-		"/var/www/html/pluton/public/index.php",
 		"/var/www/html/pluton/apps/backend/views/login/index.phtml",
-		"/var/www/html/pluton/apps/backend/models/Users.php",
-		"/var/www/html/pluton/apps/library/Tables.php",
-		"/var/www/html/pluton/apps/backend/views/setup/databaseConfig.phtml",
 		"/var/www/html/pluton/vendor/phalcon/devtools/resources/jquery/jquery.js",
 		"/home/vinicius/Downloads/base64.sql",
-		"/var/www/html/pluton/apps/library/Database.php",
 		"/var/www/html/pluton/apps/backend/controllers/ErrorsController.php",
 		"/var/www/html/pluton/apps/backend/views/errors/index.phtml",
 		"/var/www/html/pluton/apps/backend/views/setup/newUser.phtml",
@@ -301,11 +321,8 @@
 		"/home/vinicius/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/home/vinicius/.config/sublime-text-3/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
 		"/var/www/html/pluton/apps/config/config.ini",
-		"/var/www/html/pluton/composer.json",
-		"/var/www/html/pluton/apps/backend/Module.php",
 		"/home/vinicius/.config/sublime-text-3/Packages/GitGutter/Default (Linux).sublime-keymap",
 		"/home/vinicius/.config/sublime-text-3/Packages/GitGutter/GitGutter.sublime-settings",
-		"/home/vinicius/.config/sublime-text-3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
 		"/var/www/html/pluton/apps/backend/models/Blogs.php",
 		"/home/vinicius/pluton.wiki/home.markdown",
 		"/var/www/html/pluton/vendor/phalcon/devtools/ide/1.3.4/Phalcon/Mvc/Model.php",
@@ -373,7 +390,6 @@
 		"/var/www/html/pluton/vendor/composer/autoload_real.php",
 		"/var/www/html/invo/app/views/register/index.volt",
 		"/var/www/html/invo/app/forms/RegisterForm.php",
-		"/var/www/html/pluton/apps/backend/plugins/AclListener.php",
 		"/var/www/html/sweetalert/index.html",
 		"/var/www/html/pluton/public/.htaccess",
 		"/var/www/html/pluton/.htaccess",
@@ -387,11 +403,7 @@
 		"/var/www/html/phalconcms/config/loader.php",
 		"/var/www/html/invo/app/controllers/CompaniesController.php",
 		"/var/www/html/invo/app/library/Elements.php",
-		"/var/www/html/invo/app/config/loader.php",
-		"/var/www/html/phalconcms/config/services.php",
-		"/var/www/html/phalconcms/config/config.ini",
-		"/var/www/html/invo/app/config/config.ini",
-		"/var/www/html/phalconcms/README.md"
+		"/var/www/html/invo/app/config/loader.php"
 	],
 	"find":
 	{
@@ -410,6 +422,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"layout_id",
+			"createTablesAction",
+			"$this->user",
+			"$user",
+			"$connection",
+			"$this->config",
 			"render",
 			"newUserAction",
 			"login",
@@ -441,16 +459,77 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "apps/backend/views/settings/index.phtml",
+					"file": "apps/library/Tables.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 51164,
+						"buffer_size": 12850,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3916,
+								3916
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2550.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "apps/backend/controllers/SettingsController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 989,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								792,
+								792
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "apps/backend/controllers/SetupController.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 9383,
 						"regions":
 						{
 						},
@@ -463,103 +542,77 @@
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 204.0,
+						"translation.y": 1938.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "apps/backend/views/index.phtml",
+					"buffer": 3,
+					"file": "apps/backend/models/Users.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1617,
+						"buffer_size": 2244,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								976,
-								976
+								2211,
+								2211
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "public/css/font-awesome.min.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 21984,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								163,
-								163
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 8.0,
-						"translation.y": 0.0,
+						"translation.y": 663.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "public/css/morris.css",
+					"buffer": 4,
+					"file": "apps/backend/controllers/IndexController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 433,
+						"buffer_size": 1665,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								433,
-								433
+								830,
+								830
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 164.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]

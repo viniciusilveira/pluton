@@ -17,9 +17,7 @@ class LoginController extends SetupController {
 	public function indexAction() {
 		
 		session_start();
-		$user_login  = $_SESSION['user_login'];
-		$user_passwd = $_SESSION['user_passwd'];
-		if (Users::findFirst("(user_login = '$user_login' OR user_email = '$user_login') AND user_passwd = '$user_passwd'")) {
+		if ($_SESSION['user_login'] != NULL) {
 			$this->dispatcher->forward(array("controller" => 'settings', "action" => 'index'));
 		}
 		else {
@@ -41,7 +39,7 @@ class LoginController extends SetupController {
 		$user_passwd = md5($this->request->getPost('user_passwd'));
 		$success     = $users::findFirst("(user_login = '$user_login' OR user_email = '$user_login') AND user_passwd = '$user_passwd'");
 		if ($success) {
-			$this->creatSession($user_login, $user_passwd);
+			$this->creatSession($user_login);
 			$data['success'] = true;
 		} 
 		else {
@@ -54,15 +52,13 @@ class LoginController extends SetupController {
 	
 	/**
 	 * Inicia a sessão do usuário ao efetuar o login
-	 * @param  string $user_name   nome de usuário
-	 * @param  string $user_passwd senha do usuário
+	 * @param  string $user_login   nome de usuário
 	 * @return
 	 */
-	public function creatSession($user_login, $user_passwd) {
+	public function creatSession($user_login) {
 		session_start();
 		
 		$_SESSION['user_login'] = $user_login;
-		$_SESSION['user_passwd'] = $user_passwd;
 	}
 	
 	/**
