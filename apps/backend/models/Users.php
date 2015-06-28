@@ -69,4 +69,12 @@ class Users extends \Phalcon\Mvc\Model
         
         return $user->getFirst()->user_name;
     }
+    
+    public function getUserType($user_login) {
+        $user_type = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_login:")->bind(array(
+            "user_login" => $user_login
+        ));
+
+        return $user_type->getFirst()->user_type;
+    }
 }

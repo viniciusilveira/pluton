@@ -53,7 +53,7 @@
         //Caso o formulário esteja completamente preenchido executa a chamada ajax
         if(validate){
             $.ajax({
-                url: $.verifySettingsURL(window.location.href, 'login', 'login'),
+                url: "<?= URL_PROJECT ?>login/login",
                 data: text_form,
                 type: 'POST',
                 dataType: 'json',

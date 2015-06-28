@@ -11,6 +11,10 @@ class Blogs extends \Phalcon\Mvc\Model
 	public $bolg_name;
 	public $blog_layout;
 	
+	/**
+	 * Verifica se já existe um blog criado no sistema
+	 * @return boolean true caso exista, false caso não exista
+	 */
 	public function verifyBlogExistAction() {
 		return $this->count() > 0 ? true : false;
 	}

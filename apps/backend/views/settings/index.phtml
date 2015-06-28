@@ -134,7 +134,7 @@
                     <li><a href="#"><i class="glyphicon glyphicon-wrench"></i> Configuracoes</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
+                    <li id="logoff"><a href="#"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -156,8 +156,11 @@
                 <div class="list-group panel">
                     <a href="#sub-blog" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-home"></i> Blog</a>
                     <div class="collapse" id="sub-blog">
-                        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Novo</a>
-                        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                        <?php if(!$blog_exists){ ?>
+                            <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Novo</a>
+                        <?php } else{?>
+                            <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                        <?php } ?>
                     </div>
                     <a href="#sub-users" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-user"></i> Usuários</a>
                     <div class="collapse" id="sub-users">
@@ -556,5 +559,8 @@
         });
     }
 
+    $("#logoff").click(function(){
+        window.location.href = "<?= URL_PROJECT ?>" + $.verifySettingsURL(window.location.href, 'login', 'logoff');
+    });
 
 </script>

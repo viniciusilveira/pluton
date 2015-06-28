@@ -58,17 +58,18 @@ class LoginController extends SetupController {
      * @return
      */
     public function creatSession($user_login) {
-        session_start();
-
-        $_SESSION['user_login'] = $user_login;
+        $this->session->start();
+        $this->session->set("user_login", $user_login);
     }
 
     /**
      * Destroi a sessão e redireciona para tela de login
      * @return
      */
-    public function logoff() {
-        session_destroy();
+    public function logoffAction() {
+        $this->session->start();
+        $this->session->destroy();
+        $this->session->remove("user_login");
         $this->view->render('login', 'index');
     }
 
