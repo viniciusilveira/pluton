@@ -11,7 +11,7 @@ namespace Multiple\Backend\Controllers;
 
 class IndexController extends \Phalcon\Mvc\Controller
 {
-    
+
     /**
      * Verifica para qual pagina deve ser redirecionado o acesso de acordo com
      * os dados que estão faltando no banco de dados.
@@ -21,9 +21,11 @@ class IndexController extends \Phalcon\Mvc\Controller
      * Caso ambos estejam OK, redireciona para tela de login.
      */
     public function indexAction() {
-        
+
         $setup = new SetupController();
+
         $database = $setup->verifyDataBaseAction();
+
         switch ($database) {
             case 'file':
                 $dispatcher = array(
@@ -35,7 +37,7 @@ class IndexController extends \Phalcon\Mvc\Controller
             case 'user':
                 $dispatcher = array(
                     'controller' => 'setup',
-                    'action' => 'newUser'
+                    'action' => 'install'
                 );
                 break;
 
@@ -52,7 +54,7 @@ class IndexController extends \Phalcon\Mvc\Controller
                     'action' => 'error'
                 );
         }
-        
+
         return $this->dispatcher->forward($dispatcher);
     }
 }

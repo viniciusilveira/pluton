@@ -14,7 +14,9 @@ use Multiple\Backend\Models\Users, Multiple\Backend\Models\Blogs;
 
 class SettingsController extends BaseController
 {
-    
+    /**
+     * Carrega a tela principal do backend
+     */
     public function indexAction() {
         
         //Inicia a sessão
@@ -24,7 +26,7 @@ class SettingsController extends BaseController
          * @todo:
          * => Variáveis:
          * $blog (boolean) => true caso exista um blog, false caso não exista
-         * $permissao (char) => Nível de permissão do usuário logado
+         * $user_type (char) => Nível de permissão do usuário logado
          * $img_user (string) => caminho para imagem de usuário (caso exista)
          *      se não existir inserir caminho para imagem padrão
          *
@@ -44,7 +46,7 @@ class SettingsController extends BaseController
             //Array para envio de dados para a view a ser carregada
             $vars['user'] = $user[0];
             //@todo: verificar como corrigir a função getUserType();
-            //$vars['user_type'] = $users->getUserType($this->session->get("user_login"));
+            $vars['user_type'] = $users->getUserType($this->session->get("user_login"));
             $vars['blog_exists'] = $blogs->verifyBlogExistAction();
             
             $this->view->setVars($vars);

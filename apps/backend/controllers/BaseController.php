@@ -2,7 +2,7 @@
 namespace Multiple\Backend\Controllers;
 
 use Phalcon\Session\Adapter\Files as Session;
-class BaseController extends SetupController
+class BaseController extends \Phalcon\Mvc\Controller
 {
 
     /**

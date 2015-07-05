@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class and Function List:
  * Function list:
@@ -7,20 +6,18 @@
  * - indexAction()
  * - databaseConfigAction()
  * - newBlogAction()
- * - newUserAction()
+ * - installAction()
  * - errorAction()
  * - verifyDataBaseAction()
  * - databaseSettingsAction()
  * - connectDatabase()
  * - createTablesAction()
- * - createNewUserAction()
+ * - installPlutonAction()
  * - uploadImageAction()
  * Classes list:
  * - SetupController extends \
  */
 namespace Multiple\Backend\Controllers;
-
-use Multiple\Backend\Models\Users, \Phalcon\Crypt AS Crypt;
 
 /**
  * Classe para conexão e configuração dos dados necessários para inicialização
@@ -29,101 +26,102 @@ use Multiple\Backend\Models\Users, \Phalcon\Crypt AS Crypt;
  * OBSERVAÇÃO: Necessário extender a classe Injectable ao invés da Controllers para
  * ser possivel sobescrever o método __construct
  */
-class SetupController extends \Phalcon\DI\Injectable
-{
-    
+class SetupController extends \Phalcon\DI\Injectable {
+
     public $connection;
     private $config;
     private $user;
     private $blog;
+    private $layout;
     private $tables;
-    
+
     /**
      * Construct necessário para iniciar objetos de outras classes
      */
     public function __construct() {
-        
+
         $this->user = new \Multiple\Backend\Models\Users;
         $this->blog = new \Multiple\Backend\Models\Blogs;
+        $this->layout = new \Multiple\Backend\Models\Layouts;
         $this->tables = new \Multiple\Library\Tables;
     }
-    
+
     public function indexAction() {
-        
+
         // view/setup/index.phtml
-        
-        
+
+
     }
-    
+
     /**
      * Carrega a view para inserção dos dados de conexão com o banco de dados
      */
     public function databaseConfigAction() {
-        
+
         // views/setup/databaseConfig.phtml
-        
-        
+
+
     }
-    
+
     public function newBlogAction() {
-        
+
         // views/setup/newBlog.phtml
-        
-        
+
+
     }
-    
-    public function newUserAction() {
-        
+
+    public function installAction() {
+
         // views/setup/newUser.phtml
-        
-        
+
+
     }
-    
+
     public function errorAction() {
         die("Erro conexão");
     }
-    
+
     /**
      * Verifica os dados do banco para saber se existe usuário e blog já criados.
      * @return string contendo o dado não criado no banco de dados, ou 'ok' caso
      * já esteja tudo criado
      */
     public function verifyDataBaseAction() {
-        
+
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
             $connect = $this->connectDatabase();
             if (!$connect['connection']) {
                 $return = 'connect';
-            } 
+            }
             else {
                 $this->createTablesAction();
                 $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
             }
-        } 
+        }
         else {
             $return = 'file';
         }
-        
+
         return $return;
     }
-    
+
     /**
      * Recebe os dados do banco de dados via post;
      * Cria o arquivo de configuração do banco de dados com os arquivos recebidos
      * Conecta com o banco de dados
      */
     public function databaseSettingsAction() {
-        
+
         //Informa que a action não possui nenhuma view para exibição
         $this->view->disable();
-        
+
         //Dados do banco de dados recebidos via POST;
-        
+
         $database_name = $this->request->getPost('database_name');
         $database_user = $this->request->getPost('database_user');
         $database_passwd = $this->request->getPost('database_passwd');
         $database_host = $this->request->getPost('database_host');
-        
+
         //Cria o arquivo de conexão com o banco de dados;
         if (!file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
             $config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w') or die("Unable to open file!");
@@ -133,25 +131,25 @@ class SetupController extends \Phalcon\DI\Injectable
             $writing_file.= "username = {$database_user}\n";
             $writing_file.= "password = {$database_passwd}\n";
             $writing_file.= "name     = {$database_name}\n";
-            
+
             fwrite($config_file, $writing_file);
             fclose($config_file);
-            
+
             $data = $this->connectDatabase();
-            
+
             echo json_encode($data);
         }
     }
-    
+
     /**
      * Configura e executa a conexão com o banco de dados
      * @return bool true caso conecte com sucesso ou false caso ocorra algum erro
      */
     public function connectDatabase() {
-        
+
         //Seta a configuração do banco de dados.
         $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
-        
+
         //Cria um array com os dados do banco
         $db_conn = array(
             "host" => $this->config->database->host,
@@ -161,7 +159,7 @@ class SetupController extends \Phalcon\DI\Injectable
             "charset" => 'utf8'
         );
         $db_conn["persistent"] = false;
-        
+
         //Efetua a conexão com o banco de dados
         try {
             $this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql($db_conn);
@@ -177,12 +175,12 @@ class SetupController extends \Phalcon\DI\Injectable
             return $data;
         }
     }
-    
+
     /**
      * Cria as tabelas necessárias para o funcionamento do sistema
      */
     public function createTablesAction() {
-        
+
         $this->connection->tableExists('layouts') ? NULL : $this->tables->createTableLayouts($this->connection);
         $this->connection->tableExists('blogs') ? NULL : $this->tables->createTableBlogs($this->connection);
         $this->connection->tableExists('users') ? NULL : $this->tables->createTableUsers($this->connection);
@@ -190,25 +188,30 @@ class SetupController extends \Phalcon\DI\Injectable
         $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
         $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
     }
-    
+
     /**
-     * Cria um usuário para utilização do sistema
+     * Efetua a "instalação" do sistema; Criando o usuário Super-Administrador e o blog
+     * @return [type] [description]
      */
-    public function createNewUserAction() {
-        
+    public function installPlutonAction() {
+
         //Informa que a action não possui nenhuma view para exibição
         $this->view->disable();
-        
-        $crypt = new Crypt();
-        
+
+        $blog_name = $this->request->getPost('blog_name');
         $user_name = $this->request->getPost('user_name');
         $user_email = $this->request->getPost('user_email');
         $user_login = $this->request->getPost('user_login');
-        $user_passwd = md5($this->request->getPost('user_passwd'));
+        $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
         $user_type = !empty($this->request->getPost('user_type')) ? $this->request->getPost('user_type') : 'SA';
-        
+
+        /**
+         * Insere os dados necessários no banco de dados para utilização inicial do sistema
+         */
         try {
             $data['success'] = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, $user_type);
+            $data['success'] = $this->layout->addLayout();
+            $data['success'] = $this->blog->createBlog($blog_name);
             $data['message'] = $data['success'] ? 'Usuário criado com sucesso!' : 'Ocorreu um erro ao criar o usuário. Por favor tente novamente';
             echo json_encode($data);
         }
@@ -218,7 +221,7 @@ class SetupController extends \Phalcon\DI\Injectable
             echo json_encode($data);
         }
     }
-    
+
     /**
      * @todo: Action para upload de imagens para o servidor (Ainda não utilizado - Talvez seja movido para outra classe)
      * @param  file $file   imagem
@@ -228,25 +231,25 @@ class SetupController extends \Phalcon\DI\Injectable
      * @return string       Nome da imagem ou erro caso ocorroa algum.
      */
     public function uploadImageAction($file, $width, $heigth, $size) {
-        
+
         // Verifica se o arquivo é uma imagem
         if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getExtension())) {
             $error[1] = "Arquivo Inválido!";
         }
-        
+
         // Pega as dimensões da imagem
         $dimensions = getimagesize($file->getTempName());
-        
+
         // Verifica se a largura da imagem é maior que a largura permitida
         if ($dimensions[0] > $width) {
             $error[2] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
         }
-        
+
         // Verifica se a altura da imagem é maior que a altura permitida
         if ($dimensions[1] > $heigth) {
             $error[3] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
         }
-        
+
         // Verifica se o tamanho da imagem é maior que o tamanho permitido
         if ($file->getSize() > $size) {
             $error[4] = "A imagem deve ter no máximo " . $size / 1024 . "0 MB!";
@@ -258,7 +261,7 @@ class SetupController extends \Phalcon\DI\Injectable
             $path_img = FOLDER_PROJECT . 'public/img/users/' . $user_login . $file->getExteionsion();
             $file->moveTo($path_img);
             return $name_img;
-        } 
+        }
         else {
             return $error;
         }

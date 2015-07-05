@@ -12,13 +12,37 @@ use Phalcon\Db\Reference as Reference;
  */
 class Tables
 {
-    
+
+    public function createTableParameters($connection){
+        $table = array(
+            "columns" => array(
+                new Column("parameter_id", array(
+                        "type" => Column::TYPE_INTEGER,
+                        "primary" => true,
+                        "size" => 10,
+                        "notNull" => true,
+                        "autoIncrement" => true,
+                )),
+                new Column("parameter_description", array(
+                        "type" => Column::TYPE_TEXT,
+                        "notNull" => true
+                )),
+                new Column("parameter_value", array(
+                    "type" => Column::TYPE_TEXT,
+                    "notNull" => true
+                ))
+             )
+        );
+
+        $connection->createTable("parameters", NULL, $table);
+    }
+
     /**
      * Cria a tabela Layouts
      * @param $connection => variável de conexão com o banco de dados
      */
     public function createTableLayouts($connection) {
-        
+
         $table = array(
             "columns" => array(
                 new Column("layout_id", array(
@@ -70,23 +94,18 @@ class Tables
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 20,
                     "notNull" => true
-                )) ,
-                new Column("layout_footer", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "size" => 200,
-                    "notNull" => false
                 ))
             )
         );
         $connection->createTable("layouts", NULL, $table);
     }
-    
+
     /**
      * Cria a tabela blogs
      * @param $connection => Variável de conexão com o banco de dados
      */
     public function createTableBlogs($connection) {
-        
+
         $table = array(
             "columns" => array(
                 new Column("blog_id", array(
@@ -126,13 +145,13 @@ class Tables
         );
         $connection->createTable("blogs", NULL, $table);
     }
-    
+
     /**
      * Cria a tabela users
      * @param $connection => Variável de conexão com o banco de dados
      */
     public function createTableUsers($connection) {
-        
+
         $table = array(
             "columns" => array(
                 new Column("user_id", array(
@@ -174,12 +193,12 @@ class Tables
                 new Column("user_img", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 150
-                ))
+                )),
             )
         );
         $connection->createTable("users", NULL, $table);
     }
-    
+
     /**
      * Cria a tabela users_blogs
      * @param $connection => Variável de conexão com o banco de dados
@@ -236,7 +255,7 @@ class Tables
         );
         $connection->createTable("users_blogs", NULL, $table);
     }
-    
+
     /**
      * Cria a tabela posts
      * @param $connection => Variável de conexão com o banco de dados
@@ -281,7 +300,7 @@ class Tables
                     "notNull" => true
                 ))
             ) ,
-            
+
             "indexes" => array(
                 new Index("post_author", array(
                     "post_author"
@@ -313,7 +332,7 @@ class Tables
         );
         $connection->createTable("posts", NULL, $table);
     }
-    
+
     /**
      * Cria a tabela social_network
      * @param $connection => Variável de conexão com o banco de dados

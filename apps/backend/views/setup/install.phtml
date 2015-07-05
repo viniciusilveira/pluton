@@ -8,10 +8,16 @@
 <div class="container container-fluidr center-block">
     <div class="content modal-content">
         <article class="content">
-        <h1 class="h3 text-center">Dados do Usuário</h1>
-        <form class="form-horizontal center-block" id="user_create" name="user_create">
+        <h1 class="h3 text-center">Instalação</h1>
+        <form class="form-horizontal center-block" id="install" name="install">
             <div class="form-group">
-                <label class="col-sm-4 control-label">Nome: </label>
+                <label class="col-sm-4 control-label">Nome do Blog: </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" name="blog_name" id="blog_name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Nome do usuário: </label>
                 <div class="col-sm-7">
                     <input type="text" class="form-control" name="user_name" id="user_name">
                 </div>
@@ -48,7 +54,7 @@
     $("#prosseguir").on("click", function(){
         var validate = true;
         //Verifica se todos os campos do formulário foi preenchido
-        $.each($("#user_create").serializeArray(), function(i, field){
+        $.each($("#install").serializeArray(), function(i, field){
             if(field.value == ''){
                 swal({
                     title: "Atenção!",
@@ -61,8 +67,8 @@
         });
         if(validate){
             $.ajax({
-            url: $.verifySettingsURL(window.location.href,'setup', 'createNewUser'),
-            data: $("#user_create").serialize(),
+            url: $.verifySettingsURL(window.location.href,'setup', 'installPluton'),
+            data: $("#install").serialize(),
             type: 'POST',
             dataType: 'json',
             success: function(data){

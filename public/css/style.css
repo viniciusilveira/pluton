@@ -1,4 +1,4 @@
-/* 
+/*
     Created on : 04/02/2015, 20:06:16
     Author     : Marcos Vinicius O. Silveira
 */
@@ -40,3 +40,11 @@
   margin-left:20px;
 }
 .strong { font-weight: bold; }
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+footer {
+    margin: 50px 0;
+}

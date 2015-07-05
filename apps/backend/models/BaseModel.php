@@ -2,6 +2,6 @@
 
 namespace Multiple\Backend\Models;
 
-class BaseModel extends SetupController {
+class BaseModel extends \Phalcon\Mvc\Model {
     
 }
