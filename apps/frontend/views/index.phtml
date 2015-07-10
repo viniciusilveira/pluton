@@ -1,9 +1,16 @@
 <!doctype html>
 <!-- Layout padrão para as views do frontend -->
+<style>
+    body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+footer {
+    margin: 50px 0;
+}
+</style>
 <html class="no-js" lang="br">
     <head>
         <meta charset="utf-8">
-
         <title><?= $blog_name ?></title>
         <meta name="description" content="<?= $blog_name ?>">
         <meta name="author" content="viniciusilveira">
@@ -11,15 +18,10 @@
         <link rel="stylesheet" href="<?= URL_PROJECT ?>css/style.css"/>
         <link rel="stylesheet" href="<?= URL_PROJECT ?>css/bootstrap.min.css"/>
         <link rel="stylesheet" href="<?= URL_PROJECT ?>css/sweet-alert.css"/>
-        <link rel="stylesheet" href="<?= URL_PROJECT ?>css/metisMenu.min.css"/>
-        <link rel="stylesheet" href="<?= URL_PROJECT ?>css/timeline.css"/>
-        <link rel="stylesheet" href="<?= URL_PROJECT ?>css/sb-admin-2.css"/>
-
         <!--[if lt IE 9]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     </head>
-
     <body>
         <script src="<?= URL_PROJECT ?>js/jquery-2.1.3.min.js"></script>
         <script src="<?= URL_PROJECT ?>js/modernizr.js"></script>
@@ -28,7 +30,6 @@
         <script src="<?= URL_PROJECT ?>js/bootstrap-filestyle.min.js"> </script>
         <script src="<?= URL_PROJECT ?>js/chart.min.js"> </script>
         <script src="<?= URL_PROJECT ?>js/custom.js"> </script>
-
         <?= $this->getContent(); ?>
     </body>
 </html>

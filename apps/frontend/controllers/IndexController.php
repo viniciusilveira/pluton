@@ -21,13 +21,8 @@ class IndexController extends \Phalcon\Mvc\Controller {
     public function indexAction() {
         $blogs = new Blogs();
         $blog = $blogs->getBlog();
-
-        if (!empty($blog)) {
-            $this->view->render('index', 'index');
-        }
-        else {
-            $this->view->pick('index/notFound');
-        }
+        //caso o blog esteja criado carrega a index; se não carrega a pagina not found
+        !empty($blog) ? $this->view->render('index', 'index') : $this->view->pick('index/notFound');
     }
 
     public function notFoundAction() {

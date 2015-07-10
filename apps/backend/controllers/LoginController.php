@@ -39,7 +39,7 @@ class LoginController extends SetupController {
         $users = new Users();
 
         $user_login = $this->request->getPost('user_login');
-        $user_passwd = md5($this->request->getPost('user_passwd'));
+        $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
         $success = $users::findFirst("(user_login = '$user_login' OR user_email = '$user_login') AND user_passwd = '$user_passwd'");
         if ($success) {
             $this->creatSession($user_login);
