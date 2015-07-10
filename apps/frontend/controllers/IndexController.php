@@ -7,18 +7,30 @@
  * Classes list:
  * - IndexController extends \
  */
+
 namespace Multiple\Frontend\Controllers;
+use Multiple\Frontend\Models\Blogs;
 
 class IndexController extends \Phalcon\Mvc\Controller {
 
+    /**
+     * Verifica se o sistema foi instalado e o blog criado, caso sim carrega a página inicial do blog,
+     * se não carrega a página de não encontrado
+     * @return [type] [description]
+     */
     public function indexAction() {
+        $blogs = new Blogs();
+        $blog = $blogs->getBlog();
 
-        /**
-         * Verificar se o blog existe no banco de dados. Caso exista carrega a view, se não existir exibe uma tela de
-         * sistema em construção
-         */
+        if (!empty($blog)) {
+            $this->view->render('index', 'index');
+        }
+        else {
+            $this->view->pick('index/notFound');
+        }
     }
 
-    public function maintenceAction() {
+    public function notFoundAction() {
+        //view/index/notFound.phtml
     }
 }

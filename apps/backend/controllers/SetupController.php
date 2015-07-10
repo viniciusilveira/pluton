@@ -209,15 +209,20 @@ class SetupController extends \Phalcon\DI\Injectable {
          * Insere os dados necessários no banco de dados para utilização inicial do sistema
          */
         try {
-            $data['success'] = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, $user_type);
-            $data['success'] = $this->layout->addLayout();
-            $data['success'] = $this->blog->createBlog($blog_name);
-            $data['message'] = $data['success'] ? 'Usuário criado com sucesso!' : 'Ocorreu um erro ao criar o usuário. Por favor tente novamente';
+            $success = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, $user_type);
+            $success = $success ? $data['success'] = $this->layout->createLayout() : false;
+            $success = $success ? $data['success'] = $this->blog->createBlog($blog_name): false;
+            $data['message'] = $success ? 'Sistema Instalado Com sucesso!' : 'Ocorreu um erro durante a instalação. Por favor tente novamente';
+            $data['success'] = $success;
             echo json_encode($data);
         }
         catch(\PDOException $e) {
             $data['success'] = false;
             $data['message'] = "Ocorreu um erro: " . $e;
+            /**
+             * @todo: apagar todos os dados inseridos no banco
+             */
+            $this->user->deleteAdminUser();
             echo json_encode($data);
         }
     }

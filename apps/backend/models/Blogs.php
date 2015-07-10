@@ -1,12 +1,12 @@
 <?php
 /**
-* Class and Function List:
-* Function list:
-* - verifyBlogExistAction()
-* - createBlog()
-* Classes list:
-* - Blogs extends \
-*/
+ * Class and Function List:
+ * Function list:
+ * - verifyBlogExistAction()
+ * - createBlog()
+ * Classes list:
+ * - Blogs extends \
+ */
 namespace Multiple\Backend\Models;
 
 /**
@@ -23,9 +23,9 @@ class Blogs extends \Phalcon\Mvc\Model {
     }
 
     public function createBlog($blog_name) {
-        $this->blog_name   = $blog_name;
+        $this->blog_name = $blog_name;
         $this->blog_layout = 1;
-        $success           = $this->create();
+        $success = $this->create();
 
         return $success;
     }

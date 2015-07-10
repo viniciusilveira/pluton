@@ -1,10 +1,11 @@
 <?php
-
 /**
  * Class and Function List:
  * Function list:
  * - verifyUsersExistAction()
  * - createUser()
+ * - getUser()
+ * - deleteAdminUser()
  * Classes list:
  * - Users extends \
  */
@@ -16,8 +17,7 @@ use \Phalcon\Mvc\Model\Query;
  * Class Users
  * @package Multiple\Backend\Models
  */
-class Users extends \Phalcon\Mvc\Model
-{
+class Users extends \Phalcon\Mvc\Model {
 
     public $user_name;
     public $user_email;
@@ -68,5 +68,14 @@ class Users extends \Phalcon\Mvc\Model
         ))->execute();
 
         return $user->getFirst()->user_name;
+    }
+
+    public function deleteAdminUser() {
+        foreach (User::findFirst("user_type = SA") as $user){
+            if($user->delete()) return true;
+            else return false;
+        }
+
+        return $delete;
     }
 }
