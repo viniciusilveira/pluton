@@ -1,27 +1,26 @@
 <?php
-
 /**
  * Class and Function List:
  * Function list:
  * - indexAction()
  * Classes list:
- * - SettingsController extends \
+ * - SettingsController extends BaseController
  */
 
 namespace Multiple\Backend\Controllers;
 
 use Multiple\Backend\Models\Users, Multiple\Backend\Models\Blogs;
 
-class SettingsController extends BaseController
-{
+class SettingsController extends BaseController {
+
     /**
      * Carrega a tela principal do backend
      */
     public function indexAction() {
-        
+
         //Inicia a sessão
         $this->session->start();
-        
+
         /**
          * @todo:
          * => Variáveis:
@@ -38,22 +37,26 @@ class SettingsController extends BaseController
          * Verificar por que a validação de Sessão aparentemente não está funcionando.
          * Verificar o que mais é necessário para index
          */
-        if ($this->session->get("user_login") != NULL) {
+        if ($this->session->get("user_id") != NULL) {
             $users = new Users();
             $blogs = new Blogs();
-            $user = explode(" ", $users->getUser($this->session->get("user_login")));
-            
+            $user = $users->getUser($this->session->get("user_login"));
+            $user_name = explode(" ", $user->user_name);
+
             //Array para envio de dados para a view a ser carregada
-            $vars['user'] = $user[0];
-            //@todo: verificar como corrigir a função getUserType();
-            $vars['user_type'] = $users->getUserType($this->session->get("user_login"));
+            $vars['user'] = $user_name[0];
+            $vars['user_type'] = $user->user_type;
             $vars['blog_exists'] = $blogs->verifyBlogExistAction();
-            
+
             $this->view->setVars($vars);
             $this->view->render('settings', 'index');
-        } 
+        }
         else {
             $this->view->pick('login/index');
         }
+    }
+
+    public function newUserAction(){
+        // view/settings/newUser.phtml
     }
 }

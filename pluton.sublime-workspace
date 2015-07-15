@@ -28,34 +28,42 @@
 	"buffers":
 	[
 		{
-			"file": "apps/backend/models/Layouts.php",
+			"file": "apps/backend/controllers/SettingsController.php",
 			"settings":
 			{
-				"buffer_size": 1616,
+				"buffer_size": 2016,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "apps/backend/models/Users.php",
+			"file": "apps/backend/views/settings/sidebar.phtml",
 			"settings":
 			{
-				"buffer_size": 2219,
+				"buffer_size": 4184,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "apps/backend/controllers/SetupController.php",
+			"file": "public/js/custom.js",
 			"settings":
 			{
-				"buffer_size": 9743,
+				"buffer_size": 472,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "apps/backend/models/Blogs.php",
+			"file": "apps/backend/views/settings/newUser.phtml",
 			"settings":
 			{
-				"buffer_size": 640,
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "apps/backend/views/settings/index.phtml",
+			"settings":
+			{
+				"buffer_size": 7650,
 				"line_ending": "Unix"
 			}
 		}
@@ -74,6 +82,10 @@
 			[
 				"install",
 				"Package Control: Install Package"
+			],
+			[
+				"todo",
+				"TodoReview: Project Files"
 			],
 			[
 				"remove",
@@ -111,24 +123,42 @@
 		"/var/www/html/pluton/apps/backend",
 		"/var/www/html/pluton/apps/backend/controllers",
 		"/var/www/html/pluton/apps/backend/models",
-		"/var/www/html/pluton/apps/frontend/views",
-		"/var/www/html/pluton/apps/frontend/views/index"
+		"/var/www/html/pluton/apps/backend/views",
+		"/var/www/html/pluton/apps/backend/views/settings",
+		"/var/www/html/pluton/public",
+		"/var/www/html/pluton/public/js"
 	],
 	"file_history":
 	[
-		"/var/www/html/pluton/apps/frontend/views/index/index.phtml",
-		"/var/www/html/pluton/apps/frontend/views/index/post-page.phtml",
-		"/var/www/html/pluton/apps/library/Tables.php",
+		"/var/www/html/pluton/public/js/custom.js",
+		"/var/www/html/pluton/apps/backend/views/settings/topMenu.phtml",
+		"/var/www/html/pluton/apps/backend/views/settings/main.phtml",
+		"/var/www/html/pluton/apps/backend/views/settings/index.phtml",
+		"/var/www/html/pluton/apps/backend/views/settings/alerts.phtml",
+		"/var/www/html/pluton/apps/backend/views/settings/messages.phtml",
+		"/var/www/html/pluton/apps/backend/views/settings/sidebar.phtml",
 		"/var/www/html/pluton/apps/backend/models/Users.php",
-		"/var/www/html/pluton/apps/frontend/controllers/IndexController.php",
-		"/var/www/html/pluton/apps/frontend/views/index/notFound.phtml",
-		"/var/www/html/pluton/apps/backend/models/Blogs.php",
+		"/home/vinicius/.config/sublime-text-3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
+		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
+		"/var/www/html/pluton/apps/backend/views/login/index.phtml",
+		"/home/vinicius/.config/sublime-text-3/Packages/User/CodeFormatter.sublime-settings",
+		"/var/www/html/pluton/apps/backend/controllers/SetupController.php",
+		"/var/www/html/pluton/apps/backend/views/setup/index.phtml",
+		"/var/www/html/pluton/apps/backend/models/Layouts.php",
 		"/var/www/html/pluton/apps/frontend/models/Blogs.php",
+		"/var/www/html/pluton/apps/frontend/views/index.phtml",
+		"/var/www/html/pluton/apps/frontend/views/index/index.phtml",
+		"/var/www/html/pluton/public/css/style.css",
+		"/var/www/html/pluton/apps/backend/views/setup/install.phtml",
+		"/var/www/html/pluton/apps/frontend/controllers/IndexController.php",
+		"/var/www/html/pluton/apps/library/Tables.php",
+		"/var/www/html/pluton/apps/backend/models/Blogs.php",
+		"/var/www/html/pluton/apps/frontend/views/index/post-page.phtml",
+		"/var/www/html/pluton/apps/frontend/views/index/notFound.phtml",
 		"/var/www/html/pluton/layouts/default/post-page.html",
 		"/var/www/html/pluton/apps/frontend/views/layout/index.html",
 		"/var/www/html/pluton/apps/backend/Module.php",
 		"/var/www/html/pluton/apps/frontend/models/Posts.php",
-		"/var/www/html/pluton/apps/frontend/views/index.phtml",
 		"/var/www/html/pluton/apps/frontend/Module.php",
 		"/var/www/html/pluton/layouts/default/index.html",
 		"/var/www/html/pluton/apps/frontend/views/layout/post-page.html",
@@ -136,19 +166,12 @@
 		"/var/www/html/pluton/apps/frontend/views/layout/default/index.html",
 		"/var/www/html/pluton/apps/frontend/views/layout/index.phtml",
 		"/var/www/html/pluton/apps/backend/views/index.phtml",
-		"/var/www/html/pluton/public/css/style.css",
 		"/var/www/html/pluton/public/css/sb-admin-2.css",
-		"/var/www/html/pluton/apps/backend/views/settings/index.phtml",
 		"/var/www/html/pluton/apps/backend/controllers/SettingsController.php",
 		"/var/www/html/pluton/layouts/default.phtml",
-		"/var/www/html/pluton/apps/backend/controllers/SetupController.php",
 		"/var/www/html/pluton/apps/backend/views/setup/databaseConfig.phtml",
 		"/var/www/html/pluton/apps/library/Acl.php",
-		"/var/www/html/pluton/apps/backend/models/Layouts.php",
-		"/home/vinicius/.config/sublime-text-3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
-		"/var/www/html/pluton/apps/backend/views/setup/install.phtml",
 		"/var/www/html/pluton/apps/backend/controllers/IndexController.php",
-		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
 		"/var/www/html/pluton/apps/frontend/models/Layouts.php",
 		"/var/www/html/pluton/apps/frontend/models/Products.php",
 		"/var/www/html/pluton/apps/frontend/controllers/UsersController.php",
@@ -185,6 +208,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"main",
 			"graphics",
 			"newUser"
 		],
@@ -209,30 +233,31 @@
 			[
 				{
 					"buffer": 0,
-					"file": "apps/backend/models/Layouts.php",
+					"file": "apps/backend/controllers/SettingsController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1616,
+						"buffer_size": 2016,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1208,
-								1208
+								2007,
+								2007
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 166.0,
+						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -240,30 +265,31 @@
 				},
 				{
 					"buffer": 1,
-					"file": "apps/backend/models/Users.php",
+					"file": "apps/backend/views/settings/sidebar.phtml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2219,
+						"buffer_size": 4184,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2210,
-								2210
+								4133,
+								4133
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 663.0,
+						"translation.y": 702.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -271,64 +297,93 @@
 				},
 				{
 					"buffer": 2,
-					"file": "apps/backend/controllers/SetupController.php",
+					"file": "public/js/custom.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9743,
+						"buffer_size": 472,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7806,
-								7806
+								387,
+								387
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3260.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "apps/backend/models/Blogs.php",
+					"file": "apps/backend/views/settings/newUser.phtml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 640,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								470,
-								470
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "apps/backend/views/settings/index.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7650,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7550,
+								7550
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 47.0,
+						"translation.y": 2376.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -336,7 +391,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -373,7 +428,7 @@
 	"project": "pluton.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":

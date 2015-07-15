@@ -20,8 +20,8 @@ class LoginController extends SetupController {
 
     public function indexAction() {
 
-        session_start();
-        if ($_SESSION['user_login'] != NULL) {
+        $this->session->start();
+        if ($this->session->get("user_id") != NULL) {
             $this->dispatcher->forward(array("controller" => 'settings', "action" => 'index'));
         } else {
             $this->view->render('login', 'index');
@@ -40,9 +40,9 @@ class LoginController extends SetupController {
 
         $user_login = $this->request->getPost('user_login');
         $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
-        $success = $users::findFirst("(user_login = '$user_login' OR user_email = '$user_login') AND user_passwd = '$user_passwd'");
-        if ($success) {
-            $this->creatSession($user_login);
+        $user = $users::findFirst("(user_login = '$user_login' OR user_email = '$user_login') AND user_passwd = '$user_passwd'");
+        if ($user) {
+            $this->creatSession($user->user_id, $user_login);
             $data['success'] = true;
         } else {
             $data['success'] = false;
@@ -57,18 +57,21 @@ class LoginController extends SetupController {
      * @param  string $user_login   nome de usuário
      * @return
      */
-    public function creatSession($user_login) {
-        session_start();
-
-        $_SESSION['user_login'] = $user_login;
+    public function creatSession($user_id, $user_login) {
+        $this->session->start();
+        $this->session->set("user_id", $user_id);
+        $this->session->set("user_login", $user_login);
     }
 
     /**
      * Destroi a sessão e redireciona para tela de login
      * @return
      */
-    public function logoff() {
-        session_destroy();
+    public function logoffAction() {
+        $this->session->start();
+        $this->session->remove("user_id");
+        $this->session->remove("user_login");
+        $this->session->destroy();
         $this->view->render('login', 'index');
     }
 

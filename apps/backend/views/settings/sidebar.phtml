@@ -1,0 +1,67 @@
+<div class="list-group panel">
+    <?php if($user_type == 'SA'){ ?>
+    <a href="#sub-blog" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-home"></i> Blog</a>
+    <?php } ?>
+    <?php if($user_type == 'SA' || $user_type == 'A'){ ?>
+    <a href="#sub-users" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-user"></i> Usuários</a>
+    <div class="collapse" id="sub-users">
+        <a href="#" class="list-group-item" id="new-user"><i class="glyphicon glyphicon-plus"></i> Novo</a>
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-remove"></i> Excluir</a>
+    </div>
+    <!-- /sub-users-->
+    <?php } ?>
+    <a href="#sub-posts" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-tags"></i> Posts </a>
+    <div class="collapse" id="sub-posts">
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Novo</a>
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-remove"></i> Excluir</a>
+    </div>
+    <!-- /sub-posts -->
+    <?php if($user_type == 'SA' | $user_type == 'A'){ ?>
+    <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-tags"></i> Estastísticas </a>
+    <?php } ?>
+    <?php if($user_type == 'SA' | $user_type == 'A'){ ?>
+    <a href="#sub-social-network" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-thumbs-up"></i> Redes Sociais </a>
+    <div class="collapse" id="sub-social-network">
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Adicionar Rede Social</a>
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar Redes Cadastradas</a>
+    </div>
+    <!-- /sub-social-network -->
+    <?php } ?>
+    <?php if($user_type == 'SA' | $user_type == 'A'){ ?>
+    <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-usd"></i> Propagandas </a>
+    <?php } ?>
+    <?php if($user_type == 'SA'){ ?>
+    <a href="#sub-appearance" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-sunglasses"></i> Aparência </a>
+    <div class="collapse" id="sub-appearance">
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Novo Tema</a>
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-th-list"></i> Escolher Tema</a>
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar Tema</a>
+        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar HTML</a>
+    </div>
+    <!-- /sub-appearance-->
+    <?php } ?>
+    <?php if($user_type == 'SA' || $user_type == 'S'){ ?>
+    <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-eye-open"></i> Segurança </a>
+    <?php } ?>
+    <?php if($user_type == 'SA'){ ?>
+    <a href="#sub-plugins" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-paperclip"></i> Plugins </a>
+    <div class="collapse" id="sub-plugins">
+        <a href="#" class="list-group-item">Instalar Plugin</a>
+        <a href="#" class="list-group-item">Buscar Plugins</a>
+        <a href="#" class="list-group-item">Remover Plugin</a>
+    </div>
+    <!-- /sub-plugins -->
+    <?php } ?>
+    <?php if($user_type == 'SA'){ ?>
+    <a href="#sub-update" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon     glyphicon-refresh"></i> Atualizações </a>
+    <?php } ?>
+</div>
+<!-- /.list-group -->
+
+<script type="text/javascript">
+$("#new-user").click(function(){
+    $.loadPartialView('main', 'newUser');
+});
+</script>

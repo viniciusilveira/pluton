@@ -11,13 +11,13 @@
             <div class="form-group">
                 <div class="input-group col-sm-6 input-login">
                     <span class="input-group-addon "><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="user" type="text" class="form-control" name="user_login" id="user_login" value="" placeholder="Login ou e-mail">
+                    <input id="user" type="text" class="form-control form_login" name="user_login" id="user_login" value="" placeholder="Login ou e-mail">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group col-sm-6 input-login">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="password" type="password" class="form-control" name="user_passwd" id="user_passwd" placeholder="Senha">
+                    <input id="password" type="password" class="form-control form_login" name="user_passwd" id="user_passwd" placeholder="Senha">
                 </div>
             </div>
             <div class="form-group">
@@ -29,50 +29,60 @@
     </div>
     <div class="clearfix"></div>
 </div>
+
 <script>
-    
-    $("#prosseguir").click(function(){
-        //monta um array para verificação dos dados
-        var array_form = $("#login").serializeArray();
-        //cria um texto json para envio dos dados para a action de configuração do banco de dados;
-        var text_form = $("#login").serialize();
-        var validate = true;
-        //Verifica se há campos vazios no formulário
-        $.each(array_form, function(i, field){
-            if(field.value == ''){
-                swal({
-                    title: "Erro!",
-                    text: "Login ou senha invalidos!",
-                    type: "error",
-                    confirmButtonText: "OK"
-                });
-                validate = false;
+/**
+ * Se o usuário pressionar enter aciona o evento click no botão #prosseguir
+ */
+$(".form_login").keypress(function(e) {
+    if(e.which == 13) {
+        $("#prosseguir").click();
+    }
+});
+
+/**
+ * Ao clicar no botão #prosseguir tenta efetuar o login com os dados informados no formulário
+ */
+$("#prosseguir").click(function(){
+    //monta um array para verificação dos dados
+    var array_form = $("#login").serializeArray();
+    //cria um texto json para envio dos dados para a action de configuração do banco de dados;
+    var text_form = $("#login").serialize();
+    var validate = true;
+    //Verifica se há campos vazios no formulário
+    $.each(array_form, function(i, field){
+        if(field.value == ''){
+            swal({
+                title: "Erro!",
+                text: "Login ou senha invalidos!",
+                type: "error",
+                confirmButtonText: "OK"
+            });
+            validate = false;
+        }
+    });
+    //Caso o formulário esteja completamente preenchido executa a chamada ajax
+    if(validate){
+        $.ajax({
+            url: "<?= URL_PROJECT ?>login/login",
+            data: text_form,
+            type: 'POST',
+            dataType: 'json',
+            success: function(data){
+                //Caso o login tenha sido efetuado, redireciona pra página inicial.
+                //Se ocorreu alguma falha exibe um alert.
+                if(data.success){
+                    window.location.href = "<?= URL_PROJECT ?>settings/index";
+                }else{
+                    swal({
+                        title: "Erro!",
+                        text: "Login ou senha invalidos!",
+                        type: "error",
+                        confirmButtonText: "OK"
+                    });
+                }
             }
         });
-
-        //Caso o formulário esteja completamente preenchido executa a chamada ajax
-        if(validate){
-            $.ajax({
-                url: "<?= URL_PROJECT ?>login/login",
-                data: text_form,
-                type: 'POST',
-                dataType: 'json',
-                success: function(data){
-                    //Caso o login tenha sido efetuado, redireciona pra página inicial.
-                    //Se ocorreu alguma falha exibe um alert.
-                    if(data.success){
-                        window.location.href = "<?= URL_PROJECT ?>settings/index";
-                    }else{
-                        swal({
-                            title: "Erro!",
-                            text: "Login ou senha invalidos!",
-                            type: "error",
-                            confirmButtonText: "OK"
-                        });
-                    }
-                }
-            });
-        }
-        
-    });
+    }
+});
 </script>

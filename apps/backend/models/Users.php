@@ -61,18 +61,27 @@ class Users extends \Phalcon\Mvc\Model {
         return $success;
     }
 
+    /**
+     * Busca um usuário pelo login/email do mesmo
+     * @param  string $user_login login do usuário
+     * @return objeto Users             objetu odo tipo Users contendo os dados do usuário encontrado no banco de dados
+     */
     public function getUser($user_login) {
 
         $user = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_login:")->bind(array(
             "user_login" => $user_login
         ))->execute();
 
-        return $user->getFirst()->user_name;
+        return $user->getFirst();
     }
 
+    /**
+     * Remove um usuário do banco de dados
+     * @return boolean Verdadeiro caso o usuário tenha sido removido do banco de dados e falso caso contrario
+     */
     public function deleteAdminUser() {
-        foreach (User::findFirst("user_type = SA") as $user){
-            if($user->delete()) return true;
+        foreach (User::findFirst("user_type = SA") as $user) {
+            if ($user->delete()) return true;
             else return false;
         }
 
