@@ -43,23 +43,22 @@
     <!-- /sub-appearance-->
     <?php } ?>
     <?php if($user_type == 'SA' || $user_type == 'S'){ ?>
-    <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-eye-open"></i> Segurança </a>
+        <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-eye-open"></i> Segurança </a>
     <?php } ?>
     <?php if($user_type == 'SA'){ ?>
-    <a href="#sub-plugins" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-paperclip"></i> Plugins </a>
-    <div class="collapse" id="sub-plugins">
-        <a href="#" class="list-group-item">Instalar Plugin</a>
-        <a href="#" class="list-group-item">Buscar Plugins</a>
-        <a href="#" class="list-group-item">Remover Plugin</a>
-    </div>
-    <!-- /sub-plugins -->
+        <a href="#sub-plugins" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-paperclip"></i> Plugins </a>
+        <div class="collapse" id="sub-plugins">
+            <a href="#" class="list-group-item">Instalar Plugin</a>
+            <a href="#" class="list-group-item">Buscar Plugins</a>
+            <a href="#" class="list-group-item">Remover Plugin</a>
+        </div>
+        <!-- /sub-plugins -->
     <?php } ?>
     <?php if($user_type == 'SA'){ ?>
-    <a href="#sub-update" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon     glyphicon-refresh"></i> Atualizações </a>
+        <a href="#sub-update" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon     glyphicon-refresh"></i> Atualizações </a>
     <?php } ?>
 </div>
 <!-- /.list-group -->
-
 <script type="text/javascript">
 $("#new-user").click(function(){
     $.loadPartialView('main', 'newUser');
