@@ -2,12 +2,13 @@
 	"folders":
 	[
 		{
+			"follow_symlinks": true,
 			"path": "."
 		}
 	],
 	"settings":{
 		"xdebug":{
-			"url": "localhost:8080/pluton/settings"
+			"url": "localhost/pluton"
 		}
 	}
 }
