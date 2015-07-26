@@ -19,12 +19,6 @@ use \Phalcon\Mvc\Model\Query;
  */
 class Users extends \Phalcon\Mvc\Model {
 
-    public $user_name;
-    public $user_email;
-    public $user_login;
-    public $user_passwd;
-    public $user_type;
-
     /**
      * Verifica se existe usuários criado no banco de dados
      * @return bool true caso exista, false caso não exista nenhum
@@ -45,18 +39,18 @@ class Users extends \Phalcon\Mvc\Model {
      * @param  int    $user_blog   Id do blog de acesso do usuário
      * @return bool   $success     true caso o usuário seja criado, ou false caso ocorra algum erro.
      */
-    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type, $user_img = NULL, $user_blog = NULL) {
+    public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type_id, $user_img = NULL, $user_blog = NULL) {
+        $user = new Users();
+        $user->user_name = $user_name;
+        $user->user_email = $user_email;
+        $user->user_login = $user_login;
+        $user->user_passwd = $user_passwd;
+        $user->user_type_id = $user_type_id;
 
-        $this->user_name = $user_name;
-        $this->user_email = $user_email;
-        $this->user_login = $user_login;
-        $this->user_passwd = $user_passwd;
-        $this->user_type = $user_type;
+        if (!empty($user_blog)) $user->user_blog = $user_blog;
+        if (!empty($user_img)) $user->user_img = $user_img;
 
-        if (!empty($user_blog)) $this->user_blog = $user_blog;
-        if (!empty($user_img)) $this->user_img = $user_img;
-
-        $success = $this->create();
+        $success = $user->save();
 
         return $success;
     }
@@ -64,7 +58,7 @@ class Users extends \Phalcon\Mvc\Model {
     /**
      * Busca um usuário pelo login/email do mesmo
      * @param  string $user_login login do usuário
-     * @return objeto Users             objetu odo tipo Users contendo os dados do usuário encontrado no banco de dados
+     * @return objeto Users   objeto do tipo Users contendo os dados do usuário encontrado no banco de dados
      */
     public function getUser($user_login) {
 
@@ -80,7 +74,7 @@ class Users extends \Phalcon\Mvc\Model {
      * @return boolean Verdadeiro caso o usuário tenha sido removido do banco de dados e falso caso contrario
      */
     public function deleteAdminUser() {
-        foreach (User::findFirst("user_type = SA") as $user) {
+        foreach (User::findFirst("user_type = 1") as $user) {
             if ($user->delete()) return true;
             else return false;
         }

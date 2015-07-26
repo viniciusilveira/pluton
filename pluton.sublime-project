@@ -8,7 +8,7 @@
 	],
 	"settings":{
 		"xdebug":{
-			"url": "localhost/pluton"
+			"url": "localhost/pluton/settings"
 		}
 	}
 }

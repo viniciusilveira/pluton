@@ -160,9 +160,14 @@
                 <?= $this->partial('settings/topMenu'); ?>
             </div>
             <!-- /.row -->
-            <div id="main">
-                <?= $this->partial('settings/main'); ?>
+            <div class="row">
+                <div id="main">
+                    <?= $this->partial('settings/main'); ?>
+                </div>
+                <?= $this->partial('settings/notificationPanel'); ?>
+                <!-- /.main -->
             </div>
+            <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
     </div>

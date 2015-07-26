@@ -25,7 +25,6 @@ class IndexController extends \Phalcon\Mvc\Controller
         $setup = new SetupController();
 
         $database = $setup->verifyDataBaseAction();
-
         switch ($database) {
             case 'file':
                 $dispatcher = array(

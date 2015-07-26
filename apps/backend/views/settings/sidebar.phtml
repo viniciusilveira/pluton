@@ -1,8 +1,8 @@
 <div class="list-group panel">
-    <?php if($user_type == 'SA'){ ?>
+    <?php if($user_type_id == 1){ ?>
     <a href="#sub-blog" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-home"></i> Blog</a>
     <?php } ?>
-    <?php if($user_type == 'SA' || $user_type == 'A'){ ?>
+    <?php if($user_type_id == 1 || $user_type_id == 2){ ?>
     <a href="#sub-users" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-user"></i> Usuários</a>
     <div class="collapse" id="sub-users">
         <a href="#" class="list-group-item" id="new-user"><i class="glyphicon glyphicon-plus"></i> Novo</a>
@@ -18,10 +18,10 @@
         <a href="#" class="list-group-item"><i class="glyphicon glyphicon-remove"></i> Excluir</a>
     </div>
     <!-- /sub-posts -->
-    <?php if($user_type == 'SA' | $user_type == 'A'){ ?>
+    <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
     <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-tags"></i> Estastísticas </a>
     <?php } ?>
-    <?php if($user_type == 'SA' | $user_type == 'A'){ ?>
+    <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
     <a href="#sub-social-network" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-thumbs-up"></i> Redes Sociais </a>
     <div class="collapse" id="sub-social-network">
         <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Adicionar Rede Social</a>
@@ -29,10 +29,10 @@
     </div>
     <!-- /sub-social-network -->
     <?php } ?>
-    <?php if($user_type == 'SA' | $user_type == 'A'){ ?>
+    <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
     <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-usd"></i> Propagandas </a>
     <?php } ?>
-    <?php if($user_type == 'SA'){ ?>
+    <?php if($user_type_id == 1){ ?>
     <a href="#sub-appearance" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-sunglasses"></i> Aparência </a>
     <div class="collapse" id="sub-appearance">
         <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Novo Tema</a>
@@ -42,25 +42,29 @@
     </div>
     <!-- /sub-appearance-->
     <?php } ?>
-    <?php if($user_type == 'SA' || $user_type == 'S'){ ?>
-        <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-eye-open"></i> Segurança </a>
+    <?php if($user_type_id == 1 || $user_type_id == 2){ ?>
+    <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-eye-open"></i> Segurança </a>
     <?php } ?>
-    <?php if($user_type == 'SA'){ ?>
-        <a href="#sub-plugins" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-paperclip"></i> Plugins </a>
-        <div class="collapse" id="sub-plugins">
-            <a href="#" class="list-group-item">Instalar Plugin</a>
-            <a href="#" class="list-group-item">Buscar Plugins</a>
-            <a href="#" class="list-group-item">Remover Plugin</a>
-        </div>
-        <!-- /sub-plugins -->
+    <?php if($user_type_id == 'SA'){ ?>
+    <a href="#sub-plugins" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-paperclip"></i> Plugins </a>
+    <div class="collapse" id="sub-plugins">
+        <a href="#" class="list-group-item">Instalar Plugin</a>
+        <a href="#" class="list-group-item">Buscar Plugins</a>
+        <a href="#" class="list-group-item">Remover Plugin</a>
+    </div>
+    <!-- /sub-plugins -->
     <?php } ?>
-    <?php if($user_type == 'SA'){ ?>
-        <a href="#sub-update" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon     glyphicon-refresh"></i> Atualizações </a>
+    <?php if($user_type_id == 1){ ?>
+    <a href="#sub-update" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon     glyphicon-refresh"></i> Atualizações </a>
     <?php } ?>
 </div>
 <!-- /.list-group -->
 <script type="text/javascript">
 $("#new-user").click(function(){
-    $.loadPartialView('main', 'newUser');
+    /**
+    * @todo: ao executar com a url acabando em settings efetua a chamada para pluton/newUser e caso esteja acabando em um determinado action
+    * (pluton/settings/index, por exemplo) efetua o chamado para pluton/settings/newUser. *** Em teste ( 22/07/2015).
+    */
+    $.loadPartialView('main', '<?= URL_PROJECT ?>/settings/newUser');
 });
 </script>

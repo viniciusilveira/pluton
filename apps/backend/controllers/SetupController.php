@@ -12,6 +12,7 @@
  * - databaseSettingsAction()
  * - connectDatabase()
  * - createTablesAction()
+ * - createUsersTypes()
  * - installPlutonAction()
  * - uploadImageAction()
  * Classes list:
@@ -33,6 +34,7 @@ class SetupController extends \Phalcon\DI\Injectable {
     private $user;
     private $blog;
     private $layout;
+    private $userType;
     private $tables;
 
     /**
@@ -43,6 +45,7 @@ class SetupController extends \Phalcon\DI\Injectable {
         $this->user = new \Multiple\Backend\Models\Users;
         $this->blog = new \Multiple\Backend\Models\Blogs;
         $this->layout = new \Multiple\Backend\Models\Layouts;
+        $this->userType = new \Multiple\Backend\Models\UserType;
         $this->tables = new \Multiple\Library\Tables;
     }
 
@@ -183,10 +186,24 @@ class SetupController extends \Phalcon\DI\Injectable {
 
         $this->connection->tableExists('layouts') ? NULL : $this->tables->createTableLayouts($this->connection);
         $this->connection->tableExists('blogs') ? NULL : $this->tables->createTableBlogs($this->connection);
+        $this->connection->tableExists('user_type') ? NULL : $this->tables->createTableUserType($this->connection);
         $this->connection->tableExists('users') ? NULL : $this->tables->createTableUsers($this->connection);
         $this->connection->tableExists('users_blogs') ? NULL : $this->tables->createTableUsersBlogs($this->connection);
         $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
         $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
+    }
+
+    /**
+     * Cria os tipos de usuários no sistema
+     * @return boolean true caso sucesso, false caso ocorra algum erro!
+     */
+    public function createUsersTypes() {
+            $success = $this->userType->createUserType('SUPER ADMINISTRADOR', 'SA');
+            $success = !$success ? $success : $this->userType->createUserType('ADMINISTRADOR', 'A');
+            $success = !$success ? $success : $this->userType->createUserType('EDITOR', 'E');
+            $success = !$success ? $success : $this->userType->createUserType('AUTOR', 'AT');
+            $success = !$success ? $success : $this->userType->createUserType('COLABORADOR', 'C');
+            return $success;
     }
 
     /**
@@ -203,15 +220,15 @@ class SetupController extends \Phalcon\DI\Injectable {
         $user_email = $this->request->getPost('user_email');
         $user_login = $this->request->getPost('user_login');
         $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
-        $user_type = !empty($this->request->getPost('user_type')) ? $this->request->getPost('user_type') : 'SA';
 
         /**
          * Insere os dados necessários no banco de dados para utilização inicial do sistema
          */
         try {
-            $success = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, $user_type);
+            $success = $this->createUsersTypes();
+            $success = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, 1);
             $success = $success ? $data['success'] = $this->layout->createLayout() : false;
-            $success = $success ? $data['success'] = $this->blog->createBlog($blog_name): false;
+            $success = $success ? $data['success'] = $this->blog->createBlog($blog_name) : false;
             $data['message'] = $success ? 'Sistema Instalado Com sucesso!' : 'Ocorreu um erro durante a instalação. Por favor tente novamente';
             $data['success'] = $success;
             echo json_encode($data);
@@ -219,56 +236,12 @@ class SetupController extends \Phalcon\DI\Injectable {
         catch(\PDOException $e) {
             $data['success'] = false;
             $data['message'] = "Ocorreu um erro: " . $e;
+
             /**
              * @todo: apagar todos os dados inseridos no banco
              */
             $this->user->deleteAdminUser();
             echo json_encode($data);
-        }
-    }
-
-    /**
-     * @todo: Action para upload de imagens para o servidor (Ainda não utilizado - Talvez seja movido para outra classe)
-     * @param  file $file   imagem
-     * @param  int $width   Largura máxima da imagem
-     * @param  in $heigth   Altura máxima da imagem
-     * @param  int $size    Tamanho máximo da imagem
-     * @return string       Nome da imagem ou erro caso ocorroa algum.
-     */
-    public function uploadImageAction($file, $width, $heigth, $size) {
-
-        // Verifica se o arquivo é uma imagem
-        if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getExtension())) {
-            $error[1] = "Arquivo Inválido!";
-        }
-
-        // Pega as dimensões da imagem
-        $dimensions = getimagesize($file->getTempName());
-
-        // Verifica se a largura da imagem é maior que a largura permitida
-        if ($dimensions[0] > $width) {
-            $error[2] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
-        }
-
-        // Verifica se a altura da imagem é maior que a altura permitida
-        if ($dimensions[1] > $heigth) {
-            $error[3] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
-        }
-
-        // Verifica se o tamanho da imagem é maior que o tamanho permitido
-        if ($file->getSize() > $size) {
-            $error[4] = "A imagem deve ter no máximo " . $size / 1024 . "0 MB!";
-        }
-        if (count($error == 0)) {
-            $ext = $file->getExtension();
-            $name_img = $file->getName();
-            if (!file_exists(FOLDER_PROJECT . 'public/img/users')) mkdir(FOLDER_PROJECT . 'public/img/users');
-            $path_img = FOLDER_PROJECT . 'public/img/users/' . $user_login . $file->getExteionsion();
-            $file->moveTo($path_img);
-            return $name_img;
-        }
-        else {
-            return $error;
         }
     }
 }

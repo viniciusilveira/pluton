@@ -1,4 +1,18 @@
 <?php
+/**
+ * Class and Function List:
+ * Function list:
+ * - createTableParameters()
+ * - createTableLayouts()
+ * - createTableBlogs()
+ * - createTableUserType()
+ * - createTableUsers()
+ * - createTableUsersBlogs()
+ * - createTablePosts()
+ * - createTableSocialNetwork()
+ * Classes list:
+ * - Tables
+ */
 namespace Multiple\Library;
 
 use Phalcon\Db\Column as Column;
@@ -10,28 +24,27 @@ use Phalcon\Db\Reference as Reference;
  * Library Responsável por criar todas as tabelas necessárias para o projeto.
  * @package Multiple\Library
  */
-class Tables
-{
+class Tables {
 
-    public function createTableParameters($connection){
+    public function createTableParameters($connection) {
         $table = array(
             "columns" => array(
                 new Column("parameter_id", array(
-                        "type" => Column::TYPE_INTEGER,
-                        "primary" => true,
-                        "size" => 10,
-                        "notNull" => true,
-                        "autoIncrement" => true,
-                )),
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true,
+                )) ,
                 new Column("parameter_description", array(
-                        "type" => Column::TYPE_TEXT,
-                        "notNull" => true
-                )),
+                    "type" => Column::TYPE_TEXT,
+                    "notNull" => true
+                )) ,
                 new Column("parameter_value", array(
                     "type" => Column::TYPE_TEXT,
                     "notNull" => true
                 ))
-             )
+            )
         );
 
         $connection->createTable("parameters", NULL, $table);
@@ -147,6 +160,37 @@ class Tables
     }
 
     /**
+     * Cria a tabela user_type
+     * @param  $connection Variável de conexão com o banco de dados
+     *
+     * @todo: Verificar campos necessários e implementar construção da tabela
+     */
+    public function createTableUserType($connection) {
+        $table = array(
+            "columns" => array(
+                new Column("user_type_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true
+                )) ,
+                new Column("user_type_descr", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
+                    "notNull" => true
+                )) ,
+                new Column("user_type_abrev", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 10,
+                    "notNull" => true
+                ))
+            )
+        );
+        $connection->createTable("user_type", NULL, $table);
+    }
+
+    /**
      * Cria a tabela users
      * @param $connection => Variável de conexão com o banco de dados
      */
@@ -159,7 +203,7 @@ class Tables
                     "primary" => true,
                     "size" => 10,
                     "notNull" => true,
-                    "autoIncrement" => true,
+                    "autoIncrement" => true
                 )) ,
                 new Column("user_name", array(
                     "type" => Column::TYPE_VARCHAR,
@@ -181,10 +225,9 @@ class Tables
                     "size" => 250,
                     "notNull" => true
                 )) ,
-                new Column("user_type", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "notNull" => true,
-                    "size" => 2
+                new Column("user_type_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10
                 )) ,
                 new Column("user_blog", array(
                     "type" => Column::TYPE_INTEGER,
@@ -193,7 +236,23 @@ class Tables
                 new Column("user_img", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 150
-                )),
+                )) ,
+            ) ,
+            "indexes" => array(
+                new Index("user_type_id", array(
+                    "user_type_id"
+                )) ,
+            ) ,
+            "references" => array(
+                new Reference("user_fk_user_type", array(
+                    "referencedTable" => "user_type",
+                    "columns" => array(
+                        "user_type_id"
+                    ) ,
+                    "referencedColumns" => array(
+                        "user_type_id"
+                    )
+                ))
             )
         );
         $connection->createTable("users", NULL, $table);
@@ -211,7 +270,7 @@ class Tables
                     "primary" => true,
                     "size" => 10,
                     "notNull" => true,
-                    "autoIncrement" => true,
+                    "autoIncrement" => true
                 )) ,
                 new Column("blog_id", array(
                     "type" => Column::TYPE_INTEGER,

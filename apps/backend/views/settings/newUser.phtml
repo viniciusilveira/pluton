@@ -1,0 +1,143 @@
+<style>
+    .row{
+        padding-bottom: 10px;
+    }
+</style>
+
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Novo Usuário
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <form id="form-newuser" action="" method="POST" class="form-horizontal" role="form">
+                <div class="form-group col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="user_name" class="col-sm-2">Nome: </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="user_name" id="inputUser_name" class="form-control" value="" required="required" placeholder="Nome Completo">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="user_email" class="col-sm-2">E-mail:</label>
+                            <div class="col-sm-10">
+                                <input type="email" name="user_email" id="inputUser_email" class="form-control" value="" required="required" placeholder="exemplo@exemplo.com.br">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="user_login" class="col-sm-2">Login:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="user_login" id="inputUser_login" class="form-control" value="" required="required" placeholder="Login">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="user_type" class="col-sm-4">Permissão: </label>
+                            <div class="col-sm-8">
+                                <select name="user_type" id="inputUser_type" class="form-control" required="required">
+                                    <option selected="selected"></option>
+                                    <?php foreach ($types as $type){ ?>
+                                        <option value="<?= $type->user_type_id?>"><?= $type->user_type_descr ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="user_img" class="col-sm-2">Imagem Perfil: </label>
+                            <div class="col-sm-10">
+                                <input type="file" name= "user_img" id="inputUser_img" class="filestyle" data-icon="true" data-buttonText="Escolher Imagem">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="user_passwd" class="col-sm-4">Senha: </label>
+                            <div class="col-sm-8">
+                                <input type="password" name="user_passwd" id="inputUser_passwd" class="form-control" required="required" placeholder="********">
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <label for="user_passwd_confirm" class="col-sm-4">Confirmar Senha: </label>
+                            <div class="col-sm-4">
+                                <input type="password" name="user_passwd_confirm" id="inputUser_passwd_confirm" class="form-control" required="required" placeholder="********">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="row"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button type="button" id="register" class="btn btn-primary center-block btn-lg">Cadastrar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel-default -->
+</div>
+<!-- /.col-lg-8 -->
+<script>
+$("#register").click(function(){
+     //monta um array para verificação dos dados
+     var array_form = $("#form-newuser").serializeArray();
+     //cria um texto json para envio dos dados para a action de configuração do banco de dados;
+     var text_form = $("#form-newuser").serialize();
+     validate = true;
+     $.each(array_form, function(i, field){
+            if(field.value == '' && field.name != 'user_img'){
+                swal({
+                    title: "Atenção!",
+                    text: "Por favor, preencha todos os dados antes de prosseguir!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+                validate = false;
+            }
+        });
+      if($("#inputUser_passwd").val() != $("#inputUser_passwd_confirm").val()){
+            swal({
+                    title: "Atenção!",
+                    text: "Senha e Repetir senha não conferem! Por favor tente novamente!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+                validate = false;
+        }
+     if(validate){
+        //@todo: verificar como enviar arquivos via ajax/json
+        $.ajax({
+            url: '<?= URL_PROJECT ?>settings/addNewUser',
+            data: text_form,
+            type: 'POST',
+            dataType: 'json',
+            success: function(data){
+                if(data.success){
+                     swal({
+                        title: "Sucesso!",
+                        text: "Usuário criado com sucesso!",
+                        type: "error",
+                        confirmButtonText: "OK"
+                    });
+                } else{
+                    swal({
+                        title: "Atenção!",
+                        text: "Ocorreu um erro ao criar o usuário! Por favor verifique os dados informados e tente novamente!",
+                        type: "error",
+                        confirmButtonText: "OK"
+                    });
+                }
+            }
+        });
+    }
+});
+</script>

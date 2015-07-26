@@ -9,44 +9,50 @@
 <div class="container container-fluidr center-block">
     <div class="content modal-content">
         <article class="content">
-        <h1 class="h3 text-center">Instalação</h1>
-        <form class="form-horizontal center-block" id="install" name="install">
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Nome do Blog: </label>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control" name="blog_name" id="blog_name">
+            <h1 class="h3 text-center">Instalação</h1>
+            <form class="form-horizontal center-block" id="install" name="install">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Nome do Blog: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="blog_name" id="blog_name">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Nome do usuário: </label>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control" name="user_name" id="user_name">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Nome do usuário: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="user_name" id="user_name">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">E-mail: </label>
-                <div class="col-sm-7">
-                    <input type="email" class="form-control" name="user_email" id="user_email" >
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">E-mail: </label>
+                    <div class="col-sm-7">
+                        <input type="email" class="form-control" name="user_email" id="user_email" >
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Login: </label>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control" name="user_login" id="user_login" maxlength="16">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Login: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="user_login" id="user_login" maxlength="16">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Senha: </label>
-                <div class="col-sm-7">
-                    <input type="password" class="form-control" name="user_passwd" id="user_passwd">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Senha: </label>
+                    <div class="col-sm-7">
+                        <input type="password" class="form-control" name="user_passwd" id="user_passwd">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-5">
-                    <input type="button" class="btn btn-lg btn-default" id="prosseguir" value="Prosseguir" />
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Repetir Senha: </label>
+                    <div class="col-sm-7">
+                        <input type="password" class="form-control" name="user_passwd_confirm" id="user_passwd_confirm">
+                    </div>
                 </div>
-            </div>
-        </form>
+                <div class="form-group">
+                    <div class="col-sm-offset-5">
+                        <input type="button" class="btn btn-lg btn-default" id="prosseguir" value="Prosseguir" />
+                    </div>
+                </div>
+            </form>
         </article>
     </div>
     <div class="clearfix"></div>
@@ -66,6 +72,15 @@
                 validate = false;
             }
         });
+        if($("#user_passwd").val() != $("#user_passwd_confirm").val()){
+            swal({
+                    title: "Atenção!",
+                    text: "Senha e Repetir senha não conferem! Por favor tente novamente!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+                validate = false;
+        }
         if(validate){
             $.ajax({
             url: $.verifySettingsURL(window.location.href,'setup', 'installPluton'),
@@ -92,7 +107,7 @@
                     });
                 }
             }
-            });
-        }
-    });
+        });
+    }
+});
 </script>
