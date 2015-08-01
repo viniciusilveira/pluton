@@ -5,6 +5,7 @@
  * - verifyUsersExistAction()
  * - createUser()
  * - getUser()
+ * - userExists()
  * - deleteAdminUser()
  * Classes list:
  * - Users extends \
@@ -70,8 +71,23 @@ class Users extends \Phalcon\Mvc\Model {
     }
 
     /**
+     * Verifica se existe usuário cadastrado com o login ou senha informados
+     * @param  string $user_login
+     * @param  string $user_email
+     * @return boolean true caso usuário exista ou false caso contrario
+     */
+    public function userExists($user_login, $user_email) {
+        $user = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_email:")->bind(array(
+            "user_login" => $user_login,
+            "user_email" => $user_email
+        ))->execute();
+
+        return empty($user->getFirst()) ? true : false;
+    }
+
+    /**
      * Remove um usuário do banco de dados
-     * @return boolean Verdadeiro caso o usuário tenha sido removido do banco de dados e falso caso contrario
+     * @return boolean true caso o usuário tenha sido removido do banco de dados ou false caso contrario
      */
     public function deleteAdminUser() {
         foreach (User::findFirst("user_type = 1") as $user) {

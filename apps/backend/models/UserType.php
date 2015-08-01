@@ -10,12 +10,6 @@
  */
 namespace Multiple\Backend\Models;
 
-/**
- * @todo: Está travando aqui provavelmente devido a um problema de nomenclatura da
- * classe (UserType) e  da tabela no banco de dados (user_type);
- *     => Possíveis soluções:
- *         * Verificar o funcionamento do método initialize (automático ou manual)
- */
 class UserType extends \Phalcon\Mvc\Model {
 
     /**

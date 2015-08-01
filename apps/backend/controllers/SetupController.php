@@ -2,7 +2,7 @@
 /**
  * Class and Function List:
  * Function list:
- * - __construct()
+ * - onConstruct()
  * - indexAction()
  * - databaseConfigAction()
  * - newBlogAction()
@@ -14,20 +14,18 @@
  * - createTablesAction()
  * - createUsersTypes()
  * - installPlutonAction()
- * - uploadImageAction()
  * Classes list:
- * - SetupController extends \
+ * - SetupController extends BaseController
  */
 namespace Multiple\Backend\Controllers;
+use Multiple\Backend\Models as Models;
 
 /**
  * Classe para conexão e configuração dos dados necessários para inicialização
  * do blog
  *
- * OBSERVAÇÃO: Necessário extender a classe Injectable ao invés da Controllers para
- * ser possivel sobescrever o método __construct
  */
-class SetupController extends \Phalcon\DI\Injectable {
+class SetupController extends BaseController {
 
     public $connection;
     private $config;
@@ -40,12 +38,11 @@ class SetupController extends \Phalcon\DI\Injectable {
     /**
      * Construct necessário para iniciar objetos de outras classes
      */
-    public function __construct() {
-
-        $this->user = new \Multiple\Backend\Models\Users;
-        $this->blog = new \Multiple\Backend\Models\Blogs;
-        $this->layout = new \Multiple\Backend\Models\Layouts;
-        $this->userType = new \Multiple\Backend\Models\UserType;
+    public function onConstruct() {
+        $this->user = new Models\Users;
+        $this->blog = new Models\Blogs;
+        $this->layout = new Models\Layouts;
+        $this->userType = new Models\UserType;
         $this->tables = new \Multiple\Library\Tables;
     }
 
@@ -198,12 +195,12 @@ class SetupController extends \Phalcon\DI\Injectable {
      * @return boolean true caso sucesso, false caso ocorra algum erro!
      */
     public function createUsersTypes() {
-            $success = $this->userType->createUserType('SUPER ADMINISTRADOR', 'SA');
-            $success = !$success ? $success : $this->userType->createUserType('ADMINISTRADOR', 'A');
-            $success = !$success ? $success : $this->userType->createUserType('EDITOR', 'E');
-            $success = !$success ? $success : $this->userType->createUserType('AUTOR', 'AT');
-            $success = !$success ? $success : $this->userType->createUserType('COLABORADOR', 'C');
-            return $success;
+        $success = $this->userType->createUserType('SUPER ADMINISTRADOR', 'SA');
+        $success = !$success ? $success : $this->userType->createUserType('ADMINISTRADOR', 'A');
+        $success = !$success ? $success : $this->userType->createUserType('EDITOR', 'E');
+        $success = !$success ? $success : $this->userType->createUserType('AUTOR', 'AT');
+        $success = !$success ? $success : $this->userType->createUserType('COLABORADOR', 'C');
+        return $success;
     }
 
     /**

@@ -2,48 +2,52 @@
 /**
  * Class and Function List:
  * Function list:
+ * - onConstruct()
  * - indexAction()
- * - newUserAction()
+ * - addNewUserAction()
  * - editUserAction()
  * - deleteUserAction()
+ * - newUserAction()
+ * - uploadImageAction()
  * Classes list:
  * - SettingsController extends BaseController
  */
 
 namespace Multiple\Backend\Controllers;
 
-use Multiple\Backend\Models\Users,
-    Multiple\Backend\Models\Blogs,
-    Multiple\Backend\Models\UserType;
+use Multiple\Backend\Models;
 
 class SettingsController extends BaseController {
 
+    private $users;
+
+    public function onConstruct() {
+        $this->users = new Models\Users;
+    }
+
     /**
      * Carrega a tela principal do backend
+     *  * @todo:
+     * => Variáveis:
+     * $blog (boolean) => true caso exista um blog, false caso não exista
+     * $user_type (char) => Nível de permissão do usuário logado
+     * $img_user (string) => caminho para imagem de usuário (caso exista)
+     *      se não existir inserir caminho para imagem padrão
+     *
+     * => Funcionalidades:
+     * google analitics => Verificar como integrar ao blog e criar relatórios/gráficos
+     * redes sociais => Verificar como integrar ao blog
+     * usuários online => Como contar a quantidade de usuários online? É possível pelo analitics?
+     *
+     * Verificar o que mais é necessário para index
      */
     public function indexAction() {
-
         //Inicia a sessão
         $this->session->start();
 
-        /**
-         * @todo:
-         * => Variáveis:
-         * $blog (boolean) => true caso exista um blog, false caso não exista
-         * $user_type (char) => Nível de permissão do usuário logado
-         * $img_user (string) => caminho para imagem de usuário (caso exista)
-         *      se não existir inserir caminho para imagem padrão
-         *
-         * => Funcionalidades:
-         * google analitics => Verificar como integrar ao blog e criar relatórios/gráficos
-         * redes sociais => Verificar como integrar ao blog
-         * usuários online => Como contar a quantidade de usuários online? É possível pelo analitics?
-         *
-         * Verificar o que mais é necessário para index
-         */
         if ($this->session->get("user_id") != NULL) {
-            $users = new Users();
-            $user = $users->getUser($this->session->get("user_login"));
+
+            $user = $this->users->getUser($this->session->get("user_login"));
 
             $user_name = explode(" ", $user->user_name);
 
@@ -58,47 +62,79 @@ class SettingsController extends BaseController {
         }
     }
 
-    public function addNewUserAction(){
-        $user_name = $this->request->getPost('user_name');
-        $user_email = $this->request->getPost('user_email');
-        $user_login = $this->request->getPost('user_login');
-        $user_type = $this->request->getPost('user_type');
-        $user_img = $this->request->getPost('user_img');
-        $user_passwd  = $this->request->getPost('user_passwd');
-
-        $upload_img = $this->uploadImageAction($user_img, 128, 128, 3072);
-        print_r($upload_img); die();
-    }
-
-    public function editUserAction() {
-    }
-
-    public function deleteUserAction() {
-    }
-
+    /**
+     * Carrega o formulário de cadastro de usuário na tela
+     * @return [type] [description]
+     */
     public function newUserAction() {
-        $user_type = new UserType();
-        $var['types'] = $user_type->getAllUserTypes();
-        $this->view->setVars($var);
+        $user_type = new Models\UserType;
+        $vars['types'] = $user_type->getAllUserTypes();
+        $this->view->setVars($vars);
         $this->view->render('settings', 'newUser');
-        // view/settings/newUser.phtml
-
-
     }
 
     /**
-     * @todo: Action para upload de imagens para o servidor (Ainda não utilizado - Talvez seja movido para outra classe)
+     * [addNewUserAction description]
+     */
+    public function addNewUserAction() {
+        $user_name = $this->request->getPost('user_name');
+        $user_email = $this->request->getPost('user_email');
+        $user_login = $this->request->getPost('user_login');
+        $user_type_id = $this->request->getPost('user_type_id');
+        $user_passwd = $this->request->getPost('user_passwd');
+
+        if (!$this->users->userExists($user_name, $user_login)) {
+
+            //Verifica se existe arquivo para upload, caso exista efetua o upload
+            if ($this->request->hasFiles() == true) {
+                foreach ($this->request->getUploadedFiles() as $file) {
+                    $upload_img = $this->uploadImageAction($file, 200, 300, 3072, $user_login);
+                }
+            }
+            if (is_array($upload_img)) {
+                $data = $upload_img;
+                $data['success'] = false;
+            }
+            else {
+                $data['success'] = Users::createUser($user_name, $user_email, $user_login, $user_passwd, $user_type_id, $upload_img, 1);
+            }
+        }
+        else {
+            $data['success'] = false;
+        }
+
+        echo json_encode($data);
+    }
+
+    /**
+     * [editUserAction description]
+     * @return [type] [description]
+     */
+    public function editUserAction() {
+    }
+
+    /**
+     * [deleteUserAction description]
+     * @return [type] [description]
+     */
+    public function deleteUserAction() {
+    }
+
+
+
+    /**
+     * @todo: Action para upload de imagens para o servidor
      * @param  file $file   imagem
      * @param  int $width   Largura máxima da imagem
      * @param  in $heigth   Altura máxima da imagem
      * @param  int $size    Tamanho máximo da imagem
      * @return string       Nome da imagem ou erro caso ocorroa algum.
      */
-    public function uploadImageAction($file, $width, $heigth, $size) {
+    public function uploadImageAction($file, $width, $heigth, $size, $img_name) {
 
         // Verifica se o arquivo é uma imagem
-        if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getExtension())) {
-            $error[1] = "Arquivo Inválido!";
+        if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getRealType())) {
+            $error['invalido'] = "Arquivo Inválido!";
         }
 
         // Pega as dimensões da imagem
@@ -106,28 +142,30 @@ class SettingsController extends BaseController {
 
         // Verifica se a largura da imagem é maior que a largura permitida
         if ($dimensions[0] > $width) {
-            $error[2] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
+            $error['largura'] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
         }
 
         // Verifica se a altura da imagem é maior que a altura permitida
         if ($dimensions[1] > $heigth) {
-            $error[3] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
+            $error['altura'] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
         }
 
         // Verifica se o tamanho da imagem é maior que o tamanho permitido
         if ($file->getSize() > $size) {
-            $error[4] = "A imagem deve ter no máximo " . $size / 1024 . "0 MB!";
+            $error['tamanho'] = "A imagem deve ter no máximo " . $size / 1024 . "MB!";
         }
-        if (count($error == 0)) {
-            $this->session->start();
-            /**
-             * @todo: verificar possibilidade de buscar o user_login do banco de dados
-             */
-            $user_login = $this->session->get('user_login');
+
+        /**
+         * Caso não haja erros faz o upload da imagem e salva a mesma no servidor
+         */
+        if (count($error) == 0) {
 
             $ext = $file->getExtension();
-            $name_img = $user_login . $ext;
+            $name_img = $img_name . "." . $ext;
+
+            //Verifica se a pasta public/img/users existe, se não existir, cria.
             if (!file_exists(FOLDER_PROJECT . 'public/img/users')) mkdir(FOLDER_PROJECT . 'public/img/users');
+
             $path_img = FOLDER_PROJECT . 'public/img/users/' . $name_img;
             $file->moveTo($path_img);
             return $name_img;
@@ -136,6 +174,4 @@ class SettingsController extends BaseController {
             return $error;
         }
     }
-
-
 }

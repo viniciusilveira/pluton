@@ -1,9 +1,8 @@
 <style>
-    .row{
-        padding-bottom: 10px;
-    }
+    .row{ padding-bottom: 10px;}
+    img{cursor: pointer;}
+    .div-img-profile{display:inline-block; width:128px; height:128px;}
 </style>
-
 <div class="col-lg-8">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -11,73 +10,44 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
-            <form id="form-newuser" action="" method="POST" class="form-horizontal" role="form">
-                <div class="form-group col-sm-12">
+            <form id="form-newuser" action="" method="POST" class="form-horizontal" enctype='multipart/form-data' target='ihide'>
+                <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <label for="user_name" class="col-sm-2">Nome: </label>
-                            <div class="col-sm-10">
-                                <input type="text" name="user_name" id="inputUser_name" class="form-control" value="" required="required" placeholder="Nome Completo">
-                            </div>
+                        <div class="col-sm-2 div-img-profile">
+                            <img src="http://www.placecage.com/g/200/300"  name="preview_img" id="imgPreview_img" class="img-responsive img-thumbnail" alt="Image">
                         </div>
-                        <div class="col-sm-6">
-                            <label for="user_email" class="col-sm-2">E-mail:</label>
-                            <div class="col-sm-10">
-                                <input type="email" name="user_email" id="inputUser_email" class="form-control" value="" required="required" placeholder="exemplo@exemplo.com.br">
-                            </div>
+                        <div class="col-sm-10">
+                            <input type="text" name="user_name" id="inputUser_name" class="form-control" value="" required="required" placeholder="Nome Completo">
                         </div>
-                    </div>
-                    <!-- /.row -->
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label for="user_login" class="col-sm-2">Login:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="user_login" id="inputUser_login" class="form-control" value="" required="required" placeholder="Login">
-                            </div>
+                        <div class="col-sm-10">
+                            <input type="email" name="user_email" id="inputUser_email" class="form-control" value="" required="required" placeholder="E-mail">
                         </div>
-                        <div class="col-sm-6">
-                            <label for="user_type" class="col-sm-4">Permissão: </label>
-                            <div class="col-sm-8">
-                                <select name="user_type" id="inputUser_type" class="form-control" required="required">
-                                    <option selected="selected"></option>
-                                    <?php foreach ($types as $type){ ?>
+                        <div class="col-sm-5">
+                            <input type="text" name="user_login" id="inputUser_login" class="form-control" value="" required="required" placeholder="Login">
+                        </div>
+                        <div class="col-sm-5">
+                            <select name="user_type_id" id="inputUser_type_id" class="form-control" required="required">
+                                <option selected="selected">Nível de Permissão</option>
+                                <?php foreach ($types as $type){
+                                    if($type->user_type_id != 1){?>
                                         <option value="<?= $type->user_type_id?>"><?= $type->user_type_descr ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
+                                    <?php }
+                                } ?>
+                            </select>
                         </div>
-                    </div>
-                    <!-- /.row -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <label for="user_img" class="col-sm-2">Imagem Perfil: </label>
-                            <div class="col-sm-10">
-                                <input type="file" name= "user_img" id="inputUser_img" class="filestyle" data-icon="true" data-buttonText="Escolher Imagem">
-                            </div>
+                        <div class="col-sm-5">
+                            <input type="password" name="user_passwd" id="inputUser_passwd" class="form-control" required="required" placeholder="Senha">
                         </div>
-                    </div>
-                    <!-- /.row -->
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label for="user_passwd" class="col-sm-4">Senha: </label>
-                            <div class="col-sm-8">
-                                <input type="password" name="user_passwd" id="inputUser_passwd" class="form-control" required="required" placeholder="********">
-                            </div>
+                        <div class="col-sm-5">
+                            <input type="password" name="user_passwd_confirm" id="inputUser_passwd_confirm" class="form-control" required="required" placeholder="Repetir Senha">
                         </div>
-                        <div class="col-sm-8">
-                            <label for="user_passwd_confirm" class="col-sm-4">Confirmar Senha: </label>
-                            <div class="col-sm-4">
-                                <input type="password" name="user_passwd_confirm" id="inputUser_passwd_confirm" class="form-control" required="required" placeholder="********">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                    <div class="row"></div>
-                    <div class="form-group">
-                        <div class="col-sm-12">
+                        <div class="row"></div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
                             <button type="button" id="register" class="btn btn-primary center-block btn-lg">Cadastrar</button>
                         </div>
                     </div>
+                    <input type="file" name="user_img" id="inputUser_img" class="form-control hide" accept="image/*">
                 </div>
             </form>
         </div>
@@ -86,43 +56,54 @@
     <!-- /.panel-default -->
 </div>
 <!-- /.col-lg-8 -->
+
 <script>
+/**
+ * Ao clicar no botão #register faz as validações necessárias e envia os dados para o servidor
+ * Exibe um alert de sucesso ou erro, dependendo da resposta do servidor
+ */
 $("#register").click(function(){
-     //monta um array para verificação dos dados
-     var array_form = $("#form-newuser").serializeArray();
-     //cria um texto json para envio dos dados para a action de configuração do banco de dados;
-     var text_form = $("#form-newuser").serialize();
-     validate = true;
-     $.each(array_form, function(i, field){
-            if(field.value == '' && field.name != 'user_img'){
-                swal({
-                    title: "Atenção!",
-                    text: "Por favor, preencha todos os dados antes de prosseguir!",
-                    type: "error",
-                    confirmButtonText: "OK"
-                });
-                validate = false;
-            }
-        });
-      if($("#inputUser_passwd").val() != $("#inputUser_passwd_confirm").val()){
+    //monta um array para verificação dos dados
+    var array_form = $("#form-newuser").serializeArray();
+    //cria um texto json para envio dos dados para a action de configuração do banco de dados;
+    var text_form = $("#form-newuser").serialize();
+    var form_data = new FormData($("#form-newuser")[0]);
+    alert(form_data);
+    validate = true;
+    //Verifica se todos os campos obrigatorios do formulário foram preenchidos
+    $.each(array_form, function(i, field){
+        if(field.value == '' && field.name != 'user_img'){
             swal({
-                    title: "Atenção!",
-                    text: "Senha e Repetir senha não conferem! Por favor tente novamente!",
-                    type: "error",
-                    confirmButtonText: "OK"
-                });
-                validate = false;
+                title: "Atenção!",
+                text: "Por favor, preencha todos os dados antes de prosseguir!",
+                type: "error",
+                confirmButtonText: "OK"
+            });
+            validate = false;
         }
-     if(validate){
+    });
+    //Verifica se a senha e repetir senha são iguais
+    if($("#inputUser_passwd").val() != $("#inputUser_passwd_confirm").val()){
+            swal({
+                title: "Atenção!",
+                text: "Senha e Repetir senha não conferem! Por favor tente novamente!",
+                type: "error",
+                confirmButtonText: "OK"
+            });
+            validate = false;
+    }
+    if(validate){
         //@todo: verificar como enviar arquivos via ajax/json
+        //Arquivo deve ser enviado separado?
         $.ajax({
             url: '<?= URL_PROJECT ?>settings/addNewUser',
-            data: text_form,
+            data:  form_data,
             type: 'POST',
             dataType: 'json',
+            async: false,
             success: function(data){
                 if(data.success){
-                     swal({
+                    swal({
                         title: "Sucesso!",
                         text: "Usuário criado com sucesso!",
                         type: "error",
@@ -136,8 +117,40 @@ $("#register").click(function(){
                         confirmButtonText: "OK"
                     });
                 }
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            xhr: function() {  // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                    myXhr.upload.addEventListener('progress', function () {
+                        //faz alguma coisa enquanto envia o arquivo
+                    }, false);
+                }
+                return myXhr;
             }
         });
+    }
+});
+
+/**
+ * Quando clica na imagem abre a opção para upload de arquivo
+ */
+$("#imgPreview_img").click(function(){
+    $("#inputUser_img").click();
+});
+
+/**
+ * Quando o usuário seleciona uma imagem para o perfil ela é pré-carregada no src #imgPreview_img
+ */
+$("#inputUser_img").change(function(){
+    if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#imgPreview_img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
     }
 });
 </script>

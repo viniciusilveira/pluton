@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"dimen",
+				"$dimensions〔variable〕"
+			],
+			[
+				"place",
+				"placeholder"
+			],
+			[
+				"bs3-col",
+				"bs3-col:8	bs3-col-8"
+			],
+			[
+				"img",
+				"imgPreview_img"
+			],
+			[
+				"valid",
+				"validateForm"
+			],
+			[
+				"bs3-co",
+				"bs3-col:12	bs3-col-12"
+			],
+			[
 				"User",
 				"UserType〔class〕"
 			],
@@ -50,10 +74,6 @@
 			[
 				"bs3-pass",
 				"bs3-input:password	bs3-input-password"
-			],
-			[
-				"bs3-col",
-				"bs3-col:8	bs3-col-8"
 			],
 			[
 				"bs-col",
@@ -107,15 +127,15 @@
 			"file": "apps/backend/controllers/SettingsController.php",
 			"settings":
 			{
-				"buffer_size": 4799,
+				"buffer_size": 5348,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "apps/backend/views/settings/newUser.phtml",
+			"file": "apps/backend/models/Users.php",
 			"settings":
 			{
-				"buffer_size": 6601,
+				"buffer_size": 2729,
 				"line_ending": "Unix"
 			}
 		},
@@ -131,7 +151,7 @@
 			"file": "apps/backend/controllers/SetupController.php",
 			"settings":
 			{
-				"buffer_size": 8614,
+				"buffer_size": 8675,
 				"line_ending": "Unix"
 			}
 		},
@@ -141,47 +161,6 @@
 			{
 				"buffer_size": 1475,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "apps/backend/models/Users.php",
-			"settings":
-			{
-				"buffer_size": 2729,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "$_COOKIE = array[2]\n    $_COOKIE['XDEBUG_SESSION'] = (string) sublime.xdebug\n    $_COOKIE['PHPSESSID'] = (string) iel8hu4p1bip17v4q3nd0m6632\n$_ENV = array[0]\n$_FILES = array[0]\n$_GET = array[1]\n    $_GET['_url'] = (string) /settings/addNewUser\n$_POST = array[0]\n$_REQUEST = array[1]\n    $_REQUEST['_url'] = (string) /settings/addNewUser\n$_SERVER = array[39]\n    $_SERVER['REDIRECT_REDIRECT_STATUS'] = (string) 200\n    $_SERVER['REDIRECT_STATUS'] = (string) 200\n    $_SERVER['HTTP_HOST'] = (string) localhost\n    $_SERVER['HTTP_USER_AGENT'] = (string) Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0\n    $_SERVER['HTTP_ACCEPT'] = (string) application/json, text/javascript, */*; q=0.01\n    $_SERVER['HTTP_ACCEPT_LANGUAGE'] = (string) pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3\n    $_SERVER['HTTP_ACCEPT_ENCODING'] = (string) gzip, deflate\n    $_SERVER['HTTP_REFERER'] = (string) http://localhost/pluton/settings?XDEBUG_SESSION_START=sublime.xdebug\n    $_SERVER['HTTP_X_REQUESTED_WITH'] = (string) XMLHttpRequest\n    $_SERVER['HTTP_COOKIE'] = (string) XDEBUG_SESSION=sublime.xdebug; PHPSESSID=iel8hu4p1bip17v4q3nd0m6632\n    $_SERVER['HTTP_CONNECTION'] = (string) keep-alive\n    $_SERVER['HTTP_PRAGMA'] = (string) no-cache\n    $_SERVER['HTTP_CACHE_CONTROL'] = (string) no-cache\n    $_SERVER['CONTENT_LENGTH'] = (string) 0\n    $_SERVER['PATH'] = (string) /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n    $_SERVER['SERVER_SIGNATURE'] = (string) <address>Apache/2.4.7 (Ubuntu) Server at localhost Port 80</address> \n    $_SERVER['SERVER_SOFTWARE'] = (string) Apache/2.4.7 (Ubuntu)\n    $_SERVER['SERVER_NAME'] = (string) localhost\n    $_SERVER['SERVER_ADDR'] = (string) 127.0.0.1\n    $_SERVER['SERVER_PORT'] = (string) 80\n    $_SERVER['REMOTE_ADDR'] = (string) 127.0.0.1\n    $_SERVER['DOCUMENT_ROOT'] = (string) /var/www/html\n    $_SERVER['REQUEST_SCHEME'] = (string) http\n    $_SERVER['CONTEXT_PREFIX'] = <string>\n    $_SERVER['CONTEXT_DOCUMENT_ROOT'] = (string) /var/www/html\n    $_SERVER['SERVER_ADMIN'] = (string) webmaster@localhost\n    $_SERVER['SCRIPT_FILENAME'] = (string) /var/www/html/pluton/public/index.php\n    $_SERVER['REMOTE_PORT'] = (string) 58992\n    $_SERVER['REDIRECT_QUERY_STRING'] = (string) _url=/settings/addNewUser\n    $_SERVER['REDIRECT_URL'] = (string) /pluton/public/settings/addNewUser\n    $_SERVER['GATEWAY_INTERFACE'] = (string) CGI/1.1\n    $_SERVER['SERVER_PROTOCOL'] = (string) HTTP/1.1\n    ...\n$dimensions = <uninitialized>\n$error = <uninitialized>\n$ext = <uninitialized>\n$file = <null>\n$heigth = (int) 128\n$name_img = <uninitialized>\n$path_img = <uninitialized>\n$size = (int) 3072\n$user_login = <uninitialized>\n$width = (int) 128\n$this = Multiple\\Backend\\Controllers\\SettingsController[3]\n    $this->_dependencyInjector = Phalcon\\Di\\FactoryDefault[5]\n        ...\n    $this->_eventsManager = <null>\n    $this->request = Phalcon\\Http\\Request[4]\n        ...\n",
-			"settings":
-			{
-				"buffer_size": 2920,
-				"line_ending": "Unix",
-				"name": "Xdebug Context",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "[Fatal error] Call to a member function getExtension() on a non-object\n[0] file:///var/www/html/pluton/apps/backend/controllers/SettingsController.php.Multiple\\Backend\\Controllers\\SettingsController->uploadImageAction:100\n[1] file:///var/www/html/pluton/apps/backend/controllers/SettingsController.php.Multiple\\Backend\\Controllers\\SettingsController->addNewUserAction:69\n[2] file:///var/www/html/pluton/public/index.php.Phalcon\\Dispatcher->dispatch:107\n[3] file:///var/www/html/pluton/public/index.php.Phalcon\\Mvc\\Application->handle:107\n[4] file:///var/www/html/pluton/public/index.php.Application->main:107\n[5] file:///var/www/html/pluton/public/index.php.{main}:112\n",
-			"settings":
-			{
-				"buffer_size": 669,
-				"line_ending": "Unix",
-				"name": "Xdebug Stack",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix",
-				"name": "Xdebug Breakpoint",
-				"read_only": true,
-				"scratch": true
 			}
 		}
 	],
@@ -259,14 +238,16 @@
 		"/var/www/html/pluton/apps/backend/views/settings",
 		"/var/www/html/pluton/apps/backend/views/setup",
 		"/var/www/html/pluton/apps/config",
-		"/var/www/html/pluton/public"
+		"/var/www/html/pluton/public",
+		"/var/www/html/pluton/public/img"
 	],
 	"file_history":
 	[
+		"/var/www/html/pluton/apps/backend/views/settings/newUser.phtml",
+		"/var/www/html/pluton/apps/backend/models/Users.php",
 		"/var/www/html/pluton/apps/backend/models/Blogs.php",
 		"/var/www/html/pluton/apps/backend/models/Layouts.php",
 		"/var/www/html/pluton/apps/backend/models/UserType.php",
-		"/var/www/html/pluton/apps/backend/models/Users.php",
 		"/var/www/html/pluton/apps/backend/controllers/LoginController.php",
 		"/var/www/html/pluton/apps/backend/views/settings/topMenu.phtml",
 		"/var/www/html/pluton/apps/backend/views/settings/graphics.phtml",
@@ -292,7 +273,6 @@
 		"/var/www/html/pluton/apps/backend/views/setup/index.phtml",
 		"/var/www/html/pluton/pluton.sublime-project",
 		"/var/www/html/pluton/public/js/custom.js",
-		"/var/www/html/pluton/apps/backend/views/settings/newUser.phtml",
 		"/var/www/html/pluton/apps/backend/views/settings/latestPosts.phtml",
 		"/var/www/html/pluton/apps/backend/views/settings/alerts.phtml",
 		"/var/www/html/pluton/apps/backend/views/settings/messages.phtml",
@@ -379,7 +359,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -388,15 +368,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4799,
+						"buffer_size": 5348,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1878,
-								1878
+								5345,
+								5345
 							]
 						],
 						"settings":
@@ -408,42 +388,41 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 824.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "apps/backend/views/settings/newUser.phtml",
+					"file": "apps/backend/models/Users.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6601,
+						"buffer_size": 2729,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5730,
-								5730
+								1411,
+								1411
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1935.0,
+						"translation.y": 360.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -470,7 +449,7 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
+						"translation.x": 0.0,
 						"translation.y": 1188.0,
 						"zoom_level": 1.0
 					},
@@ -483,15 +462,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8614,
+						"buffer_size": 8675,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8611,
-								8611
+								1033,
+								1033
 							]
 						],
 						"settings":
@@ -503,10 +482,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3672.0,
+						"translation.y": 432.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -535,140 +514,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 644.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "apps/backend/models/Users.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2729,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								218,
-								218
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 6,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2920,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2920,
-								2920
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": -0.0,
-						"translation.y": 265.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 7,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 669,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								669,
-								669
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 181.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -689,32 +538,18 @@
 			[
 				0,
 				0,
-				2,
+				1,
 				1
-			],
-			[
-				0,
-				1,
-				1,
-				2
-			],
-			[
-				1,
-				1,
-				2,
-				2
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.7,
 			1.0
 		]
 	},
