@@ -76,13 +76,13 @@ class Users extends \Phalcon\Mvc\Model {
      * @param  string $user_email
      * @return boolean true caso usuário exista ou false caso contrario
      */
-    public function userExists($user_login, $user_email) {
-        $user = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_email:")->bind(array(
+    public function userExists($user_name, $user_login, $user_email) {
+       $user = Users::query()->where("user_name = :user_name:")->orWhere("user_login = :user_login:")->orWhere("user_email = :user_email:")->bind(array(
+            "user_name" => $user_name,
             "user_login" => $user_login,
             "user_email" => $user_email
         ))->execute();
-
-        return empty($user->getFirst()) ? true : false;
+        return !empty($user->getFirst());
     }
 
     /**

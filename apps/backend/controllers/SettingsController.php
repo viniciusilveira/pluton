@@ -4,10 +4,10 @@
  * Function list:
  * - onConstruct()
  * - indexAction()
+ * - newUserAction()
  * - addNewUserAction()
  * - editUserAction()
  * - deleteUserAction()
- * - newUserAction()
  * - uploadImageAction()
  * Classes list:
  * - SettingsController extends BaseController
@@ -42,6 +42,7 @@ class SettingsController extends BaseController {
      * Verificar o que mais é necessário para index
      */
     public function indexAction() {
+
         //Inicia a sessão
         $this->session->start();
 
@@ -77,29 +78,34 @@ class SettingsController extends BaseController {
      * [addNewUserAction description]
      */
     public function addNewUserAction() {
+        $this->view->disable();
         $user_name = $this->request->getPost('user_name');
         $user_email = $this->request->getPost('user_email');
         $user_login = $this->request->getPost('user_login');
         $user_type_id = $this->request->getPost('user_type_id');
-        $user_passwd = $this->request->getPost('user_passwd');
+        $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
 
-        if (!$this->users->userExists($user_name, $user_login)) {
+        if (!$this->users->userExists($user_name, $user_login, $user_email)) {
 
             //Verifica se existe arquivo para upload, caso exista efetua o upload
             if ($this->request->hasFiles() == true) {
                 foreach ($this->request->getUploadedFiles() as $file) {
-                    $upload_img = $this->uploadImageAction($file, 200, 300, 3072, $user_login);
+                    if($file->getTempName() != NULL){
+                        $upload_img = $this->uploadImageAction($file, 200, 300, 3145728, $user_login);
+                    }
                 }
             }
+
             if (is_array($upload_img)) {
                 $data = $upload_img;
                 $data['success'] = false;
             }
             else {
-                $data['success'] = Users::createUser($user_name, $user_email, $user_login, $user_passwd, $user_type_id, $upload_img, 1);
+                $data['success'] = Models\Users::createUser($user_name, $user_email, $user_login, $user_passwd, $user_type_id, $upload_img, 1);
             }
         }
         else {
+            $data['message'] = "Login ou senha informados já existe! Por favor verifique os dados informados e tente novamente!";
             $data['success'] = false;
         }
 
@@ -120,8 +126,6 @@ class SettingsController extends BaseController {
     public function deleteUserAction() {
     }
 
-
-
     /**
      * @todo: Action para upload de imagens para o servidor
      * @param  file $file   imagem
@@ -132,33 +136,19 @@ class SettingsController extends BaseController {
      */
     public function uploadImageAction($file, $width, $heigth, $size, $img_name) {
 
-        // Verifica se o arquivo é uma imagem
-        if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getRealType())) {
-            $error['invalido'] = "Arquivo Inválido!";
-        }
-
         // Pega as dimensões da imagem
         $dimensions = getimagesize($file->getTempName());
 
-        // Verifica se a largura da imagem é maior que a largura permitida
-        if ($dimensions[0] > $width) {
-            $error['largura'] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
-        }
-
-        // Verifica se a altura da imagem é maior que a altura permitida
-        if ($dimensions[1] > $heigth) {
-            $error['altura'] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
-        }
-
-        // Verifica se o tamanho da imagem é maior que o tamanho permitido
-        if ($file->getSize() > $size) {
-            $error['tamanho'] = "A imagem deve ter no máximo " . $size / 1024 . "MB!";
-        }
-
-        /**
-         * Caso não haja erros faz o upload da imagem e salva a mesma no servidor
-         */
-        if (count($error) == 0) {
+        // Verifica se o arquivo é uma imagem
+        if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getRealType())) {
+            $data['message'] = "O Arquivo inserido não parece ser uma imagem!";
+        }elseif ($dimensions[0] > $width) {// Verifica se a largura da imagem é maior que a largura permitida
+            $data['message'] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
+        }elseif ($dimensions[1] > $heigth) {// Verifica se a altura da imagem é maior que a altura permitida
+            $data['message'] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
+        }elseif ($file->getSize() > $size) {// Verifica se o tamanho da imagem é maior que o tamanho permitido
+            $data['message'] = "A imagem deve ter no máximo " . $size / 1024 . "MB!";
+        } else {//Caso não haja erros faz o upload da imagem e salva a mesma no servidor
 
             $ext = $file->getExtension();
             $name_img = $img_name . "." . $ext;
@@ -170,8 +160,6 @@ class SettingsController extends BaseController {
             $file->moveTo($path_img);
             return $name_img;
         }
-        else {
-            return $error;
-        }
+        return $data;
     }
 }

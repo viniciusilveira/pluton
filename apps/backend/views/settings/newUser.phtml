@@ -60,7 +60,7 @@
 <script>
 /**
  * Ao clicar no botão #register faz as validações necessárias e envia os dados para o servidor
- * Exibe um alert de sucesso ou erro, dependendo da resposta do servidor
+ * Exibe uma mensagem de sucesso ou erro, dependendo da resposta do servidor
  */
 $("#register").click(function(){
     //monta um array para verificação dos dados
@@ -68,7 +68,6 @@ $("#register").click(function(){
     //cria um texto json para envio dos dados para a action de configuração do banco de dados;
     var text_form = $("#form-newuser").serialize();
     var form_data = new FormData($("#form-newuser")[0]);
-    alert(form_data);
     validate = true;
     //Verifica se todos os campos obrigatorios do formulário foram preenchidos
     $.each(array_form, function(i, field){
@@ -106,13 +105,14 @@ $("#register").click(function(){
                     swal({
                         title: "Sucesso!",
                         text: "Usuário criado com sucesso!",
-                        type: "error",
+                        type: "success",
                         confirmButtonText: "OK"
                     });
+                    $("#form-newuser").reset();
                 } else{
                     swal({
                         title: "Atenção!",
-                        text: "Ocorreu um erro ao criar o usuário! Por favor verifique os dados informados e tente novamente!",
+                        text: data.message,
                         type: "error",
                         confirmButtonText: "OK"
                     });
