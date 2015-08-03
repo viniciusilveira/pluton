@@ -16,7 +16,7 @@ namespace Multiple\Backend\Controllers;
 use Multiple\Backend\Models\Users AS Users,
     \Phalcon\Session\Adapter\Files as Session;
 
-class LoginController extends SetupController {
+class LoginController extends BaseController {
 
     public function indexAction() {
 
