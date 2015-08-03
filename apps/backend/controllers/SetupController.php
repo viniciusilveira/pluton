@@ -137,7 +137,10 @@ class SetupController extends BaseController {
 
         //Cria o arquivo de conexão com o banco de dados;
         if (!file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
-            $config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w') or die("Unable to open file!");
+            $config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w') 
+                or ($data = array("message" => "Impossivel ler o arquivo de configuração (app/config/config.ini)",
+                                "connection" => false
+                    ));
             $writing_file = "[database]\n";
             $writing_file.= "adapter  = Mysql\n";
             $writing_file.= "host     = {$database_host}\n";
