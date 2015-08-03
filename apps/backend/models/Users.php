@@ -22,6 +22,7 @@ class Users extends \Phalcon\Mvc\Model {
 
     public function initialize(){
         $this->belongsTo("user_type_descr", "Multiple\Backend\Models\UserType", "user_type_descr");
+        $this->hasOne("blog_id", "Multiple\Backend\Models\Blogs", "blog_id");
     }
 
     /**

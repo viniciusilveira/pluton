@@ -16,6 +16,9 @@ namespace Multiple\Backend\Models;
  */
 class Layouts extends \Phalcon\Mvc\Model {
 
+    public function initialize(){
+        $this->hasOne("layout_id", "Multiple\Backend\Models\Blogs", "layout_id");
+    }
    /**
     * Insere os dados do layout no banco de dados
     * @return boolean
