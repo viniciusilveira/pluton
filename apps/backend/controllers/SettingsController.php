@@ -112,11 +112,13 @@ class SettingsController extends BaseController {
         echo json_encode($data);
     }
 
-    /**
-     * [editUserAction description]
-     * @return [type] [description]
-     */
-    public function editUserAction() {
+   /**
+    * Busca todos os usuários do sistema e lista na tela
+    */
+    public function listUsersAction() {
+        $vars['users'] = Models\Users::find();
+        $this->view->setVars($vars);
+        $this->view->loadView("settings", "listUsers");
     }
 
     /**

@@ -89,6 +89,19 @@ class SetupController extends BaseController {
     public function verifyDataBaseAction() {
 
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
+            /*$di = $this->getDI();
+            $config  = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . '/apps/config/config.ini');
+            $di->set('db', function () use ($config) {
+                $dbclass = 'Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
+                return new $dbclass(array(
+                    "host" => $config->database->host,
+                    "username" => $config->database->username,
+                    "password" => $config->database->password,
+                    "dbname" => $config->database->name,
+                    "charset" => 'utf8',
+                ));
+            });
+            $this->setDI($di);*/
             $connect = $this->connectDatabase();
             if (!$connect['connection']) {
                 $return = 'connect';

@@ -20,6 +20,10 @@ use \Phalcon\Mvc\Model\Query;
  */
 class Users extends \Phalcon\Mvc\Model {
 
+    public function initialize(){
+        $this->belongsTo("user_type_descr", "Multiple\Backend\Models\UserType", "user_type_descr");
+    }
+
     /**
      * Verifica se existe usuários criado no banco de dados
      * @return bool true caso exista, false caso não exista nenhum
