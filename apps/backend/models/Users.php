@@ -89,17 +89,4 @@ class Users extends \Phalcon\Mvc\Model {
         ))->execute();
         return !empty($user->getFirst());
     }
-
-    /**
-     * Remove um usuário do banco de dados
-     * @return boolean true caso o usuário tenha sido removido do banco de dados ou false caso contrario
-     */
-    public function deleteAdminUser() {
-        foreach (User::findFirst("user_type = 1") as $user) {
-            if ($user->delete()) return true;
-            else return false;
-        }
-
-        return $delete;
-    }
 }

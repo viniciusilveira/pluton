@@ -6,7 +6,7 @@
     <a href="#sub-users" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-user"></i> Usuários</a>
     <div class="collapse" id="sub-users">
         <a href="#" class="list-group-item" id="new-user"><i class="glyphicon glyphicon-plus"></i> Novo</a>
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+        <a href="#" class="list-group-item" id="edit-user"><i class="glyphicon glyphicon-edit"></i> Editar</a>
         <a href="#" class="list-group-item"><i class="glyphicon glyphicon-remove"></i> Excluir</a>
     </div>
     <!-- /sub-users-->
@@ -61,10 +61,10 @@
 <!-- /.list-group -->
 <script type="text/javascript">
 $("#new-user").click(function(){
-    /**
-    * @todo: ao executar com a url acabando em settings efetua a chamada para pluton/newUser e caso esteja acabando em um determinado action
-    * (pluton/settings/index, por exemplo) efetua o chamado para pluton/settings/newUser. *** Em teste ( 22/07/2015).
-    */
     $.loadPartialView('main', '<?= URL_PROJECT ?>/settings/newUser');
 });
+
+$("#edit-user").click(function(){
+    $.loadPartialView('main', '<?= URL_PROJECT?>/settings/listUsers');
+})
 </script>

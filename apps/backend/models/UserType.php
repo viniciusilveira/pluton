@@ -12,12 +12,15 @@ namespace Multiple\Backend\Models;
 
 class UserType extends \Phalcon\Mvc\Model {
 
+    public $user_type_id;
+    public $user_type_abrev;
+    public $user_type_descr;
     /**
      * Seta o nome da tabela referenciada pelo model
      */
     public function initialize() {
         $this->setSource("user_type");
-        $this->hasMany("user_type_id", "Multiple\Backend\Model\Users", "user_type_id");
+        $this->hasMany("user_type_id", "Multiple\Backend\Models\Users", "user_type_id");
     }
 
     /**

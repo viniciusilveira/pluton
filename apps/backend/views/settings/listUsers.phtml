@@ -1,5 +1,38 @@
-<?php foreach($users as $user){
-	echo $user->user_name . " - ";
-	echo $user->UserType->user_type_descr ." - ";
-	echo "<br/>";
-}
+<style>
+    .user{
+        cursor: pointer;
+    }
+    tbody tr:nth-child(odd) {
+        background-color: black;
+    }
+
+</style>
+<div class="col-lg-8">
+    <table class="table table-bordered  table-striped text-center">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>LOGIN</th>
+                <th>E-MAIL</th>
+                <th>NÍVEL PERMISSÃO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($users as $user){ ?>
+            <tr class="user" user="<?= $user->user_id?>">
+                <td><?= $user->user_id ?></td>
+                <td><?= $user->user_name ?></td>
+                <td><?= $user->user_login ?></td>
+                <td><?= $user->user_email ?></td>
+                <td><?= "nivel de permissão" ?></td>
+                </a>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <script>
+                $(".user").click(function(){
+                    alert($(this).attr("user"));
+                })
+    </script>

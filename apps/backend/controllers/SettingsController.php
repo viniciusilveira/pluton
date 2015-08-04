@@ -15,14 +15,15 @@
 
 namespace Multiple\Backend\Controllers;
 
-use Multiple\Backend\Models;
+use Phalcon\Mvc\Model\Query;
+use Multiple\Backend\Models\UserType, Multiple\Backend\Models\Users;
 
 class SettingsController extends BaseController {
 
     private $users;
 
     public function onConstruct() {
-        $this->users = new Models\Users;
+        $this->users = new Users;
     }
 
     /**
@@ -68,7 +69,7 @@ class SettingsController extends BaseController {
      * @return [type] [description]
      */
     public function newUserAction() {
-        $user_type = new Models\UserType;
+        $user_type = new UserType;
         $vars['types'] = $user_type->getAllUserTypes();
         $this->view->setVars($vars);
         $this->view->render('settings', 'newUser');
@@ -101,7 +102,7 @@ class SettingsController extends BaseController {
                 $data['success'] = false;
             }
             else {
-                $data['success'] = Models\Users::createUser($user_name, $user_email, $user_login, $user_passwd, $user_type_id, $upload_img, 1);
+                $data['success'] = Users::createUser($user_name, $user_email, $user_login, $user_passwd, $user_type_id, $upload_img, 1);
             }
         }
         else {
@@ -116,9 +117,10 @@ class SettingsController extends BaseController {
     * Busca todos os usuários do sistema e lista na tela
     */
     public function listUsersAction() {
-        $vars['users'] = Models\Users::find();
+        //@todo: Verificar como funciona a relação entre models e utilizar para trazer o tipo de usuário
+        $vars['users'] = Users::find();
         $this->view->setVars($vars);
-        $this->view->loadView("settings", "listUsers");
+        $this->view->render("settings", "listUsers");
     }
 
     /**
