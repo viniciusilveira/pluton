@@ -13,7 +13,7 @@
 namespace Multiple\Backend\Models;
 
 use \Phalcon\Mvc\Model\Query;
-
+use \Phalcon\Mvc\Model\Resultset;
 /**
  * Class Users
  * @package Multiple\Backend\Models
@@ -21,10 +21,11 @@ use \Phalcon\Mvc\Model\Query;
 class Users extends \Phalcon\Mvc\Model {
 
     public function initialize() {
-        $this->hasOne("user_type_id", "UserType", "user_type_id", array(
+
+        $this->hasOne("user_type_id", "Multiple\Backend\Models\UserType", "user_type_id", array(
             'alias' => "user_type"
         ));
-        $this->hasOne("blog_id", "Blogs", "blog_id", array(
+        $this->hasOne("blog_id", "Multiple\Backend\Models\Blogs", "blog_id", array(
             'alias' => 'blogs'
         ));
     }
@@ -34,7 +35,6 @@ class Users extends \Phalcon\Mvc\Model {
      * @return bool true caso exista, false caso não exista nenhum
      */
     public function verifyUsersExistAction() {
-
         return $this->count() > 0 ? true : false;
     }
 
@@ -91,6 +91,7 @@ class Users extends \Phalcon\Mvc\Model {
             "user_login" => $user_login,
             "user_email" => $user_email
         ))->execute();
-        return !empty($user->getFirst());
+        $result = $user->getFirst();
+        return !empty($result);
     }
 }

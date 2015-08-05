@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class and Function List:
  * Function list:
@@ -25,7 +26,8 @@ use Multiple\Backend\Models as Models;
  * do blog
  *
  */
-class SetupController extends BaseController {
+class SetupController extends BaseController
+{
 
     public $connection;
     private $config;
@@ -89,6 +91,7 @@ class SetupController extends BaseController {
     public function verifyDataBaseAction() {
 
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
+
             /*$di = $this->getDI();
             $config  = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . '/apps/config/config.ini');
             $di->set('db', function () use ($config) {
@@ -137,22 +140,23 @@ class SetupController extends BaseController {
 
         //Cria o arquivo de conexão com o banco de dados;
         if (!file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
-            $config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w') 
-                or ($data = array("message" => "Impossivel ler o arquivo de configuração (app/config/config.ini)",
-                                "connection" => false
-                    ));
-            $writing_file = "[database]\n";
-            $writing_file.= "adapter  = Mysql\n";
-            $writing_file.= "host     = {$database_host}\n";
-            $writing_file.= "username = {$database_user}\n";
-            $writing_file.= "password = {$database_passwd}\n";
-            $writing_file.= "name     = {$database_name}\n";
+            if ($config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w')) {
+                $writing_file = "[database]\n";
+                $writing_file.= "adapter  = Mysql\n";
+                $writing_file.= "host     = {$database_host}\n";
+                $writing_file.= "username = {$database_user}\n";
+                $writing_file.= "password = {$database_passwd}\n";
+                $writing_file.= "name     = {$database_name}\n";
 
-            fwrite($config_file, $writing_file);
-            fclose($config_file);
+                fwrite($config_file, $writing_file);
+                fclose($config_file);
 
-            $data = $this->connectDatabase();
-
+                $data = $this->connectDatabase();
+            }
+            else {
+                $data['success'] = false;
+                $data['message'] = "Impossível acessar o arquivo de configuração (pluton/apps/config/config.ini). Verifique as permissões de acesso da pasta e tente novamente!";
+            }
             echo json_encode($data);
         }
     }
@@ -167,13 +171,7 @@ class SetupController extends BaseController {
         $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
 
         //Cria um array com os dados do banco
-        $db_conn = array(
-            "host" => $this->config->database->host,
-            "username" => $this->config->database->username,
-            "password" => $this->config->database->password,
-            "dbname" => $this->config->database->name,
-            "charset" => 'utf8'
-        );
+        $db_conn = array("host" => $this->config->database->host, "username" => $this->config->database->username, "password" => $this->config->database->password, "dbname" => $this->config->database->name, "charset" => 'utf8');
         $db_conn["persistent"] = false;
 
         //Efetua a conexão com o banco de dados

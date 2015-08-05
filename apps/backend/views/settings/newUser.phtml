@@ -58,31 +58,31 @@
 <!-- /.col-lg-8 -->
 
 <script>
-/**
- * Ao clicar no botão #register faz as validações necessárias e envia os dados para o servidor
- * Exibe uma mensagem de sucesso ou erro, dependendo da resposta do servidor
- */
-$("#register").click(function(){
-    //monta um array para verificação dos dados
-    var array_form = $("#form-newuser").serializeArray();
-    //cria um texto json para envio dos dados para a action de configuração do banco de dados;
-    var text_form = $("#form-newuser").serialize();
-    var form_data = new FormData($("#form-newuser")[0]);
-    validate = true;
-    //Verifica se todos os campos obrigatorios do formulário foram preenchidos
-    $.each(array_form, function(i, field){
-        if(field.value == '' && field.name != 'user_img'){
-            swal({
-                title: "Atenção!",
-                text: "Por favor, preencha todos os dados antes de prosseguir!",
-                type: "error",
-                confirmButtonText: "OK"
-            });
+var Form = function(){
+
+    /**
+     * Valida os dados inseridos no formulário
+     */
+    this.validateForm = function(){
+        //Monta um array com os dados do formulário para verificação
+        array_form = $("#form-newuser").serializeArray();
+        var validate = true;
+
+        //Verifica se todos os dados obrigatórios foram preenchidos
+        $.each(array_form, function(i, field){
+            if(field.value == '' && field.name != 'user_img'){
+                swal({
+                    title: "Atenção!",
+                    text: "Por favor, preencha todos os dados antes de prosseguir!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
             validate = false;
-        }
-    });
-    //Verifica se a senha e repetir senha são iguais
-    if($("#inputUser_passwd").val() != $("#inputUser_passwd_confirm").val()){
+            }
+        });
+
+        //Verifica se a senha e a confirmação de senha são iguais
+        if(array_form['user_passwd'] != array_form['user_passwd_confirm']){
             swal({
                 title: "Atenção!",
                 text: "Senha e Repetir senha não conferem! Por favor tente novamente!",
@@ -90,10 +90,17 @@ $("#register").click(function(){
                 confirmButtonText: "OK"
             });
             validate = false;
+        }
+        if(validate){
+            formSubmit();
+        }
     }
-    if(validate){
-        //@todo: verificar como enviar arquivos via ajax/json
-        //Arquivo deve ser enviado separado?
+
+    /**
+     * Envia os dados preenchidos no formulário para o servidor inserir na base de dados
+     */
+    var formSubmit = function(){
+        var form_data =new FormData($("#form-newuser")[0]);
         $.ajax({
             url: '<?= URL_PROJECT ?>settings/addNewUser',
             data:  form_data,
@@ -131,6 +138,31 @@ $("#register").click(function(){
             }
         });
     }
+
+    /**
+     * Preenche o formulário de cadastro para editar dados de usuários já cadastrados
+     * @param  {json} data dados do usuário
+     */
+    this.fillForm = function(data){
+        $("#inputUser_name").val(data.user_name);
+        $("#inputUser_email").val(data.user_email);
+        $("#inputUser_login").val(data.user_login);
+        $("#inputUser_type_id").val(data.user_type_id);
+    }
+}
+var data = ('<?= json_encode($user); ?>');
+
+if(data != null){
+    form = new Form;
+    form.fillForm(JSON.parse(data));
+}
+/**
+ * Ao clicar no botão #register faz as validações necessárias e envia os dados para o servidor
+ * Exibe uma mensagem de sucesso ou erro, dependendo da resposta do servidor
+ */
+$("#register").click(function(){
+    form = new Form;
+    form.validateForm();
 });
 
 /**

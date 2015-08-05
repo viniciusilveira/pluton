@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class and Function List:
  * Function list:
@@ -16,9 +17,11 @@
 namespace Multiple\Backend\Controllers;
 
 use Phalcon\Mvc\Model\Query;
+use Phalcon\Mvc\Model\Resultset;
 use Multiple\Backend\Models\UserType, Multiple\Backend\Models\Users;
 
-class SettingsController extends BaseController {
+class SettingsController extends BaseController
+{
 
     private $users;
 
@@ -69,6 +72,14 @@ class SettingsController extends BaseController {
      * @return [type] [description]
      */
     public function newUserAction() {
+        if ($this->request->getPost("user_id") != NULL) {
+            $result = Users::findFirstByUser_id($this->request->getPost("user_id"));
+            $vars['user']['user_id'] = $result->user_id;
+            $vars['user']['user_name'] = $result->user_name;
+            $vars['user']['user_login'] = $result->user_login;
+            $vars['user']['user_email'] = $result->user_email;
+            $vars['user']['user_type_id'] = $result->user_type_id;
+        }
         $user_type = new UserType;
         $vars['types'] = $user_type->getAllUserTypes();
         $this->view->setVars($vars);
@@ -91,7 +102,7 @@ class SettingsController extends BaseController {
             //Verifica se existe arquivo para upload, caso exista efetua o upload
             if ($this->request->hasFiles() == true) {
                 foreach ($this->request->getUploadedFiles() as $file) {
-                    if($file->getTempName() != NULL){
+                    if ($file->getTempName() != NULL) {
                         $upload_img = $this->uploadImageAction($file, 200, 300, 3145728, $user_login);
                     }
                 }
@@ -113,15 +124,12 @@ class SettingsController extends BaseController {
         echo json_encode($data);
     }
 
-   /**
-    * Busca todos os usuários do sistema e lista na tela
-    */
+    /**
+     * Busca todos os usuários do sistema e lista na tela
+     */
     public function listUsersAction() {
-        //@todo: Verificar como funciona a relação entre models e utilizar para trazer o tipo de usuário
         $vars['users'] = Users::find();
-        foreach($vars['users'] as $user){
-            echo $user->user_type->user_type_id;
-        } die();
+        $vars['success'] = true;
         $this->view->setVars($vars);
         $this->view->render("settings", "listUsers");
     }
@@ -149,13 +157,25 @@ class SettingsController extends BaseController {
         // Verifica se o arquivo é uma imagem
         if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getRealType())) {
             $data['message'] = "O Arquivo inserido não parece ser uma imagem!";
-        }elseif ($dimensions[0] > $width) {// Verifica se a largura da imagem é maior que a largura permitida
+        }
+        elseif ($dimensions[0] > $width) {
+
+            // Verifica se a largura da imagem é maior que a largura permitida
             $data['message'] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
-        }elseif ($dimensions[1] > $heigth) {// Verifica se a altura da imagem é maior que a altura permitida
+        }
+        elseif ($dimensions[1] > $heigth) {
+
+            // Verifica se a altura da imagem é maior que a altura permitida
             $data['message'] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
-        }elseif ($file->getSize() > $size) {// Verifica se o tamanho da imagem é maior que o tamanho permitido
+        }
+        elseif ($file->getSize() > $size) {
+
+            // Verifica se o tamanho da imagem é maior que o tamanho permitido
             $data['message'] = "A imagem deve ter no máximo " . $size / 1024 . "MB!";
-        } else {//Caso não haja erros faz o upload da imagem e salva a mesma no servidor
+        }
+        else {
+
+            //Caso não haja erros faz o upload da imagem e salva a mesma no servidor
 
             $ext = $file->getExtension();
             $name_img = $img_name . "." . $ext;

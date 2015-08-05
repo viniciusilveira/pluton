@@ -9,10 +9,14 @@
 * Classes list:
 * - Application extends \
 */
-error_reporting(E_ALL);
+define('DEBUG', false);
 
-(new \Phalcon\Debug)->listen();
+if(DEBUG){
+    error_reporting(E_ALL);
 
+    $debug = new \Phalcon\Debug();
+    $debug->listen();
+}
 /**
  * Define uma URL padrão para acesso ao projeto
  */

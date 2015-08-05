@@ -8,8 +8,11 @@
 
 </style>
 <div class="col-lg-8">
-    <table class="table table-bordered  table-striped text-center">
+    <table class="table table-bordered  table-striped">
         <thead>
+            <tr>
+                <th colspan="5" class="text-center">LISTA DE USUÁRIOS</th>
+            </tr>
             <tr>
                 <th>ID</th>
                 <th>NOME</th>
@@ -20,19 +23,29 @@
         </thead>
         <tbody>
             <?php foreach ($users as $user){ ?>
-            <tr class="user" user="<?= $user->user_id?>">
+            <tr class="user" user="<?= $user->user_id?>" data-toggle="tooltip" title="Clique aqui para editar o usuário">
                 <td><?= $user->user_id ?></td>
                 <td><?= $user->user_name ?></td>
                 <td><?= $user->user_login ?></td>
                 <td><?= $user->user_email ?></td>
-                <td><?= $user->UserType->user_type_descr ?></td>
+                <td><?= $user->user_type->user_type_descr ?></td>
                 </a>
                 <?php } ?>
             </tbody>
         </table>
-    </div>
-    <script>
-                $(".user").click(function(){
-                    alert($(this).attr("user"));
-                })
-    </script>
+</div>
+<script>
+/**
+ * Ao clicar em qualquer usuário carrega a tela de edição de usuário
+ */
+$(".user").click(function(){
+    $.ajax({
+        url: '<?= URL_PROJECT ?>/settings/newUser',
+        data: "user_id=" + $(this).attr("user"),
+        type: 'POST',
+        success: function(data){
+            $("#main").html(data);
+        }
+    });
+});
+</script>
