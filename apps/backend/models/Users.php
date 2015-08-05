@@ -2,11 +2,11 @@
 /**
  * Class and Function List:
  * Function list:
+ * - initialize()
  * - verifyUsersExistAction()
  * - createUser()
  * - getUser()
  * - userExists()
- * - deleteAdminUser()
  * Classes list:
  * - Users extends \
  */
@@ -20,9 +20,13 @@ use \Phalcon\Mvc\Model\Query;
  */
 class Users extends \Phalcon\Mvc\Model {
 
-    public function initialize(){
-        $this->belongsTo("user_type_descr", "Multiple\Backend\Models\UserType", "user_type_descr");
-        $this->hasOne("blog_id", "Multiple\Backend\Models\Blogs", "blog_id");
+    public function initialize() {
+        $this->hasOne("user_type_id", "UserType", "user_type_id", array(
+            'alias' => "user_type"
+        ));
+        $this->hasOne("blog_id", "Blogs", "blog_id", array(
+            'alias' => 'blogs'
+        ));
     }
 
     /**
@@ -82,7 +86,7 @@ class Users extends \Phalcon\Mvc\Model {
      * @return boolean true caso usuário exista ou false caso contrario
      */
     public function userExists($user_name, $user_login, $user_email) {
-       $user = Users::query()->where("user_name = :user_name:")->orWhere("user_login = :user_login:")->orWhere("user_email = :user_email:")->bind(array(
+        $user = Users::query()->where("user_name = :user_name:")->orWhere("user_login = :user_login:")->orWhere("user_email = :user_email:")->bind(array(
             "user_name" => $user_name,
             "user_login" => $user_login,
             "user_email" => $user_email

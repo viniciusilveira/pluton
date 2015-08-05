@@ -20,7 +20,6 @@ class UserType extends \Phalcon\Mvc\Model {
      */
     public function initialize() {
         $this->setSource("user_type");
-        $this->hasMany("user_type_id", "Multiple\Backend\Models\Users", "user_type_id");
     }
 
     /**

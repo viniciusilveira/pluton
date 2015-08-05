@@ -119,6 +119,9 @@ class SettingsController extends BaseController {
     public function listUsersAction() {
         //@todo: Verificar como funciona a relação entre models e utilizar para trazer o tipo de usuário
         $vars['users'] = Users::find();
+        foreach($vars['users'] as $user){
+            echo $user->user_type->user_type_id;
+        } die();
         $this->view->setVars($vars);
         $this->view->render("settings", "listUsers");
     }
