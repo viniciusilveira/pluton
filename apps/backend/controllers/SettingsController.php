@@ -16,8 +16,6 @@
 
 namespace Multiple\Backend\Controllers;
 
-use Phalcon\Mvc\Model\Query;
-use Phalcon\Mvc\Model\Resultset;
 use Multiple\Backend\Models\UserType, Multiple\Backend\Models\Users;
 
 class SettingsController extends BaseController
@@ -157,25 +155,17 @@ class SettingsController extends BaseController
         // Verifica se o arquivo é uma imagem
         if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getRealType())) {
             $data['message'] = "O Arquivo inserido não parece ser uma imagem!";
-        }
-        elseif ($dimensions[0] > $width) {
-
-            // Verifica se a largura da imagem é maior que a largura permitida
+            
+        } elseif ($dimensions[0] > $width) { // Verifica se a largura da imagem é maior que a largura permitida
             $data['message'] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
-        }
-        elseif ($dimensions[1] > $heigth) {
-
-            // Verifica se a altura da imagem é maior que a altura permitida
+            
+        } elseif ($dimensions[1] > $heigth) { // Verifica se a altura da imagem é maior que a altura permitida
             $data['message'] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
-        }
-        elseif ($file->getSize() > $size) {
-
-            // Verifica se o tamanho da imagem é maior que o tamanho permitido
+            
+        } elseif ($file->getSize() > $size) { // Verifica se o tamanho da imagem é maior que o tamanho permitido
             $data['message'] = "A imagem deve ter no máximo " . $size / 1024 . "MB!";
-        }
-        else {
-
-            //Caso não haja erros faz o upload da imagem e salva a mesma no servidor
+            
+        } else { //Caso não haja erros faz o upload da imagem e salva a mesma no servidor
 
             $ext = $file->getExtension();
             $name_img = $img_name . "." . $ext;
