@@ -28,6 +28,11 @@
                         <div class="col-sm-5">
                             <select name="user_type_id" id="inputUser_type_id" class="form-control" required="required">
                                 <option selected="selected">Nível de Permissão</option>
+                                <!--
+                                    @todo: adicionar verificação se a tela está carregando para editar usuário.
+                                                Se sim, verificar se o usuário a ser editado é um super administrador.
+                                                Caso seja, exibir a opção super-administrador e bloquear a edição do select.
+                                -->
                                 <?php foreach ($types as $type){
                                     if($type->user_type_id != 1){?>
                                         <option value="<?= $type->user_type_id?>"><?= $type->user_type_descr ?></option>
@@ -44,7 +49,12 @@
                         <div class="row"></div>
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
+                        <?php if(!$edit_user){ ?>
                             <button type="button" id="register" class="btn btn-primary center-block btn-lg">Cadastrar</button>
+                        <?php }else{ ?>
+                            <input type="hidden" name="user_id" id="inputUser_id" class="form-control" value="">
+                            <button type="button" id="edit" class="btn btn-primary center-block btn-lg">Salvar</button>
+                        <?php } ?>
                         </div>
                     </div>
                     <input type="file" name="user_img" id="inputUser_img" class="form-control hide" accept="image/*">
@@ -58,12 +68,16 @@
 <!-- /.col-lg-8 -->
 
 <script>
+
+/**
+ * Classe para manipulação do formulário
+ */
 var Form = function(){
 
     /**
      * Valida os dados inseridos no formulário
      */
-    this.validateForm = function(){
+    this.validateForm = function(edit_user){
         //Monta um array com os dados do formulário para verificação
         array_form = $("#form-newuser").serializeArray();
         var validate = true;
@@ -92,51 +106,54 @@ var Form = function(){
             validate = false;
         }
         if(validate){
-            formSubmit();
+            formSubmit(edit_user);
         }
+    }
+
+    /**
+     * Envia os dados do formulário para o servidor inserir no banco de dados
+     * @param  {string} url caminho da action a ser chamada no servidor
+     */
+     var saveData = function(url){
+        var swal = new Swal;
+        var form_data =new FormData($("#form-newuser")[0]);
+        $.ajax({
+                url: url,
+                data:  form_data,
+                type: 'POST',
+                dataType: 'json',
+                async: false,
+                success: function(data){
+                    if(data.success){
+                        swal.success('Dados Salvos com sucesso');
+                    } else{
+                        swal.error(data.message);
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+                xhr: function() {  // Custom XMLHttpRequest
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                        myXhr.upload.addEventListener('progress', function () {
+                            //faz alguma coisa enquanto envia o arquivo
+                        }, false);
+                    }
+                    return myXhr;
+                }
+            });
     }
 
     /**
      * Envia os dados preenchidos no formulário para o servidor inserir na base de dados
      */
-    var formSubmit = function(){
-        var form_data =new FormData($("#form-newuser")[0]);
-        $.ajax({
-            url: '<?= URL_PROJECT ?>settings/addNewUser',
-            data:  form_data,
-            type: 'POST',
-            dataType: 'json',
-            async: false,
-            success: function(data){
-                if(data.success){
-                    swal({
-                        title: "Sucesso!",
-                        text: "Usuário criado com sucesso!",
-                        type: "success",
-                        confirmButtonText: "OK"
-                    });
-                } else{
-                    swal({
-                        title: "Atenção!",
-                        text: data.message,
-                        type: "error",
-                        confirmButtonText: "OK"
-                    });
-                }
-            },
-            cache: false,
-            contentType: false,
-            processData: false,
-            xhr: function() {  // Custom XMLHttpRequest
-                var myXhr = $.ajaxSettings.xhr();
-                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
-                    myXhr.upload.addEventListener('progress', function () {
-                        //faz alguma coisa enquanto envia o arquivo
-                    }, false);
-                }
-                return myXhr;
-            }
-        });
+    var formSubmit = function(edit_user){
+        if(!edit_user){
+            saveData('<?= URL_PROJECT ?>settings/addNewUser');
+        } else{
+            saveData('<?= URL_PROJECT ?>settings/editUser');
+        }
     }
 
     /**
@@ -144,15 +161,59 @@ var Form = function(){
      * @param  {json} data dados do usuário
      */
     this.fillForm = function(data){
+        $("#inputUser_id").val(data.user_id);
         $("#inputUser_name").val(data.user_name);
         $("#inputUser_email").val(data.user_email);
         $("#inputUser_login").val(data.user_login);
+        //Caso o usuário a ser editado seja o super administrador, carrega a opção no select
+        //e desabilita a edição do mesmo.
+        if(data.user_type_id == 1){
+            $('#inputUser_type_id').attr("disabled", true);
+            $("#inputUser_type_id").append(new Option("SUPER ADMINISTRADOR", "1"));
+        }
         $("#inputUser_type_id").val(data.user_type_id);
     }
 }
-var data = ('<?= json_encode($user); ?>');
 
-if(data != null){
+/**
+ * Controla os avisos
+ */
+var Swal = function(){
+    /**
+     * Exibe uma mensagem de sucesso personalizada
+     * @param  {string} message string com a mensagem a ser exibida na tela
+     */
+    this.success = function(message){
+        swal({
+            title: "Sucesso!",
+            text: message,
+            type: "success",
+            confirmButtonText: "OK"
+        });
+    }
+
+    /**
+     * Exibe uma mensagem de erro personalizada
+     * @param  {string} message string com a mensagem a ser exibida na tela
+     */
+    this.error = function(message){
+        swal({
+            title: "Atenção!",
+            text: message,
+            type: "error",
+            confirmButtonText: "OK"
+        });
+    }
+}
+
+/**
+ *Quando a view é carregada da tela listView recebe dados do usuário selecionado via post;
+ *Então esses dados são salvos como objeto JSON na variavel data;
+ */
+var data = ('<?= json_encode($user); ?>');
+var edit_user = ('<?= $edit_user ?>');
+if(edit_user){
+    console.log(data);
     form = new Form;
     form.fillForm(JSON.parse(data));
 }
@@ -162,8 +223,13 @@ if(data != null){
  */
 $("#register").click(function(){
     form = new Form;
-    form.validateForm();
+    form.validateForm(edit_user);
 });
+
+$("#edit").click(function(){
+    form = new Form;
+    form.validateForm(edit_user);
+})
 
 /**
  * Quando clica na imagem abre a opção para upload de arquivo

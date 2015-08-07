@@ -15,6 +15,6 @@
             success: function(data){
                 $("#" + id).html(data);
             }
-        })
+        });
     }
 })(jQuery);
