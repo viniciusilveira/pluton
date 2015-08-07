@@ -141,7 +141,8 @@ class SettingsController extends BaseController
         $user->user_name = $this->request->getPost('user_name');
         $user->user_login = $this->request->getPost('user_login');
         $user->user_email = $this->request->getPost('user_email');
-        if ($this->request->getPost('user_passwd') != NULL) $user->user_passwd = sha1(md5($this->request->getPost('user_passwd')));
+        if($this->request->getPost('user_passwd') != NULL) $user->user_passwd = $this->request->getPost('user_passwd');
+
 
         //Verifica se existe arquivo para upload, caso exista efetua o upload
         if ($this->request->hasFiles() == true) {

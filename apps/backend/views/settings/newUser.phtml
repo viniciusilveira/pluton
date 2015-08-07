@@ -79,31 +79,27 @@ var Form = function(){
      */
     this.validateForm = function(edit_user){
         //Monta um array com os dados do formulário para verificação
-        array_form = $("#form-newuser").serializeArray();
+        var array_form = $("#form-newuser").serializeArray();
         var validate = true;
 
         //Verifica se todos os dados obrigatórios foram preenchidos
         $.each(array_form, function(i, field){
             if(field.value == '' && field.name != 'user_img'){
-                swal({
-                    title: "Atenção!",
-                    text: "Por favor, preencha todos os dados antes de prosseguir!",
-                    type: "error",
-                    confirmButtonText: "OK"
-                });
-            validate = false;
+                if(edit_user && field.name == 'user_passwd' && field.name == 'user_passwd_confirm'){
+                    //Caso esteja editando o usuário não faz nada
+                } else{
+                    console.log(field.name);
+                    swal = new Swal;
+                    swal.error("Por favor, preencha todos os dados antes de prosseguir!");
+                    validate = false;
+                }
             }
         });
 
         //Verifica se a senha e a confirmação de senha são iguais
         if(array_form['user_passwd'] != array_form['user_passwd_confirm']){
-            swal({
-                title: "Atenção!",
-                text: "Senha e Repetir senha não conferem! Por favor tente novamente!",
-                type: "error",
-                confirmButtonText: "OK"
-            });
-            validate = false;
+            swal.error("Senha e Repetir senha não conferem! Por favor tente novamente!")
+;            validate = false;
         }
         if(validate){
             formSubmit(edit_user);
