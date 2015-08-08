@@ -43,6 +43,7 @@ class SettingsController extends BaseController
      *
      * Verificar o que mais é necessário para index
      */
+
     public function indexAction() {
 
         //Inicia a sessão

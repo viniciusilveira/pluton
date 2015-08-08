@@ -166,7 +166,7 @@ class SetupController extends BaseController
      * @return bool true caso conecte com sucesso ou false caso ocorra algum erro
      */
     public function connectDatabase() {
-
+        $this->view->disable();
         //Seta a configuração do banco de dados.
         $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
 
@@ -194,7 +194,7 @@ class SetupController extends BaseController
      * Cria as tabelas necessárias para o funcionamento do sistema
      */
     public function createTablesAction() {
-
+        $this->view->disable();
         $this->connection->tableExists('layouts') ? NULL : $this->tables->createTableLayouts($this->connection);
         $this->connection->tableExists('blogs') ? NULL : $this->tables->createTableBlogs($this->connection);
         $this->connection->tableExists('user_type') ? NULL : $this->tables->createTableUserType($this->connection);
