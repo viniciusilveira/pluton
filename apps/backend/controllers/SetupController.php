@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class and Function List:
  * Function list:
@@ -26,9 +25,8 @@ use Multiple\Backend\Models as Models;
  * do blog
  *
  */
-class SetupController extends BaseController
-{
-
+class SetupController extends BaseController {
+    
     public $connection;
     private $config;
     private $user;
@@ -36,7 +34,7 @@ class SetupController extends BaseController
     private $layout;
     private $userType;
     private $tables;
-
+    
     /**
      * Construct necessário para iniciar objetos de outras classes
      */
@@ -47,51 +45,51 @@ class SetupController extends BaseController
         $this->userType = new Models\UserType;
         $this->tables = new \Multiple\Library\Tables;
     }
-
+    
     public function indexAction() {
-
+        
         // view/setup/index.phtml
-
-
+        
+        
     }
-
+    
     /**
      * Carrega a view para inserção dos dados de conexão com o banco de dados
      */
     public function databaseConfigAction() {
-
+        
         // views/setup/databaseConfig.phtml
-
-
+        
+        
     }
-
+    
     public function newBlogAction() {
-
+        
         // views/setup/newBlog.phtml
-
-
+        
+        
     }
-
+    
     public function installAction() {
-
+        
         // views/setup/newUser.phtml
-
-
+        
+        
     }
-
+    
     public function errorAction() {
         die("Erro conexão");
     }
-
+    
     /**
      * Verifica os dados do banco para saber se existe usuário e blog já criados.
      * @return string contendo o dado não criado no banco de dados, ou 'ok' caso
      * já esteja tudo criado
      */
     public function verifyDataBaseAction() {
-
+        
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
-
+            
             /*$di = $this->getDI();
             $config  = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . '/apps/config/config.ini');
             $di->set('db', function () use ($config) {
@@ -108,38 +106,39 @@ class SetupController extends BaseController
             $connect = $this->connectDatabase();
             if (!$connect['connection']) {
                 $return = 'connect';
-            }
+            } 
             else {
                 $this->createTablesAction();
                 $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
             }
-        }
+        } 
         else {
             $return = 'file';
         }
-
+        
         return $return;
     }
-
+    
     /**
      * Recebe os dados do banco de dados via post;
      * Cria o arquivo de configuração do banco de dados com os arquivos recebidos
      * Conecta com o banco de dados
      */
     public function databaseSettingsAction() {
-
+        
         //Informa que a action não possui nenhuma view para exibição
         $this->view->disable();
-
+        
         //Dados do banco de dados recebidos via POST;
-
+        
         $database_name = $this->request->getPost('database_name');
         $database_user = $this->request->getPost('database_user');
         $database_passwd = $this->request->getPost('database_passwd');
         $database_host = $this->request->getPost('database_host');
-
+        
         //Cria o arquivo de conexão com o banco de dados;
         if (!file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
+            !is_dir(FOLDER_PROJECT . 'apps/config/') ? mkdir(FOLDER_PROJECT . 'apps/config/') : NULL;
             if ($config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w')) {
                 $writing_file = "[database]\n";
                 $writing_file.= "adapter  = Mysql\n";
@@ -147,12 +146,12 @@ class SetupController extends BaseController
                 $writing_file.= "username = {$database_user}\n";
                 $writing_file.= "password = {$database_passwd}\n";
                 $writing_file.= "name     = {$database_name}\n";
-
+                
                 fwrite($config_file, $writing_file);
                 fclose($config_file);
-
+                
                 $data = $this->connectDatabase();
-            }
+            } 
             else {
                 $data['success'] = false;
                 $data['message'] = "Impossível acessar o arquivo de configuração (pluton/apps/config/config.ini). Verifique as permissões de acesso da pasta e tente novamente!";
@@ -160,20 +159,27 @@ class SetupController extends BaseController
             echo json_encode($data);
         }
     }
-
+    
     /**
      * Configura e executa a conexão com o banco de dados
      * @return bool true caso conecte com sucesso ou false caso ocorra algum erro
      */
     public function connectDatabase() {
         $this->view->disable();
+        
         //Seta a configuração do banco de dados.
         $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
-
+        
         //Cria um array com os dados do banco
-        $db_conn = array("host" => $this->config->database->host, "username" => $this->config->database->username, "password" => $this->config->database->password, "dbname" => $this->config->database->name, "charset" => 'utf8');
+        $db_conn = array(
+            "host" => $this->config->database->host,
+            "username" => $this->config->database->username,
+            "password" => $this->config->database->password,
+            "dbname" => $this->config->database->name,
+            "charset" => 'utf8'
+        );
         $db_conn["persistent"] = false;
-
+        
         //Efetua a conexão com o banco de dados
         try {
             $this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql($db_conn);
@@ -185,11 +191,12 @@ class SetupController extends BaseController
         catch(\PDOException $e) {
             unlink(FOLDER_PROJECT . 'apps/config/config.ini');
             $data['connection'] = false;
-            $data['message'] = "Ocorreu um problema ao conectar com o banco de dados. Verifique os dados informados!<br/>" . $e;
+            $data['message'] = "Ocorreu um problema ao conectar com o banco de dados. Verifique os dados informados e tente novamente!";
+            $data['log'] = $e;
             return $data;
         }
     }
-
+    
     /**
      * Cria as tabelas necessárias para o funcionamento do sistema
      */
@@ -203,7 +210,7 @@ class SetupController extends BaseController
         $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
         $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
     }
-
+    
     /**
      * Cria os tipos de usuários no sistema
      * @return boolean true caso sucesso, false caso ocorra algum erro!
@@ -216,22 +223,22 @@ class SetupController extends BaseController
         $success = !$success ? $success : $this->userType->createUserType('COLABORADOR', 'C');
         return $success;
     }
-
+    
     /**
      * Efetua a "instalação" do sistema; Criando o usuário Super-Administrador e o blog
      * @return [type] [description]
      */
     public function installPlutonAction() {
-
+        
         //Informa que a action não possui nenhuma view para exibição
         $this->view->disable();
-
+        
         $blog_name = $this->request->getPost('blog_name');
         $user_name = $this->request->getPost('user_name');
         $user_email = $this->request->getPost('user_email');
         $user_login = $this->request->getPost('user_login');
         $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
-
+        
         /**
          * Insere os dados necessários no banco de dados para utilização inicial do sistema
          */
@@ -247,7 +254,7 @@ class SetupController extends BaseController
         catch(\PDOException $e) {
             $data['success'] = false;
             $data['message'] = "Ocorreu um erro: " . $e;
-
+            
             /**
              * @todo: apagar todos os dados inseridos no banco
              */

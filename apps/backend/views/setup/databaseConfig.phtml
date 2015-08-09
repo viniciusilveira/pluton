@@ -8,52 +8,51 @@
 <div class="container container-fluidr center-block">
     <div class="content modal-content">
         <article class="content">
-        <h1 class="h3 text-center">Informações do Banco de Dados</h1>
-        <form class="form-horizontal center-block" id="config_file_create" name="config_file_create">
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Banco de Dados: </label>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control" name="database_name" id="database_name" class="database_name" value="pluton">
+            <h1 class="h3 text-center">Informações do Banco de Dados</h1>
+            <form class="form-horizontal center-block" id="config_file_create" name="config_file_create">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Banco de Dados: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="database_name" id="database_name" class="database_name" value="pluton">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Usuário: </label>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control" name="database_user" id="database_user" class="database_user" value="root">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Usuário: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="database_user" id="database_user" class="database_user" value="root">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Senha: </label>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control" name="database_passwd" id="database_passwd" class="database_passwd">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Senha: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="database_passwd" id="database_passwd" class="database_passwd">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Servidor: </label>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control" name="database_host" id="database_host" class="database_host" value="localhost">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Servidor: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="database_host" id="database_host" class="database_host" value="localhost">
+                    </div>
                 </div>
-            </div>
-            <div class="text-justify">
-                <p>Caso os dados preenchidos, estejam diferentes do banco de dados criado em seu servidor, modifique-os antes de continuar.</p>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-5">
-                    <input type="button" class="btn btn-lg btn-default" id="prosseguir" value="Prossseguir" />
+                <div class="text-justify">
+                    <p>Caso os dados preenchidos, estejam diferentes do banco de dados criado em seu servidor, modifique-os antes de continuar.</p>
                 </div>
-            </div>
-        </form>
+                <div class="form-group">
+                    <div class="col-sm-offset-5">
+                        <input type="button" class="btn btn-lg btn-default" id="prosseguir" value="Prossseguir" />
+                    </div>
+                </div>
+            </form>
         </article>
     </div>
     <div class="clearfix"></div>
 </div>
 <script>
-    $("#prosseguir").on("click", function(){
+var Form = function(){
+    var validate = true;
+    this.validateForm = function(){
         //monta um array para verificação dos dados
         var array_form = $("#config_file_create").serializeArray();
-        //cria um texto json para envio dos dados para a action de configuração do banco de dados;
-        var text_form = $("#config_file_create").serialize();
-        var validate = true;
         $.each(array_form, function(i, field){
             if(field.value == '' && field.name != 'database_passwd'){
                 swal({
@@ -66,33 +65,44 @@
             }
         });
         if(validate){
+            this.submitForm();
+        }
+    }
+    this.submitForm = function(){
+        if(validate){
+            var text_form = $("#config_file_create").serialize();
             $.ajax({
-            url: $.verifySettingsURL(window.location.href, 'setup', 'databaseSettings'),
-            data: text_form,
-            type: 'POST',
-            dataType: 'json',
-            success: function(data){
-                if(!data.connection){
-                    swal({
-                        title: "Erro! =(",
-                        text: data.message,
-                        type: "error",
-                        confirmButtonText: "OK"
-                    });
-                } else{
-                    swal({
-                        title: "Sucesso! =)",
-                        text: data.message,
-                        type: "success",
-                        confirmButtonText: "OK"
-                    });
-                    $(".confirm").on("click", function(){
-                        window.location.href = 'install';
-                    });
+                url: $.verifySettingsURL(window.location.href, 'setup', 'databaseSettings'),
+                data: text_form,
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    if(!data.connection){
+                        console.log(data.log);
+                        swal({
+                            title: "Erro! =(",
+                            text: data.message,
+                            type: "error",
+                            confirmButtonText: "OK"
+                        });
+                    } else{
+                        swal({
+                            title: "Sucesso! =)",
+                            text: data.message,
+                            type: "success",
+                            confirmButtonText: "OK"
+                        });
+                        $(".confirm").on("click", function(){
+                            window.location.href = 'install';
+                        });
+                    }
                 }
-            }
-
             });
         }
+    }
+}
+    $("#prosseguir").on("click", function(){
+        form = new Form;
+        form.validateForm();
     });
 </script>

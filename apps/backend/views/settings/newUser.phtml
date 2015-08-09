@@ -81,14 +81,14 @@ var Form = function(){
         //Monta um array com os dados do formulário para verificação
         var array_form = $("#form-newuser").serializeArray();
         var validate = true;
-
+        var swal = new Swal;
         //Verifica se todos os dados obrigatórios foram preenchidos
         $.each(array_form, function(i, field){
             if(field.value == '' && field.name != 'user_img'){
-                if(edit_user && field.name == 'user_passwd' && field.name == 'user_passwd_confirm'){
+                if(edit_user && (field.name == 'user_passwd' || field.name == 'user_passwd_confirm')){
                     //Caso esteja editando o usuário não faz nada
                 } else{
-                    console.log(field.name);
+                    console.log(field.name + ' edit_user:' + edit_user);
                     swal = new Swal;
                     swal.error("Por favor, preencha todos os dados antes de prosseguir!");
                     validate = false;
@@ -161,6 +161,10 @@ var Form = function(){
         $("#inputUser_name").val(data.user_name);
         $("#inputUser_email").val(data.user_email);
         $("#inputUser_login").val(data.user_login);
+        if(data.user_img != null){
+            console.log("imagem: " + data.user_img);
+            $("#imgPreview_img").attr('src', '<?= URL_PROJECT ?>public/img/users/' + data.user_img);
+        }
         //Caso o usuário a ser editado seja o super administrador, carrega a opção no select
         //e desabilita a edição do mesmo.
         if(data.user_type_id == 1){
