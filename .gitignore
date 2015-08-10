@@ -1,6 +1,6 @@
 #arquivos ignoradas pelo git
 apps/config/config.ini
-apps/public/img/users
+public/img/users/
 pluton.sublime-workspace
 pluton.sublime-project
 .settings

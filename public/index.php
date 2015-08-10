@@ -9,7 +9,7 @@
 * Classes list:
 * - Application extends \
 */
-define('DEBUG', false);
+define('DEBUG', true);
 
 if(DEBUG){
     error_reporting(E_ALL);

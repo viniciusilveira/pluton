@@ -23,7 +23,7 @@ class IndexController extends BaseController{
         
         $setup = new SetupController();
         
-        $database = $setup->verifyDataBaseAction();
+        $database = $setup->verifyInstalation();
         switch ($database) {
             case 'file':
                 $dispatcher = array('controller' => 'setup', 'action' => 'index');

@@ -95,11 +95,10 @@ var Form = function(){
                 }
             }
         });
-
         //Verifica se a senha e a confirmação de senha são iguais
-        if(array_form['user_passwd'] != array_form['user_passwd_confirm']){
-            swal.error("Senha e Repetir senha não conferem! Por favor tente novamente!")
-;            validate = false;
+        if($('#inputUser_passwd').val() != $('#inputUser_passwd_confirm').val()){
+            swal.error("Senha e Repetir senha não conferem! Por favor tente novamente!");
+            validate = false;
         }
         if(validate){
             formSubmit(edit_user);
@@ -148,7 +147,7 @@ var Form = function(){
         if(!edit_user){
             saveData('<?= URL_PROJECT ?>settings/addNewUser');
         } else{
-            saveData('<?= URL_PROJECT ?>settings/editUser');
+            saveData('<?= URL_PROJECT ?>settings/updateUser');
         }
     }
 
@@ -211,6 +210,7 @@ var Swal = function(){
  *Então esses dados são salvos como objeto JSON na variavel data;
  */
 var data = ('<?= json_encode($user); ?>');
+console.log(data.user_name);
 var edit_user = ('<?= $edit_user ?>');
 if(edit_user){
     console.log(data);

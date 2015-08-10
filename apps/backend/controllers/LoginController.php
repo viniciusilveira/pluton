@@ -26,6 +26,7 @@ class LoginController extends BaseController {
         } else {
             $this->view->render('login', 'index');
         }
+        
     }
 
     /**

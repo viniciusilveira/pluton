@@ -77,12 +77,23 @@ class SetupController extends BaseController {
         
     }
     
-    public function errorAction() {
-        die("Erro conexão");
-    }
-    
     /**
-     * Verifica os dados do banco para saber se existe usuário e blog já criados.
+     * Verifica a instalação do sistema, caso esteja tudo ok retorna a string 'ok',
+     * caso contrário retorna o que falta ser configurado.
+     */
+    public function verifyInstalation(){
+        if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
+            $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
+        } 
+        else {
+            $return = 'file';
+        }
+        
+        return $return;
+    }
+    /**
+     * Verifica se o banco de dados está configurado corretamente, caso não esteja,
+     * efetua as configurações necessárias.
      * @return string contendo o dado não criado no banco de dados, ou 'ok' caso
      * já esteja tudo criado
      */
@@ -90,23 +101,10 @@ class SetupController extends BaseController {
         
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
             
-            /*$di = $this->getDI();
-            $config  = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . '/apps/config/config.ini');
-            $di->set('db', function () use ($config) {
-                $dbclass = 'Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
-                return new $dbclass(array(
-                    "host" => $config->database->host,
-                    "username" => $config->database->username,
-                    "password" => $config->database->password,
-                    "dbname" => $config->database->name,
-                    "charset" => 'utf8',
-                ));
-            });
-            $this->setDI($di);*/
             $connect = $this->connectDatabase();
             if (!$connect['connection']) {
                 $return = 'connect';
-            } 
+            }
             else {
                 $this->createTablesAction();
                 $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
@@ -243,6 +241,7 @@ class SetupController extends BaseController {
          * Insere os dados necessários no banco de dados para utilização inicial do sistema
          */
         try {
+            //@todo: verificar a inserção do código do blog no usuário super administrador criado na linha 246
             $success = $this->createUsersTypes();
             $success = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, 1);
             $success = $success ? $data['success'] = $this->layout->createLayout() : false;
