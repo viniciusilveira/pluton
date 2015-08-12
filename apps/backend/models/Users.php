@@ -14,22 +14,23 @@ namespace Multiple\Backend\Models;
 
 use \Phalcon\Mvc\Model\Query;
 use \Phalcon\Mvc\Model\Resultset;
+
 /**
  * Class Users
  * @package Multiple\Backend\Models
  */
 class Users extends \Phalcon\Mvc\Model {
-
+    
     public function initialize() {
-
+        
         $this->hasOne("user_type_id", "Multiple\Backend\Models\UserType", "user_type_id", array(
             'alias' => "user_type"
         ));
-        $this->hasOne("blog_id", "Multiple\Backend\Models\Blogs", "blog_id", array(
+        $this->hasOne("blog_id", "Multiple\Backend\Models\UserBlogs", "blog_id", array(
             'alias' => 'blogs'
         ));
     }
-
+    
     /**
      * Verifica se existe usuários criado no banco de dados
      * @return bool true caso exista, false caso não exista nenhum
@@ -37,7 +38,7 @@ class Users extends \Phalcon\Mvc\Model {
     public function verifyUsersExistAction() {
         return $this->count() > 0 ? true : false;
     }
-
+    
     /**
      * Cria um novo usuário no banco de dados
      * @param  string $user_name   Nome do Usuário
@@ -56,29 +57,32 @@ class Users extends \Phalcon\Mvc\Model {
         $user->user_login = $user_login;
         $user->user_passwd = $user_passwd;
         $user->user_type_id = $user_type_id;
-
+        
         if (!empty($user_blog)) $user->user_blog = $user_blog;
         if (!empty($user_img)) $user->user_img = $user_img;
-
+        
         $success = $user->save();
-
+        
         return $success;
     }
-
+    
     /**
      * Busca um usuário pelo login/email do mesmo
      * @param  string $user_login login do usuário
      * @return objeto Users   objeto do tipo Users contendo os dados do usuário encontrado no banco de dados
      */
     public function getUser($user_login) {
-
-        $user = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_login:")->bind(array(
+        
+        $user = Users::query()
+            ->where("user_login = :user_login:")
+            ->orWhere("user_email = :user_login:")
+            ->bind(array(
             "user_login" => $user_login
         ))->execute();
-
+        
         return $user->getFirst();
     }
-
+    
     /**
      * Verifica se existe usuário cadastrado com o login ou senha informados
      * @param  string $user_login
@@ -86,7 +90,11 @@ class Users extends \Phalcon\Mvc\Model {
      * @return boolean true caso usuário exista ou false caso contrario
      */
     public function userExists($user_name, $user_login, $user_email) {
-        $user = Users::query()->where("user_name = :user_name:")->orWhere("user_login = :user_login:")->orWhere("user_email = :user_email:")->bind(array(
+        $user = Users::query()
+            ->where("user_name = :user_name:")
+            ->orWhere("user_login = :user_login:")
+            ->orWhere("user_email = :user_email:")
+            ->bind(array(
             "user_name" => $user_name,
             "user_login" => $user_login,
             "user_email" => $user_email

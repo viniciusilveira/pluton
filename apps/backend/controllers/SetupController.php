@@ -241,11 +241,19 @@ class SetupController extends BaseController {
          * Insere os dados necessários no banco de dados para utilização inicial do sistema
          */
         try {
-            //@todo: verificar a inserção do código do blog no usuário super administrador criado na linha 246
+            
             $success = $this->createUsersTypes();
-            $success = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, 1);
             $success = $success ? $data['success'] = $this->layout->createLayout() : false;
+
             $success = $success ? $data['success'] = $this->blog->createBlog($blog_name) : false;
+            $blog = Models\Blogs::findFirst();
+
+            $success = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, 1, NULL, $blog->blog_id);
+            $user = Models\Users::findFirst();
+
+            $user_blog = new Models\UserBlog;
+            $user_blog->createUserBlog($user->user_id, $blog->blog_id);
+
             $data['message'] = $success ? 'Sistema Instalado Com sucesso!' : 'Ocorreu um erro durante a instalação. Por favor tente novamente';
             $data['success'] = $success;
             echo json_encode($data);

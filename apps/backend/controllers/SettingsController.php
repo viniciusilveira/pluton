@@ -16,7 +16,7 @@
 
 namespace Multiple\Backend\Controllers;
 
-use Multiple\Backend\Models\UserType, Multiple\Backend\Models\Users;
+use Multiple\Backend\Models\UserType, Multiple\Backend\Models\Users, Multiple\Backend\Models\UserBlog;
 
 class SettingsController extends BaseController {
     
@@ -57,6 +57,7 @@ class SettingsController extends BaseController {
             //Array para envio de dados para a view a ser carregada
             $vars['user'] = $user_name[0];
             $vars['user_type_id'] = $user->user_type_id;
+            $vars['user_img'] = $user->user_img;
             $this->view->setVars($vars);
             $this->view->render('settings', 'index');
         } 
@@ -117,6 +118,8 @@ class SettingsController extends BaseController {
             } 
             else {
                 $data['success'] = Users::createUser($user_name, $user_email, $user_login, $user_passwd, $user_type_id, $upload_img, 1);
+                $user = Users::findFirstByUser_login($user_login);
+                $data['success'] = UserBlog::createUserBlog($user->user_id, 1);
             }
         } 
         else {
@@ -147,7 +150,7 @@ class SettingsController extends BaseController {
         if ($this->request->hasFiles() == true) {
             foreach ($this->request->getUploadedFiles() as $file) {
                 if ($file->getTempName() != NULL) {
-                    $upload_img = $this->uploadImageAction($file, 200, 300, 3145728, $user->user_login);
+                    $upload_img = $this->uploadImageAction($file, 500, 500, 3145728, $user->user_img);
                 }
             }
         }
@@ -155,26 +158,24 @@ class SettingsController extends BaseController {
         if (is_array($upload_img)) {
             $data = $upload_img;
             $data['success'] = false;
-        } elseif(!empty($upload_img)) {
+        } else {
             $user->user_img = $upload_img;
-        }
+            //Altera os valores recebidos pela consulta para os valores recebidos via POST.
+            $user->user_name = $this->request->getPost('user_name');
+            $user->user_login = $this->request->getPost('user_login');
+            $user->user_email = $this->request->getPost('user_email');
+            if ($this->request->getPost('user_passwd') != NULL) $user->user_passwd = sha1(md5($this->request->getPost('user_passwd')));
 
-        //Altera os valores recebidos pela consulta para os valores recebidos via POST.
-        $user->user_name = $this->request->getPost('user_name');
-        $user->user_login = $this->request->getPost('user_login');
-        $user->user_email = $this->request->getPost('user_email');
-        if ($this->request->getPost('user_passwd') != NULL) $user->user_passwd = sha1(md5($this->request->getPost('user_passwd')));
-
-        try {
-            $user->save();
-            $data['success'] = true;
-            echo json_encode($data);
+            try {
+                $user->save();
+                $data['success'] = true;
+            }
+            catch(PDO\Exception $e) {
+                $data['success'] = false;
+                $data['message'] = 'Ocorreu um erro ao salvar os dados. Por favor tente novamente';
+            }
         }
-        catch(PDO\Exception $e) {
-            $data['success'] = false;
-            $data['message'] = 'Ocorreu um erro ao salvar os dados. Por favor tente novamente';
-            echo json_encode($data);
-        }
+        echo json_encode($data);
     }
     
     /**
@@ -192,7 +193,7 @@ class SettingsController extends BaseController {
      * @param  int $size    Tamanho máximo da imagem
      * @return string       Nome da imagem ou erro caso ocorroa algum.
      */
-    public function uploadImageAction($file, $width, $heigth, $size, $user_login) {
+    public function uploadImageAction($file, $width, $heigth, $size, $name_img = NULL) {
         
         // Pega as dimensões da imagem
         $dimensions = getimagesize($file->getTempName());
@@ -219,8 +220,9 @@ class SettingsController extends BaseController {
         else {
             
             //Caso não haja erros faz o upload da imagem e salva a mesma no servidor
-            
-            $name_img = $this->getImgName()  . "." . $file->getExtension();;
+            if($name_img == NULL){
+                $name_img = $this->getImgName()  . "." . $file->getExtension();
+            }
             //Verifica se a pasta public/img/users existe, se não existir, cria.
             if (!file_exists(FOLDER_PROJECT . 'public/img/users')) mkdir(FOLDER_PROJECT . 'public/img/users');
             
