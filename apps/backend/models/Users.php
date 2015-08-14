@@ -57,7 +57,7 @@ class Users extends \Phalcon\Mvc\Model {
         $user->user_login = $user_login;
         $user->user_passwd = $user_passwd;
         $user->user_type_id = $user_type_id;
-        
+        $user->user_active = 1;
         if (!empty($user_blog)) $user->user_blog = $user_blog;
         if (!empty($user_img)) $user->user_img = $user_img;
         
@@ -66,6 +66,42 @@ class Users extends \Phalcon\Mvc\Model {
         return $success;
     }
     
+
+    /**
+     * Atualiza os dados de um usuário
+     * @param  int    $user_id     id do Usuário
+     * @param  string $user_name   Nome do Usuário
+     * @param  string $user_email  Email do Usuário
+     * @param  string $user_login  Login de acesso do Usuário
+     * @param  string $user_passwd Senha Criptografada do Usuário
+     * @param  string $user_type   Nível de acesso do Usuário (Informar aqui os níveis existentes)
+     * @param  string $user_img    Nome da imagem de perfil do usuário salva no servidor (Seguir o padrão login.jpeg)
+     * @param  int    $user_blog   Id do blog de acesso do usuário
+     * @return bool   $success     true caso o usuário seja criado, ou false caso ocorra algum erro.
+     */
+    public function updateUser($user_id, $user_name, $user_email, $user_login, $user_passwd, $user_type_id, $user_img = NULL, $user_blog = NULL) {
+        $user = Users::findFirstByUser_id($user_id);
+        $user->user_name = $user_name;
+        $user->user_email = $user_email;
+        $user->user_login = $user_login;
+        $user->user_type_id = intval($user_type_id);
+        
+        if (!empty($user_passwd)) $user->user_passwd = $user_passwd;
+        if (!empty($user_blog)) $user->user_blog = $user_blog;
+        if (!empty($user_img)) $user->user_img = $user_img;
+        
+        $success = $user->save();
+        
+        return $success;
+    }
+
+    public function ActiveOrdeactiveUser($user_id){
+        $user = Users::findFirstByUser_id($user_id);
+        $user->user_active = !$user->user_active ? 1 : 0 ;
+        $success = $user->save();
+
+        return $success;
+    }
     /**
      * Busca um usuário pelo login/email do mesmo
      * @param  string $user_login login do usuário

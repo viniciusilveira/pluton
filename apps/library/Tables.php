@@ -237,6 +237,10 @@ class Tables {
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 150
                 )) ,
+                new Column("user_active", array(
+                    "type" => Column::TYPE_BOOLEAN,
+                    "notNull" => true
+                )) ,
             ) ,
             "indexes" => array(
                 new Index("user_type_id", array(

@@ -42,7 +42,7 @@ class LoginController extends BaseController {
         $user_login = $this->request->getPost('user_login');
         $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
         $user = $users::findFirst("(user_login = '$user_login' OR user_email = '$user_login') AND user_passwd = '$user_passwd'");
-        if ($user) {
+        if ($user->user_active) {
             $this->createSession($user->user_id, $user_login);
             $data['success'] = true;
         } else {

@@ -79,6 +79,7 @@ class SettingsController extends BaseController {
             $vars['user']['user_email'] = $result->user_email;
             $vars['user']['user_type_id'] = $result->user_type_id;
             $vars['user']['user_img'] = $result->user_img;
+            $vars['user']['user_active'] = $result->user_active;
             $vars['edit_user'] = true;
         } 
         else {
@@ -107,7 +108,7 @@ class SettingsController extends BaseController {
             if ($this->request->hasFiles() == true) {
                 foreach ($this->request->getUploadedFiles() as $file) {
                     if ($file->getTempName() != NULL) {
-                        $upload_img = $this->uploadImageAction($file, 200, 300, 3145728, $user_login);
+                        $upload_img = $this->uploadImageAction($file, 500, 500, 3145728, $user_login);
                     }
                 }
             }
@@ -143,7 +144,7 @@ class SettingsController extends BaseController {
     public function updateUserAction() {
         $this->view->disable();
 
-        $user =  Users::findFirstByUser_id($this->request->getPost('user_id'));
+        $user_id =  $this->request->getPost('user_id');
         //var_dump($user); die();
         
         //Verifica se existe arquivo para upload, caso exista efetua o upload
@@ -159,18 +160,17 @@ class SettingsController extends BaseController {
             $data = $upload_img;
             $data['success'] = false;
         } else {
-            $user->user_img = $upload_img;
-            //Altera os valores recebidos pela consulta para os valores recebidos via POST.
-            $user->user_name = $this->request->getPost('user_name');
-            $user->user_login = $this->request->getPost('user_login');
-            $user->user_email = $this->request->getPost('user_email');
-            if ($this->request->getPost('user_passwd') != NULL) $user->user_passwd = sha1(md5($this->request->getPost('user_passwd')));
-
             try {
-                $user->save();
-                $data['success'] = true;
-            }
-            catch(PDO\Exception $e) {
+                $user->user_img = $upload_img;
+                //Altera os valores recebidos pela consulta para os valores recebidos via POST.
+                $user_name = $this->request->getPost('user_name');
+                $user_login = $this->request->getPost('user_login');
+                $user_email = $this->request->getPost('user_email');
+                $user_type_id = $this->request->getPost('user_type_id');
+                if ($this->request->getPost('user_passwd') != NULL) $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
+                $data['success'] = Users::updateUser($user_id, $user_name, $user_email, $user_login, $user_passwd, $user_type_id, $upload_img, 1);
+                $data['message'] = $data['success'] ? NULL : "Ocorreu um erro ao salvar os dados. Por favor tente novamente";
+            }catch(PDO\Exception $e) {
                 $data['success'] = false;
                 $data['message'] = 'Ocorreu um erro ao salvar os dados. Por favor tente novamente';
             }
@@ -182,7 +182,13 @@ class SettingsController extends BaseController {
      * [deleteUserAction description]
      * @return [type] [description]
      */
-    public function deleteUserAction() {
+    public function ActiveOrdeactiveUserAction() {
+        $this->view->disable();
+
+        $user_id = intval($this->request->getPost('user_id'));
+        $data['success'] = Users::ActiveOrdeactiveUser($user_id);
+        $data['message'] = 'Usuário Atualizado!';
+        echo json_encode($data);
     }
     
     /**

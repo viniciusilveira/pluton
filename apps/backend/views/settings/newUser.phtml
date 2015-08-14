@@ -28,11 +28,6 @@
                         <div class="col-sm-5">
                             <select name="user_type_id" id="inputUser_type_id" class="form-control" required="required">
                                 <option selected="selected">Nível de Permissão</option>
-                                <!--
-                                    @todo: adicionar verificação se a tela está carregando para editar usuário.
-                                                Se sim, verificar se o usuário a ser editado é um super administrador.
-                                                Caso seja, exibir a opção super-administrador e bloquear a edição do select.
-                                -->
                                 <?php foreach ($types as $type){
                                     if($type->user_type_id != 1){?>
                                         <option value="<?= $type->user_type_id?>"><?= $type->user_type_descr ?></option>
@@ -53,7 +48,12 @@
                             <button type="button" id="register" class="btn btn-primary center-block btn-lg">Cadastrar</button>
                         <?php }else{ ?>
                             <input type="hidden" name="user_id" id="inputUser_id" class="form-control" value="">
-                            <button type="button" id="edit" class="btn btn-primary center-block btn-lg">Salvar</button>
+                            <div class="row text-center">
+                                <button type="button" id="deactive" class="btn btn-primary btn-lg">
+                                    <?= $user['user_active'] ? 'Desativar' : 'Ativar' ?>
+                                </button>
+                                <button type="button" id="edit" class="btn btn-primary btn-lg">Salvar</button>
+                            </div>
                         <?php } ?>
                         </div>
                     </div>
@@ -88,7 +88,6 @@ var Form = function(){
                 if(edit_user && (field.name == 'user_passwd' || field.name == 'user_passwd_confirm')){
                     //Caso esteja editando o usuário não faz nada
                 } else{
-                    console.log(field.name + ' edit_user:' + edit_user);
                     swal = new Swal;
                     swal.error("Por favor, preencha todos os dados antes de prosseguir!");
                     validate = false;
@@ -111,6 +110,7 @@ var Form = function(){
      */
      var saveData = function(url){
         var swal = new Swal;
+        $('#inputUser_type_id').attr("disabled", false);
         var form_data =new FormData($("#form-newuser")[0]);
         $.ajax({
                 url: url,
@@ -161,7 +161,7 @@ var Form = function(){
         $("#inputUser_email").val(data.user_email);
         $("#inputUser_login").val(data.user_login);
         if(data.user_img != null){
-            console.log("imagem: " + data.user_img);
+            
             $("#imgPreview_img").attr('src', '<?= URL_PROJECT ?>public/img/users/' + data.user_img);
         }
         //Caso o usuário a ser editado seja o super administrador, carrega a opção no select
@@ -171,6 +171,25 @@ var Form = function(){
             $("#inputUser_type_id").append(new Option("SUPER ADMINISTRADOR", "1"));
         }
         $("#inputUser_type_id").val(data.user_type_id);
+    }
+
+    this.activeOrDeactiveUser = function(){
+        var swal = new Swal;
+        var user_id = $("#inputUser_id").val();
+        $.ajax({
+            url: '<?= URL_PROJECT ?>settings/ActiveOrdeactiveUser',
+            data: 'user_id=' + user_id,
+            dataType: 'json',
+            type: 'POST',
+            success: function(data){
+                if(data.success){
+                    swal.success(data.message);
+                } else{
+                    swal.error('Ocorreu um erro durante a operação. Tente novamente!');
+                }
+                $.loadPartialView('main', '<?= URL_PROJECT?>/settings/listUsers');
+            }
+        });
     }
 }
 
@@ -210,10 +229,10 @@ var Swal = function(){
  *Então esses dados são salvos como objeto JSON na variavel data;
  */
 var data = ('<?= json_encode($user); ?>');
-console.log(data.user_name);
+
 var edit_user = ('<?= $edit_user ?>');
 if(edit_user){
-    console.log(data);
+    
     form = new Form;
     form.fillForm(JSON.parse(data));
 }
@@ -229,7 +248,29 @@ $("#register").click(function(){
 $("#edit").click(function(){
     form = new Form;
     form.validateForm(edit_user);
-})
+});
+
+$("#deactive").click(function(){
+    if(<?= $user['user_active'] ?>){
+        var text = 'Ao desativar o usuário o mesmo não podera mais acessar o sistema. Nenhuma informação será deletada.';
+    } else{
+        var text = 'Deseja realmente reativar o usuário?';
+    }
+    swal({
+      title: "Tem certeza disso?",
+      text: text,
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Sim!",
+      cancelButtonText: 'Cancelar',
+      closeOnConfirm: true
+    },
+    function(){
+      form = new Form;
+      form.activeOrDeactiveUser();
+});
+});
 
 /**
  * Quando clica na imagem abre a opção para upload de arquivo
