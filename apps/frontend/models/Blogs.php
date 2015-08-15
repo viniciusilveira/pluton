@@ -20,6 +20,6 @@ class Blogs extends \Phalcon\Mvc\Model {
      */
     public function getBlog() {
         $blog = Blogs::query()->execute();
-        return $blog->getFirst()->blog_id;
+        return $blog->getFirst();
     }
 }

@@ -1,5 +1,8 @@
+<style>
+    body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);}
+</style>
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav id="top-navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -9,19 +12,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="#"><?= $title ?></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" data-id="navbar" id="navbar">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">About</a>
+                    <a href="#" data-id="menu1" id="menu1">About</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                    <a href="#" data-id="menu2" id="menu2">Services</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#" data-id="menu3" id="menu3">Contact</a>
                 </li>
             </ul>
         </div>
@@ -52,36 +55,9 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
             <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
             <hr>
-            <!-- Second Blog Post -->
-            <h2>
-            <a href="#">Blog Post Title</a>
-            </h2>
-            <p class="lead">
-            by <a href="index.php">Start Bootstrap</a>
-            </p>
-            <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:45 PM</p>
-            <hr>
-            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, quasi, fugiat, asperiores harum voluptatum tenetur a possimus nesciunt quod accusamus saepe tempora ipsam distinctio minima dolorum perferendis labore impedit voluptates!</p>
-            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <hr>
-            <!-- Third Blog Post -->
-            <h2>
-            <a href="#">Blog Post Title</a>
-            </h2>
-            <p class="lead">
-            by <a href="index.php">Start Bootstrap</a>
-            </p>
-            <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:45 PM</p>
-            <hr>
-            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, voluptates, voluptas dolore ipsam cumque quam veniam accusantium laudantium adipisci architecto itaque dicta aperiam maiores provident id incidunt autem. Magni, ratione.</p>
-            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
             <hr>
             <!-- Pager -->
-            <ul class="pager">
+            <ul id="navigation" class="pager">
                 <li class="previous">
                     <a href="#">&larr; Older</a>
                 </li>
@@ -93,7 +69,7 @@
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
             <!-- Blog Search Well -->
-            <div class="well">
+            <div id="blog-search" class="well">
                 <h4>Blog Search</h4>
                 <div class="input-group">
                     <input type="text" class="form-control">
@@ -107,7 +83,7 @@
             </div>
             <!-- Blog Categories Well -->
             <div class="well">
-                <h4>Blog Categories</h4>
+                <h4 id="title-categories">Blog Categories</h4>
                 <div class="row">
                     <div class="col-lg-6">
                         <ul class="list-unstyled">
@@ -139,7 +115,7 @@
                 <!-- /.row -->
             </div>
             <!-- Side Widget Well -->
-            <div class="well">
+            <div id="side-widget" class="well">
                 <h4>Side Widget Well</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
             </div>
@@ -149,7 +125,7 @@
     <hr>
     <!-- Footer -->
     <footer>
-        <div class="row">
+        <div id="footer" class="row">
             <div class="col-lg-12">
                 <p>Copyright &copy; Your Website 2014</p>
             </div>
@@ -159,3 +135,48 @@
     </footer>
 </div>
 <!-- /.container -->
+<script>
+
+var Raptor = function(){
+    this.init = function(){
+        //Adiciona a classe 'raptor-editable aos itens que podem ser editados pelo usuário'
+        $("#navbar, .page-header").addClass('raptor-editable');
+        $("#navigation, #blog-search, #footer, #side-widget").addClass('raptor-editable');
+        $("top-navbar").css('margin-top', '150px !important');
+        $('.raptor-editable').raptor({
+            plugins: {
+                // The save UI plugin/button
+                save: {
+                    // Specifies the UI to call the saveRest plugin to do the actual saving
+                    plugin: 'saveRest'
+                },
+                saveRest: {
+                    // The URI to send the content to
+                    url: 'blog/save',
+                    // Returns an object containing the data to send to the server
+                    data: function(html) {
+                        return {
+                            id: this.raptor.getElement().data('id'),
+                            content: html
+                        };
+                    }
+                },
+                dock: {
+                    docked: false
+                }
+            }
+        });
+    }
+}
+
+<?php $this->session->start(); ?>
+var editor = ('<?= $_REQUEST["editor"] ?>');
+var session = ('<?= $this->session->get(user_id);?>');
+if(editor && session != ''){
+    raptor = new Raptor;
+    raptor.init();
+}
+
+
+
+</script>

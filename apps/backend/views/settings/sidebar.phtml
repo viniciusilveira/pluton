@@ -1,6 +1,6 @@
 <div class="list-group panel">
     <?php if($user_type_id == 1){ ?>
-    <a href="#sub-blog" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-home"></i> Blog</a>
+    <a href="#sub-blog" class="list-group-item strong" id="blog" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-home"></i> Blog</a>
     <?php } ?>
     <?php if($user_type_id == 1 || $user_type_id == 2){ ?>
     <a href="#sub-users" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-user"></i> Usuários</a>
@@ -34,10 +34,7 @@
     <?php if($user_type_id == 1){ ?>
     <a href="#sub-appearance" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-sunglasses"></i> Aparência </a>
     <div class="collapse" id="sub-appearance">
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Novo Tema</a>
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-th-list"></i> Escolher Tema</a>
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar Tema</a>
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar HTML</a>
+        <a href="#" class="list-group-item" id="theme-editor"><i class="glyphicon glyphicon-edit"></i> Editar Aparência</a>
     </div>
     <!-- /sub-appearance-->
     <?php } ?>
@@ -58,12 +55,18 @@
     <?php } ?>
 </div>
 <!-- /.list-group -->
+
 <script type="text/javascript">
+
 $("#new-user").click(function(){
-    $.loadPartialView('main', '<?= URL_PROJECT ?>/settings/newUser');
+    $.loadPartialView('main', '<?= URL_PROJECT ?>settings/newUser');
 });
 
 $("#edit-user").click(function(){
-    $.loadPartialView('main', '<?= URL_PROJECT?>/settings/listUsers');
+    $.loadPartialView('main', '<?= URL_PROJECT?>settings/listUsers');
+});
+
+$("#theme-editor").click(function(){
+    window.open("<?= URL_PROJECT ?>blog/index");
 });
 </script>

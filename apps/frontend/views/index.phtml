@@ -11,13 +11,14 @@ footer {
 <html class="no-js" lang="br">
     <head>
         <meta charset="utf-8">
-        <title><?= $blog_name ?></title>
+        <title><?= $title ?></title>
         <meta name="description" content="<?= $blog_name ?>">
         <meta name="author" content="viniciusilveira">
         <link rel="shortcut icon" href="<?= URL_PROJECT ?>img/logo.png"/>
         <link rel="stylesheet" href="<?= URL_PROJECT ?>css/style.css"/>
         <link rel="stylesheet" href="<?= URL_PROJECT ?>css/bootstrap.min.css"/>
         <link rel="stylesheet" href="<?= URL_PROJECT ?>css/sweet-alert.css"/>
+        <link rel="stylesheet" href="<?= URL_PROJECT ?>css/raptor-front-end.css"/>
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -29,6 +30,7 @@ footer {
         <script src="<?= URL_PROJECT ?>js/sweet-alert.js"></script>
         <script src="<?= URL_PROJECT ?>js/bootstrap-filestyle.min.js"> </script>
         <script src="<?= URL_PROJECT ?>js/chart.min.js"> </script>
+        <script src="<?= URL_PROJECT ?>js/raptor.js"> </script>
         <script src="<?= URL_PROJECT ?>js/custom.js"> </script>
         <?= $this->getContent(); ?>
     </body>

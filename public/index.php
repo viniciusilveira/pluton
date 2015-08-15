@@ -9,7 +9,7 @@
 * Classes list:
 * - Application extends \
 */
-define('DEBUG', true);
+define('DEBUG', false);
 
 if(DEBUG){
     error_reporting(E_ALL);
@@ -62,6 +62,12 @@ class Application extends \Phalcon\Mvc\Application {
 
             $router->add("/settings", array(
                 'module' => 'backend',
+                'controller' => 'index',
+                'action' => 'index',
+            ));
+
+            $router->add("/editor", array(
+                'module' => 'frontend',
                 'controller' => 'index',
                 'action' => 'index',
             ));
