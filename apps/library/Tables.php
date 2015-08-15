@@ -70,42 +70,40 @@ class Tables {
                     "size" => 200,
                     "notNull" => false
                 )) ,
-                new Column("layout_background_color", array(
+                new Column("layout_title", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 7,
+                    "size" => 500,
                     "notNull" => true
-                )) ,
-                new Column("layout_font_color", array(
+                )),
+
+                new Column("layout_subtitle", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 7,
+                    "size" => 500,
                     "notNull" => true
-                )) ,
-                new Column("layout_active", array(
-                    "type" => Column::TYPE_BOOLEAN
-                )) ,
-                new Column("layout_menu1", array(
+                )),
+                new Column("layout_navbar", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 20,
+                    "size" => 65535,
                     "notNull" => true
-                )) ,
-                new Column("layout_menu2", array(
+                )),
+                new Column("layout_lateralbar", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 20,
+                    "size" => 65535,
                     "notNull" => true
-                )) ,
-                new Column("layout_menu3", array(
+                )),
+                new Column("layout_searchbar", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 20,
+                    "size" => 65535,
                     "notNull" => true
-                )) ,
-                new Column("layout_menu4", array(
+                )),
+                new Column("layout_navigation", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 20,
+                    "size" => 65535,
                     "notNull" => true
-                )) ,
-                new Column("layout_menu5", array(
+                )),
+                new Column("layout_footer", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 20,
+                    "size" => 65535,
                     "notNull" => true
                 ))
             )

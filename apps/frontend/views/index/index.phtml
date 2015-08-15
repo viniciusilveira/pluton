@@ -2,44 +2,35 @@
     body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);}
 </style>
 <!-- Navigation -->
-<nav id="top-navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><?= $title ?></a>
+<div>
+    <nav id="top-navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" data-id="title"><?= html_entity_decode($layout->layout_title) ?></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" data-id="navbar" id="navbar">
+                <?= html_entity_decode($layout->layout_navbar) ?>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" data-id="navbar" id="navbar">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#" data-id="menu1" id="menu1">About</a>
-                </li>
-                <li>
-                    <a href="#" data-id="menu2" id="menu2">Services</a>
-                </li>
-                <li>
-                    <a href="#" data-id="menu3" id="menu3">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+        <!-- /.container -->
+    </nav>
+</div>
 <!-- Page Content -->
 <div class="container">
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-            <h1 class="page-header">
-            Page Heading
-            <small>Secondary Text</small>
+            <h1 class="page-header" data-id="subtitle">
+            <?= html_entity_decode($layout->layout_subtitle) ?>
             </h1>
             <!-- First Blog Post -->
             <h2>
@@ -57,29 +48,15 @@
             <hr>
             <hr>
             <!-- Pager -->
-            <ul id="navigation" class="pager">
-                <li class="previous">
-                    <a href="#">&larr; Older</a>
-                </li>
-                <li class="next">
-                    <a href="#">Newer &rarr;</a>
-                </li>
+            <ul id="navigation" data-id="navigation" class="pager">
+                <?= html_entity_decode($layout->layout_navigation) ?>
             </ul>
         </div>
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
             <!-- Blog Search Well -->
-            <div id="blog-search" class="well">
-                <h4>Blog Search</h4>
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </span>
-                </div>
-                <!-- /.input-group -->
+            <div id="blog-search" data-id="searchbar" class="well">
+                <?= html_entity_decode($layout->layout_searchbar) ?>
             </div>
             <!-- Blog Categories Well -->
             <div class="well">
@@ -115,9 +92,8 @@
                 <!-- /.row -->
             </div>
             <!-- Side Widget Well -->
-            <div id="side-widget" class="well">
-                <h4>Side Widget Well</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+            <div id="side-widget" data-id="lateralbar" class="well">
+                <?= html_entity_decode($layout->layout_lateralbar) ?>
             </div>
         </div>
     </div>
@@ -125,9 +101,9 @@
     <hr>
     <!-- Footer -->
     <footer>
-        <div id="footer" class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+        <div class="row footer">
+            <div id="footer" data-id="footer" class="col-lg-12">
+                <?= html_entity_decode($layout->layout_footer) ?>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -140,8 +116,8 @@
 var Raptor = function(){
     this.init = function(){
         //Adiciona a classe 'raptor-editable aos itens que podem ser editados pelo usuário'
-        $("#navbar, .page-header").addClass('raptor-editable');
-        $("#navigation, #blog-search, #footer, #side-widget").addClass('raptor-editable');
+        $("#navbar, .page-header, #navigation").addClass('raptor-editable');
+        $("#blog-search, #footer, #side-widget").addClass('raptor-editable');
         $("top-navbar").css('margin-top', '150px !important');
         $('.raptor-editable').raptor({
             plugins: {

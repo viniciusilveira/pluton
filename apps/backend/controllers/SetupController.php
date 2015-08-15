@@ -26,7 +26,7 @@ use Multiple\Backend\Models as Models;
  *
  */
 class SetupController extends BaseController {
-    
+
     public $connection;
     private $config;
     private $user;
@@ -34,7 +34,7 @@ class SetupController extends BaseController {
     private $layout;
     private $userType;
     private $tables;
-    
+
     /**
      * Construct necessário para iniciar objetos de outras classes
      */
@@ -45,38 +45,38 @@ class SetupController extends BaseController {
         $this->userType = new Models\UserType;
         $this->tables = new \Multiple\Library\Tables;
     }
-    
+
     public function indexAction() {
-        
+
         // view/setup/index.phtml
-        
-        
+
+
     }
-    
+
     /**
      * Carrega a view para inserção dos dados de conexão com o banco de dados
      */
     public function databaseConfigAction() {
-        
+
         // views/setup/databaseConfig.phtml
-        
-        
+
+
     }
-    
+
     public function newBlogAction() {
-        
+
         // views/setup/newBlog.phtml
-        
-        
+
+
     }
-    
+
     public function installAction() {
-        
+
         // views/setup/newUser.phtml
-        
-        
+
+
     }
-    
+
     /**
      * Verifica a instalação do sistema, caso esteja tudo ok retorna a string 'ok',
      * caso contrário retorna o que falta ser configurado.
@@ -84,11 +84,11 @@ class SetupController extends BaseController {
     public function verifyInstalation(){
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
             $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
-        } 
+        }
         else {
             $return = 'file';
         }
-        
+
         return $return;
     }
     /**
@@ -98,9 +98,9 @@ class SetupController extends BaseController {
      * já esteja tudo criado
      */
     public function verifyDataBaseAction() {
-        
+
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
-            
+
             $connect = $this->connectDatabase();
             if (!$connect['connection']) {
                 $return = 'connect';
@@ -109,31 +109,31 @@ class SetupController extends BaseController {
                 $this->createTablesAction();
                 $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
             }
-        } 
+        }
         else {
             $return = 'file';
         }
-        
+
         return $return;
     }
-    
+
     /**
      * Recebe os dados do banco de dados via post;
      * Cria o arquivo de configuração do banco de dados com os arquivos recebidos
      * Conecta com o banco de dados
      */
     public function databaseSettingsAction() {
-        
+
         //Informa que a action não possui nenhuma view para exibição
         $this->view->disable();
-        
+
         //Dados do banco de dados recebidos via POST;
-        
+
         $database_name = $this->request->getPost('database_name');
         $database_user = $this->request->getPost('database_user');
         $database_passwd = $this->request->getPost('database_passwd');
         $database_host = $this->request->getPost('database_host');
-        
+
         //Cria o arquivo de conexão com o banco de dados;
         if (!file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
             !is_dir(FOLDER_PROJECT . 'apps/config/') ? mkdir(FOLDER_PROJECT . 'apps/config/') : NULL;
@@ -144,12 +144,12 @@ class SetupController extends BaseController {
                 $writing_file.= "username = {$database_user}\n";
                 $writing_file.= "password = {$database_passwd}\n";
                 $writing_file.= "name     = {$database_name}\n";
-                
+
                 fwrite($config_file, $writing_file);
                 fclose($config_file);
-                
+
                 $data = $this->connectDatabase();
-            } 
+            }
             else {
                 $data['success'] = false;
                 $data['message'] = "Impossível acessar o arquivo de configuração (pluton/apps/config/config.ini). Verifique as permissões de acesso da pasta e tente novamente!";
@@ -157,17 +157,17 @@ class SetupController extends BaseController {
             echo json_encode($data);
         }
     }
-    
+
     /**
      * Configura e executa a conexão com o banco de dados
      * @return bool true caso conecte com sucesso ou false caso ocorra algum erro
      */
     public function connectDatabase() {
         $this->view->disable();
-        
+
         //Seta a configuração do banco de dados.
         $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
-        
+
         //Cria um array com os dados do banco
         $db_conn = array(
             "host" => $this->config->database->host,
@@ -177,7 +177,7 @@ class SetupController extends BaseController {
             "charset" => 'utf8'
         );
         $db_conn["persistent"] = false;
-        
+
         //Efetua a conexão com o banco de dados
         try {
             $this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql($db_conn);
@@ -194,7 +194,7 @@ class SetupController extends BaseController {
             return $data;
         }
     }
-    
+
     /**
      * Cria as tabelas necessárias para o funcionamento do sistema
      */
@@ -208,7 +208,7 @@ class SetupController extends BaseController {
         $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
         $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
     }
-    
+
     /**
      * Cria os tipos de usuários no sistema
      * @return boolean true caso sucesso, false caso ocorra algum erro!
@@ -221,38 +221,38 @@ class SetupController extends BaseController {
         $success = !$success ? $success : $this->userType->createUserType('COLABORADOR', 'C');
         return $success;
     }
-    
+
     /**
      * Efetua a "instalação" do sistema; Criando o usuário Super-Administrador e o blog
      * @return [type] [description]
      */
     public function installPlutonAction() {
-        
+
         //Informa que a action não possui nenhuma view para exibição
         $this->view->disable();
-        
+
         $blog_name = $this->request->getPost('blog_name');
         $user_name = $this->request->getPost('user_name');
         $user_email = $this->request->getPost('user_email');
         $user_login = $this->request->getPost('user_login');
         $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
-        
+
         /**
          * Insere os dados necessários no banco de dados para utilização inicial do sistema
          */
         try {
-            
-            $success = $this->createUsersTypes();
-            $success = $success ? $data['success'] = $this->layout->createLayout() : false;
 
-            $success = $success ? $data['success'] = $this->blog->createBlog($blog_name) : false;
+            $success = $this->createUsersTypes();
+            $success = $success ? $this->layout->createLayout($this->request->getPost('blog_name')) : false;
+
+            $success = $success ? $this->blog->createBlog($blog_name) : false;
             $blog = Models\Blogs::findFirst();
 
-            $success = $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, 1, NULL, $blog->blog_id);
+            $success = $success ? $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, 1, NULL, $blog->blog_id) : false;
             $user = Models\Users::findFirst();
 
             $user_blog = new Models\UserBlog;
-            $user_blog->createUserBlog($user->user_id, $blog->blog_id);
+            $success = $success ? $user_blog->createUserBlog($user->user_id, $blog->blog_id) : false;
 
             $data['message'] = $success ? 'Sistema Instalado Com sucesso!' : 'Ocorreu um erro durante a instalação. Por favor tente novamente';
             $data['success'] = $success;
@@ -261,11 +261,11 @@ class SetupController extends BaseController {
         catch(\PDOException $e) {
             $data['success'] = false;
             $data['message'] = "Ocorreu um erro: " . $e;
-            
+
             /**
              * @todo: apagar todos os dados inseridos no banco
              */
-            $this->user->deleteAdminUser();
+
             echo json_encode($data);
         }
     }
