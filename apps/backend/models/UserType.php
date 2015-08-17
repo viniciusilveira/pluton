@@ -12,9 +12,7 @@ namespace Multiple\Backend\Models;
 
 class UserType extends \Phalcon\Mvc\Model {
 
-    public $user_type_id;
-    public $user_type_abrev;
-    public $user_type_descr;
+
     /**
      * Seta o nome da tabela referenciada pelo model
      */

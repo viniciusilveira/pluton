@@ -205,7 +205,10 @@ class SetupController extends BaseController {
         $this->connection->tableExists('user_type') ? NULL : $this->tables->createTableUserType($this->connection);
         $this->connection->tableExists('users') ? NULL : $this->tables->createTableUsers($this->connection);
         $this->connection->tableExists('users_blogs') ? NULL : $this->tables->createTableUsersBlogs($this->connection);
+        $this->connection->tableExists('categories') ? NULL : $this->tables->createTableCategories($this->connection);
+        $this->connection->tableExists('post_status') ? NULL : $this->tables->createTablePostStatus($this->connection);
         $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
+        $this->connection->tableExists('post_categorie') ? NULL : $this->tables->createTablePostCategories($this->connection);
         $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
     }
 
@@ -219,6 +222,16 @@ class SetupController extends BaseController {
         $success = !$success ? $success : $this->userType->createUserType('EDITOR', 'E');
         $success = !$success ? $success : $this->userType->createUserType('AUTOR', 'AT');
         $success = !$success ? $success : $this->userType->createUserType('COLABORADOR', 'C');
+        return $success;
+    }
+
+    public function createPostsStatus(){
+        $post_status = new Models\PostStatus;
+        $success = $post_status->createPostStatus("Publicado");
+        $success = !$success ? $success : $post_status->createPostStatus("Pendente");
+        $success = !$success ? $success : $post_status->createPostStatus("Rascunho");
+        $success = !$success ? $success : $post_status->createPostStatus("Lixo");
+
         return $success;
     }
 
@@ -243,6 +256,7 @@ class SetupController extends BaseController {
         try {
 
             $success = $this->createUsersTypes();
+            $success = $success ? $this->createPostsStatus() : false;
             $success = $success ? $this->layout->createLayout($this->request->getPost('blog_name')) : false;
 
             $success = $success ? $this->blog->createBlog($blog_name) : false;

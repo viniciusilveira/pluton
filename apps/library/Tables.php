@@ -8,7 +8,10 @@
  * - createTableUserType()
  * - createTableUsers()
  * - createTableUsersBlogs()
+ * - createTableCategories()
  * - createTablePosts()
+ * - createTablePostCategories()
+ * - createTablePostStatus()
  * - createTableSocialNetwork()
  * Classes list:
  * - Tables
@@ -74,33 +77,33 @@ class Tables {
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 500,
                     "notNull" => true
-                )),
+                )) ,
 
                 new Column("layout_subtitle", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 500,
                     "notNull" => true
-                )),
+                )) ,
                 new Column("layout_navbar", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 65535,
                     "notNull" => true
-                )),
+                )) ,
                 new Column("layout_lateralbar", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 65535,
                     "notNull" => true
-                )),
+                )) ,
                 new Column("layout_searchbar", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 65535,
                     "notNull" => true
-                )),
+                )) ,
                 new Column("layout_navigation", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 65535,
                     "notNull" => true
-                )),
+                )) ,
                 new Column("layout_footer", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 65535,
@@ -160,8 +163,6 @@ class Tables {
     /**
      * Cria a tabela user_type
      * @param  $connection Variável de conexão com o banco de dados
-     *
-     * @todo: Verificar campos necessários e implementar construção da tabela
      */
     public function createTableUserType($connection) {
         $table = array(
@@ -317,6 +318,45 @@ class Tables {
         $connection->createTable("users_blogs", NULL, $table);
     }
 
+    public function createTableCategories($connection) {
+        $table = array(
+            "columns" => array(
+                new Column("categorie_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true
+                )) ,
+                new Column("categorie_name", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 50,
+                    "NotNull" => true
+                ))
+            )
+        );
+        $connection->createTable("categories", NULL, $table);
+    }
+
+    public function createTablePostStatus($connection) {
+        $table = array(
+            "columns" => array(
+                new Column("post_status_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true
+                )) ,
+                new Column("post_status_name", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 50
+                ))
+            ) ,
+        );
+        $connection->createTable("post_status", NULL, $table);
+    }
+
     /**
      * Cria a tabela posts
      * @param $connection => Variável de conexão com o banco de dados
@@ -336,9 +376,16 @@ class Tables {
                     "size" => 10,
                     "notNull" => true
                 )) ,
-                new Column("post_date", array(
+                new Column("post_date_create", array(
                     "type" => Column::TYPE_DATETIME,
                     "notNull" => true
+                )) ,
+                new Column("post_date_posted", array(
+                    "type" => Column::TYPE_DATETIME,
+                    "notNull" => true
+                )) ,
+                 new Column("post_change_date", array(
+                    "type" => Column::TYPE_DATETIME
                 )) ,
                 new Column("post_author", array(
                     "type" => Column::TYPE_INTEGER,
@@ -348,16 +395,18 @@ class Tables {
                     "type" => Column::TYPE_INTEGER,
                     "notNull" => true
                 )) ,
-                new Column("post_change_date", array(
-                    "type" => Column::TYPE_DATETIME
-                )) ,
                 new Column("post_title", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 150,
                     "notNull" => true
                 )) ,
                 new Column("post_content", array(
-                    "type" => Column::TYPE_TEXT,
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 65535,
+                    "notNull" => true
+                )),
+                new Column("post_status_id", array(
+                    "type" => Column::TYPE_INTEGER,
                     "notNull" => true
                 ))
             ) ,
@@ -368,6 +417,9 @@ class Tables {
                 )) ,
                 new Index("post_editor", array(
                     "post_editor"
+                )),
+                new Index("post_status_id", array(
+                    "post_status_id"
                 ))
             ) ,
             "references" => array(
@@ -388,11 +440,76 @@ class Tables {
                     "referencedColumns" => array(
                         "user_id"
                     ) ,
+                )),
+                new Reference("post_status_fk_post", array(
+                    "referencedTable" => "post_status",
+                    "columns" => array(
+                        "post_status_id"
+                    ),
+                    "referencedColumns" => array(
+                        "post_status_id"
+                    )
                 ))
             )
         );
         $connection->createTable("posts", NULL, $table);
     }
+
+    public function createTablePostCategories($connection) {
+        $table = array(
+            "columns" => array(
+                new Column("post_categorie_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true
+                )) ,
+                new Column("post_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10,
+                    "notNull" => true
+                )) ,
+                new Column("categorie_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10,
+                    "notNull" => true
+                ))
+            ) ,
+            "indexes" => array(
+                new Index("post_id", array(
+                    "post_id"
+                )) ,
+                new Index("categorie_id", array(
+                    "categorie_id"
+                ))
+            ) ,
+            "references" => array(
+                new Reference("post_fk_post_categorie", array(
+                    "referencedTable" => "posts",
+                    "columns" => array(
+                        "post_id"
+                    ) ,
+                    "referencedColumns" => array(
+                        "post_id"
+                    ) ,
+                )) ,
+                new Reference("categorie_fk_post_categorie", array(
+                    "referencedTable" => "categories",
+                    "columns" => array(
+                        "categorie_id"
+                    ) ,
+                    "referencedColumns" => array(
+                        "categorie_id"
+                    ) ,
+                ))
+            )
+        );
+
+        $connection->createTable("post_categorie", NULL, $table);
+    }
+
+
 
     /**
      * Cria a tabela social_network

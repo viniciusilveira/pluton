@@ -12,9 +12,9 @@
     <?php } ?>
     <a href="#sub-posts" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-tags"></i> Posts </a>
     <div class="collapse" id="sub-posts">
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Novo</a>
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar</a>
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-remove"></i> Excluir</a>
+        <a href="#" class="list-group-item" id="new-post"><i class="glyphicon glyphicon-plus"></i> Novo</a>
+        <a href="#" class="list-group-item" id="edit-post"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+        <a href="#" class="list-group-item" id="remove-post"><i class="glyphicon glyphicon-remove"></i> Excluir</a>
     </div>
     <!-- /sub-posts -->
     <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
@@ -67,6 +67,10 @@ $("#edit-user").click(function(){
 });
 
 $("#theme-editor").click(function(){
-    window.open("<?= URL_PROJECT ?>blog/index");
+    window.open("<?= URL_PROJECT ?>appearance/index");
+});
+
+$("#new-post").click(function(){
+    $.loadPartialView('main', '<?= URL_PROJECT?>post/index');
 });
 </script>

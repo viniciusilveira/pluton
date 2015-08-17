@@ -10,7 +10,7 @@
 namespace Multiple\Backend\Controllers;
 use Multiple\Backend\Models\Layouts;
 
-class BlogController extends BaseController {
+class AppearanceController extends BaseController {
 
     public function indexAction() {
         $this->response->redirect(URL_PROJECT . '/editor?editor=true');

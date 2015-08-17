@@ -161,7 +161,7 @@ var Form = function(){
         $("#inputUser_email").val(data.user_email);
         $("#inputUser_login").val(data.user_login);
         if(data.user_img != null){
-            
+
             $("#imgPreview_img").attr('src', '<?= URL_PROJECT ?>public/img/users/' + data.user_img);
         }
         //Caso o usuário a ser editado seja o super administrador, carrega a opção no select
@@ -173,6 +173,11 @@ var Form = function(){
         $("#inputUser_type_id").val(data.user_type_id);
     }
 
+    /**
+     * Efetua a chamada para o método ActiveOrdeactiveUser do servidor que
+     * altera o status do usuário (se estiver ativo, desativa e ativa caso contrário)
+     * @return {[type]} [description]
+     */
     this.activeOrDeactiveUser = function(){
         var swal = new Swal;
         var user_id = $("#inputUser_id").val();
@@ -232,7 +237,6 @@ var data = ('<?= json_encode($user); ?>');
 
 var edit_user = ('<?= $edit_user ?>');
 if(edit_user){
-    
     form = new Form;
     form.fillForm(JSON.parse(data));
 }
@@ -251,7 +255,7 @@ $("#edit").click(function(){
 });
 
 $("#deactive").click(function(){
-    if(<?= $user['user_active'] ?>){
+    if("<?= $user['user_active'] ?>"){
         var text = 'Ao desativar o usuário o mesmo não podera mais acessar o sistema. Nenhuma informação será deletada.';
     } else{
         var text = 'Deseja realmente reativar o usuário?';
@@ -269,7 +273,7 @@ $("#deactive").click(function(){
     function(){
       form = new Form;
       form.activeOrDeactiveUser();
-});
+    });
 });
 
 /**

@@ -1,0 +1,227 @@
+<style>
+    .row{ padding-bottom: 10px;}
+</style>
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Nova Postagem
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div class="row">
+                    <form method="POST" id="newPost" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="text" name="post_title" id="inputPost_title" class="form-control" placeholder="Título" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <textarea name="post_content" id="inputPost_content" class="form-control" rows="3" required="required"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <select name="post_author" id="inputPost_author" class="form-control" required="required">
+                                        <option value="">Autor</option>
+                                        <?php foreach($authors as $author){ ?>
+                                            <option value="<?= $author->user_id ?>"><?= $author->user_name ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select name="post_status_id" id="inputPost_status_id" class="form-control" required="required">
+                                        <option value="">Status</option>
+                                        <?php foreach($post_status as $status){ ?>
+                                        <option value="<?= $status->post_status_id ?>"><?= $status->post_status_name ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="input-group date">
+                                        <input type="text" name="post_date_posted" id="inputPost_date_posted" readonly class="form-control datepicker" placeholder="Data" required="required" title="">
+                                        <span class="input-group-addon icon-date"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 ui-widget">
+                                    <input type="text" name="list_categories" id="inputList-Categories" readonly class="form-control" placeholder="Lista de Categorias" required="required" pattern="" title="">
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" id="clean-categories" class="btn btn-info">Limpar</button>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" name="categories" id="inputCategories" class="form-control" value="" required="required" pattern="" title="" placeholder="Categoria">
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" id="add-categorie" class="btn btn-info">+</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <button type="button" id="save-post" class="btn btn-primary">Salvar Postagem</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel-default -->
+</div>
+<!-- /.col-lg-8 -->
+<script>
+/**
+ * Classe responsável por manipular alterações nos inputs de categorias
+ */
+var Categories = function(){
+    //variável local utilizada para identificar se uma nova categoria foi salva corretamente
+    var save = false;
+    /**
+     * Insere uma nova categoria na lista de categorias da postagem
+     * @param {string} new_categorie   nova categoria a ser inserida
+     * @param {string} list_categories lista de categorias já inseridas
+     */
+    this.addNewCategorie = function(new_categorie, list_categories){
+        if(list_categories.indexOf(new_categorie) == -1){
+            list_categories = (list_categories == '') ? new_categorie : list_categories + ', ' + new_categorie;
+
+            saveNewCategorie(new_categorie);
+            if(save){
+                $("#inputList-Categories").val(list_categories);
+                $("#inputList-Categories").prop('title', list_categories);
+            } else{
+                swal({
+                    title: "Atenção!",
+                    text: "Ocorreu um problema ao inserir uma nova categoria. Por favor tente novamente!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+
+        } else{
+            swal({
+                title: "Atenção!",
+                text: "Categoria já inserida!",
+                type: "error",
+                confirmButtonText: "OK"
+            });
+        }
+        $("#inputCategories").val('');
+        $("#inputCategories").focus();
+    }
+
+    /**
+     * Efetua uma chamada ao servidor para inserir uma nova categoria no banco de dados
+     * @param  {string} new_categorie nova categoria a ser inserida
+     * @return {boolean}
+     */
+    var saveNewCategorie = function (new_categorie){
+        $.ajax({
+            url: '<?= URL_PROJECT ?>post/newCategorie' ,
+            data: 'categorie=' + new_categorie,
+            type: 'POST',
+            dataType: 'json',
+            async: false,
+            success: function(data){
+                save = data.success;
+            }
+        });
+    }
+}
+
+var Form = function(){
+
+    this.validateForm = function(){
+        var validate = true;
+        var array_form = $("#newPost").serializeArray();
+        $.each(array_form, function(i, field){
+            if(field.value == '' && field.name != "categories" && field.name != 'post_content'){
+                console.log(field.name);
+                swal({
+                    title: "Atenção!",
+                    text: "Preencha todos os campos antes de salvar sua Postagem",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+                validate = false;
+            }
+        });
+        if(tinyMCE.activeEditor.getContent() == ''){
+
+            swal({
+                title: "Atenção!",
+                text: "Preencha todos os campos antes de salvar sua Postagem",
+                type: "error",
+                confirmButtonText: "OK"
+            });
+            validate = false;
+        }
+        if(validate) formSubmit();
+    }
+
+    var formSubmit = function(){
+        $.ajax({
+            url:'<?= URL_PROJECT ?>post/newPost',
+            data: $("#newPost").serialize() + '&post_content=' + tinyMCE.activeEditor.getContent(),
+            dataType: 'json',
+            type: 'post',
+            success: function(){
+
+            }
+        });
+    }
+}
+
+/**
+ * Carrega o autocomplete das categorias
+ */
+$("#inputCategories").autocomplete({
+    source: <?= $categories ?>
+});
+
+/**
+ * Quando clicado no botão clean-categories limpa todas as categorias inseridas
+ * no input inputList-Categories
+ */
+$("#clean-categories").click(function(){
+    $("#inputList-Categories").val('');
+})
+
+/**
+ * Adiciona uma nova categoria a lista de categorias
+ */
+$("#add-categorie").click(function(){
+    var categories = new Categories;
+    var new_categorie = $("#inputCategories").val();
+    var list_categories = $("#inputList-Categories").val();
+    categories.addNewCategorie(new_categorie, list_categories);
+});
+
+/**
+ * Carrega o editor wysiwyg tinymce para edição de uma nova postagem
+ */
+tinymce.init({
+    selector: "#inputPost_content",
+    plugins : 'advlist autolink link image lists charmap preview textcolor media',
+    theme_advanced_buttons1_add : "media",
+    language: "pt_BR"
+});
+
+/**
+ * Carrega o datepicker
+ */
+$(".datepicker").datepicker({
+    format: 'dd/mm/yyyy',
+    language: 'pt-BR',
+    autoclose: 'enable'
+});
+
+$("#save-post").click(function(){
+    var form = new Form;
+    form.validateForm();
+});
+</script>

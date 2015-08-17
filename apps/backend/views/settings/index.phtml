@@ -162,7 +162,11 @@
             <!-- /.row -->
             <div class="row">
                 <div id="main">
-                    <?= $this->partial('settings/main'); ?>
+                    <?php if($_REQUEST['main'] == 'newPost'){
+                        $this->partial('post/index');
+                    }else{
+                        $this->partial('settings/main');
+                    }?>
                 </div>
                 <?= $this->partial('settings/notificationPanel'); ?>
                 <!-- /.main -->

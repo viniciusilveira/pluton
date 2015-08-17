@@ -20,6 +20,8 @@ class IndexController extends \Phalcon\Mvc\Controller {
      * @return [type] [description]
      */
     public function indexAction() {
+        $this->session->start();
+
         $blog = Blogs::findFirst();
         $layout = Layouts::findFirst();
         //var_dump($layout); die();

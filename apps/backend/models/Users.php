@@ -20,9 +20,9 @@ use \Phalcon\Mvc\Model\Resultset;
  * @package Multiple\Backend\Models
  */
 class Users extends \Phalcon\Mvc\Model {
-    
+
     public function initialize() {
-        
+
         $this->hasOne("user_type_id", "Multiple\Backend\Models\UserType", "user_type_id", array(
             'alias' => "user_type"
         ));
@@ -30,15 +30,20 @@ class Users extends \Phalcon\Mvc\Model {
             'alias' => 'blogs'
         ));
     }
-    
+
     /**
      * Verifica se existe usuários criado no banco de dados
      * @return bool true caso exista, false caso não exista nenhum
      */
     public function verifyUsersExistAction() {
-        return $this->count() > 0 ? true : false;
+        /**
+         * @todo: verificar outra maneira para contar os usuários,
+         * pois dá fatal error quando a tabela não existe.
+         */
+        $total_users = $this->count();
+        return $total_users > 0 ? true : false;
     }
-    
+
     /**
      * Cria um novo usuário no banco de dados
      * @param  string $user_name   Nome do Usuário
@@ -60,12 +65,12 @@ class Users extends \Phalcon\Mvc\Model {
         $user->user_active = 1;
         if (!empty($user_blog)) $user->user_blog = $user_blog;
         if (!empty($user_img)) $user->user_img = $user_img;
-        
+
         $success = $user->save();
-        
+
         return $success;
     }
-    
+
 
     /**
      * Atualiza os dados de um usuário
@@ -85,13 +90,13 @@ class Users extends \Phalcon\Mvc\Model {
         $user->user_email = $user_email;
         $user->user_login = $user_login;
         $user->user_type_id = intval($user_type_id);
-        
+
         if (!empty($user_passwd)) $user->user_passwd = $user_passwd;
         if (!empty($user_blog)) $user->user_blog = $user_blog;
         if (!empty($user_img)) $user->user_img = $user_img;
-        
+
         $success = $user->save();
-        
+
         return $success;
     }
 
@@ -108,17 +113,17 @@ class Users extends \Phalcon\Mvc\Model {
      * @return objeto Users   objeto do tipo Users contendo os dados do usuário encontrado no banco de dados
      */
     public function getUser($user_login) {
-        
+
         $user = Users::query()
             ->where("user_login = :user_login:")
             ->orWhere("user_email = :user_login:")
             ->bind(array(
             "user_login" => $user_login
         ))->execute();
-        
+
         return $user->getFirst();
     }
-    
+
     /**
      * Verifica se existe usuário cadastrado com o login ou senha informados
      * @param  string $user_login
