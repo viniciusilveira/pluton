@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-group date">
-                                        <input type="text" name="post_date_posted" id="inputPost_date_posted" readonly class="form-control datepicker" placeholder="Data" required="required" title="">
+                                        <input type="text" name="post_date_posted" id="inputPost_date_posted" readonly class="form-control datepicker" placeholder="Data" required="required">
                                         <span class="input-group-addon icon-date"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -169,8 +169,22 @@ var Form = function(){
             data: $("#newPost").serialize() + '&post_content=' + tinyMCE.activeEditor.getContent(),
             dataType: 'json',
             type: 'post',
-            success: function(){
-
+            success: function(data){
+                if(data.success){
+                    wal({
+                        title: "Sucesso!",
+                        text: "Postagem salva com sucesso!",
+                        type: "succsss",
+                        confirmButtonText: "OK"
+                    });
+                } else{
+                    swal({
+                        title: "Atenção!",
+                        text: "Ocorreu um erro ao salvar seu Post. Por favor tente novamente.",
+                        type: "error",
+                        confirmButtonText: "OK"
+                    });
+                }
             }
         });
     }
@@ -205,10 +219,22 @@ $("#add-categorie").click(function(){
  * Carrega o editor wysiwyg tinymce para edição de uma nova postagem
  */
 tinymce.init({
-    selector: "#inputPost_content",
-    plugins : 'advlist autolink link image lists charmap preview textcolor media',
-    theme_advanced_buttons1_add : "media",
-    language: "pt_BR"
+    selector: "textarea",
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ],
+    language: 'pt_BR'
 });
 
 /**

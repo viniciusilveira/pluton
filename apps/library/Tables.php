@@ -381,10 +381,10 @@ class Tables {
                     "notNull" => true
                 )) ,
                 new Column("post_date_posted", array(
-                    "type" => Column::TYPE_DATETIME,
+                    "type" => Column::TYPE_DATE,
                     "notNull" => true
                 )) ,
-                 new Column("post_change_date", array(
+                 new Column("post_date_changed", array(
                     "type" => Column::TYPE_DATETIME
                 )) ,
                 new Column("post_author", array(

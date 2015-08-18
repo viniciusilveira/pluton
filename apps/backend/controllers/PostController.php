@@ -4,6 +4,7 @@
  * Function list:
  * - indexAction()
  * - newPostAction()
+ * - insertCategoriesPost()
  * - newCategorieAction()
  * - editPostAction()
  * - deletePostAction()
@@ -31,18 +32,22 @@ class PostController extends BaseController {
      */
     public function indexAction() {
         $this->session->start();
+        if ($this->session->get('user_id') != NULL) {
 
-        //busca o usuário logado para exibir como author
-        $authors = Users::findByUser_id($this->session->get('user_id'));
-        $obj_categories = Categories::getCategories();
-        foreach ($obj_categories as $categorie) {
-            $array_categories[] = $categorie->categorie_name;
+            //busca o usuário logado para exibir como author
+            $authors = Users::findByUser_id($this->session->get('user_id'));
+            $obj_categories = Categories::getCategories();
+            foreach ($obj_categories as $categorie) {
+                $array_categories[] = $categorie->categorie_name;
+            }
+            $vars['authors'] = $authors;
+            $vars['categories'] = json_encode($array_categories);
+            $vars['post_status'] = PostStatus::getPostStatus();
+            $this->view->setVars($vars);
+            $this->view->render("post", "index");
+        } else{
+            $this->response->redirect(URL_PROJECT . 'settings');
         }
-        $vars['authors'] = $authors;
-        $vars['categories'] = json_encode($array_categories);
-        $vars['post_status'] = PostStatus::getPostStatus();
-        $this->view->setVars($vars);
-        $this->view->render("post", "index");
     }
 
     /**
@@ -50,20 +55,22 @@ class PostController extends BaseController {
      * @return boolean true caso a postagem tenha sido salva ou false caso contrário
      */
     public function newPostAction() {
-        $title = $this->request->getPost('post_title');
-        $content = $this->request->getPost('post_content');
-        $author = $this->request->getPost('post_author');
-        $editor = $this->request->getPost('post_author');
-        $status = $this->request->getPost('post_status_id');
-        $date_create = date('d/m/y');
-        $date_changed = date('d/m/y');
-        $date_posted = $this->request->getPost('post_date_posted');
-        $categories = implode(", ", $this->request->getPost('list_categories'));
-        //@todo: Continuar daqui
-        $success = Posts::createNewPost($title, $content, $author, $editor, $status, $date_create, $date_posted, $categories);
-        if($success) $this->insertCategoriesPost($categories, Posts::lastInsertId());
+        $this->view->disable();
 
-        return $success;
+        $post_date_create = date("Y-m-d H:i:s");
+        $post_date_posted = $this->dateFormat($this->request->getPost('post_date_posted') , 1);
+        $post_date_changed = date("Y-m-d H:i:s");
+        $post_author = $this->request->getPost('post_author');
+        $post_editor = $this->request->getPost('post_author');
+        $post_title = $this->request->getPost('post_title');
+        $post_content = addslashes(htmlentities($this->request->getPost('post_content')));
+        $post_status_id = $this->request->getPost('post_status_id');
+
+        $categories = explode(", ", $this->request->getPost('list_categories'));
+        $post_id = Posts::createNewPost($post_date_create, $post_date_posted, $post_date_changed, $post_author, $post_editor, $post_title, $post_content, $post_status_id);
+        if ($post_id > 0) $data['success'] = $this->insertCategoriesPost($categories, $post_id);
+
+        echo json_encode($data);
     }
 
     /**
@@ -72,11 +79,13 @@ class PostController extends BaseController {
      * @param  int $id_post    id do post
      * @return boolean             true caso salve todos os ids ou false caso ocorra um erro
      */
-    public function insertCategoriesPost($categories, $id_post){
-        $post_categorie = new PostCategorie();
-        foreach($categories as $categorie){
+    public function insertCategoriesPost($categories, $post_id) {
+        foreach ($categories as $categorie) {
             $cat = Categories::findFirstByCategorie_name($categorie);
+            $success = PostCategorie::createPostCategorie($post_id, $cat->categorie_id);
+            if (!$success) break;
         }
+        return $success;
     }
 
     /**

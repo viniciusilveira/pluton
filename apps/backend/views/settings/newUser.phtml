@@ -167,6 +167,7 @@ var Form = function(){
         //Caso o usuário a ser editado seja o super administrador, carrega a opção no select
         //e desabilita a edição do mesmo.
         if(data.user_type_id == 1){
+            $("#deactive").attr("disabled", true);
             $('#inputUser_type_id').attr("disabled", true);
             $("#inputUser_type_id").append(new Option("SUPER ADMINISTRADOR", "1"));
         }
