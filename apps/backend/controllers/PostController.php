@@ -51,6 +51,26 @@ class PostController extends BaseController {
     }
 
     /**
+     * Carrega a view lasPosts filtrando os dados conforme solicitado
+     * @param  string $filter tipo de filtro
+     * @param  [type] $value  valor a ser filtrado; tipo pode varia
+     */
+    public function listPosts($filter = 'date', $value = NULL){
+        $this->session->start();
+
+        if($this->session->get('user_id') != NULL){
+            $filter = !empty($this->request->getPost("filter")) ? $this->request->getPost("filter") : 'date';
+            $value = !empty($this->request->getPost("value")) ? $this->request->getPost("value") : NULL;
+
+            $vars['posts'] = $this->getPosts($filter, $value);
+            $this->view->setVars($vars);
+            $this->view->render("post", "lastPosts");
+        } else{
+            $this->response->redirect(URL_PROJECT . 'settings');
+        }
+    }
+
+    /**
      * Cria uma nova postagem utilizando os dados recebidos via Post
      * @return boolean true caso a postagem tenha sido salva ou false caso contrário
      */
@@ -115,12 +135,7 @@ class PostController extends BaseController {
     public function deletePostAction() {
     }
 
-    public function getPosts() {
-    }
-
-    public function publishPostAction() {
-    }
-
-    public function unpublishPost() {
+    public function getPosts($filter, $value) {
+         return Posts::getPosts($filter, $value);
     }
 }

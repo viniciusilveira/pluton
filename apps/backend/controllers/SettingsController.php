@@ -7,25 +7,29 @@
  * - newUserAction()
  * - addNewUserAction()
  * - listUsersAction()
- * - updateUser()
- * - deleteUserAction()
+ * - updateUserAction()
+ * - ActiveOrdeactiveUserAction()
  * - uploadImageAction()
+ * - getImgName()
  * Classes list:
  * - SettingsController extends BaseController
  */
 
 namespace Multiple\Backend\Controllers;
 
-use Multiple\Backend\Models\UserType, Multiple\Backend\Models\Users, Multiple\Backend\Models\UserBlog;
+use Multiple\Backend\Models\UserType;
+use Multiple\Backend\Models\Users;
+use Multiple\Backend\Models\UserBlog;
+use Multiple\Backend\Models\Posts;;
 
 class SettingsController extends BaseController {
-    
+
     private $users;
-    
+
     public function onConstruct() {
         $this->users = new Users;
     }
-    
+
     /**
      * Carrega a tela principal do backend
      *  * @todo:
@@ -42,30 +46,37 @@ class SettingsController extends BaseController {
      *
      * Verificar o que mais é necessário para index
      */
-    
+
     public function indexAction() {
-        
+
         //Inicia a sessão
         $this->session->start();
-        
+
         if ($this->session->get("user_id") != NULL) {
-            
+
             $user = $this->users->getUser($this->session->get("user_login"));
-            
+
+            if ($user->user_type_id == 4 || $user->user_type_id == 5) {
+                $posts = Posts::getPosts('users', $user->user_id);
+            } else{
+                $posts = Posts::getPosts();
+            }
+
             $user_name = explode(" ", $user->user_name);
-            
+
             //Array para envio de dados para a view a ser carregada
             $vars['user'] = $user_name[0];
             $vars['user_type_id'] = $user->user_type_id;
             $vars['user_img'] = $user->user_img;
+            $vars['posts'] = $posts;
             $this->view->setVars($vars);
             $this->view->render('settings', 'index');
-        } 
+        }
         else {
             $this->view->pick('login/index');
         }
     }
-    
+
     /**
      * Carrega o formulário de cadastro de usuário na tela
      * @return [type] [description]
@@ -81,7 +92,7 @@ class SettingsController extends BaseController {
             $vars['user']['user_img'] = $result->user_img;
             $vars['user']['user_active'] = $result->user_active;
             $vars['edit_user'] = true;
-        } 
+        }
         else {
             $vars['edit_user'] = false;
         }
@@ -90,7 +101,7 @@ class SettingsController extends BaseController {
         $this->view->setVars($vars);
         $this->view->render('settings', 'newUser');
     }
-    
+
     /**
      * [addNewUserAction description]
      */
@@ -101,9 +112,9 @@ class SettingsController extends BaseController {
         $user_login = $this->request->getPost('user_login');
         $user_type_id = $this->request->getPost('user_type_id');
         $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
-        
+
         if (!$this->users->userExists($user_name, $user_login, $user_email)) {
-            
+
             //Verifica se existe arquivo para upload, caso exista efetua o upload
             if ($this->request->hasFiles() == true) {
                 foreach ($this->request->getUploadedFiles() as $file) {
@@ -112,25 +123,25 @@ class SettingsController extends BaseController {
                     }
                 }
             }
-            
+
             if (is_array($upload_img)) {
                 $data = $upload_img;
                 $data['success'] = false;
-            } 
+            }
             else {
                 $data['success'] = Users::createUser($user_name, $user_email, $user_login, $user_passwd, $user_type_id, $upload_img, 1);
                 $user = Users::findFirstByUser_login($user_login);
                 $data['success'] = UserBlog::createUserBlog($user->user_id, 1);
             }
-        } 
+        }
         else {
             $data['message'] = "Login ou senha informados já existe! Por favor verifique os dados informados e tente novamente!";
             $data['success'] = false;
         }
-        
+
         echo json_encode($data);
     }
-    
+
     /**
      * Busca todos os usuários do sistema e lista na tela
      */
@@ -140,13 +151,14 @@ class SettingsController extends BaseController {
         $this->view->setVars($vars);
         $this->view->render("settings", "listUsers");
     }
-    
+
     public function updateUserAction() {
         $this->view->disable();
 
-        $user_id =  $this->request->getPost('user_id');
+        $user_id = $this->request->getPost('user_id');
+
         //var_dump($user); die();
-        
+
         //Verifica se existe arquivo para upload, caso exista efetua o upload
         if ($this->request->hasFiles() == true) {
             foreach ($this->request->getUploadedFiles() as $file) {
@@ -155,13 +167,15 @@ class SettingsController extends BaseController {
                 }
             }
         }
-        
+
         if (is_array($upload_img)) {
             $data = $upload_img;
             $data['success'] = false;
-        } else {
+        }
+        else {
             try {
                 $user->user_img = $upload_img;
+
                 //Altera os valores recebidos pela consulta para os valores recebidos via POST.
                 $user_name = $this->request->getPost('user_name');
                 $user_login = $this->request->getPost('user_login');
@@ -170,14 +184,15 @@ class SettingsController extends BaseController {
                 if ($this->request->getPost('user_passwd') != NULL) $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
                 $data['success'] = Users::updateUser($user_id, $user_name, $user_email, $user_login, $user_passwd, $user_type_id, $upload_img, 1);
                 $data['message'] = $data['success'] ? NULL : "Ocorreu um erro ao salvar os dados. Por favor tente novamente";
-            }catch(PDO\Exception $e) {
+            }
+            catch(PDO\Exception $e) {
                 $data['success'] = false;
                 $data['message'] = 'Ocorreu um erro ao salvar os dados. Por favor tente novamente';
             }
         }
         echo json_encode($data);
     }
-    
+
     /**
      * [deleteUserAction description]
      * @return [type] [description]
@@ -190,7 +205,7 @@ class SettingsController extends BaseController {
         $data['message'] = 'Usuário Atualizado!';
         echo json_encode($data);
     }
-    
+
     /**
      * @todo: Action para upload de imagens para o servidor
      * @param  file $file   imagem
@@ -200,38 +215,39 @@ class SettingsController extends BaseController {
      * @return string       Nome da imagem ou erro caso ocorroa algum.
      */
     public function uploadImageAction($file, $width, $heigth, $size, $name_img = NULL) {
-        
+
         // Pega as dimensões da imagem
         $dimensions = getimagesize($file->getTempName());
-        
+
         // Verifica se o arquivo é uma imagem
         if (!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $file->getRealType())) {
             $data['message'] = "O Arquivo inserido não parece ser uma imagem!";
-        } 
+        }
         elseif ($dimensions[0] > $width) {
-            
+
             // Verifica se a largura da imagem é maior que a largura permitida
             $data['message'] = "A largura da imagem não deve ultrapassar " . $width . " pixels!";
-        } 
+        }
         elseif ($dimensions[1] > $heigth) {
-            
+
             // Verifica se a altura da imagem é maior que a altura permitida
             $data['message'] = "Altura da imagem não deve ultrapassar " . $heigth . " pixels!";
-        } 
+        }
         elseif ($file->getSize() > $size) {
-            
+
             // Verifica se o tamanho da imagem é maior que o tamanho permitido
             $data['message'] = "A imagem deve ter no máximo " . $size / 1024 . "MB!";
-        } 
+        }
         else {
-            
+
             //Caso não haja erros faz o upload da imagem e salva a mesma no servidor
-            if($name_img == NULL){
-                $name_img = $this->getImgName()  . "." . $file->getExtension();
+            if ($name_img == NULL) {
+                $name_img = $this->getImgName() . "." . $file->getExtension();
             }
+
             //Verifica se a pasta public/img/users existe, se não existir, cria.
             if (!file_exists(FOLDER_PROJECT . 'public/img/users')) mkdir(FOLDER_PROJECT . 'public/img/users');
-            
+
             $path_img = FOLDER_PROJECT . 'public/img/users/' . $name_img;
             $file->moveTo($path_img);
             return $name_img;
@@ -239,12 +255,13 @@ class SettingsController extends BaseController {
         return $data;
     }
 
-    public function getImgName(){
+    public function getImgName() {
         $img_name = $this->uid();
         $result = Users::findFirstByuser_img($img_name);
-        if(empty($result)){
+        if (empty($result)) {
             return $img_name;
-        } else{
+        }
+        else {
             $this->getImgName();
         }
     }

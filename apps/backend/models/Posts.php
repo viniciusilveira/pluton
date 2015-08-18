@@ -4,6 +4,7 @@
  * Function list:
  * - onConstruct()
  * - createNewPost()
+ * - getPosts()
  * - editPost()
  * - publishPost()
  * - unpublishPost()
@@ -43,11 +44,84 @@ class Posts extends \Phalcon\Mvc\Model {
         $post->post_title = $post_title;
         $post->post_content = $post_content;
         $post->post_status_id = $post_status_id;
-        if($post->save()){
+        if ($post->save()) {
             return $post->post_id;
-        } else{
+        }
+        else {
             return -1;
         }
+    }
+
+    /**
+     * Busca usuários pelo filtro informado
+     * @param  string $filter tipo do filtro; Pode ser users, categories, date e status
+     * @param  [type] $value  valor para o filtro; o Tipo pode variar dependendo do filtro para busca
+     * @return [type]         [description]
+     */
+    public function getPosts($filter, $value, $initial_date = NULL) {
+        switch ($filter) {
+            case 'users':
+                $conditions = "post_user_id = :user:";
+                $bind = array(
+                    "user" => $value
+                );
+            break;
+            case 'categories':
+                $conditions = "post_categorie_id = :categorie:";
+                $bind = array(
+                    "categorie" => $value
+                );
+            break;
+            case 'date':
+                if ($value != NULL) {
+                    $conditions = "post_date_posted >= :date:";
+                    $bind = array(
+                        "date" => $value
+                    );
+                }
+                else {
+                    $order = "post_date_posted DESC";
+                }
+            break;
+            case 'status':
+                $conditions = "post_status_id = :status:";
+                $bind = array(
+                    "status" => $value
+                );
+            break;
+            default:
+                $conditions = NULL;
+                $bind = NULL;
+                $order = NULL;
+            break;
+        }
+        /**
+         * @todo: verificar maneira de tratar para todas as possibilidades
+         *     de informação de dados;
+         */
+        if ($initial_date != NULL) {
+            $conditions.= " AND post_date_posted >= :initial_date:";
+            $bind['initial_date'] = $initial_date;
+        }
+        if (!empty($order)) {
+            $post = Posts::find(array(
+                "conditions" => $conditions,
+                "order" => "post_date_posted DESC",
+                "limit" => 15,
+                "bind" => $bind,
+            ));
+        } elseif(empty($conditions)){
+            $post = Post::find(array(
+                "order" => "post_date_posted DESC",
+                "limit" => 15
+            ));
+        } else {
+            $post = Posts::find(array(
+                "order" => $order,
+                "limit" => 15
+            ));
+        }
+        return $post;
     }
 
     public function editPost() {
