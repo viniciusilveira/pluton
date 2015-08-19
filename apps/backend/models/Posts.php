@@ -58,19 +58,23 @@ class Posts extends \Phalcon\Mvc\Model {
      * @param  [type] $value  valor para o filtro; o Tipo pode variar dependendo do filtro para busca
      * @return [type]         [description]
      */
-    public function getPosts($filter, $value, $initial_date = NULL) {
+    public function getPosts($filter = NULL, $value = NULL, $initial_date = NULL) {
+
+        //Verifica qual o filtro da consulta e carrega as opções necessárias
         switch ($filter) {
             case 'users':
                 $conditions = "post_user_id = :user:";
                 $bind = array(
                     "user" => $value
                 );
+                $order = "post_date_posted DESC";
             break;
             case 'categories':
                 $conditions = "post_categorie_id = :categorie:";
                 $bind = array(
                     "categorie" => $value
                 );
+                $order = "post_date_posted DESC";
             break;
             case 'date':
                 if ($value != NULL) {
@@ -78,6 +82,7 @@ class Posts extends \Phalcon\Mvc\Model {
                     $bind = array(
                         "date" => $value
                     );
+                    $order = "post_date_posted DESC";
                 }
                 else {
                     $order = "post_date_posted DESC";
@@ -88,6 +93,7 @@ class Posts extends \Phalcon\Mvc\Model {
                 $bind = array(
                     "status" => $value
                 );
+                $order = "post_date_posted DESC";
             break;
             default:
                 $conditions = NULL;
@@ -95,32 +101,18 @@ class Posts extends \Phalcon\Mvc\Model {
                 $order = NULL;
             break;
         }
-        /**
-         * @todo: verificar maneira de tratar para todas as possibilidades
-         *     de informação de dados;
-         */
+
         if ($initial_date != NULL) {
-            $conditions.= " AND post_date_posted >= :initial_date:";
-            $bind['initial_date'] = $initial_date;
+            $conditions = empty($conditions) ? " post_date_posted >= :initial_date:" : " AND post_date_posted >= :initial_date:";
         }
-        if (!empty($order)) {
-            $post = Posts::find(array(
-                "conditions" => $conditions,
-                "order" => "post_date_posted DESC",
-                "limit" => 15,
-                "bind" => $bind,
-            ));
-        } elseif(empty($conditions)){
-            $post = Post::find(array(
-                "order" => "post_date_posted DESC",
-                "limit" => 15
-            ));
-        } else {
-            $post = Posts::find(array(
-                "order" => $order,
-                "limit" => 15
-            ));
-        }
+
+        $post = Posts::find(array(
+            "conditions" => $conditions,
+            "order" => $order,
+            "limit" => 15,
+            "bind" => $bind,
+        ));
+
         return $post;
     }
 

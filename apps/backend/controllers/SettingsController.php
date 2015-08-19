@@ -20,7 +20,7 @@ namespace Multiple\Backend\Controllers;
 use Multiple\Backend\Models\UserType;
 use Multiple\Backend\Models\Users;
 use Multiple\Backend\Models\UserBlog;
-use Multiple\Backend\Models\Posts;;
+use Multiple\Backend\Models\Posts;
 
 class SettingsController extends BaseController {
 
@@ -69,6 +69,7 @@ class SettingsController extends BaseController {
             $vars['user_type_id'] = $user->user_type_id;
             $vars['user_img'] = $user->user_img;
             $vars['posts'] = $posts;
+
             $this->view->setVars($vars);
             $this->view->render('settings', 'index');
         }

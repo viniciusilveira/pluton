@@ -3,14 +3,12 @@
  * Class and Function List:
  * Function list:
  * - indexAction()
+ * - listPosts()
  * - newPostAction()
  * - insertCategoriesPost()
  * - newCategorieAction()
  * - editPostAction()
  * - deletePostAction()
- * - getPosts()
- * - publishPostAction()
- * - unpublishPost()
  * Classes list:
  * - PostController extends BaseController
  */
@@ -45,7 +43,8 @@ class PostController extends BaseController {
             $vars['post_status'] = PostStatus::getPostStatus();
             $this->view->setVars($vars);
             $this->view->render("post", "index");
-        } else{
+        }
+        else {
             $this->response->redirect(URL_PROJECT . 'settings');
         }
     }
@@ -55,17 +54,19 @@ class PostController extends BaseController {
      * @param  string $filter tipo de filtro
      * @param  [type] $value  valor a ser filtrado; tipo pode varia
      */
-    public function listPosts($filter = 'date', $value = NULL){
+    public function listPosts($filter = 'date', $value = NULL) {
         $this->session->start();
 
-        if($this->session->get('user_id') != NULL){
+        if ($this->session->get('user_id') != NULL) {
             $filter = !empty($this->request->getPost("filter")) ? $this->request->getPost("filter") : 'date';
             $value = !empty($this->request->getPost("value")) ? $this->request->getPost("value") : NULL;
 
             $vars['posts'] = $this->getPosts($filter, $value);
+
             $this->view->setVars($vars);
             $this->view->render("post", "lastPosts");
-        } else{
+        }
+        else {
             $this->response->redirect(URL_PROJECT . 'settings');
         }
     }
@@ -133,9 +134,5 @@ class PostController extends BaseController {
     }
 
     public function deletePostAction() {
-    }
-
-    public function getPosts($filter, $value) {
-         return Posts::getPosts($filter, $value);
     }
 }
