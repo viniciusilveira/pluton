@@ -26,16 +26,17 @@
                                 <div class="col-sm-4">
                                     <select name="post_author" id="inputPost_author" class="form-control" required="required">
                                         <option value="">Autor</option>
-                                        <?php foreach($authors as $author){ ?>
-                                            <option value="<?= $author->user_id ?>"><?= $author->user_name ?></option>
-                                        <?php } ?>
+                                        <option value="<?= $author->user_id ?>"><?= $author->user_name ?></option>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
                                     <select name="post_status_id" id="inputPost_status_id" class="form-control" required="required">
                                         <option value="">Status</option>
                                         <?php foreach($post_status as $status){ ?>
-                                        <option value="<?= $status->post_status_id ?>"><?= $status->post_status_name ?></option>
+                                            <?php if($status->post_status_id != 1 || $author->user_type_id != 5 ){ ?>
+                                                <option value="<?= $status->post_status_id ?>"><?= $status->post_status_name ?></option>
+                                            }
+                                            <?php }?>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -171,10 +172,10 @@ var Form = function(){
             type: 'post',
             success: function(data){
                 if(data.success){
-                    wal({
+                    swal({
                         title: "Sucesso!",
                         text: "Postagem salva com sucesso!",
-                        type: "succsss",
+                        type: "success",
                         confirmButtonText: "OK"
                     });
                 } else{

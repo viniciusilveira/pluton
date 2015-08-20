@@ -56,19 +56,13 @@ class SettingsController extends BaseController {
 
             $user = $this->users->getUser($this->session->get("user_login"));
 
-            if ($user->user_type_id == 4 || $user->user_type_id == 5) {
-                $posts = Posts::getPosts('users', $user->user_id);
-            } else{
-                $posts = Posts::getPosts();
-            }
-
             $user_name = explode(" ", $user->user_name);
 
             //Array para envio de dados para a view a ser carregada
             $vars['user'] = $user_name[0];
             $vars['user_type_id'] = $user->user_type_id;
             $vars['user_img'] = $user->user_img;
-            $vars['posts'] = $posts;
+            $vars['posts'] = Posts::getPosts('status', 1);
 
             $this->view->setVars($vars);
             $this->view->render('settings', 'index');
@@ -266,4 +260,5 @@ class SettingsController extends BaseController {
             $this->getImgName();
         }
     }
+
 }

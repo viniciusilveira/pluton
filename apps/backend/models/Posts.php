@@ -16,9 +16,15 @@ namespace Multiple\Backend\Models;
 class Posts extends \Phalcon\Mvc\Model {
 
     public function onConstruct() {
-        $this->hasOne("categorie_id", "Multiple\Backend\Models\Categories", "categorie_id");
-        $this->hasOne("user_id", "Multiple\Backend\Models\Users", "post_author");
-        $this->hasOne("user_id", "Multiple\Backend\Models\Users", "post_editor");
+        $this->hasOne("post_author", "Multiple\Backend\Models\Users", "user_id", array(
+            'alias' => 'author'
+        ));
+        $this->hasOne("post_editor", "Multiple\Backend\Models\Users", "user_id", array(
+            'alias' => 'editor'
+        ));
+        $this->hasOne("post_status_id", "Multiple\Backend\Models\PostStatus", "post_status_id", array(
+            'alias' => 'post_status'
+        ));
     }
 
     /**
@@ -63,16 +69,16 @@ class Posts extends \Phalcon\Mvc\Model {
         //Verifica qual o filtro da consulta e carrega as opções necessárias
         switch ($filter) {
             case 'users':
-                $conditions = "post_user_id = :user:";
+                $conditions = "post_author = :user:";
                 $bind = array(
-                    "user" => $value
+                    "user" => intval($value)
                 );
                 $order = "post_date_posted DESC";
             break;
             case 'categories':
                 $conditions = "post_categorie_id = :categorie:";
                 $bind = array(
-                    "categorie" => $value
+                    "categorie" => intval($value)
                 );
                 $order = "post_date_posted DESC";
             break;
@@ -91,7 +97,7 @@ class Posts extends \Phalcon\Mvc\Model {
             case 'status':
                 $conditions = "post_status_id = :status:";
                 $bind = array(
-                    "status" => $value
+                    "status" => intval($value)
                 );
                 $order = "post_date_posted DESC";
             break;
@@ -106,17 +112,17 @@ class Posts extends \Phalcon\Mvc\Model {
             $conditions = empty($conditions) ? " post_date_posted >= :initial_date:" : " AND post_date_posted >= :initial_date:";
         }
 
-        $post = Posts::find(array(
+        $posts = Posts::find(array(
             "conditions" => $conditions,
             "order" => $order,
             "limit" => 15,
             "bind" => $bind,
         ));
 
-        return $post;
+        return $posts;
     }
 
-    public function editPost() {
+    public function editPostAction() {
     }
 
     public function publishPost() {

@@ -33,12 +33,12 @@ class PostController extends BaseController {
         if ($this->session->get('user_id') != NULL) {
 
             //busca o usuário logado para exibir como author
-            $authors = Users::findByUser_id($this->session->get('user_id'));
+            $author = Users::findFirstByUser_id($this->session->get('user_id'));
             $obj_categories = Categories::getCategories();
             foreach ($obj_categories as $categorie) {
                 $array_categories[] = $categorie->categorie_name;
             }
-            $vars['authors'] = $authors;
+            $vars['author'] = $author;
             $vars['categories'] = json_encode($array_categories);
             $vars['post_status'] = PostStatus::getPostStatus();
             $this->view->setVars($vars);
@@ -54,17 +54,25 @@ class PostController extends BaseController {
      * @param  string $filter tipo de filtro
      * @param  [type] $value  valor a ser filtrado; tipo pode varia
      */
-    public function listPosts($filter = 'date', $value = NULL) {
+    public function listPostsAction() {
         $this->session->start();
 
         if ($this->session->get('user_id') != NULL) {
-            $filter = !empty($this->request->getPost("filter")) ? $this->request->getPost("filter") : 'date';
-            $value = !empty($this->request->getPost("value")) ? $this->request->getPost("value") : NULL;
+            $user = Users::findFirstByUser_id($this->session->get('user_id'));
+            if($user->user_type_id != 4 && $user->user_type_id != 5){
+                $posts = Posts::getPosts();
+            } else{
+                $posts = Posts::getPosts('users', $user->user_id);
+            }
 
-            $vars['posts'] = $this->getPosts($filter, $value);
-
+            foreach($posts as $post){
+                $post_categories[$post->post_id] = PostCategorie::findByPost_id($post->post_id);
+            }
+            $this->printArray($post_categories); die();
+            $vars['posts'] = $posts;
+            $vars['post_categories'] = $post_categories;
             $this->view->setVars($vars);
-            $this->view->render("post", "lastPosts");
+            $this->view->render("post", "listPosts");
         }
         else {
             $this->response->redirect(URL_PROJECT . 'settings');
@@ -100,7 +108,7 @@ class PostController extends BaseController {
      * @param  int $id_post    id do post
      * @return boolean             true caso salve todos os ids ou false caso ocorra um erro
      */
-    public function insertCategoriesPost($categories, $post_id) {
+    private function insertCategoriesPost($categories, $post_id) {
         foreach ($categories as $categorie) {
             $cat = Categories::findFirstByCategorie_name($categorie);
             $success = PostCategorie::createPostCategorie($post_id, $cat->categorie_id);
@@ -131,6 +139,7 @@ class PostController extends BaseController {
     }
 
     public function editPostAction() {
+
     }
 
     public function deletePostAction() {
