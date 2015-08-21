@@ -31,12 +31,7 @@
                                     <td><?= $post->post_id ?></td>
                                     <td><?= $post->post_title ?></td>
                                     <td><?= $post->author->user_name ?></td>
-                                    <td>
-                                        <?php
-                                        foreach($post_categories[$post->post_id] as $post_categorie){
-                                            echo $post_categorie->categories->name_categorie . ", ";
-                                        } ?>
-                                    </td>
+                                    <td><?= $categories[$post->post_id] ?></td>
                                     <td><?= $post->post_date_create ?></td>
                                     <td><?= $post->post_status->post_status_name ?></td>
                                 </tr>
@@ -58,10 +53,3 @@
 <!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
-<script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-</script>

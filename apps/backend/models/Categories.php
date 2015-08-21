@@ -14,9 +14,7 @@ use Phalcon\Mvc\Model\Resultset;
 
 class Categories extends \Phalcon\Mvc\Model {
     public function initialize() {
-        $this->hasMany("categorie_id", "Multiple\Backend\Models\PostCategorie", "categorie_id", array(
-            'alias' => 'post_categorie'
-        ));
+
     }
 
     public function newCategorie($categorie_name) {

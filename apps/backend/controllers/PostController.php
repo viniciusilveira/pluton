@@ -3,10 +3,11 @@
  * Class and Function List:
  * Function list:
  * - indexAction()
- * - listPosts()
+ * - listPostsAction()
  * - newPostAction()
  * - insertCategoriesPost()
  * - newCategorieAction()
+ * - getCategoriesByPost()
  * - editPostAction()
  * - deletePostAction()
  * Classes list:
@@ -59,18 +60,18 @@ class PostController extends BaseController {
 
         if ($this->session->get('user_id') != NULL) {
             $user = Users::findFirstByUser_id($this->session->get('user_id'));
-            if($user->user_type_id != 4 && $user->user_type_id != 5){
-                $posts = Posts::getPosts();
-            } else{
-                $posts = Posts::getPosts('users', $user->user_id);
+            if ($user->user_type_id != 4 && $user->user_type_id != 5) {
+                $posts = Posts::find(array(
+                    "order" => "post_date_posted DESC"
+                ));
+            }
+            else {
+                $posts = Posts::findByUser_id($user->user_id);
             }
 
-            foreach($posts as $post){
-                $post_categories[$post->post_id] = PostCategorie::findByPost_id($post->post_id);
-            }
-            $this->printArray($post_categories); die();
             $vars['posts'] = $posts;
-            $vars['post_categories'] = $post_categories;
+            $vars['categories'] = $this->getCategoriesByPost($posts);
+
             $this->view->setVars($vars);
             $this->view->render("post", "listPosts");
         }
@@ -138,8 +139,25 @@ class PostController extends BaseController {
         echo json_encode($data);
     }
 
-    public function editPostAction() {
+    /**
+     * Recebe um objeto do tipo ResultSet[Posts] e retorna todas as categorias dos posts do objeto
+     * @param  object $posts ResultSet[Posts]
+     * @return array        Array contendo o array de cada post e uma string com as categorias dos posts
+     */
+    public function getCategoriesByPost($posts) {
+        foreach ($posts as $post) {
+            $post_categories = $post->post_categorie;
+            foreach ($post_categories as $post_categorie) {
+                $categories = $post_categorie->categories;
+                foreach ($categories as $categorie) {
+                    $ctg[$post->post_id] .= empty($ctg[$post->post_id]) ? $categorie->categorie_name : ", " . $categorie->categorie_name;
+                }
+            }
+        }
+        return $ctg;
+    }
 
+    public function editPostAction() {
     }
 
     public function deletePostAction() {

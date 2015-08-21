@@ -25,6 +25,10 @@ class Posts extends \Phalcon\Mvc\Model {
         $this->hasOne("post_status_id", "Multiple\Backend\Models\PostStatus", "post_status_id", array(
             'alias' => 'post_status'
         ));
+
+        $this->HasMany("post_id", "Multiple\Backend\Models\PostCategorie", "post_id", array(
+            'alias' => 'post_categorie'
+        ));
     }
 
     /**

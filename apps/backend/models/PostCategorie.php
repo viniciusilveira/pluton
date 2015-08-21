@@ -15,7 +15,7 @@ class PostCategorie extends \Phalcon\Mvc\Model {
      */
     public function initialize() {
         $this->setSource("post_categorie");
-        $this->hasMany("post_id", "Multiple\Backend\Models\Posts", "post_id", array(
+        $this->HasMany("post_id", "Multiple\Backend\Models\Posts", "post_id", array(
             'alias' => 'posts'
         ));
         $this->hasMany("categorie_id", "Multiple\Backend\Models\Categories", "categorie_id", array(
