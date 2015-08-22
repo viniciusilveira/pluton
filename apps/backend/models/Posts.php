@@ -41,12 +41,30 @@ class Posts extends \Phalcon\Mvc\Model {
      * @param  string $post_title        titulo do post
      * @param  string $post_content      conteudo da postagem
      * @param  id $post_status_id    status do post
-     * @return boolean                    true caso sucesso ou false caso ocorra alguma falha.
+     * @return int id da nova postagem caso sucesso ou zero caso false
      */
     public function createNewPost($post_date_create, $post_date_posted, $post_date_changed, $post_author, $post_editor, $post_title, $post_content, $post_status_id) {
         $post = new Posts;
         $post->post_blog = 1;
         $post->post_date_create = $post_date_create;
+        $post->post_date_posted = $post_date_posted;
+        $post->post_date_changed = $post_date_changed;
+        $post->post_author = $post_author;
+        $post->post_editor = $post_editor;
+        $post->post_title = $post_title;
+        $post->post_content = $post_content;
+        $post->post_status_id = $post_status_id;
+        if ($post->save()) {
+            return $post->post_id;
+        }
+        else {
+            return -1;
+        }
+    }
+
+    public function updatePostAction($post_id, $post_date_posted, $post_date_changed, $post_author, $post_editor, $post_title, $post_content, $post_status_id) {
+
+        $post = Posts::findFirstByPost_id($post_id);
         $post->post_date_posted = $post_date_posted;
         $post->post_date_changed = $post_date_changed;
         $post->post_author = $post_author;
@@ -124,14 +142,5 @@ class Posts extends \Phalcon\Mvc\Model {
         ));
 
         return $posts;
-    }
-
-    public function editPostAction() {
-    }
-
-    public function publishPost() {
-    }
-
-    public function unpublishPost() {
     }
 }

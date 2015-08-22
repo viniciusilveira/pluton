@@ -5,11 +5,11 @@
  * - indexAction()
  * - listPostsAction()
  * - newPostAction()
+ * - editPostAction()
  * - insertCategoriesPost()
+ * - updateCategoriesPost()
  * - newCategorieAction()
  * - getCategoriesByPost()
- * - editPostAction()
- * - deletePostAction()
  * Classes list:
  * - PostController extends BaseController
  */
@@ -32,6 +32,20 @@ class PostController extends BaseController {
     public function indexAction() {
         $this->session->start();
         if ($this->session->get('user_id') != NULL) {
+            $edit_post = false;
+            if ($this->request->getPost('post_id') != NULL) {
+
+                $post[0] = Posts::findFirstByPost_id($this->request->getPost('post_id'));
+                foreach ($post as $p) {
+                    $post_content = $string = str_replace(PHP_EOL, '', html_entity_decode($p->post_content));
+                    $post_date = $this->dateFormat($p->post_date_posted, 2);
+                }
+                $edit_post = true;
+                $vars['post_categories'] = $this->getCategoriesByPost($post);
+                $vars['post_content'] = $post_content;
+                $vars['post_date'] = $post_date;
+                $vars['post'] = $post[0];
+            }
 
             //busca o usuário logado para exibir como author
             $author = Users::findFirstByUser_id($this->session->get('user_id'));
@@ -42,6 +56,7 @@ class PostController extends BaseController {
             $vars['author'] = $author;
             $vars['categories'] = json_encode($array_categories);
             $vars['post_status'] = PostStatus::getPostStatus();
+            $vars['edit_post'] = $edit_post;
             $this->view->setVars($vars);
             $this->view->render("post", "index");
         }
@@ -98,7 +113,29 @@ class PostController extends BaseController {
 
         $categories = explode(", ", $this->request->getPost('list_categories'));
         $post_id = Posts::createNewPost($post_date_create, $post_date_posted, $post_date_changed, $post_author, $post_editor, $post_title, $post_content, $post_status_id);
-        if ($post_id > 0) $data['success'] = $this->insertCategoriesPost($categories, $post_id);
+        if ($post_id > 0) $data['success'] = $this->insertPostCategories($categories, $post_id);
+
+        echo json_encode($data);
+    }
+
+    /**
+     * Recebe os dados via POST e salva as alterações recebidas no banco de dados
+     * @return [type] [description]
+     */
+    public function editPostAction() {
+        $this->view->disable();
+
+        $post_id = $this->request->getPost("post_id");
+        $post_date_posted = $this->dateFormat($this->request->getPost('post_date_posted') , 1);
+        $post_date_changed = date("Y-m-d H:i:s");
+        $post_author = $this->request->getPost('post_author');
+        $post_editor = $this->request->getPost('post_author');
+        $post_title = $this->request->getPost('post_title');
+        $post_content = addslashes(htmlentities($this->request->getPost('post_content')));
+        $post_status_id = $this->request->getPost('post_status_id');
+        $categories = explode(", ", $this->request->getPost('list_categories'));
+        $post_id = Posts::updatePostAction($post_id, $post_date_posted, $post_date_changed, $post_author, $post_editor, $post_title, $post_content, $post_status_id);
+        if ($post_id > 0) $data['success'] = $this->updatePostCategories($categories, $post_id);
 
         echo json_encode($data);
     }
@@ -109,11 +146,27 @@ class PostController extends BaseController {
      * @param  int $id_post    id do post
      * @return boolean             true caso salve todos os ids ou false caso ocorra um erro
      */
-    private function insertCategoriesPost($categories, $post_id) {
+    private function insertPostCategories($categories, $post_id) {
         foreach ($categories as $categorie) {
             $cat = Categories::findFirstByCategorie_name($categorie);
             $success = PostCategorie::createPostCategorie($post_id, $cat->categorie_id);
             if (!$success) break;
+        }
+        return $success;
+    }
+
+    /**
+     * Recebe as novas categorias e o id da postagem; Remove todos os PostCategories antigos e insere os novos;
+     * @param  array $categories array contendo todas as categorias do post
+     * @param  int $post_id  id do post
+     * @return boolean             true caso salve todos os ids ou false caso ocorra um erro
+     */
+    public function updatePostCategories($categories, $post_id) {
+        foreach($categories as $categorie){
+            $cat = Categories::findFirstByCategorie_name($categorie);
+            $success = PostCategorie::deleteAllPostCategorieByPost($post_id);
+            $success = $success ? PostCategorie::createPostCategorie($post_id, $cat->categorie_id) : $success;
+            if(!$success) break;
         }
         return $success;
     }
@@ -150,16 +203,10 @@ class PostController extends BaseController {
             foreach ($post_categories as $post_categorie) {
                 $categories = $post_categorie->categories;
                 foreach ($categories as $categorie) {
-                    $ctg[$post->post_id] .= empty($ctg[$post->post_id]) ? $categorie->categorie_name : ", " . $categorie->categorie_name;
+                    $ctg[$post->post_id].= empty($ctg[$post->post_id]) ? $categorie->categorie_name : ", " . $categorie->categorie_name;
                 }
             }
         }
         return $ctg;
-    }
-
-    public function editPostAction() {
-    }
-
-    public function deletePostAction() {
     }
 }

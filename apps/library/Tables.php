@@ -85,27 +85,27 @@ class Tables {
                     "notNull" => true
                 )) ,
                 new Column("layout_navbar", array(
-                    "type" => Column::TYPE_VARCHAR,
+                    "type" => Column::TYPE_TEXT,
                     "size" => 65535,
                     "notNull" => true
                 )) ,
                 new Column("layout_lateralbar", array(
-                    "type" => Column::TYPE_VARCHAR,
+                    "type" => Column::TYPE_TEXT,
                     "size" => 65535,
                     "notNull" => true
                 )) ,
                 new Column("layout_searchbar", array(
-                    "type" => Column::TYPE_VARCHAR,
+                    "type" => Column::TYPE_TEXT,
                     "size" => 65535,
                     "notNull" => true
                 )) ,
                 new Column("layout_navigation", array(
-                    "type" => Column::TYPE_VARCHAR,
+                    "type" => Column::TYPE_TEXT,
                     "size" => 65535,
                     "notNull" => true
                 )) ,
                 new Column("layout_footer", array(
-                    "type" => Column::TYPE_VARCHAR,
+                    "type" => Column::TYPE_TEXT,
                     "size" => 65535,
                     "notNull" => true
                 ))
@@ -401,7 +401,7 @@ class Tables {
                     "notNull" => true
                 )) ,
                 new Column("post_content", array(
-                    "type" => Column::TYPE_VARCHAR,
+                    "type" => Column::TYPE_TEXT,
                     "size" => 65535,
                     "notNull" => true
                 )),

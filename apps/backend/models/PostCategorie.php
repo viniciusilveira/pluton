@@ -1,16 +1,19 @@
 <?php
 /**
-* Class and Function List:
-* Function list:
-* Classes list:
-* - PostCategorie extends \
-*/
+ * Class and Function List:
+ * Function list:
+ * - initialize()
+ * - getSource()
+ * - createPostCategorie()
+ * - deleteAllPostCategorieByPost()
+ * Classes list:
+ * - PostCategorie extends \
+ */
 namespace Multiple\Backend\Models;
 
 class PostCategorie extends \Phalcon\Mvc\Model {
 
-
-	/**
+    /**
      * Seta o nome da tabela referenciada pelo model
      */
     public function initialize() {
@@ -31,16 +34,22 @@ class PostCategorie extends \Phalcon\Mvc\Model {
         return "post_categorie";
     }
 
-	public function createPostCategorie($post_id, $categorie_id){
-		$post_categorie = new PostCategorie();
-		$post_categorie->post_id = $post_id;
-		$post_categorie->categorie_id = $categorie_id;
-		$success = $post_categorie->save();
+    public function createPostCategorie($post_id, $categorie_id) {
+        $post_categorie = new PostCategorie();
+        $post_categorie->post_id = $post_id;
+        $post_categorie->categorie_id = $categorie_id;
+        $success = $post_categorie->save();
 
-		return $success;
-	}
+        return $success;
+    }
 
-    public function getPostCategorieByPost($post_id){
+    public function deleteAllPostCategorieByPost($post_id) {
+        $post_categories = PostCategorie::findByPost_id($post_id);
+        foreach($post_categories as $post_categorie){
+            $success = $post_categorie->delete();
+            if(!$success) break;
+        }
 
+        return $success;
     }
 }

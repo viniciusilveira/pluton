@@ -1,9 +1,3 @@
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Posts</h1>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
@@ -14,27 +8,51 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table idt="table-posts"
+                        class="table table-striped"
+                        data-toggle="table"
+                        data-sort-name="title"
+                        data-sort-order="asc"
+                        data-search="true"
+                        data-show-refresh="true"
+                        data-show-toggle="true"
+                        data-show-columns="true"
+                        data-query-params="queryParams"
+                        data-pagination="true">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Título</th>
-                                <th>Autor</th>
-                                <th>Categorias</th>
-                                <th>Data</th>
-                                <th>Status</th>
+                                <th
+                                    data-field="id"
+                                data-sortable="true">#</th>
+                                <th class="timeline-bo"
+                                    data-field="title"
+                                data-sortable="true">Título</th>
+                                <th
+                                    data-field="author"
+                                data-sortable="true">Autor</th>
+                                <th
+                                    data-field="categorie"
+                                data-sortable="false">Categorias</th>
+                                <th
+                                    data-field="date"
+                                data-sortable="true">Data</th>
+                                <th
+                                    data-field="status"
+                                data-sortable="true">Status</th>
+                                <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Editar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($posts as $post){ ?>
-                                <tr>
-                                    <td><?= $post->post_id ?></td>
-                                    <td><?= $post->post_title ?></td>
-                                    <td><?= $post->author->user_name ?></td>
-                                    <td><?= $categories[$post->post_id] ?></td>
-                                    <td><?= $post->post_date_create ?></td>
-                                    <td><?= $post->post_status->post_status_name ?></td>
-                                </tr>
+                            <?php foreach ($posts as $post){
+                            ?>
+                            <tr>
+                                <td><?= $post->post_id ?></td>
+                                <td><?= $post->post_title ?></td>
+                                <td><?= $post->author->user_name ?></td>
+                                <td><?= $categories[$post->post_id] ?></td>
+                                <td><?= $post->post_date_create ?></td>
+                                <td><?= $post->post_status->post_status_name ?></td>
+                            </tr>
                             <?php } ?>
                         </tbody>
                     </table>
@@ -46,10 +64,41 @@
         <!-- /.panel -->
     </div>
     <!-- /.col-lg-6 -->
-
-    </div>
-    <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-</div>
-<!-- /#page-wrapper -->
+
+<script>
+function queryParams() {
+    return {
+        type: 'owner',
+        sort: 'updated',
+        direction: 'desc',
+        per_page: 100,
+        page: 1
+    };
+}
+
+/**
+* Ao clicar em qualquer usuário carrega a tela de edição de usuário
+*/
+function actionFormatter(value, row, index) {
+    return [
+        '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+        '<i class="glyphicon glyphicon-edit"></i>',
+        '</a>'
+    ].join('');
+}
+window.actionEvents = {
+    'click .edit': function (e, value, row, index) {
+
+        $.ajax({
+            url: '<?= URL_PROJECT ?>/post/index',
+            data: "post_id=" + row.id,
+            type: 'POST',
+            success: function(data){
+                $("#main").html(data);
+            }
+        });
+    }
+};
+</script>

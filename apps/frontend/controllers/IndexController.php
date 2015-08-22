@@ -37,4 +37,8 @@ class IndexController extends \Phalcon\Mvc\Controller {
         //view/index/notFound.phtml
 
     }
+
+    public function postPage(){
+
+    }
 }

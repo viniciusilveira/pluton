@@ -1,24 +1,31 @@
 <style>
-    .user{
-        cursor: pointer;
+    .ml10 {
+        margin-left: 10px;
     }
-    tbody tr:nth-child(odd) {
-        background-color: black;
-    }
-
 </style>
 <div class="col-lg-8">
-    <table class="table table-bordered  table-striped">
+    <div class="panel-heading">
+        Usuários
+    </div>
+    <table class="table table-bordered  table-striped"
+        data-toggle="table"
+        data-sort-name="title"
+        data-sort-order="asc"
+        data-search="true"
+        data-show-refresh="true"
+        data-show-toggle="true"
+        data-show-columns="true"
+        data-query-params="queryParams"
+        data-pagination="true"
+        >
         <thead>
             <tr>
-                <th colspan="5" class="text-center">LISTA DE USUÁRIOS</th>
-            </tr>
-            <tr>
-                <th>ID</th>
-                <th>NOME</th>
-                <th>LOGIN</th>
-                <th>E-MAIL</th>
-                <th>NÍVEL PERMISSÃO</th>
+                <th data-field="id" data-sortable="true">#</th>
+                <th data-field="name" data-sortable="true">NOME</th>
+                <th data-field="login" data-sortable="true">LOGIN</th>
+                <th data-field="e-mail" data-sortable="true">E-MAIL</th>
+                <th data-field="permission-level" data-sortable="true">NÍVEL PERMISSÃO</th>
+                <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -33,19 +40,41 @@
                 <?php } ?>
             </tbody>
         </table>
-</div>
-<script>
-/**
- * Ao clicar em qualquer usuário carrega a tela de edição de usuário
- */
-$(".user").click(function(){
-    $.ajax({
-        url: '<?= URL_PROJECT ?>/settings/newUser',
-        data: "user_id=" + $(this).attr("user"),
-        type: 'POST',
-        success: function(data){
-            $("#main").html(data);
+    </div>
+    <script>
+    /**
+    * Ao clicar em qualquer usuário carrega a tela de edição de usuário
+    */
+    function actionFormatter(value, row, index) {
+        return [
+            '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+            '<i class="glyphicon glyphicon-edit"></i>',
+            '</a>'
+        ].join('');
+    }
+    window.actionEvents = {
+        'click .edit': function (e, value, row, index) {
+
+        $.ajax({
+            url: '<?= URL_PROJECT ?>/settings/newUser',
+            data: "user_id=" + row.id,
+            type: 'POST',
+            success: function(data){
+                $("#main").html(data);
         }
-    });
 });
-</script>
+        }
+    };
+    function onClickRow(){
+        alert("click row");
+    }
+    function queryParams() {
+        return {
+            type: 'owner',
+            sort: 'updated',
+            direction: 'desc',
+            per_page: 100,
+            page: 1
+        };
+    }
+    </script>
