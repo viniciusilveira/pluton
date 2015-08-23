@@ -27,7 +27,6 @@
                 <p><span class="glyphicon glyphicon-time"></span>  Publicado em <?= $post->post_date_posted ?></p>
                 <hr>
                 <!-- Preview Image -->
-
                 <hr>
                 <!-- Post Content -->
                 <p class="lead"><?= html_entity_decode($post->post_content) ?></p>
@@ -35,7 +34,20 @@
                 <!-- Blog Comments -->
                 <!-- Comments Form -->
             </div>
+            <div class="fb-comments" data-href="<?= "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];   ?>" data-numposts="5"></div>
         </div>
+
+        <div id="fb-root"></div>
+        <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.4";
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+        (document, 'script', 'facebook-jssdk'));
+        </script>
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
             <?= $this->partial("index/lateralBar") ?>
