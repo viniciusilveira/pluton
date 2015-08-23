@@ -1,24 +1,22 @@
-<!-- First Blog Post -->
+
 <?php if(!$_REQUEST["editor"]) { ?>
-	<?php $cont = 0;
-	foreach($posts as $post){
+	<?php foreach($posts as $post){
 		if($cont == 0) $first_post = $post->post_id;
 		$cont++; ?>
 		<h2>
-		<a href="#"><?= $post->post_title ?></a>
+		<a id="post-title" id-post="<?= $post->post_id ?>" href="#"><?= $post->post_title ?></a>
 		</h2>
 		<p class="lead">
-		by <a href="index.php"><?= $post->author->user_login ?></a>
+		by <a href="#"><?= $post->author->user_login ?></a>
 		</p>
 		<p><span class="glyphicon glyphicon-time"></span> Publicado em <?= $post->post_date_posted ?></p>
 		<hr>
 		<div class="div-post"><?= html_entity_decode($post->post_content) ?>...</div>
 		<hr>
-		<form name="load-post" id="load-post" action="<?= URL_PROJECT ?>index/postPage/<?= $post_title[$post->post_id] ?>" method="post">
+		<form name="load-post" id="load-post-<?= $post->post_id ?>" action="<?= URL_PROJECT ?>index/postPage/<?= $post_title[$post->post_id] ?>" method="post">
 			<input type="hidden" name="post_id" id="post_id" value="<?= $post->post_id ?>"class="form-control" value="">
 			<input type="submit" class="btn btn-primary" value="Leia Mais"></span>
 		</form>
-		<?php $last_id = $post->post_id ?>
 	<?php } ?>
 <?php } else{ ?>
 	<img class="img-responsive" src="http://placehold.it/900x300" alt="">
@@ -28,7 +26,27 @@
 <?php } ?>
 <hr>
 <hr>
-<!-- Pager -->
-<ul id="navigation" data-id="navigation" class="pager">
-    <?= html_entity_decode($layout->layout_navigation) ?>
-</ul>
+
+<ul class="col-sm-12" id="pagination"></ul>
+
+<script>
+
+$("#post-title").click(function(){
+	console.log("load post: " + $(this).attr("id-post"));
+	$("#load-post-" + $(this).attr("id-post")).submit();
+});
+
+$('#pagination').twbsPagination({
+	first: "Primeira",
+	prev: "Anterior",
+	next: "Próxima",
+	last: "Última",
+    totalPages: <?= $num_pages ?>,
+    visiblePages: 10,
+    href: '?page={{number}}',
+    onPageClick: function (event, page) {
+      window.location.href = "<?= URL_PROJECT ?>index/index?page=" + page;
+    }
+});
+
+</script>

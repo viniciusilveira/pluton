@@ -24,26 +24,21 @@ class IndexController extends \Phalcon\Mvc\Controller {
      * @return [type] [description]
      */
     public function indexAction() {
+
+        $page = empty($_REQUEST['page']) ? 0 : $_REQUEST['page'];
+
         $this->session->start();
         $blog = Blogs::find();
         $vars['layout'] = Layouts::findFirst();
-
-        $conditions = "post_status_id = :status:";
-        $bind = array(
-            "status" => 1
-        );
-        $order = "post_date_posted DESC";
-        $vars['posts'] =Posts::find(array(
-            "conditions" => $conditions,
-            "order" => $order,
-            "limit" => 10,
-            "bind" => $bind,
-        ));
-        foreach ($vars['posts'] as $post) {
-
+        $posts = $this->getPostsPerPage($page);
+        $publish_posts = Posts::findByPost_status_id(1);
+        $total_publish_posts = count($publish_posts);
+        $vars['num_pages'] = (($total_publish_posts / 10) > 1) ? ($total_publish_posts / 10) : 1 ;
+        //print_r($vars); die();
+        foreach ($posts as $post) {
             $vars['post_title'][$post->post_id] = str_replace(" ", "-", $post->post_title, $count);
-
         }
+        $vars['posts'] = $posts;
 
         $this->view->setVars($vars);
 
@@ -51,17 +46,34 @@ class IndexController extends \Phalcon\Mvc\Controller {
         !empty($blog) ? $this->view->render('index', 'index') : $this->view->pick('index/notFound');
     }
 
+    /**
+     * Recebe o número da página e retorna os itens a serem exibidos naquela página
+     * @param  int $page número da página a ser exibida na tela
+     * @return Resultset      result contendo os posts retornados
+     */
+    public function getPostsPerPage($page){
+        $conditions = "post_status_id = :status:";
+        $bind = array(
+            "status" => 1
+        );
+        $order = "post_date_posted DESC";
+        $offset = $page * 10;
+        $posts =Posts::find(array(
+            "conditions" => $conditions,
+            "order" => $order,
+            "limit" => 10,
+            "offset" => $offset,
+            "bind" => $bind,
+        ));
+
+        return $posts;
+    }
+
     public function notFoundAction() {
 
         //view/index/notFound.phtml
 
 
-    }
-
-    public function nextPageAction() {
-    }
-
-    public function previusPageAction() {
     }
 
     /**
