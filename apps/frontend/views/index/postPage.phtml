@@ -14,7 +14,7 @@
         <!-- Blog Entries Column -->
         <div id="post" class="col-md-8">
             <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <!-- Blog Post -->
                 <!-- Title -->
                 <h1><?= $post->post_title ?></h1>
@@ -29,7 +29,7 @@
                 <!-- Preview Image -->
                 <hr>
                 <!-- Post Content -->
-                <p class="lead"><?= html_entity_decode($post->post_content) ?></p>
+                <p><?= html_entity_decode($post->post_content) ?></p>
                 <hr>
                 <!-- Blog Comments -->
                 <!-- Comments Form -->
