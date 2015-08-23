@@ -171,12 +171,14 @@ var Form = function(){
     }
 
     var saveData = function(url){
+        console.log("saveData \n");
         $.ajax({
             url: url,
             data: $("#newPost").serialize() + '&post_content=' + tinyMCE.activeEditor.getContent(),
             dataType: 'json',
             type: 'post',
             success: function(data){
+                console.log("sucesso: " + data);
                 if(data.success){
                     swal({
                         title: "Sucesso!",

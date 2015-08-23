@@ -108,7 +108,7 @@ class PostController extends BaseController {
         $post_author = $this->request->getPost('post_author');
         $post_editor = $this->request->getPost('post_author');
         $post_title = $this->request->getPost('post_title');
-        $post_content = addslashes(htmlentities($this->request->getPost('post_content')));
+        $post_content = htmlentities($this->request->getPost('post_content'));
         //print_r($post_content); die();
         $post_status_id = $this->request->getPost('post_status_id');
 
