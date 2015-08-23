@@ -146,7 +146,7 @@ var Form = function(){
         var validate = true;
         var array_form = $("#newPost").serializeArray();
         $.each(array_form, function(i, field){
-            if(field.value == '' && field.name != "categories" && field.name != 'post_content'){
+            if(field.value == '' && field.name != "categories" && field.name != 'post_content' && field.name != 'post_id'){
                 console.log(field.name);
                 swal({
                     title: "Atenção!",

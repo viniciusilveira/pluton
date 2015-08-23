@@ -1,19 +1,28 @@
 <?php
-
+/**
+ * Class and Function List:
+ * Function list:
+ * - onConstruct()
+ * Classes list:
+ * - Posts extends \
+ */
 namespace Multiple\Frontend\Models;
 
-class Posts extends \Phalcon\Mvc\Model{
-    /**
-     * Busca 10 postagens ordenados por id, a partir do ID informado. Caso o ID seja nulo retorna as 10 últimas postagens.
-     * @param  int $id_last id da última postagem exibida no blog
-     * @return
-     */
-    public function getPosts($id_last = NULL){
-        /**
-         * @todo: Buscar 10 últimas postagens a partir do id informado via parametro.
-         *             Ordernar pelo id dos parametros (Seria o mesmo que ordenar pela data de criação)
-         *             OU
-         *             Ordernar pela data de publicação, verificar qual a melhor opção
-         */
+class Posts extends \Phalcon\Mvc\Model {
+
+    public function initialize() {
+        $this->hasOne("post_author", "Multiple\Frontend\Models\Users", "user_id", array(
+            'alias' => 'author'
+        ));
+        $this->hasOne("post_editor", "Multiple\Frontend\Models\Users", "user_id", array(
+            'alias' => 'editor'
+        ));
+        $this->hasOne("post_status_id", "Multiple\Frontend\Models\PostStatus", "post_status_id", array(
+            'alias' => 'post_status'
+        ));
+
+        $this->HasMany("post_id", "Multiple\Frontend\Models\PostCategorie", "post_id", array(
+            'alias' => 'post_categorie'
+        ));
     }
 }

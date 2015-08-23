@@ -11,6 +11,7 @@
 namespace Multiple\Frontend\Controllers;
 use Multiple\Frontend\Models\Blogs;
 use Multiple\Frontend\Models\Layouts;
+use Multiple\Frontend\Models\Posts;
 
 class IndexController extends \Phalcon\Mvc\Controller {
 
@@ -21,11 +22,12 @@ class IndexController extends \Phalcon\Mvc\Controller {
      */
     public function indexAction() {
         $this->session->start();
-
-        $blog = Blogs::findFirst();
-        $layout = Layouts::findFirst();
-        //var_dump($layout); die();
-        $vars['layout'] = $layout;
+        $blog = Blogs::find();
+        $vars['layout'] = Layouts::findFirst();
+        $vars['posts'] = Posts::findByPost_status_id(1);
+        foreach($vars['posts'] as $post){
+            //echo $post->post_content . "<br/><br/><br/>";
+        } //die();
         $this->view->setVars($vars);
 
         //caso o blog esteja criado carrega a index; se não carrega a pagina not found
@@ -38,7 +40,18 @@ class IndexController extends \Phalcon\Mvc\Controller {
 
     }
 
-    public function postPage(){
+    /**
+     * Carrega a página de posts exibidindo a postagem informada via REQUEST
+     */
+    public function postPageAction(){
+        $post_id = $this->request->getPost("post_id");
+
+        $post = Posts::findFirstByPost_id($post_id);
+        $this->session->start();
+        $blog = Blogs::find();
+        $vars['layout'] = Layouts::findFirst();
+        $vars['post'] = $post;
+        $this->view->setVars($vars);
 
     }
 }

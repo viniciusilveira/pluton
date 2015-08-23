@@ -1,22 +1,23 @@
 <?php
 /**
-* Class and Function List:
-* Function list:
-* - _registerServices()
-* - (()
-* - (()
-* - main()
-* Classes list:
-* - Application extends \
-*/
+ * Class and Function List:
+ * Function list:
+ * - _registerServices()
+ * - (()
+ * - (()
+ * - main()
+ * Classes list:
+ * - Application extends \
+ */
 define('DEBUG', false);
 
-if(DEBUG){
+if (DEBUG) {
     error_reporting(E_ALL);
 
     $debug = new \Phalcon\Debug();
     $debug->listen();
 }
+
 /**
  * Define uma URL padrão para acesso ao projeto
  */
@@ -31,12 +32,13 @@ class Application extends \Phalcon\Mvc\Application {
 
     protected function _registerServices() {
 
-        $di     = new \Phalcon\DI\FactoryDefault();
+        $di = new \Phalcon\DI\FactoryDefault();
 
         $loader = new \Phalcon\Loader();
         $loader->registerDirs(array(
             FOLDER_PROJECT . '/apps/library/',
-            FOLDER_PROJECT . '/apps/backend/models'
+            FOLDER_PROJECT . '/apps/backend/models',
+            FOLDER_PROJECT . '/apps/frontend/models'
         ))->register();
 
         //usando autoloader do composer para carregar as depêndencias instaladas via composer
@@ -72,6 +74,11 @@ class Application extends \Phalcon\Mvc\Application {
                 'action' => 'index',
             ));
 
+            $router->add("/index/:action", array(
+                'controller' => 'index',
+                'action' => 1,
+            ));
+
             return $router;
         });
 
@@ -80,7 +87,7 @@ class Application extends \Phalcon\Mvc\Application {
          * conecta com o banco de dados
          */
         if (file_exists('../apps/config/config.ini')) {
-            $config  = new \Phalcon\Config\Adapter\Ini('../apps/config/config.ini');
+            $config = new \Phalcon\Config\Adapter\Ini('../apps/config/config.ini');
 
             //Seta a conexão com o banco de dados
             $di->set('db', function () use ($config) {

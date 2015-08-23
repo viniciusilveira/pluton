@@ -1,5 +1,14 @@
 <?php
-
+/**
+* Class and Function List:
+* Function list:
+* - registerAutoloaders()
+* - registerServices()
+* - (()
+* - (()
+* Classes list:
+* - Module
+*/
 namespace Multiple\Backend;
 
 class Module {
@@ -24,7 +33,7 @@ class Module {
     public function registerServices($di) {
 
         //Registra o dispatcher
-        $di->set('dispatcher', function() {
+        $di->set('dispatcher', function () {
 
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
 
@@ -37,11 +46,10 @@ class Module {
         });
 
         //Registra os diretórios das views
-        $di->set('view', function() {
+        $di->set('view', function () {
             $view = new \Phalcon\Mvc\View();
             $view->setViewsDir('../apps/backend/views/');
             return $view;
         });
     }
-
 }

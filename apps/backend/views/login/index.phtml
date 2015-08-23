@@ -44,10 +44,12 @@ $(".form_login").keypress(function(e) {
  * Ao clicar no botão #prosseguir tenta efetuar o login com os dados informados no formulário
  */
 $("#prosseguir").click(function(){
+
     //monta um array para verificação dos dados
     var array_form = $("#login").serializeArray();
     //cria um texto json para envio dos dados para a action de configuração do banco de dados;
     var text_form = $("#login").serialize();
+
     var validate = true;
     //Verifica se há campos vazios no formulário
     $.each(array_form, function(i, field){
@@ -63,12 +65,14 @@ $("#prosseguir").click(function(){
     });
     //Caso o formulário esteja completamente preenchido executa a chamada ajax
     if(validate){
+        console.log("efetuando login \n");
         $.ajax({
             url: "<?= URL_PROJECT ?>login/login",
             data: text_form,
             type: 'POST',
             dataType: 'json',
             success: function(data){
+                console.log(data);
                 //Caso o login tenha sido efetuado, redireciona pra página inicial.
                 //Se ocorreu alguma falha exibe um alert.
                 if(data.success){

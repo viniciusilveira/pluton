@@ -1,14 +1,14 @@
 <?php
 /**
-* Class and Function List:
-* Function list:
-* - registerAutoloaders()
-* - registerServices()
-* - (()
-* - (()
-* Classes list:
-* - Module
-*/
+ * Class and Function List:
+ * Function list:
+ * - registerAutoloaders()
+ * - registerServices()
+ * - (()
+ * - (()
+ * Classes list:
+ * - Module
+ */
 namespace Multiple\Frontend;
 
 class Module {
