@@ -26,7 +26,7 @@
 
                 <li <?= $side%2 != 0 ? 'class=timeline-inverted' : ''?> >
                     <div class="timeline-badge">
-                         <?php $img_profile = ($user_img == NULL) ? URL_PROJECT . "img/users/defaultProfile.png" : URL_PROJECT . "img/users/" . $post->author->user_img ?>
+                         <?php $img_profile = ($user_img == NULL) ? URL_PROJECT . "img/defaultProfile.png" : URL_PROJECT . "img/users/" . $post->author->user_img ?>
                             <img title="<?= $post->author->user_name ?>" width="100%" class="img-circle" src="<?= $img_profile; ?>">
                     </div>
                     <div class="timeline-panel">

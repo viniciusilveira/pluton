@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalcon/phalcon-devtools.git",
-                "reference": "6f456e4fbec0a69dbc17d4cdd5fb1082451e7f8d"
+                "reference": "66b628cde63a00ec30c75b2f4ace0c0ca38edbcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalcon/phalcon-devtools/zipball/6f456e4fbec0a69dbc17d4cdd5fb1082451e7f8d",
-                "reference": "6f456e4fbec0a69dbc17d4cdd5fb1082451e7f8d",
+                "url": "https://api.github.com/repos/phalcon/phalcon-devtools/zipball/66b628cde63a00ec30c75b2f4ace0c0ca38edbcd",
+                "reference": "66b628cde63a00ec30c75b2f4ace0c0ca38edbcd",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                 "php": ">=5.3.9"
             },
             "require-dev": {
-                "box": ">=2.5.2"
+                "kherge/box": ">=2.5.2"
             },
             "bin": [
                 "phalcon.php"
@@ -55,7 +55,7 @@
                 "phar",
                 "webtools"
             ],
-            "time": "2015-07-27 10:45:10"
+            "time": "2015-08-18 05:22:39"
         },
         {
             "name": "swiftmailer/swiftmailer",
