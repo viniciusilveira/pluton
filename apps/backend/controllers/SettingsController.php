@@ -17,6 +17,8 @@
 
 namespace Multiple\Backend\Controllers;
 
+use Multiple\Backend\Controllers\AnalyticsController;
+
 use Multiple\Backend\Models\UserType;
 use Multiple\Backend\Models\Users;
 use Multiple\Backend\Models\UserBlog;

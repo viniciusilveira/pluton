@@ -511,6 +511,53 @@ class Tables {
 
 
 
+    public function createTableAnalytics($connection){
+        $table = array(
+            "columns" => array(
+                new Column("analytics_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true,
+                )),
+                new Column("blog_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10,
+                    "notNull" => true,
+                )),
+                new Column("analytics_login", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 50,
+                    "notNull" => true,
+                )),
+                new Column("analytics_password", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
+                    "notNull" => true,
+                )),
+            ),
+            "indexes" => array(
+                new Index("blog_id", array(
+                    "blog_id"
+                )) ,
+            ) ,
+            "references" => array(
+                new Reference("analytics_fk_blog", array(
+                    "referencedTable" => "blogs",
+                    "columns" => array(
+                        "blog_id"
+                    ) ,
+                    "referencedColumns" => array(
+                        "blog_id"
+                    ) ,
+                )) ,
+            )
+        );
+
+        $connection->createTable("analytics", NULL, $table);
+    }
+
     /**
      * Cria a tabela social_network
      * @param $connection => Variável de conexão com o banco de dados
@@ -540,22 +587,22 @@ class Tables {
                     "size" => 20,
                     "notNull" => true,
                 )) ,
-                new Column("social_network_blog", array(
+                new Column("blog_id", array(
                     "type" => Column::TYPE_INTEGER,
                     "size" => 10,
                     "notNull" => true
                 ))
             ) ,
             "indexes" => array(
-                new Index("social_network_blog", array(
-                    "social_network_blog"
+                new Index("blog_id", array(
+                    "blog_id"
                 ))
             ) ,
             "references" => array(
                 new Reference("social_network_fk_blog", array(
                     "referencedTable" => "blogs",
                     "columns" => array(
-                        "social_network_blog"
+                        "blog_id"
                     ) ,
                     "referencedColumns" => array(
                         "blog_id"
