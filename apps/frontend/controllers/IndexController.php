@@ -56,7 +56,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
         $bind = array(
             "status" => 1
         );
-        $order = "post_date_posted DESC, post_id";
+        $order = "post_date_posted DESC, post_id DESC";
         $offset = $page * 10;
         $posts =Posts::find(array(
             "conditions" => $conditions,
