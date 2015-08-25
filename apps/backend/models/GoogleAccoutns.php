@@ -9,4 +9,10 @@ class GoogleAccounts extends \Phalcon\Mvc\Model{
             'alias' => "blogs"
         ));
 	}
+
+	public function createGoogleAccount($g_account, $password){
+		$googleAccount->google_account_login = $g_account;
+		$googleAccount->google_account_password= $password;
+		return $googleAccount->save();
+	}
 }

@@ -16,23 +16,22 @@ use Multiple\Backend\Models\GoogleAccounts;
  */
 class AnalyticsController extends BaseController {
 
-	public function initialize(){
-		$this->hasOne("blog_id", "Multiple\Backend\Models\Blogs", "blog_id", array(
-            'alias' => "blogs"
-        ));
-	}
+	private $ga;
 
 	public function onConstruct(){
-		$analytics = Analytics::findFirst();
-		$ga = new gapi($analytics->analytics_login, $analytics->analytics_password);
+		//$analytics = Analytics::findFirst();
+		//$this->ga = new gapi($analytics->analytics_login, $analytics->analytics_password);
 	}
 
 	public function indexAction(){
 
 	}
 
-	public function registerAnalytics(){
+	public function registerAnalytics($g_account, $password){
+		$this->view->disable();
+		$data['success'] = GoogleAccounts::createGoogleAccount($g_account, $password);
 
+		echo json_encode($data);
 	}
 
 	public function getUsersOnline(){

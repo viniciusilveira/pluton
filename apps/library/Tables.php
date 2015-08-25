@@ -514,7 +514,7 @@ class Tables {
     public function createTableGoogleAccounts($connection){
         $table = array(
             "columns" => array(
-                new Column("google_accounts_id", array(
+                new Column("google_account_id", array(
                     "type" => Column::TYPE_INTEGER,
                     "primary" => true,
                     "size" => 10,
@@ -526,12 +526,12 @@ class Tables {
                     "size" => 10,
                     "notNull" => true,
                 )),
-                new Column("google_accounts_login", array(
+                new Column("google_account_login", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 50,
                     "notNull" => true,
                 )),
-                new Column("google_accounts_password", array(
+                new Column("google_account_password", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
                     "notNull" => true,

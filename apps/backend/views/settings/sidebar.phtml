@@ -17,7 +17,11 @@
     </div>
     <!-- /sub-posts -->
     <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
-    <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-tags"></i> Estastísticas </a>
+    <a href="#sub-analytics" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-wrench"></i> Google Analytics </a>
+    <div class="collapse" id="sub-analytics">
+        <a href="#" class="list-group-item" id="g-account"><i class="glyphicon glyphicon-edit"></i> Cadastrar/Editar Conta</a>
+        <a href="#" class="list-group-item" id="edit-post"><i class="glyphicon glyphicon-stats"></i> Relatórios</a>
+    </div>
     <?php } ?>
     <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
     <a href="#sub-social-network" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-thumbs-up"></i> Redes Sociais </a>
@@ -79,6 +83,11 @@ $("#new-post").click(function(){
 
 $("#edit-post").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>post/listPosts');
+    $("#panel, #top-menu").attr("hidden", true);
+})
+
+$("#g-account").click(function(){
+    $.loadPartialView('main', '<?= URL_PROJECT?>analytics/index');
     $("#panel, #top-menu").attr("hidden", true);
 })
 </script>
