@@ -511,10 +511,10 @@ class Tables {
 
 
 
-    public function createTableAnalytics($connection){
+    public function createTableGoogleAccounts($connection){
         $table = array(
             "columns" => array(
-                new Column("analytics_id", array(
+                new Column("google_accounts_id", array(
                     "type" => Column::TYPE_INTEGER,
                     "primary" => true,
                     "size" => 10,
@@ -526,12 +526,12 @@ class Tables {
                     "size" => 10,
                     "notNull" => true,
                 )),
-                new Column("analytics_login", array(
+                new Column("google_accounts_login", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 50,
                     "notNull" => true,
                 )),
-                new Column("analytics_password", array(
+                new Column("google_accounts_password", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
                     "notNull" => true,
@@ -543,7 +543,7 @@ class Tables {
                 )) ,
             ) ,
             "references" => array(
-                new Reference("analytics_fk_blog", array(
+                new Reference("google_accounts_fk_blog", array(
                     "referencedTable" => "blogs",
                     "columns" => array(
                         "blog_id"
@@ -555,7 +555,7 @@ class Tables {
             )
         );
 
-        $connection->createTable("analytics", NULL, $table);
+        $connection->createTable("google_accounts", NULL, $table);
     }
 
     /**

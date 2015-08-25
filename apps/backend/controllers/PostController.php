@@ -33,6 +33,8 @@ class PostController extends BaseController {
         $this->session->start();
         if ($this->session->get('user_id') != NULL) {
             $edit_post = false;
+            //Caso a tela seja carregada para edição de post
+            //Busca os dados do post informado via POST e envia para view
             if ($this->request->getPost('post_id') != NULL) {
 
                 $post[0] = Posts::findFirstByPost_id($this->request->getPost('post_id'));

@@ -9,7 +9,7 @@
 
 namespace Multiple\Backend\Controllers;
 
-use Multiple\Backend\Models\Analytics;
+use Multiple\Backend\Models\GoogleAccounts;
 
 /**
  * Classe responsável por manipular os dados do google analytics
