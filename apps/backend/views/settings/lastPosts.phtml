@@ -1,6 +1,5 @@
 <style>
 .timeline-body {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 300px;
@@ -37,7 +36,7 @@
                             </p>
                         </div>
                         <div class="timeline-body">
-                            <p><?= html_entity_decode($post->post_content) ?></p>
+                            <p><?= html_entity_decode($post_content[$post->post_id]) ?></p>
                         </div>
                     </div>
                 </li>

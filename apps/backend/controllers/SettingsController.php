@@ -64,8 +64,13 @@ class SettingsController extends BaseController {
             $vars['user'] = $user_name[0];
             $vars['user_type_id'] = $user->user_type_id;
             $vars['user_img'] = $user->user_img;
-            $vars['posts'] = Posts::getPosts('status', 1);
-
+            $posts = Posts::getPosts('status', 1);
+            foreach($posts as $post){
+                $post_content[$post->post_id] = substr(strip_tags($post->post_content), 0, 500) . "...";
+            }
+            //$this->printArray($post_content); die();
+            $vars['posts'] = $posts;
+            $vars['post_content'] = $post_content;
             $this->view->setVars($vars);
             $this->view->render('settings', 'index');
         }

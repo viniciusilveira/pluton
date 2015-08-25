@@ -156,17 +156,13 @@
             <!-- /MainMenu -->
         </nav>
         <div id="page-wrapper">
-            <div class="row">
+            <div class="row" id="top-menu">
                 <?= $this->partial('settings/topMenu'); ?>
             </div>
             <!-- /.row -->
             <div class="row">
                 <div id="main">
-                    <?php if($_REQUEST['main'] == 'newPost'){
-                        $this->partial('post/index');
-                    }else{
-                        $this->partial('settings/main');
-                    }?>
+                    <?= $this->partial('settings/main'); ?>
                 </div>
                 <?= $this->partial('settings/notificationPanel'); ?>
                 <!-- /.main -->

@@ -11,7 +11,7 @@
 		</p>
 		<p><span class="glyphicon glyphicon-time"></span> Publicado em <?= $post->post_date_posted ?></p>
 		<hr>
-		<div class="div-post"><?= html_entity_decode($post->post_content) ?>...</div>
+		<div class="div-post"><?= strip_tags(html_entity_decode($post_content[$post->post_id])) ?></div>
 		<hr>
 		<form name="load-post" id="load-post-<?= $post->post_id ?>" action="<?= URL_PROJECT ?>index/postPage/<?= $post_title[$post->post_id] ?>" method="post">
 			<input type="hidden" name="post_id" id="post_id" value="<?= $post->post_id ?>"class="form-control" value="">

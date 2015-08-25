@@ -59,21 +59,26 @@
 
 $("#new-user").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT ?>settings/newUser');
+    $("#panel, #top-menu").attr("hidden", true);
 });
 
 $("#edit-user").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>settings/listUsers');
+    $("#panel, #top-menu").attr("hidden", true);
 });
 
 $("#theme-editor").click(function(){
     window.open("<?= URL_PROJECT ?>appearance/index");
+
 });
 
 $("#new-post").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>post/index');
+    $("#panel, #top-menu").attr("hidden", true);
 });
 
 $("#edit-post").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>post/listPosts');
+    $("#panel, #top-menu").attr("hidden", true);
 })
 </script>

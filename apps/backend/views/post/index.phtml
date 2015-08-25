@@ -1,10 +1,15 @@
 <style>
     .row{ padding-bottom: 10px;}
 </style>
-<div class="col-lg-8">
+<div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Nova Postagem
+            <?php if($edit_post){ ?>
+                <label style="font-size: 30px;"><i class="glyphicon glyphicon-edit"></i> Editar Postagem </label>
+            <?php } else{ ?>
+                <label style="font-size: 30px;"><i class="glyphicon glyphicon-plus"></i> Nova Postagem </label>
+            <?php } ?>
+
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
@@ -241,6 +246,7 @@ $("#add-categorie").click(function(){
 tinymce.init({
     selector: "textarea",
     theme: "modern",
+    height : 800,
     init_instance_callback: "insert_contents",
     plugins: [
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",

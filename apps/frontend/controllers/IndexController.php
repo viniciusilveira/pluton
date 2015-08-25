@@ -29,17 +29,23 @@ class IndexController extends \Phalcon\Mvc\Controller {
 
         $this->session->start();
         $blog = Blogs::find();
-        $vars['layout'] = Layouts::findFirst();
         $posts = $this->getPostsPerPage($page);
+        foreach($posts as $post){
+            $post_content[$post->post_id] = substr(strip_tags($post->post_content), 0, 1000) . "...";
+        }
+
         $publish_posts = Posts::findByPost_status_id(1);
         $total_publish_posts = count($publish_posts);
-        $vars['num_pages'] = (($total_publish_posts / 10) > 1) ? ($total_publish_posts / 10) : 1 ;
-        //print_r($vars); die();
+
+
         foreach ($posts as $post) {
             $vars['post_title'][$post->post_id] = str_replace(" ", "-", $post->post_title, $count);
         }
-        $vars['posts'] = $posts;
 
+        $vars['layout'] = Layouts::findFirst();
+        $vars['posts'] = $posts;
+        $vars['post_content'] = $post_content;
+        $vars['num_pages'] = (($total_publish_posts / 10) > 1) ? ($total_publish_posts / 10) : 1 ;
         $this->view->setVars($vars);
 
         //caso o blog esteja criado carrega a index; se não carrega a pagina not found

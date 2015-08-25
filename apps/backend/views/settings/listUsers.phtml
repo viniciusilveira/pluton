@@ -3,44 +3,46 @@
         margin-left: 10px;
     }
 </style>
-<div class="col-lg-8">
-    <div class="panel-heading">
-        Usuários
-    </div>
-    <table class="table table-bordered  table-striped"
-        data-toggle="table"
-        data-sort-name="title"
-        data-sort-order="asc"
-        data-search="true"
-        data-show-refresh="true"
-        data-show-toggle="true"
-        data-show-columns="true"
-        data-query-params="queryParams"
-        data-pagination="true"
-        >
-        <thead>
-            <tr>
-                <th data-field="id" data-sortable="true">#</th>
-                <th data-field="name" data-sortable="true">NOME</th>
-                <th data-field="login" data-sortable="true">LOGIN</th>
-                <th data-field="e-mail" data-sortable="true">E-MAIL</th>
-                <th data-field="permission-level" data-sortable="true">NÍVEL PERMISSÃO</th>
-                <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Editar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($users as $user){ ?>
-            <tr class="user" user="<?= $user->user_id?>" data-toggle="tooltip" title="Clique aqui para editar o usuário">
-                <td><?= $user->user_id ?></td>
-                <td><?= $user->user_name ?></td>
-                <td><?= $user->user_login ?></td>
-                <td><?= $user->user_email ?></td>
-                <td><?= $user->user_type->user_type_descr ?></td>
-                </a>
-                <?php } ?>
-            </tbody>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-heading">
+            <label style="font-size:30px"><i class="glyphicon glyphicon-list"></i> Lista de Usuários</label>
+        </div>
+        <table class="table table-bordered  table-striped"
+            data-toggle="table"
+            data-sort-name="title"
+            data-sort-order="asc"
+            data-search="true"
+            data-show-refresh="true"
+            data-show-toggle="true"
+            data-show-columns="true"
+            data-query-params="queryParams"
+            data-pagination="true"
+            >
+            <thead>
+                <tr>
+                    <th data-field="id" data-sortable="true">#</th>
+                    <th data-field="name" data-sortable="true">NOME</th>
+                    <th data-field="login" data-sortable="true">LOGIN</th>
+                    <th data-field="e-mail" data-sortable="true">E-MAIL</th>
+                    <th data-field="permission-level" data-sortable="true">NÍVEL PERMISSÃO</th>
+                    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $user){ ?>
+                <tr class="user" user="<?= $user->user_id?>" data-toggle="tooltip" title="Clique aqui para editar o usuário">
+                    <td><?= $user->user_id ?></td>
+                    <td><?= $user->user_name ?></td>
+                    <td><?= $user->user_login ?></td>
+                    <td><?= $user->user_email ?></td>
+                    <td><?= $user->user_type->user_type_descr ?></td>
+                </tr>
+                    <?php } ?>
+                </tbody>
         </table>
     </div>
+</div>
     <script>
     /**
     * Ao clicar em qualquer usuário carrega a tela de edição de usuário
