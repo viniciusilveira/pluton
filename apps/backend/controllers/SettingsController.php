@@ -64,7 +64,12 @@ class SettingsController extends BaseController {
             $vars['user'] = $user_name[0];
             $vars['user_type_id'] = $user->user_type_id;
             $vars['user_img'] = $user->user_img;
-            $posts = Posts::getPosts('status', 1);
+            $posts = Posts::find(array(
+                "conditions" => "post_status_id = :status:",
+                "order" => "post_date_posted DESC",
+                "limit" => 15,
+                "bind" => array("status" => 1),
+            ));
             foreach($posts as $post){
                 $post_content[$post->post_id] = substr(strip_tags($post->post_content), 0, 500) . "...";
             }
