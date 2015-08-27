@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class and Function List:
  * Function list:
@@ -11,7 +12,7 @@
  * - verifyDataBaseAction()
  * - databaseSettingsAction()
  * - connectDatabase()
- * - createTablesAction()
+ * - createTables()
  * - createUsersTypes()
  * - installPlutonAction()
  * Classes list:
@@ -25,7 +26,8 @@ use Multiple\Backend\Models as Models;
  * do blog
  *
  */
-class SetupController extends BaseController {
+class SetupController extends BaseController
+{
 
     public $connection;
     private $config;
@@ -81,7 +83,7 @@ class SetupController extends BaseController {
      * Verifica a instalação do sistema, caso esteja tudo ok retorna a string 'ok',
      * caso contrário retorna o que falta ser configurado.
      */
-    public function verifyInstalation(){
+    public function verifyInstalation() {
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
             $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
         }
@@ -91,6 +93,7 @@ class SetupController extends BaseController {
 
         return $return;
     }
+
     /**
      * Verifica se o banco de dados está configurado corretamente, caso não esteja,
      * efetua as configurações necessárias.
@@ -106,7 +109,6 @@ class SetupController extends BaseController {
                 $return = 'connect';
             }
             else {
-                $this->createTablesAction();
                 $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
             }
         }
@@ -162,26 +164,20 @@ class SetupController extends BaseController {
      * Configura e executa a conexão com o banco de dados
      * @return bool true caso conecte com sucesso ou false caso ocorra algum erro
      */
-    public function connectDatabase() {
+    private function connectDatabase() {
         $this->view->disable();
 
         //Seta a configuração do banco de dados.
         $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
 
         //Cria um array com os dados do banco
-        $db_conn = array(
-            "host" => $this->config->database->host,
-            "username" => $this->config->database->username,
-            "password" => $this->config->database->password,
-            "dbname" => $this->config->database->name,
-            "charset" => 'utf8'
-        );
+        $db_conn = array("host" => $this->config->database->host, "username" => $this->config->database->username, "password" => $this->config->database->password, "dbname" => $this->config->database->name, "charset" => 'utf8');
         $db_conn["persistent"] = false;
 
         //Efetua a conexão com o banco de dados
         try {
             $this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql($db_conn);
-            $this->createTablesAction();
+            $this->createTables();
             $data['connection'] = true;
             $data['message'] = "Banco de dados conectado e configurado!";
             return $data;
@@ -198,7 +194,7 @@ class SetupController extends BaseController {
     /**
      * Cria as tabelas necessárias para o funcionamento do sistema
      */
-    public function createTablesAction() {
+    private function createTables() {
         $this->view->disable();
         $this->connection->tableExists('layouts') ? NULL : $this->tables->createTableLayouts($this->connection);
         $this->connection->tableExists('blogs') ? NULL : $this->tables->createTableBlogs($this->connection);
@@ -217,7 +213,7 @@ class SetupController extends BaseController {
      * Cria os tipos de usuários no sistema
      * @return boolean true caso sucesso, false caso ocorra algum erro!
      */
-    public function createUsersTypes() {
+    private function createUsersTypes() {
         $success = $this->userType->createUserType('SUPER ADMINISTRADOR', 'SA');
         $success = !$success ? $success : $this->userType->createUserType('ADMINISTRADOR', 'A');
         $success = !$success ? $success : $this->userType->createUserType('EDITOR', 'E');
@@ -226,7 +222,7 @@ class SetupController extends BaseController {
         return $success;
     }
 
-    public function createPostsStatus(){
+    private function createPostsStatus() {
         $post_status = new Models\PostStatus;
         $success = $post_status->createPostStatus("Publicado");
         $success = !$success ? $success : $post_status->createPostStatus("Pendente");

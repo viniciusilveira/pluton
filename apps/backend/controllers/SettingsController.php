@@ -126,7 +126,7 @@ class SettingsController extends BaseController {
             if ($this->request->hasFiles() == true) {
                 foreach ($this->request->getUploadedFiles() as $file) {
                     if ($file->getTempName() != NULL) {
-                        $upload_img = $this->uploadImageAction($file, 500, 500, 3145728, $user_login);
+                        $upload_img = $this->uploadImage($file, 500, 500, 3145728, $user_login);
                     }
                 }
             }
@@ -170,7 +170,7 @@ class SettingsController extends BaseController {
         if ($this->request->hasFiles() == true) {
             foreach ($this->request->getUploadedFiles() as $file) {
                 if ($file->getTempName() != NULL) {
-                    $upload_img = $this->uploadImageAction($file, 500, 500, 3145728, $user->user_img);
+                    $upload_img = $this->uploadImage($file, 500, 500, 3145728, $user->user_img);
                 }
             }
         }
@@ -221,7 +221,7 @@ class SettingsController extends BaseController {
      * @param  int $size    Tamanho máximo da imagem
      * @return string       Nome da imagem ou erro caso ocorroa algum.
      */
-    public function uploadImageAction($file, $width, $heigth, $size, $name_img = NULL) {
+    private function uploadImage($file, $width, $heigth, $size, $name_img = NULL) {
 
         // Pega as dimensões da imagem
         $dimensions = getimagesize($file->getTempName());

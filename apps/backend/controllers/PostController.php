@@ -164,7 +164,7 @@ class PostController extends BaseController {
      * @param  int $post_id  id do post
      * @return boolean             true caso salve todos os ids ou false caso ocorra um erro
      */
-    public function updatePostCategories($categories, $post_id) {
+    private function updatePostCategories($categories, $post_id) {
         foreach($categories as $categorie){
             $cat = Categories::findFirstByCategorie_name($categorie);
             $success = PostCategorie::deleteAllPostCategorieByPost($post_id);
@@ -200,7 +200,7 @@ class PostController extends BaseController {
      * @param  object $posts ResultSet[Posts]
      * @return array        Array contendo o array de cada post e uma string com as categorias dos posts
      */
-    public function getCategoriesByPost($posts) {
+    private function getCategoriesByPost($posts) {
         foreach ($posts as $post) {
             $post_categories = $post->post_categorie;
             foreach ($post_categories as $post_categorie) {

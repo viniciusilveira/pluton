@@ -30,6 +30,4 @@ class Categories extends \Phalcon\Mvc\Model {
         return $categorie;
     }
 
-    public function deleteCategorie() {
-    }
 }

@@ -26,7 +26,7 @@ class LoginController extends BaseController {
         } else {
             $this->view->render('login', 'index');
         }
-        
+
     }
 
     /**
@@ -58,7 +58,7 @@ class LoginController extends BaseController {
      * @param  string $user_login   nome de usuário
      * @return
      */
-    public function createSession($user_id, $user_login) {
+    private function createSession($user_id, $user_login) {
         $this->session->start();
         $this->session->set("user_id", $user_id);
         $this->session->set("user_login", $user_login);
