@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class and Function List:
  * Function list:
@@ -23,8 +24,9 @@ use Multiple\Backend\Models\UserType;
 use Multiple\Backend\Models\Users;
 use Multiple\Backend\Models\UserBlog;
 use Multiple\Backend\Models\Posts;
+use Multiple\Backend\Models\GoogleAccounts;
 
-class SettingsController extends BaseController {
+class SettingsController extends BaseController{
 
     private $users;
 
@@ -37,12 +39,7 @@ class SettingsController extends BaseController {
      *  * @todo:
      * => Variáveis:
      * $blog (boolean) => true caso exista um blog, false caso não exista
-     * $user_type (char) => Nível de permissão do usuário logado
-     * $img_user (string) => caminho para imagem de usuário (caso exista)
-     *      se não existir inserir caminho para imagem padrão
      *
-     * => Funcionalidades:
-     * google analitics => Verificar como integrar ao blog e criar relatórios/gráficos
      * redes sociais => Verificar como integrar ao blog
      * usuários online => Como contar a quantidade de usuários online? É possível pelo analitics?
      *
@@ -50,6 +47,10 @@ class SettingsController extends BaseController {
      */
 
     public function indexAction() {
+
+        //$users_online = AnalyticsController::getUsersOnline($analytics);
+        //var_dump($users_online);
+
 
         //Inicia a sessão
         $this->session->start();
@@ -59,20 +60,23 @@ class SettingsController extends BaseController {
             $user = $this->users->getUser($this->session->get("user_login"));
 
             $user_name = explode(" ", $user->user_name);
-
+            $posts = Posts::findByPost_status_id(1);
+            $vars['total_posts'] = count($posts);
             //Array para envio de dados para a view a ser carregada
             $vars['user'] = $user_name[0];
             $vars['user_type_id'] = $user->user_type_id;
             $vars['user_img'] = $user->user_img;
-            $posts = Posts::find(array(
-                "conditions" => "post_status_id = :status:",
-                "order" => "post_date_posted DESC",
-                "limit" => 15,
-                "bind" => array("status" => 1),
-            ));
-            foreach($posts as $post){
+
+            //Dados do google analytics
+            $data_analytics = AnalyticsController::getAccessPerMonth();
+            $vars['sessions'] = $data_analytics['sessions'];
+            $vars['months'] = $data_analytics['months'];
+            $vars['total_sessions'] = $data_analytics['total_sessions'];
+            $posts = Posts::find(array("conditions" => "post_status_id = :status:", "order" => "post_date_posted DESC", "limit" => 15, "bind" => array("status" => 1),));
+            foreach ($posts as $post) {
                 $post_content[$post->post_id] = substr(strip_tags($post->post_content), 0, 500) . "...";
             }
+
             //$this->printArray($post_content); die();
             $vars['posts'] = $posts;
             $vars['post_content'] = $post_content;
@@ -272,5 +276,4 @@ class SettingsController extends BaseController {
             $this->getImgName();
         }
     }
-
 }

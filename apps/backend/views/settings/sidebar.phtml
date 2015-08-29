@@ -17,13 +17,6 @@
     </div>
     <!-- /sub-posts -->
     <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
-    <a href="#sub-analytics" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-wrench"></i> Google Analytics </a>
-    <div class="collapse" id="sub-analytics">
-        <a href="#" class="list-group-item" id="g-account"><i class="glyphicon glyphicon-edit"></i> Cadastrar/Editar Conta</a>
-        <a href="#" class="list-group-item" id="edit-post"><i class="glyphicon glyphicon-stats"></i> Relatórios</a>
-    </div>
-    <?php } ?>
-    <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
     <a href="#sub-social-network" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-thumbs-up"></i> Redes Sociais </a>
     <div class="collapse" id="sub-social-network">
         <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Adicionar Rede Social</a>
@@ -42,7 +35,7 @@
     <!-- /sub-appearance-->
     <?php } ?>
     <?php if($user_type_id == 1 || $user_type_id == 2){ ?>
-    <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-eye-open"></i> Segurança </a>
+    <a href="#" id="security" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-eye-open"></i> Segurança </a>
     <?php } ?>
     <?php if($user_type_id == 'SA'){ ?>
     <a href="#sub-plugins" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-paperclip"></i> Plugins </a>
@@ -86,8 +79,8 @@ $("#edit-post").click(function(){
     $("#panel, #top-menu").attr("hidden", true);
 })
 
-$("#g-account").click(function(){
-    $.loadPartialView('main', '<?= URL_PROJECT?>analytics/index');
+$("#security").click(function(){
+    $.loadPartialView('main', '<?= URL_PROJECT?>security/index');
     $("#panel, #top-menu").attr("hidden", true);
 })
 </script>
