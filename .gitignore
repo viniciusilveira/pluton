@@ -1,6 +1,8 @@
 #arquivos ignoradas pelo git
 apps/config/config.ini
 public/img/users/
+public/js/g-analytics.js
+public/js/facebook.js
 pluton.sublime-workspace
 pluton.sublime-project
 *.p12
