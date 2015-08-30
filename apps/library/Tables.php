@@ -559,39 +559,34 @@ class Tables {
     }
 
     /**
-     * Cria a tabela social_network
+     * Cria a tabela facebook_accounts
      * @param $connection => Variável de conexão com o banco de dados
      */
-    public function createTableSocialNetwork($connection) {
+    public function createTableFacebookAccounts($connection) {
         $table = array(
             "columns" => array(
-                new Column("social_network_id", array(
+                new Column("facebook_account_id", array(
                     "type" => Column::TYPE_INTEGER,
                     "primary" => true,
                     "size" => 10,
                     "notNull" => true,
                     "autoIncrement" => true,
-                )) ,
-                new Column("social_network_name", array(
+                )),
+                new Column("blog_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10,
+                    "notNull" => true,
+                )),
+                new Column("facebook_account_app_id", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 50,
                     "notNull" => true,
                 )) ,
-                new Column("social_network_login", array(
+                new Column("facebook_account_app_secret", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 20,
                     "notNull" => true,
                 )) ,
-                new Column("social_network_passwd", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "size" => 20,
-                    "notNull" => true,
-                )) ,
-                new Column("blog_id", array(
-                    "type" => Column::TYPE_INTEGER,
-                    "size" => 10,
-                    "notNull" => true
-                ))
             ) ,
             "indexes" => array(
                 new Index("blog_id", array(
@@ -599,7 +594,7 @@ class Tables {
                 ))
             ) ,
             "references" => array(
-                new Reference("social_network_fk_blog", array(
+                new Reference("facebook_account_fk_blog", array(
                     "referencedTable" => "blogs",
                     "columns" => array(
                         "blog_id"
@@ -610,6 +605,6 @@ class Tables {
                 ))
             )
         );
-        $connection->createTable("social_network", NULL, $table);
+        $connection->createTable("facebook_accounts", NULL, $table);
     }
 }

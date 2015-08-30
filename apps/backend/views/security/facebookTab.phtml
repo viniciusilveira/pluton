@@ -1,0 +1,97 @@
+<div class="tab-pane fade" id="facebook">
+    <div class="col-sm-8">
+        <div class="row">
+            <form id="facebook-account" name="facebook-account" role="form">
+                <div class="panel-heading">
+                    <label style="font-size: 18px;"> Configurar API do Facebook
+                    </div>
+                    <div class="form-group input-group col-sm-10">
+                        <span class="input-group-addon">@</span>
+                        <input type="text" name="app_id" class="form-control" value="<?= $fb_account_app_id ?>" placeholder="APP ID">
+                    </div>
+                    <div class="form-group input-group col-sm-10">
+                        <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
+                        <input type="password" name="app_secret" value="<?= $fb_account_app_secret ?>" class="form-control" placeholder="APP Secret">
+                    </div>
+                    <div class="form-group input-group col-sm-6">
+                        <?php if(empty($fb_account_app_id)){ ?>
+                            <a href="#" id="save-facebook-account" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Salvar</a>
+                        <?php } else{ ?>
+                            <a href="#" id="edit-facebook-account" class="btn btn-block btn-primary btn-warning"><span class="glyphicon glyphicon-edit"></span> Alterar</a>
+                    <?php }?>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    Atenção!
+                </div>
+                <div class="panel-body">
+                    <p>Para configurar corretamente o Acesso a API do google pelo pluton, leia atentamente a documentação da mesma antes de inserir
+                    quaisquer dados no formulário ao lado. Qualquer configuração invalida pode acarretar em mau funcionamento ou erros!</p>
+                </div>
+                <div class="panel-footer">
+                    <a href="https://developers.google.com/analytics/devguides/config/mgmt/v3/quickstart/service-php" target="_blank">DOCUMENTAÇÃO API GOOGLE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$("#save-facebook-account").click(function(){
+    var form = $("#facebook-account").serialize();
+    $.ajax({
+        url: "<?= URL_PROJECT ?>security/registerFacebookAccountsApiAccess",
+        data: form,
+        dataType: 'json',
+        type: "POST",
+        success: function(data){
+            if(data.success){
+                swal({
+                    title: "Sucesso!",
+                    text: "Dados Salvos Com sucesso! ",
+                    type: "success",
+                    confirmButtonText: "OK"
+                });
+            } else{
+                swal({
+                    title: "Erro!",
+                    text: "Por favor, verifique os dados Informados e tente Novamente!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+        }
+    });
+});
+
+$("#edit-facebook-account").click(function(){
+    var form = $("#facebook-account").serialize();
+    $.ajax({
+        url: "<?= URL_PROJECT ?>security/updateFacebookAccountsApiAccess",
+        data: form,
+        dataType: 'json',
+        type: "POST",
+        success: function(data){
+            if(data.success){
+                swal({
+                    title: "Sucesso!",
+                    text: "Dados Salvos Com sucesso! ",
+                    type: "success",
+                    confirmButtonText: "OK"
+                });
+            } else{
+                swal({
+                    title: "Erro!",
+                    text: "Por favor, verifique os dados Informados e tente Novamente!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+        }
+    });
+});
+</script>

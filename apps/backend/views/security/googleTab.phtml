@@ -1,0 +1,162 @@
+<div class="tab-pane fade in active" id="google">
+    <div class="col-sm-8">
+        <div class="panel-heading">
+            <label style="font-size: 18px;"> Configurar API do Google</label>
+        </div>
+        <div class="row">
+            <form name="google-account" id="google-account" role="form">
+                <div class="form-group input-group col-sm-10">
+                    <span class="input-group-addon"><i class="fa fa-google"></i></span>
+                    <input type="text" name="g_account" id="g_account" value="<?= $google_account_login ?>" class="form-control" placeholder="XXXXXXXXXXXXXXXXXX@developer.gserviceaccount.com">
+                </div>
+                <div class="form-group input-group col-sm-10">
+                    <input type="file" id="input-p12-file" name="pk12_key" class="filestyle" data-buttonName="btn-primary" data-buttonText="Insira o arquivo de chave .p12">
+                </div>
+                <div class="form-group input-group col-sm-6">
+                    <?php if(empty($google_account_login)){ ?>
+                    <a href="#" id="save-google-account" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Salvar</a>
+                    <?php } else{ ?>
+                    <a href="#" id="edit-google-account" class="btn btn-block btn-primary btn-warning"><span class="glyphicon glyphicon-edit"></span> Alterar</a>
+                    <?php }?>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                Atenção!
+            </div>
+            <div class="panel-body">
+                <p>Para configurar corretamente o Acesso a API do google pelo pluton, leia atentamente a documentação da mesma antes de inserir
+                quaisquer dados no formulário ao lado. Qualquer configuração invalida pode acarretar em mau funcionamento ou erros!</p>
+            </div>
+            <div class="panel-footer">
+                <a href="https://developers.google.com/analytics/devguides/config/mgmt/v3/quickstart/service-php" target="_blank">DOCUMENTAÇÃO API GOOGLE</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+/**
+ * Verifica os dados informados no formulário save-google-account e chama o método do servidor para
+ * salvar os dados.
+ */
+$("#save-google-account").click(function(){
+    console.log("save-google-account: \n");
+    var form_data =new FormData($("#google-account")[0]);
+    console.log("data: " + form_data);
+    $.ajax({
+        url: "<?= URL_PROJECT ?>" + "security/registerGoogleAccountsApiAccess",
+        data:  form_data,
+        type: 'POST',
+        dataType: 'json',
+        async: false,
+        success: function(data){
+            if(data.success){
+                swal({
+                    title: "Sucesso!",
+                    text: "Dados Salvos Com sucesso! Se tudo estiver correto a partir de agora você podera vizualizar dados do google analytics diretamente aqui! =)",
+                    type: "success",
+                    confirmButtonText: "OK"
+                });
+            } else{
+                swal({
+                    title: "Erro!",
+                    text: "Por favor, verifique os dados Informados e tente Novamente!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+        },
+        cache: false,
+        contentType: false,
+        processData: false,
+        xhr: function() {  // Custom XMLHttpRequest
+            var myXhr = $.ajaxSettings.xhr();
+            if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                myXhr.upload.addEventListener('progress', function () {
+                    //faz alguma coisa enquanto envia o arquivo
+                }, false);
+            }
+            return myXhr;
+        }
+    });
+});
+
+/**
+ * Verifica os dados do formulário e chama o método do servidor para atualizar os dados
+ * da conta google ja existente.
+ */
+$("#edit-google-account").click(function(){
+    swal({
+        title: "Tem certeza disso?",
+        text: "Caso esses dados sejam de uma conta diferente da já cadastrada os dados da conta anterior não serão mais exibidos.",
+        type: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false,
+        confirmButtonText: "Sim, Alterar!",
+        confirmBUttonColor: "#ec6c62"
+    },
+    function() {
+        var form_data =new FormData($("#google-account")[0]);
+        console.log("data: " + form_data);
+        $.ajax({
+            url: "<?= URL_PROJECT ?>" + "security/updateGoogleAccountsApiAccess",
+            data:  form_data,
+            type: 'POST',
+            dataType: 'json',
+            async: false,
+            success: function(data){
+                if(data.success){
+                    swal({
+                        title: "Sucesso!",
+                        text: "Dados Salvos Com sucesso! Se tudo estiver correto a partir de agora você podera vizualizar dados do google analytics diretamente aqui! =)",
+                        type: "success",
+                        confirmButtonText: "OK"
+                    });
+                } else{
+                    swal({
+                        title: "Erro!",
+                        text: "Por favor, verifique os dados Informados e tente Novamente!",
+                        type: "error",
+                        confirmButtonText: "OK"
+                    });
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            xhr: function() {  // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                    myXhr.upload.addEventListener('progress', function () {
+                        //faz alguma coisa enquanto envia o arquivo
+                    }, false);
+                }
+                return myXhr;
+            }
+        });
+    });
+});
+
+/**
+ * Ao selecionar um arquivo no input input-p12-file verifica se o arquivo é uma chave secreta .p12
+ * para acesso a API do google
+ */
+$("#input-p12-file").change(function(){
+     str=$(this).val();
+        suffix=".p12";
+        if(str.indexOf(suffix, str.length - suffix.length) == -1){
+            swal({
+                    title: "Atenção!",
+                    text: "O arquivo " + str + " não parece ser uma chave .p12 valida. Por favor verifique o arquivo informado e tente novamente.",
+                    type: "error",
+                    confirmButtonText: "OK"
+            });
+        }
+});
+</script>
