@@ -65,7 +65,7 @@ class SecurityController extends BaseController{
             }
         }
         $p12_key->moveTo(FOLDER_PROJECT . $p12_key->getName());
-
+        chmod(FOLDER_PROJECT . $p12_key->getName(), 0775);
         $data['success'] = GoogleAccounts::createGoogleAccount($g_account, $p12_key->getName());
 
         echo json_encode($data);
@@ -87,6 +87,7 @@ class SecurityController extends BaseController{
             //remove o arquivo antigo e insere o novo
             unlink(FOLDER_PROJECT . $google_account->google_account_key_file_name);
             $p12_key->moveTo(FOLDER_PROJECT . $p12_key->getName());
+            chmod(FOLDER_PROJECT . $p12_key->getName(), 0775);
         }
         echo json_encode($data);
     }
