@@ -528,10 +528,10 @@ class Tables {
                 )),
                 new Column("google_account_login", array(
                     "type" => Column::TYPE_VARCHAR,
-                    "size" => 50,
+                    "size" => 250,
                     "notNull" => true,
                 )),
-                new Column("google_account_password", array(
+                new Column("google_account_key_file_name", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
                     "notNull" => true,

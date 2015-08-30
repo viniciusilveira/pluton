@@ -121,35 +121,35 @@ var Form = function(){
         $('#inputUser_type_id').attr("disabled", false);
         var form_data =new FormData($("#form-newuser")[0]);
         $.ajax({
-                url: url,
-                data:  form_data,
-                type: 'POST',
-                dataType: 'json',
-                async: false,
-                success: function(data){
-                    if(data.success){
-                        swal.success('Dados Salvos com sucesso');
-                        $(".confirm").click(function(){
-                            $.loadPartialView('main', '<?= URL_PROJECT?>settings/listUsers');
-                            $("#panel, #top-menu").attr("hidden", true);
-                        });
-                    } else{
-                        swal.error(data.message);
-                    }
-                },
-                cache: false,
-                contentType: false,
-                processData: false,
-                xhr: function() {  // Custom XMLHttpRequest
-                    var myXhr = $.ajaxSettings.xhr();
-                    if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
-                        myXhr.upload.addEventListener('progress', function () {
-                            //faz alguma coisa enquanto envia o arquivo
-                        }, false);
-                    }
-                    return myXhr;
+            url: url,
+            data:  form_data,
+            type: 'POST',
+            dataType: 'json',
+            async: false,
+            success: function(data){
+                if(data.success){
+                    swal.success('Dados Salvos com sucesso');
+                    $(".confirm").click(function(){
+                        $.loadPartialView('main', '<?= URL_PROJECT?>settings/listUsers');
+                        $("#panel, #top-menu").attr("hidden", true);
+                    });
+                } else{
+                    swal.error(data.message);
                 }
-            });
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            xhr: function() {  // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                    myXhr.upload.addEventListener('progress', function () {
+                        //faz alguma coisa enquanto envia o arquivo
+                    }, false);
+                }
+                return myXhr;
+            }
+        });
     }
 
     /**

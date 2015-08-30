@@ -3,6 +3,6 @@ apps/config/config.ini
 public/img/users/
 pluton.sublime-workspace
 pluton.sublime-project
-pluton.p12
+*.p12
 .settings
 

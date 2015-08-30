@@ -27,11 +27,24 @@ class GoogleAccounts extends \Phalcon\Mvc\Model
      * @param  string $password  senha da conta informada
      * @return boolean            true caso sucesso ou false caso ocorra alguma falha
      */
-    public function createGoogleAccount($g_account, $password) {
+    public function createGoogleAccount($g_account, $key_file_name) {
         $googleAccount = new GoogleAccounts();
         $googleAccount->google_account_login = $g_account;
-        $googleAccount->google_account_password = $password;
+        $googleAccount->google_account_key_file_name = $key_file_name;
+
+        //Valor padrão do id do blog
         $googleAccount->blog_id = 1;
-        return $googleAccount->save();
+        $return = $googleAccount->save();
+
+        return $return;
+    }
+
+    public function updateGoogleAccount($g_account, $key_file_name){
+        $google_account = GoogleAccounts::findFirst();
+        $google_account->google_account_login = $g_account;
+        $google_account->google_account_key_file_name = $key_file_name;
+        $return = $google_account->save();
+
+        return $return;
     }
 }

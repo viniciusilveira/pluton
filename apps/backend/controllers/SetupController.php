@@ -207,6 +207,7 @@ class SetupController extends BaseController
         $this->connection->tableExists('post_categorie') ? NULL : $this->tables->createTablePostCategories($this->connection);
         $this->connection->tableExists('google_accounts') ? NULL : $this->tables->createTableGoogleAccounts($this->connection);
         $this->connection->tableExists('social_network') ? NULL : $this->tables->createTableSocialNetwork($this->connection);
+        $this->connection->tableExists('visitors_online') ? NULL : $this->tables->createTableVisitorsOnline($this->connection);
     }
 
     /**

@@ -19,6 +19,7 @@
 namespace Multiple\Backend\Controllers;
 
 use Multiple\Backend\Controllers\AnalyticsController;
+use Multiple\Backend\Controllers\SecurityController;
 
 use Multiple\Backend\Models\UserType;
 use Multiple\Backend\Models\Users;
@@ -68,10 +69,18 @@ class SettingsController extends BaseController{
             $vars['user_img'] = $user->user_img;
 
             //Dados do google analytics
-            $data_analytics = AnalyticsController::getAccessPerMonth();
-            $vars['sessions'] = $data_analytics['sessions'];
-            $vars['months'] = $data_analytics['months'];
-            $vars['total_sessions'] = $data_analytics['total_sessions'];
+            $google_account = GoogleAccounts::findFirst();
+            if(!empty($google_account)){
+                $data_analytics = AnalyticsController::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
+                $vars['sessions'] = $data_analytics['sessions'];
+                $vars['months'] = $data_analytics['months'];
+                $vars['total_sessions'] = $data_analytics['total_sessions'];
+            } else{
+                $vars['sessions'] = 0;
+                $vars['months'] = $this->mountArrayMonths();
+            }
+
+
             $posts = Posts::find(array("conditions" => "post_status_id = :status:", "order" => "post_date_posted DESC", "limit" => 15, "bind" => array("status" => 1),));
             foreach ($posts as $post) {
                 $post_content[$post->post_id] = substr(strip_tags($post->post_content), 0, 500) . "...";

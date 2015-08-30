@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class and Function List:
  * Function list:
@@ -19,16 +20,13 @@ use \Phalcon\Mvc\Model\Resultset;
  * Class Users
  * @package Multiple\Backend\Models
  */
-class Users extends \Phalcon\Mvc\Model {
+class Users extends \Phalcon\Mvc\Model
+{
 
     public function initialize() {
 
-        $this->hasOne("user_type_id", "Multiple\Backend\Models\UserType", "user_type_id", array(
-            'alias' => "user_type"
-        ));
-        $this->hasOne("blog_id", "Multiple\Backend\Models\UserBlogs", "blog_id", array(
-            'alias' => 'blogs'
-        ));
+        $this->hasOne("user_type_id", "Multiple\Backend\Models\UserType", "user_type_id", array('alias' => "user_type"));
+        $this->hasOne("blog_id", "Multiple\Backend\Models\UserBlogs", "blog_id", array('alias' => 'blogs'));
     }
 
     /**
@@ -36,12 +34,17 @@ class Users extends \Phalcon\Mvc\Model {
      * @return bool true caso exista, false caso não exista nenhum
      */
     public function verifyUsersExistAction() {
+
         /**
          * @todo: verificar outra maneira para contar os usuários,
          * pois dá fatal error quando a tabela não existe.
          */
-        $total_users = $this->count();
-        return $total_users > 0 ? true : false;
+        try {
+            $total_users = $this->count();
+            return $total_users > 0 ? true : false;
+        } catch(PDO\Exception $e){
+            return false;
+        }
     }
 
     /**
@@ -71,7 +74,6 @@ class Users extends \Phalcon\Mvc\Model {
         return $success;
     }
 
-
     /**
      * Atualiza os dados de um usuário
      * @param  int    $user_id     id do Usuário
@@ -100,13 +102,14 @@ class Users extends \Phalcon\Mvc\Model {
         return $success;
     }
 
-    public function ActiveOrdeactiveUser($user_id){
+    public function ActiveOrdeactiveUser($user_id) {
         $user = Users::findFirstByUser_id($user_id);
-        $user->user_active = !$user->user_active ? 1 : 0 ;
+        $user->user_active = !$user->user_active ? 1 : 0;
         $success = $user->save();
 
         return $success;
     }
+
     /**
      * Busca um usuário pelo login/email do mesmo
      * @param  string $user_login login do usuário
@@ -114,12 +117,7 @@ class Users extends \Phalcon\Mvc\Model {
      */
     public function getUser($user_login) {
 
-        $user = Users::query()
-            ->where("user_login = :user_login:")
-            ->orWhere("user_email = :user_login:")
-            ->bind(array(
-            "user_login" => $user_login
-        ))->execute();
+        $user = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_login:")->bind(array("user_login" => $user_login))->execute();
 
         return $user->getFirst();
     }
@@ -131,15 +129,7 @@ class Users extends \Phalcon\Mvc\Model {
      * @return boolean true caso usuário exista ou false caso contrario
      */
     public function userExists($user_name, $user_login, $user_email) {
-        $user = Users::query()
-            ->where("user_name = :user_name:")
-            ->orWhere("user_login = :user_login:")
-            ->orWhere("user_email = :user_email:")
-            ->bind(array(
-            "user_name" => $user_name,
-            "user_login" => $user_login,
-            "user_email" => $user_email
-        ))->execute();
+        $user = Users::query()->where("user_name = :user_name:")->orWhere("user_login = :user_login:")->orWhere("user_email = :user_email:")->bind(array("user_name" => $user_name, "user_login" => $user_login, "user_email" => $user_email))->execute();
         $result = $user->getFirst();
         return !empty($result);
     }

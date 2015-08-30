@@ -8,7 +8,7 @@ class AnalyticsController extends \Phalcon\Mvc\Controller{
     public function index() {
     }
 
-    public function getService() {
+    public function getService($google_account_login, $google_account_key_file_name) {
 
         // Creates and returns the Analytics service object.
 
@@ -17,8 +17,8 @@ class AnalyticsController extends \Phalcon\Mvc\Controller{
 
         // Use the developers console and replace the values with your
         // service account email, and relative location of your key file.
-        $service_account_email = 'XXXXXXXXXXXXXXXXXXX@developer.gserviceaccount.com';
-        $key_file_location = FOLDER_PROJECT . 'key.p12';
+        $service_account_email = $google_account_login;
+        $key_file_location = FOLDER_PROJECT . $google_account_key_file_name;
 
         // Create and configure a new client object.
         $client = new Google_Client();
@@ -123,9 +123,9 @@ class AnalyticsController extends \Phalcon\Mvc\Controller{
         }
     }
 
-    public function getAccessPerMonth() {
+    public function getAccessPerMonth($google_account_login, $google_account_key_file_name) {
     	$arr_months = $this->mountArrayMonths();
-        $analytics = AnalyticsController::getService();
+        $analytics = AnalyticsController::getService($google_account_login, $google_account_key_file_name);
         $profileId = AnalyticsController::getFirstprofileId($analytics);
         $month = date('m');
         for ($m = 1; $m <= $month; $m++) {
