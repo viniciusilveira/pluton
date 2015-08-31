@@ -6,5 +6,6 @@ public/js/facebook.js
 pluton.sublime-workspace
 pluton.sublime-project
 *.p12
+keys/
 .settings
 

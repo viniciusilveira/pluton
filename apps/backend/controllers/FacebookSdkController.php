@@ -11,18 +11,14 @@ class FacebookSdkController extends \Phalcon\Mvc\Controller{
 	private $app_secret;
 
 	public function onConstruct(){
-		$fb_account = FacebookAccounts::findFirst();
-		$this->app_id = $fb_account->facebook_account_app_id;
-		$this->app_secret = $fb_account->facebook_account_app_secret;
-		$this->facebook = new Facebook(array(
-			'appid' => $this->app_id,
-			'secret' => $this->app_secret
-			'cockie' => true
-		));
+
 	}
 
 	public function getLikesBlog(){
-
+		$url = "45.55.155/pluton";
+		$return = file_get_contents('http://graph.facebook.com/?ids='.$url);
+		$json = json_decode($retorno, false);
+		echo 'Número de likes: '.$json->$url->shares;
 	}
 
 	public function getLikesPage(){

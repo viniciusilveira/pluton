@@ -139,7 +139,6 @@ class SetupController extends BaseController
         //Cria o arquivo de conexão com o banco de dados;
         if (!file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
             !is_dir(FOLDER_PROJECT . 'apps/config/') ? mkdir(FOLDER_PROJECT . 'apps/config/') : NULL;
-            chmod(FOLDER_PROJECT . 'apps/config/', 0775);
             if ($config_file = fopen(FOLDER_PROJECT . 'apps/config/config.ini', 'w')) {
                 $writing_file = "[database]\n";
                 $writing_file.= "adapter  = Mysql\n";
