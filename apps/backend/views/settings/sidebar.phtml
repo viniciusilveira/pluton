@@ -1,7 +1,4 @@
 <div class="list-group panel">
-    <?php if($user_type_id == 1){ ?>
-    <a href="#sub-blog" class="list-group-item strong" id="blog" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-home"></i> Blog</a>
-    <?php } ?>
     <?php if($user_type_id == 1 || $user_type_id == 2){ ?>
     <a href="#sub-users" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-user"></i> Usuários</a>
     <div class="collapse" id="sub-users">
@@ -17,15 +14,6 @@
     </div>
     <!-- /sub-posts -->
     <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
-    <a href="#sub-social-network" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-thumbs-up"></i> Redes Sociais </a>
-    <div class="collapse" id="sub-social-network">
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-plus"></i> Adicionar Rede Social</a>
-        <a href="#" class="list-group-item"><i class="glyphicon glyphicon-edit"></i> Editar Redes Cadastradas</a>
-    </div>
-    <!-- /sub-social-network -->
-    <?php } ?>
-    <?php if($user_type_id == 1 | $user_type_id == 2){ ?>
-    <a href="#" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-usd"></i> Propagandas </a>
     <?php } ?>
     <?php if($user_type_id == 1){ ?>
     <a href="#sub-appearance" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-sunglasses"></i> Aparência </a>
@@ -35,19 +23,10 @@
     <!-- /sub-appearance-->
     <?php } ?>
     <?php if($user_type_id == 1 || $user_type_id == 2){ ?>
-    <a href="#" id="security" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-eye-open"></i> Segurança </a>
-    <?php } ?>
-    <?php if($user_type_id == 'SA'){ ?>
-    <a href="#sub-plugins" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-paperclip"></i> Plugins </a>
-    <div class="collapse" id="sub-plugins">
-        <a href="#" class="list-group-item">Instalar Plugin</a>
-        <a href="#" class="list-group-item">Buscar Plugins</a>
-        <a href="#" class="list-group-item">Remover Plugin</a>
-    </div>
-    <!-- /sub-plugins -->
+    <a href="#" id="security" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-eye-open"></i> APIS e Redes Sociais </a>
     <?php } ?>
     <?php if($user_type_id == 1){ ?>
-    <a href="#sub-update" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon     glyphicon-refresh"></i> Atualizações </a>
+    <a href="#" class="list-group-item strong" id="update" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon     glyphicon-refresh"></i> Atualizações </a>
     <?php } ?>
 </div>
 <!-- /.list-group -->
@@ -77,10 +56,15 @@ $("#new-post").click(function(){
 $("#edit-post").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>post/listPosts');
     $("#panel, #top-menu").attr("hidden", true);
-})
+});
 
 $("#security").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>security/index');
     $("#panel, #top-menu").attr("hidden", true);
-})
+});
+
+$("#update").click(function(){
+    $.loadPartialView('main', '<?= URL_PROJECT?>update/index');
+    $("#panel, #top-menu").attr("hidden", true);
+});
 </script>

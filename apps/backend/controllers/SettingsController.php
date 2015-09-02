@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class and Function List:
  * Function list:
@@ -10,8 +9,9 @@
  * - listUsersAction()
  * - updateUserAction()
  * - ActiveOrdeactiveUserAction()
- * - uploadImageAction()
+ * - uploadImage()
  * - getImgName()
+ * - getApiSocialsData()
  * Classes list:
  * - SettingsController extends BaseController
  */
@@ -19,15 +19,20 @@
 namespace Multiple\Backend\Controllers;
 
 use Multiple\Backend\Controllers\AnalyticsController;
+use Multiple\Backend\Controllers\FacebookSdkController;
+use Multiple\Backend\Controllers\TwitterSdkController;
 use Multiple\Backend\Controllers\SecurityController;
+use Multiple\Backend\Controllers\UpdateController;
 
 use Multiple\Backend\Models\UserType;
 use Multiple\Backend\Models\Users;
 use Multiple\Backend\Models\UserBlog;
 use Multiple\Backend\Models\Posts;
 use Multiple\Backend\Models\GoogleAccounts;
+use Multiple\Backend\Models\TwitterAccounts;
+use Multiple\Backend\Models\FacebookPages;
 
-class SettingsController extends BaseController{
+class SettingsController extends BaseController {
 
     private $users;
 
@@ -49,9 +54,7 @@ class SettingsController extends BaseController{
 
     public function indexAction() {
 
-        //$users_online = AnalyticsController::getUsersOnline($analytics);
-        //var_dump($users_online);
-
+        //UpdateController::index();
 
         //Inicia a sessão
         $this->session->start();
@@ -62,31 +65,27 @@ class SettingsController extends BaseController{
 
             $user_name = explode(" ", $user->user_name);
             $posts = Posts::findByPost_status_id(1);
+            $vars = $this->getApiSocialsData();
+
             $vars['total_posts'] = count($posts);
+
             //Array para envio de dados para a view a ser carregada
             $vars['user'] = $user_name[0];
             $vars['user_type_id'] = $user->user_type_id;
             $vars['user_img'] = $user->user_img;
 
-            //Dados do google analytics
-            $google_account = GoogleAccounts::findFirst();
-            if(!empty($google_account)){
-                $data_analytics = AnalyticsController::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
-                $vars['sessions'] = $data_analytics['sessions'];
-                $vars['months'] = $data_analytics['months'];
-                $vars['total_sessions'] = $data_analytics['total_sessions'];
-            } else{
-                $vars['sessions'] = 0;
-                $vars['months'] = $this->mountArrayMonths();
-            }
 
-
-            $posts = Posts::find(array("conditions" => "post_status_id = :status:", "order" => "post_date_posted DESC", "limit" => 15, "bind" => array("status" => 1),));
+            $posts = Posts::find(array(
+                "conditions" => "post_status_id = :status:",
+                "order" => "post_date_posted DESC",
+                "limit" => 15,
+                "bind" => array(
+                    "status" => 1
+                ) ,
+            ));
             foreach ($posts as $post) {
-                $post_content[$post->post_id] = substr(strip_tags($post->post_content), 0, 500) . "...";
+                $post_content[$post->post_id] = substr(strip_tags($post->post_content) , 0, 500) . "...";
             }
-
-            //$this->printArray($post_content); die();
             $vars['posts'] = $posts;
             $vars['post_content'] = $post_content;
             $this->view->setVars($vars);
@@ -284,5 +283,43 @@ class SettingsController extends BaseController{
         else {
             $this->getImgName();
         }
+    }
+
+    public function getApiSocialsData() {
+
+        //Dados do google analytics
+        $google_account = GoogleAccounts::findFirst();
+        if (!empty($google_account)) {
+            $data_analytics = AnalyticsController::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
+            $vars['sessions'] = $data_analytics['sessions'];
+            $vars['months'] = $data_analytics['months'];
+            $vars['total_sessions'] = $data_analytics['total_sessions'];
+        }
+        else {
+            $vars['sessions'] = 0;
+            $vars['months'] = $this->mountArrayMonths();
+        }
+
+        $tw_account = TwitterAccounts::findFirst();
+
+        if (!empty($tw_account)) {
+            $bearer_token = TwitterSdkController::generateBearerToken($tw_account->twitter_account_app_id, $tw_account->twitter_account_app_secret);
+            $data_twitter = TwitterSdkController::getLookupTwitterProfileBlog($bearer_token, $tw_account->twitter_account_username);
+            //var_dump($data_twitter); die();
+            $vars['followers_count'] = $data_twitter[0]['followers_count'];
+        }
+        else {
+            $vars['followers_count'] = 0;
+        }
+
+        $fb_page = FacebookPages::findFirst();
+        if(!empty($fb_page)){
+            $facebook = FacebookController::facebook_count("https://www.facebook.com/" . $fb_page->facebook_page_name);
+            $vars['facebook_likes'] = $facebook[0]['like_count'];
+        } else{
+            $vars['facebook_likes'] = 0;
+        }
+
+        return $vars;
     }
 }

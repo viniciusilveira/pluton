@@ -562,10 +562,10 @@ class Tables {
      * Cria a tabela facebook_accounts
      * @param $connection => Variável de conexão com o banco de dados
      */
-    public function createTableFacebookAccounts($connection) {
+    public function createTableFacebookPages($connection) {
         $table = array(
             "columns" => array(
-                new Column("facebook_account_id", array(
+                new Column("facebook_page_id", array(
                     "type" => Column::TYPE_INTEGER,
                     "primary" => true,
                     "size" => 10,
@@ -577,14 +577,9 @@ class Tables {
                     "size" => 10,
                     "notNull" => true,
                 )),
-                new Column("facebook_account_app_id", array(
+                new Column("facebook_page_name", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 50,
-                    "notNull" => true,
-                )) ,
-                new Column("facebook_account_app_secret", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "size" => 20,
                     "notNull" => true,
                 )) ,
             ) ,
@@ -594,7 +589,7 @@ class Tables {
                 ))
             ) ,
             "references" => array(
-                new Reference("facebook_account_fk_blog", array(
+                new Reference("facebook_page_fk_blog", array(
                     "referencedTable" => "blogs",
                     "columns" => array(
                         "blog_id"
@@ -605,6 +600,58 @@ class Tables {
                 ))
             )
         );
-        $connection->createTable("facebook_accounts", NULL, $table);
+        $connection->createTable("facebook_pages", NULL, $table);
+    }
+
+    public function createTableTwitterAccounts($connection){
+        $table = array(
+            "columns" => array(
+                new Column("twitter_account_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true,
+                )),
+                new Column("blog_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10,
+                    "notNull" => true,
+                )),
+                new Column("twitter_account_app_id", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
+                    "notNull" => true,
+                )) ,
+                new Column("twitter_account_app_secret", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
+                    "notNull" => true,
+                )) ,
+                new Column("twitter_account_username", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 20,
+                    "notNull" => true,
+                )),
+            ) ,
+            "indexes" => array(
+                new Index("blog_id", array(
+                    "blog_id"
+                ))
+            ) ,
+            "references" => array(
+                new Reference("twitter_account_fk_blog", array(
+                    "referencedTable" => "blogs",
+                    "columns" => array(
+                        "blog_id"
+                    ) ,
+                    "referencedColumns" => array(
+                        "blog_id"
+                    ) ,
+                ))
+            )
+        );
+        $connection->createTable("twitter_accounts", NULL, $table);
+
     }
 }

@@ -1,0 +1,24 @@
+<div class="panel panel-default" >
+    <div class="panel-heading">
+        <?php if(!$new_version){ ?>
+        <label style="font-size: 30px;"><i class="glyphicon glyphicon-eye-open"></i> Sistema Atualizado!</label>
+        <?php } else{ ?>
+        <label style="font-size: 30px;"><i class="glyphicon glyphicon-eye-open"></i> Nova versão Disponível!</label>
+        <?php } ?>
+    </div>
+    <hr>
+    <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li><h4>Versão Atual: <?= $version_install ?></h4></li>
+        </ul>
+        <?php if($new_version){ ?>
+        <ul class="nav nav-tabs">
+            <li><h4>Nova Versão: <a href="<?= $link_new_version ?>"><?= $version_update ?></a></h4></li>
+            <?php } ?>
+        </ul>
+        <ul class="nav nav-tabs">
+            <li><h4>Projeto no Github: <a href="<?= $link_project ?>">PlutonCMS</a></h4></li>
+        </ul>
+    </div>
+</div>

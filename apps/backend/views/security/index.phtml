@@ -1,7 +1,5 @@
 <style>
-
     div > form{
-
         margin-left: 20px;
         margin-right: 20px;
         margin-bottom: 20px;
@@ -12,73 +10,27 @@
     <hr>
     <div class="panel panel-default" >
         <div class="panel-heading">
-            <label style="font-size: 30px;"><i class="glyphicon glyphicon-eye-open"></i> Segurança</label>
+            <label style="font-size: 30px;"><i class="glyphicon glyphicon-eye-open"></i> Configurar APIS</label>
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li><a class="active" href="#google" data-toggle="tab"><i class="fa fa-google"></i>oogle</a>
+                <li><a class="active" href="#google" data-toggle="tab"><i class="fa fa-2x fa-google"></i> Google</a>
                 </li>
-                <li><a href="#facebook" data-toggle="tab"><i class="fa fa-facebook"></i>acebook</a>
+                <li><a href="#twitter" data-toggle="tab"><i class="fa fa-2x fa-twitter"></i> Twitter</a>
                 </li>
-                <!--<li><a href="#twitter" data-toggle="tab">Settings</a>-->
+                <li><a href="#facebook" data-toggle="tab"><i class="fa fa-2x fa-facebook"></i> Facebook</a>
                 </li>
-            </ul>
+            </li>
+        </ul>
         <!-- /.panel-heading -->
         <div class="tab-content">
             <?= $this->partial("security/googleTab") ?>
+            <?= $this->partial("security/twitterTab") ?>
             <?= $this->partial("security/facebookTab") ?>
-
-
-
-            <!--<div class="col-sm-4">
-
-                <div class="row">
-                    <form name="twitter-account" role="form">
-                        <div class="panel-heading">
-                            <label style="font-size: 18px;"> <i class="fa fa-twitter"></i> Twitter</label>
-                        </div>
-                        <div class="form-group input-group col-sm-10">
-                            <span class="input-group-addon">@</span>
-                            <input type="text" class="form-control" placeholder="example@gmail.com">
-                        </div>
-                        <div class="form-group input-group col-sm-10">
-                            <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
-                            <input type="password" class="form-control">
-                        </div>
-
-                        <div class="form-group input-group col-sm-6">
-                            <a href="#" id="save-facebook-account" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Salvar</a>
-                        </div>
-                    </form>
-                </div>
-            </div>-->
-        <!--<div class="panel-body">
-            <div class="panel-heading">
-                <label> <i class="glyphicon glyphicon-edit"></i>Configurações de E-mail</label>
-            </div>
-            <div class="col-sm-12">
-                <div class="row">
-                    <form role="form">
-                        <div class="form-group input-group">
-                            <span class="input-group-addon">@</span>
-                            <input type="text" class="form-control" placeholder="example@gmail.com">
-                        </div>
-                        <div class="form-group input-group">
-                            <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
-                            <input type="password" class="form-control">
-                        </div>
-                        <div class="form-group input-group col-sm-12">
-                            <a href="#" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Salvar</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
-        <!-- /.panel-body -->
     </div>
     <!-- /.panel-default -->
 </div>
 <!-- /.col-lg-8 -->
-

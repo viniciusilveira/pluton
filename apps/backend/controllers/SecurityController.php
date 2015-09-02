@@ -12,21 +12,12 @@ namespace Multiple\Backend\Controllers;
 
 //use Phalcon\Http\Response;
 use Multiple\Backend\Models\GoogleAccounts;
-use Multiple\Backend\Models\FacebookAccounts;
-
+use Multiple\Backend\Models\FacebookPages;
+use Multiple\Backend\Models\TwitterAccounts;
 /**
  * Classe responsável por manipular os dados do google analytics
  */
 class SecurityController extends BaseController{
-
-    private $ga;
-
-    public function onConstruct() {
-
-        //$analytics = Analytics::findFirst();
-        //$this->ga = new gapi($analytics->analytics_login, $analytics->analytics_password);
-
-    }
 
     public function indexAction() {
     	$this->session->start();
@@ -37,14 +28,20 @@ class SecurityController extends BaseController{
                 $vars['google_account_key_file_name'] = $google_account->google_account_key_file_name;
             }
 
-            $fb_account = FacebookAccounts::findFirst();
-            if($fb_account != NULL){
-                $vars['fb_account_app_id'] = $fb_account->facebook_account_app_id;
-                $vars['fb_account_app_secret'] = $fb_account->facebook_account_app_secret;
+            $fb_page = FacebookPages::findFirst();
+            if($fb_page != NULL){
+               $vars['fb_page_name'] = $fb_page->facebook_page_name;
+            }
+
+            $tw_account = TwitterAccounts::findFirst();
+            if($tw_account != NULL){
+                $vars['tw_account_app_id'] = $tw_account->twitter_account_app_id;
+                $vars['tw_account_app_secret'] = $tw_account->twitter_account_app_secret;
+                $vars['tw_account_username'] = $tw_account->twitter_account_username;
             }
 
             //Caso haja dados de conta a ser exibido seta as váriaveis para exibição na view
-            (!empty($google_account) || !empty($fb_account)) ? $this->view->setVars($vars) : NULL;
+            (!empty($google_account) || !empty($fb_account) || !empty($tw_account)) ? $this->view->setVars($vars) : NULL;
 
     		$this->view->render("security", "index");
     	} else{
@@ -90,25 +87,38 @@ class SecurityController extends BaseController{
         echo json_encode($data);
     }
 
-    public function registerFacebookAccountsApiAccessAction() {
+    public function registerFacebookPageNameAction() {
         $this->view->disable();
 
-        $fb_app_id = $this->request->getPost("app_id");
-        $fb_app_secret = $this->request->getPost("app_secret");
-        $data['success'] = FacebookAccounts::createFacebookAccount($fb_app_id, $fb_app_secret);
+        $fb_page_name = $this->request->getPost("page_name");
+        $data['success'] = FacebookPages::createFacebookPage($fb_page_name);
         echo json_encode($data);
     }
 
-    public function updateFacebookAccountsApiAccessAction(){
+    public function updateFacebookPageNameAction(){
         $this->view->disable();
 
-        $fb_app_id = $this->request->getPost("app_id");
-        $fb_app_secret = $this->request->getPost("app_secret");
-        $data['success'] = FacebookAccounts::updateFacebookAccount($fb_app_id, $fb_app_secret);
+        $fb_page_name = $this->request->getPost("page_name");
+        $data['success'] = FacebookAccounts::updateFacebookAccount($fb_page_name);
         echo json_encode($data);
     }
 
-    public function registerTwitterAccountsAction() {
+    public function registerTwitterAccountsApiAccessAction() {
+        $this->view->disable();
+        $tw_app_id = $this->request->getPost("app_id");
+        $tw_app_secret = $this->request->getPost("app_secret");
+        $tw_username = $this->request->getPost("username");
+        $data['success'] = TwitterAccounts::createTwitterAccount($tw_app_id, $tw_app_secret, $tw_username);
+        echo json_encode($data);
+    }
+
+    public function updateTwitterAccountsApiAccessAction(){
+        $this->view->disable();
+        $tw_app_id = $this->request->getPost("app_id");
+        $tw_app_secret = $this->request->getPost("app_secret");
+        $tw_username = $this->request->getPost("username");
+        $data['success'] = TwitterAccounts::updateTwitterAccount($tw_app_id, $tw_app_secret, $tw_username);
+        echo json_encode($data);
     }
 
     public function ConfigureEmailAction() {
