@@ -19,8 +19,14 @@
  * - SetupController extends BaseController
  */
 namespace Multiple\Backend\Controllers;
-use Multiple\Backend\Models as Models;
 
+use Multiple\Backend\Models\Users;
+use Multiple\Backend\Models\Blogs;
+use Multiple\Backend\Models\Layouts;
+use Multiple\Backend\Models\UserType;
+use Multiple\Backend\Models\PostStatus;
+use Multiple\Backend\Models\UserBlog;
+use Multiple\Library\Tables;
 /**
  * Classe para conexão e configuração dos dados necessários para inicialização
  * do blog
@@ -36,17 +42,6 @@ class SetupController extends BaseController
     private $layout;
     private $userType;
     private $tables;
-
-    /**
-     * Construct necessário para iniciar objetos de outras classes
-     */
-    public function onConstruct() {
-        $this->user = new Models\Users;
-        $this->blog = new Models\Blogs;
-        $this->layout = new Models\Layouts;
-        $this->userType = new Models\UserType;
-        $this->tables = new \Multiple\Library\Tables;
-    }
 
     public function indexAction() {
 
@@ -85,7 +80,7 @@ class SetupController extends BaseController
      */
     public function verifyInstalation() {
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
-            $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
+            $return = !Users::verifyUsersExistAction() ? 'user' : 'ok';
         }
         else {
             $return = 'file';
@@ -109,7 +104,7 @@ class SetupController extends BaseController
                 $return = 'connect';
             }
             else {
-                $return = !$this->user->verifyUsersExistAction() ? 'user' : 'ok';
+                $return = !Users::verifyUsersExistAction() ? 'user' : 'ok';
             }
         }
         else {
@@ -196,18 +191,18 @@ class SetupController extends BaseController
      */
     private function createTables() {
         $this->view->disable();
-        $this->connection->tableExists('layouts') ? NULL : $this->tables->createTableLayouts($this->connection);
-        $this->connection->tableExists('blogs') ? NULL : $this->tables->createTableBlogs($this->connection);
-        $this->connection->tableExists('user_type') ? NULL : $this->tables->createTableUserType($this->connection);
-        $this->connection->tableExists('users') ? NULL : $this->tables->createTableUsers($this->connection);
-        $this->connection->tableExists('users_blogs') ? NULL : $this->tables->createTableUsersBlogs($this->connection);
-        $this->connection->tableExists('categories') ? NULL : $this->tables->createTableCategories($this->connection);
-        $this->connection->tableExists('post_status') ? NULL : $this->tables->createTablePostStatus($this->connection);
-        $this->connection->tableExists('posts') ? NULL : $this->tables->createTablePosts($this->connection);
-        $this->connection->tableExists('post_categorie') ? NULL : $this->tables->createTablePostCategories($this->connection);
-        $this->connection->tableExists('google_accounts') ? NULL : $this->tables->createTableGoogleAccounts($this->connection);
-        $this->connection->tableExists('facebook_accounts') ? NULL : $this->tables->createTableFacebookPages($this->connection);
-        $this->connection->tableExists('twitter_accounts') ? NULL : $this->tables->createTableTwitterAccounts($this->connection);
+        $this->connection->tableExists('layouts') ? NULL : Tables::createTableLayouts($this->connection);
+        $this->connection->tableExists('blogs') ? NULL : Tables::createTableBlogs($this->connection);
+        $this->connection->tableExists('user_type') ? NULL : Tables::createTableUserType($this->connection);
+        $this->connection->tableExists('users') ? NULL : Tables::createTableUsers($this->connection);
+        $this->connection->tableExists('users_blogs') ? NULL : Tables::createTableUsersBlogs($this->connection);
+        $this->connection->tableExists('categories') ? NULL : Tables::createTableCategories($this->connection);
+        $this->connection->tableExists('post_status') ? NULL : Tables::createTablePostStatus($this->connection);
+        $this->connection->tableExists('posts') ? NULL : Tables::createTablePosts($this->connection);
+        $this->connection->tableExists('post_categorie') ? NULL : Tables::createTablePostCategories($this->connection);
+        $this->connection->tableExists('google_accounts') ? NULL : Tables::createTableGoogleAccounts($this->connection);
+        $this->connection->tableExists('facebook_accounts') ? NULL : Tables::createTableFacebookPages($this->connection);
+        $this->connection->tableExists('twitter_accounts') ? NULL : Tables::createTableTwitterAccounts($this->connection);
     }
 
     /**
@@ -215,20 +210,20 @@ class SetupController extends BaseController
      * @return boolean true caso sucesso, false caso ocorra algum erro!
      */
     private function createUsersTypes() {
-        $success = $this->userType->createUserType('SUPER ADMINISTRADOR', 'SA');
-        $success = !$success ? $success : $this->userType->createUserType('ADMINISTRADOR', 'A');
-        $success = !$success ? $success : $this->userType->createUserType('EDITOR', 'E');
-        $success = !$success ? $success : $this->userType->createUserType('AUTOR', 'AT');
-        $success = !$success ? $success : $this->userType->createUserType('COLABORADOR', 'C');
+        $success = UserType::createUserType('SUPER ADMINISTRADOR', 'SA');
+        $success = !$success ? $success : UserType::createUserType('ADMINISTRADOR', 'A');
+        $success = !$success ? $success : UserType::createUserType('EDITOR', 'E');
+        $success = !$success ? $success : UserType::createUserType('AUTOR', 'AT');
+        $success = !$success ? $success : UserType::createUserType('COLABORADOR', 'C');
         return $success;
     }
 
     private function createPostsStatus() {
-        $post_status = new Models\PostStatus;
-        $success = $post_status->createPostStatus("Publicado");
-        $success = !$success ? $success : $post_status->createPostStatus("Pendente");
-        $success = !$success ? $success : $post_status->createPostStatus("Rascunho");
-        $success = !$success ? $success : $post_status->createPostStatus("Lixo");
+
+        $success = PostStatus::createPostStatus("Publicado");
+        $success = !$success ? $success : PostStatus::createPostStatus("Pendente");
+        $success = !$success ? $success : PostStatus::createPostStatus("Rascunho");
+        $success = !$success ? $success : PostStatus::createPostStatus("Lixo");
 
         return $success;
     }
@@ -255,16 +250,16 @@ class SetupController extends BaseController
 
             $success = $this->createUsersTypes();
             $success = $success ? $this->createPostsStatus() : false;
-            $success = $success ? $this->layout->createLayout($this->request->getPost('blog_name')) : false;
+            $success = $success ? Layouts::createLayout($this->request->getPost('blog_name')) : false;
 
-            $success = $success ? $this->blog->createBlog($blog_name) : false;
-            $blog = Models\Blogs::findFirst();
+            $success = $success ? Blogs::createBlog($blog_name) : false;
+            $blog = Blogs::findFirst();
 
-            $success = $success ? $this->user->createUser($user_name, $user_email, $user_login, $user_passwd, 1, NULL, $blog->blog_id) : false;
-            $user = Models\Users::findFirst();
+            $success = $success ? Users::createUser($user_name, $user_email, $user_login, $user_passwd, 1, NULL, $blog->blog_id) : false;
+            $user = Users::findFirst();
 
-            $user_blog = new Models\UserBlog;
-            $success = $success ? $user_blog->createUserBlog($user->user_id, $blog->blog_id) : false;
+
+            $success = $success ? UserBlog::createUserBlog($user->user_id, $blog->blog_id) : false;
 
             $data['message'] = $success ? 'Sistema Instalado Com sucesso!' : 'Ocorreu um erro durante a instalação. Por favor tente novamente';
             $data['success'] = $success;

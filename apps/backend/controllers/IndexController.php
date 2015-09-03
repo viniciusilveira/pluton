@@ -8,9 +8,10 @@
  * - IndexController extends \
  */
 namespace Multiple\Backend\Controllers;
+use Multiple\Backend\Controllers\SetupController;
 
 class IndexController extends BaseController{
-    
+
     /**
      * Verifica para qual pagina deve ser redirecionado o acesso de acordo com
      * os dados que estão faltando no banco de dados.
@@ -20,10 +21,10 @@ class IndexController extends BaseController{
      * Caso ambos estejam OK, redireciona para tela de login.
      */
     public function indexAction() {
-        
+
         $setup = new SetupController();
-        
-        $database = $setup->verifyInstalation();
+
+        $database = SetupController::verifyInstalation();
         switch ($database) {
             case 'file':
                 $dispatcher = array('controller' => 'setup', 'action' => 'index');
@@ -40,7 +41,7 @@ class IndexController extends BaseController{
             case 'error':
                 $dispatcher = array('controller' => 'setup', 'action' => 'error');
         }
-        
+
         return $this->dispatcher->forward($dispatcher);
     }
 }

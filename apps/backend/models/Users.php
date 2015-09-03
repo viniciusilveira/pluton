@@ -40,7 +40,7 @@ class Users extends \Phalcon\Mvc\Model
          * pois dá fatal error quando a tabela não existe.
          */
         try {
-            $total_users = $this->count();
+            $total_users = Users::count();
             return $total_users > 0 ? true : false;
         } catch(PDO\Exception $e){
             return false;

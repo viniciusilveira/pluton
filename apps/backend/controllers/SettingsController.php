@@ -34,11 +34,6 @@ use Multiple\Backend\Models\FacebookPages;
 
 class SettingsController extends BaseController {
 
-    private $users;
-
-    public function onConstruct() {
-        $this->users = new Users;
-    }
 
     /**
      * Carrega a tela principal do backend
@@ -61,7 +56,7 @@ class SettingsController extends BaseController {
 
         if ($this->session->get("user_id") != NULL) {
 
-            $user = $this->users->getUser($this->session->get("user_login"));
+            $user = Users::getUser($this->session->get("user_login"));
 
             $user_name = explode(" ", $user->user_name);
             $posts = Posts::findByPost_status_id(1);
@@ -132,7 +127,7 @@ class SettingsController extends BaseController {
         $user_type_id = $this->request->getPost('user_type_id');
         $user_passwd = sha1(md5($this->request->getPost('user_passwd')));
 
-        if (!$this->users->userExists($user_name, $user_login, $user_email)) {
+        if (!Users::userExists($user_name, $user_login, $user_email)) {
 
             //Verifica se existe arquivo para upload, caso exista efetua o upload
             if ($this->request->hasFiles() == true) {
