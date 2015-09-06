@@ -48,9 +48,9 @@ class SettingsController extends BaseController {
      */
 
     public function indexAction() {
-
-        //UpdateController::index();
-
+        //$mail = new Mail();
+        //$mail->sendMessage("Cadastro Pluton", array('viniciussilveira6@gmail.com'), 'teste 123 cadastro oi, tudo bem? =)');
+        //die();
         //Inicia a sessão
         $this->session->start();
 
@@ -121,6 +121,7 @@ class SettingsController extends BaseController {
      */
     public function addNewUserAction() {
         $this->view->disable();
+
         $user_name = $this->request->getPost('user_name');
         $user_email = $this->request->getPost('user_email');
         $user_login = $this->request->getPost('user_login');
@@ -149,7 +150,7 @@ class SettingsController extends BaseController {
             }
         }
         else {
-            $data['message'] = "Login ou senha informados já existe! Por favor verifique os dados informados e tente novamente!";
+            $data['message'] = "Login ou email informados já existe! Por favor verifique os dados informados e tente novamente!";
             $data['success'] = false;
         }
 

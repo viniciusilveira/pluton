@@ -14,7 +14,6 @@
 namespace Multiple\Backend\Models;
 
 use \Phalcon\Mvc\Model\Query;
-use \Phalcon\Mvc\Model\Resultset;
 
 /**
  * Class Users

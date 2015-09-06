@@ -1,11 +1,16 @@
 <?php
-
 /**
  * Class and Function List:
  * Function list:
- * - __construct()
+ * - indexAction()
+ * - registerGoogleAccountsApiAccessAction()
+ * - updateGoogleAccountsApiAccessAction()
+ * - registerFacebookPageNameAction()
+ * - updateFacebookPageNameAction()
+ * - registerTwitterAccountsApiAccessAction()
+ * - updateTwitterAccountsApiAccessAction()
  * Classes list:
- * - AnalyticsController extends BaseController
+ * - SecurityController extends BaseController
  */
 
 namespace Multiple\Backend\Controllers;
@@ -14,39 +19,42 @@ namespace Multiple\Backend\Controllers;
 use Multiple\Backend\Models\GoogleAccounts;
 use Multiple\Backend\Models\FacebookPages;
 use Multiple\Backend\Models\TwitterAccounts;
+use Multiple\Backend\Models\MailSettings;
+
 /**
  * Classe responsável por manipular os dados do google analytics
  */
-class SecurityController extends BaseController{
+class SecurityController extends BaseController {
 
     public function indexAction() {
-    	$this->session->start();
-    	if($this->session->get("user_id")!= NULL){
+        $this->session->start();
+        if ($this->session->get("user_id") != NULL) {
             $google_account = GoogleAccounts::findFirst();
-            if($google_account != NULL){
+            if (!empty($google_account)) {
                 $vars['google_account_login'] = $google_account->google_account_login;
                 $vars['google_account_key_file_name'] = $google_account->google_account_key_file_name;
             }
 
             $fb_page = FacebookPages::findFirst();
-            if($fb_page != NULL){
-               $vars['fb_page_name'] = $fb_page->facebook_page_name;
+            if ($fb_page != NULL) {
+                $vars['fb_page_name'] = $fb_page->facebook_page_name;
             }
 
             $tw_account = TwitterAccounts::findFirst();
-            if($tw_account != NULL){
+            if (!empty($tw_account)) {
                 $vars['tw_account_app_id'] = $tw_account->twitter_account_app_id;
                 $vars['tw_account_app_secret'] = $tw_account->twitter_account_app_secret;
                 $vars['tw_account_username'] = $tw_account->twitter_account_username;
             }
 
             //Caso haja dados de conta a ser exibido seta as váriaveis para exibição na view
-            (!empty($google_account) || !empty($fb_account) || !empty($tw_account)) ? $this->view->setVars($vars) : NULL;
+            if (!empty($vars)) $this->view->setVars($vars);
 
-    		$this->view->render("security", "index");
-    	} else{
-    		$this->response->redirect(URL_PROJECT . "settings");
-    	}
+            $this->view->render("security", "index");
+        }
+        else {
+            $this->response->redirect(URL_PROJECT . "settings");
+        }
     }
 
     /**
@@ -54,11 +62,11 @@ class SecurityController extends BaseController{
      * @return json
      */
     public function registerGoogleAccountsApiAccessAction() {
-    	$this->view->disable();
+        $this->view->disable();
         $g_account = $this->request->getPost('g_account');
         if ($this->request->hasFiles() == true) {
             foreach ($this->request->getUploadedFiles() as $file) {
-                 $p12_key = $file;
+                $p12_key = $file;
             }
         }
         $p12_key->moveTo(FOLDER_PROJECT . "keys/" . $p12_key->getName());
@@ -67,19 +75,20 @@ class SecurityController extends BaseController{
         echo json_encode($data);
     }
 
-    public function updateGoogleAccountsApiAccessAction(){
+    public function updateGoogleAccountsApiAccessAction() {
         $this->view->disable();
         $g_account = $this->request->getPost('g_account');
         if ($this->request->hasFiles() == true) {
             foreach ($this->request->getUploadedFiles() as $file) {
-                 $p12_key = $file;
+                $p12_key = $file;
             }
         }
 
         $google_account = GoogleAccounts::findFirst();
 
         $data['success'] = GoogleAccounts::updateGoogleAccount($g_account, $p12_key->getName());
-        if($data['success']){
+        if ($data['success']) {
+
             //remove o arquivo antigo e insere o novo
             unlink(FOLDER_PROJECT . "keys/" . $google_account->google_account_key_file_name);
             $p12_key->moveTo(FOLDER_PROJECT . "keys/" . $p12_key->getName());
@@ -95,7 +104,7 @@ class SecurityController extends BaseController{
         echo json_encode($data);
     }
 
-    public function updateFacebookPageNameAction(){
+    public function updateFacebookPageNameAction() {
         $this->view->disable();
 
         $fb_page_name = $this->request->getPost("page_name");
@@ -112,15 +121,12 @@ class SecurityController extends BaseController{
         echo json_encode($data);
     }
 
-    public function updateTwitterAccountsApiAccessAction(){
+    public function updateTwitterAccountsApiAccessAction() {
         $this->view->disable();
         $tw_app_id = $this->request->getPost("app_id");
         $tw_app_secret = $this->request->getPost("app_secret");
         $tw_username = $this->request->getPost("username");
         $data['success'] = TwitterAccounts::updateTwitterAccount($tw_app_id, $tw_app_secret, $tw_username);
         echo json_encode($data);
-    }
-
-    public function ConfigureEmailAction() {
     }
 }

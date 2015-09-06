@@ -29,30 +29,6 @@ use Phalcon\Db\Reference as Reference;
  */
 class Tables {
 
-    public function createTableParameters($connection) {
-        $table = array(
-            "columns" => array(
-                new Column("parameter_id", array(
-                    "type" => Column::TYPE_INTEGER,
-                    "primary" => true,
-                    "size" => 10,
-                    "notNull" => true,
-                    "autoIncrement" => true,
-                )) ,
-                new Column("parameter_description", array(
-                    "type" => Column::TYPE_TEXT,
-                    "notNull" => true
-                )) ,
-                new Column("parameter_value", array(
-                    "type" => Column::TYPE_TEXT,
-                    "notNull" => true
-                ))
-            )
-        );
-
-        $connection->createTable("parameters", NULL, $table);
-    }
-
     /**
      * Cria a tabela Layouts
      * @param $connection => variável de conexão com o banco de dados

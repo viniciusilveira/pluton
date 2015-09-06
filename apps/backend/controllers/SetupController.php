@@ -1,19 +1,18 @@
 <?php
-
 /**
  * Class and Function List:
  * Function list:
- * - onConstruct()
  * - indexAction()
  * - databaseConfigAction()
  * - newBlogAction()
  * - installAction()
- * - errorAction()
+ * - verifyInstalation()
  * - verifyDataBaseAction()
  * - databaseSettingsAction()
  * - connectDatabase()
  * - createTables()
  * - createUsersTypes()
+ * - createPostsStatus()
  * - installPlutonAction()
  * Classes list:
  * - SetupController extends BaseController
@@ -27,13 +26,13 @@ use Multiple\Backend\Models\UserType;
 use Multiple\Backend\Models\PostStatus;
 use Multiple\Backend\Models\UserBlog;
 use Multiple\Library\Tables;
+
 /**
  * Classe para conexão e configuração dos dados necessários para inicialização
  * do blog
  *
  */
-class SetupController extends BaseController
-{
+class SetupController extends BaseController {
 
     public $connection;
     private $config;
@@ -166,7 +165,13 @@ class SetupController extends BaseController
         $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
 
         //Cria um array com os dados do banco
-        $db_conn = array("host" => $this->config->database->host, "username" => $this->config->database->username, "password" => $this->config->database->password, "dbname" => $this->config->database->name, "charset" => 'utf8');
+        $db_conn = array(
+            "host" => $this->config->database->host,
+            "username" => $this->config->database->username,
+            "password" => $this->config->database->password,
+            "dbname" => $this->config->database->name,
+            "charset" => 'utf8'
+        );
         $db_conn["persistent"] = false;
 
         //Efetua a conexão com o banco de dados
@@ -191,18 +196,19 @@ class SetupController extends BaseController
      */
     private function createTables() {
         $this->view->disable();
-        $this->connection->tableExists('layouts') ? NULL : Tables::createTableLayouts($this->connection);
-        $this->connection->tableExists('blogs') ? NULL : Tables::createTableBlogs($this->connection);
-        $this->connection->tableExists('user_type') ? NULL : Tables::createTableUserType($this->connection);
-        $this->connection->tableExists('users') ? NULL : Tables::createTableUsers($this->connection);
-        $this->connection->tableExists('users_blogs') ? NULL : Tables::createTableUsersBlogs($this->connection);
-        $this->connection->tableExists('categories') ? NULL : Tables::createTableCategories($this->connection);
-        $this->connection->tableExists('post_status') ? NULL : Tables::createTablePostStatus($this->connection);
-        $this->connection->tableExists('posts') ? NULL : Tables::createTablePosts($this->connection);
-        $this->connection->tableExists('post_categorie') ? NULL : Tables::createTablePostCategories($this->connection);
-        $this->connection->tableExists('google_accounts') ? NULL : Tables::createTableGoogleAccounts($this->connection);
-        $this->connection->tableExists('facebook_accounts') ? NULL : Tables::createTableFacebookPages($this->connection);
-        $this->connection->tableExists('twitter_accounts') ? NULL : Tables::createTableTwitterAccounts($this->connection);
+        if(!$this->connection->tableExists('layouts')) Tables::createTableLayouts($this->connection);
+        if(!$this->connection->tableExists('blogs')) Tables::createTableBlogs($this->connection);
+        if(!$this->connection->tableExists('user_type')) Tables::createTableUserType($this->connection);
+        if(!$this->connection->tableExists('users')) Tables::createTableUsers($this->connection);
+        if(!$this->connection->tableExists('users_blogs')) Tables::createTableUsersBlogs($this->connection);
+        if(!$this->connection->tableExists('categories')) Tables::createTableCategories($this->connection);
+        if(!$this->connection->tableExists('post_status')) Tables::createTablePostStatus($this->connection);
+        if(!$this->connection->tableExists('posts')) Tables::createTablePosts($this->connection);
+        if(!$this->connection->tableExists('post_categorie')) Tables::createTablePostCategories($this->connection);
+        if(!$this->connection->tableExists('google_accounts')) Tables::createTableGoogleAccounts($this->connection);
+        if(!$this->connection->tableExists('facebook_accounts')) Tables::createTableFacebookPages($this->connection);
+        if(!$this->connection->tableExists('twitter_accounts')) Tables::createTableTwitterAccounts($this->connection);
+        if(!$this->connection->tableExists('mail_settings')) Tables::createTableMailSettings($this->connection);
     }
 
     /**
@@ -257,7 +263,6 @@ class SetupController extends BaseController
 
             $success = $success ? Users::createUser($user_name, $user_email, $user_login, $user_passwd, 1, NULL, $blog->blog_id) : false;
             $user = Users::findFirst();
-
 
             $success = $success ? UserBlog::createUserBlog($user->user_id, $blog->blog_id) : false;
 

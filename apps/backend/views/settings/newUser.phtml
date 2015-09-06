@@ -1,7 +1,6 @@
 <style>
-    .row{ padding-bottom: 10px;}
+
     img{cursor: pointer;}
-    .div-img-profile{display:inline-block; width:128px; height:128px;}
 </style>
 <div class="col-lg-12">
     <hr>
@@ -16,24 +15,25 @@
 
         </div>
         <!-- /.panel-heading -->
-        <div class="panel-body" style="margin-left: 18%;">
+        <div class="panel-body">
+
             <form id="form-newuser" action="" method="POST" class="form-horizontal" enctype='multipart/form-data' target='ihide'>
                 <div class="col-sm-8">
                     <div class="row">
                         <div class="col-sm-2 div-img-profile">
                             <img src="http://www.placecage.com/g/200/300"  name="preview_img" id="imgPreview_img" class="img-responsive img-thumbnail" alt="Image">
                         </div>
-                        <div class="col-sm-10">
+                        <div class=" col-sm-10">
                             <input type="text" name="user_name" id="inputUser_name" class="form-control" value="" required="required" placeholder="Nome Completo">
                         </div>
-                        <div class="col-sm-10">
+                        <div class=" col-sm-10">
                             <input type="email" name="user_email" id="inputUser_email" class="form-control" value="" required="required" placeholder="E-mail">
                         </div>
 
-                        <div class="col-sm-5">
+                        <div class=" col-sm-5">
                             <input type="text" name="user_login" id="inputUser_login" class="form-control" value="" required="required" placeholder="Login">
                         </div>
-                        <div class="col-sm-5">
+                        <div class=" col-sm-5">
                             <select name="user_type_id" id="inputUser_type_id" class="form-control" required="required">
                                 <option selected="selected">Nível de Permissão</option>
                                 <?php foreach ($types as $type){
@@ -43,15 +43,14 @@
                                 } ?>
                             </select>
                         </div>
-                        <div class="col-sm-5">
+                        <div class=" col-sm-5">
                             <input type="password" name="user_passwd" id="inputUser_passwd" class="form-control" required="required" placeholder="Senha">
                         </div>
                         <div class="col-sm-5">
                             <input type="password" name="user_passwd_confirm" id="inputUser_passwd_confirm" class="form-control" required="required" placeholder="Repetir Senha">
                         </div>
-                        <div class="row"></div>
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-10">
+
+                        <div class="col-sm-12">
                         <?php if(!$edit_user){ ?>
                             <button type="button" id="register" class="btn btn-primary center-block btn-lg">Cadastrar</button>
                         <?php }else{ ?>
