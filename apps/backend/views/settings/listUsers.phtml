@@ -13,7 +13,6 @@
             data-sort-name="title"
             data-sort-order="asc"
             data-search="true"
-            data-show-refresh="true"
             data-show-toggle="true"
             data-show-columns="true"
             data-query-params="queryParams"
@@ -22,10 +21,11 @@
             <thead>
                 <tr>
                     <th data-field="id" data-sortable="true">#</th>
-                    <th data-field="name" data-sortable="true">NOME</th>
-                    <th data-field="login" data-sortable="true">LOGIN</th>
-                    <th data-field="e-mail" data-sortable="true">E-MAIL</th>
-                    <th data-field="permission-level" data-sortable="true">NÍVEL PERMISSÃO</th>
+                    <th data-field="name" data-sortable="true">Nome</th>
+                    <th data-field="login" data-sortable="true">Login</th>
+                    <th data-field="e-mail" data-sortable="true">E-mail</th>
+                    <th data-field="permission-level" data-sortable="true">Nível de Permissão</th>
+                    <th data-field="status" data-sortable="true">Status</th>
                     <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Editar</th>
                 </tr>
             </thead>
@@ -37,6 +37,7 @@
                     <td><?= $user->user_login ?></td>
                     <td><?= $user->user_email ?></td>
                     <td><?= $user->user_type->user_type_descr ?></td>
+                    <td><?= $user->user_active ? 'Ativado' : 'Desativado'?></td>
                 </tr>
                     <?php } ?>
                 </tbody>
@@ -67,9 +68,6 @@
 });
         }
     };
-    function onClickRow(){
-        alert("click row");
-    }
     function queryParams() {
         return {
             type: 'owner',

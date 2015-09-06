@@ -106,6 +106,7 @@ class SettingsController extends BaseController {
             $vars['user']['user_img'] = $result->user_img;
             $vars['user']['user_active'] = $result->user_active;
             $vars['edit_user'] = true;
+            $vars['not_disable'] = $this->request->getPost("not_disable");
         }
         else {
             $vars['edit_user'] = false;
@@ -161,7 +162,20 @@ class SettingsController extends BaseController {
      * Busca todos os usuários do sistema e lista na tela
      */
     public function listUsersAction() {
-        $vars['users'] = Users::find();
+        $this->session->start();
+        $user_loged = Users::findFirstByUser_id($this->session->get("user_id"));
+        //var_dump($user_loged->user_type); die();
+        if($user_loged->user_type_id == 2){
+            $vars['users'] = Users::find(array(
+                "conditions" => "user_type_id > :user_type_id:",
+                "bind" => array("user_type_id" => $user_loged->user_type_id),
+                "order" => "user_name DESC"
+            ));
+        } else{
+            $vars['users'] = Users::find();
+        }
+
+
         $vars['success'] = true;
         $this->view->setVars($vars);
         $this->view->render("settings", "listUsers");
@@ -292,7 +306,7 @@ class SettingsController extends BaseController {
             $vars['total_sessions'] = $data_analytics['total_sessions'];
         }
         else {
-            $vars['sessions'] = 0;
+            $vars['total_sessions'] = 0;
             $vars['months'] = $this->mountArrayMonths();
         }
 

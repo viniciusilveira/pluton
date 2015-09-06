@@ -8,78 +8,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?= URL_PROJECT ?>settings"><i class="glyphicon glyphicon-home"></i> Pluton</a>
+            <a class="navbar-brand" style="font-family: 'Indie Flower', cursive; font-size: 28px;"href="<?= URL_PROJECT ?>settings"><i class="fa fa-ship"></i><label > Pluton</label></a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="glyphicon glyphicon-bell"></i>  <i class="glyphicon glyphicon-chevron-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-alerts">
-                    <li>
-                        <a href="#">
-                        <div>
-                            <i class="fa fa-comment fa-fw"></i> New Comment
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                        <div>
-                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                            <span class="pull-right text-muted small">12 minutes ago</span>
-                        </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                        <div>
-                            <i class="fa fa-envelope fa-fw"></i> Message Sent
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                        <div>
-                            <i class="fa fa-tasks fa-fw"></i> New Task
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                        <div>
-                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                        <strong>See All Alerts</strong>
-                        <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-alerts -->
-            </li>
-            <!-- /.dropdown -->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="glyphicon glyphicon-user"></i>  <i class="glyphicon glyphicon-chevron-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="glyphicon glyphicon-pencil"></i>  Editar Perfil</a>
-                    </li>
-                    <li><a href="#"><i class="glyphicon glyphicon-wrench"></i> Configuracoes</a>
+                    <li><a href="#" id="edit-profile"><i class="glyphicon glyphicon-pencil"></i>  Editar Perfil</a>
                     </li>
                     <li class="divider"></li>
                     <li id="logoff"><a href="<?= URL_PROJECT ?>login/logoff"><i class="glyphicon glyphicon-log-out"></i> Sair</a>
@@ -106,15 +44,12 @@
             <!-- /MainMenu -->
         </nav>
         <div id="page-wrapper">
-            <div class="row" id="top-menu">
-                <?= $this->partial('settings/topMenu'); ?>
-            </div>
-            <!-- /.row -->
             <div class="row">
                 <div id="main">
                     <?= $this->partial('settings/main'); ?>
+                    <?= $this->partial('settings/informationPanel'); ?>
                 </div>
-                <?= $this->partial('settings/notificationPanel'); ?>
+
                 <!-- /.main -->
             </div>
             <!-- /.row -->
@@ -122,3 +57,17 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
+    <script>
+    $("#edit-profile").click(function(){
+
+        $.ajax({
+            url: '<?= URL_PROJECT ?>/settings/newUser',
+            data: "user_id=" + <?= $this->session->get("user_id") ?> + "&not_disable=1",
+            type: 'POST',
+            success: function(data){
+                $("#main").html(data);
+                $("#panel").attr("hidden", true);
+            }
+        });
+    });
+    </script>

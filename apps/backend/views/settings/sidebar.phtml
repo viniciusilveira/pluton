@@ -1,8 +1,8 @@
 <div class="list-group panel">
     <?php if($user_type_id == 1 || $user_type_id == 2){ ?>
-    <a href="#sub-users" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-user"></i> Usuários</a>
+    <a href="#sub-users" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-users"></i> Usuários</a>
     <div class="collapse" id="sub-users">
-        <a href="#" class="list-group-item" id="new-user"><i class="glyphicon glyphicon-plus"></i> Novo</a>
+        <a href="#" class="list-group-item" id="new-user"><i class="fa fa-user-plus"></i> Novo</a>
         <a href="#" class="list-group-item" id="edit-user"><i class="glyphicon glyphicon-edit"></i> Editar</a>
     </div>
     <!-- /sub-users-->
@@ -26,7 +26,10 @@
     <a href="#" id="security" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-cogs"></i> Configurações </a>
     <?php } ?>
     <?php if($user_type_id == 1){ ?>
-    <a href="#" class="list-group-item strong" id="update" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon     glyphicon-refresh"></i> Atualizações </a>
+    <a href="#" class="list-group-item strong" id="update" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-refresh"></i> Atualizações </a>
+    <?php } ?>
+    <?php if($user_type_id == 1){ ?>
+    <a href="#" class="list-group-item strong" id="help" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-question-circle"></i> Ajuda </a>
     <?php } ?>
 </div>
 <!-- /.list-group -->
@@ -35,12 +38,12 @@
 
 $("#new-user").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT ?>settings/newUser');
-    $("#panel, #top-menu").attr("hidden", true);
+    $("#panel").attr("hidden", true);
 });
 
 $("#edit-user").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>settings/listUsers');
-    $("#panel, #top-menu").attr("hidden", true);
+    $("#panel").attr("hidden", true);
 });
 
 $("#theme-editor").click(function(){
@@ -50,21 +53,21 @@ $("#theme-editor").click(function(){
 
 $("#new-post").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>post/index');
-    $("#panel, #top-menu").attr("hidden", true);
+    $("#panel").attr("hidden", true);
 });
 
 $("#edit-post").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>post/listPosts');
-    $("#panel, #top-menu").attr("hidden", true);
+    $("#panel").attr("hidden", true);
 });
 
 $("#security").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>security/index');
-    $("#panel, #top-menu").attr("hidden", true);
+    $("#panel").attr("hidden", true);
 });
 
 $("#update").click(function(){
     $.loadPartialView('main', '<?= URL_PROJECT?>update/index');
-    $("#panel, #top-menu").attr("hidden", true);
+    $("#panel").attr("hidden", true);
 });
 </script>
