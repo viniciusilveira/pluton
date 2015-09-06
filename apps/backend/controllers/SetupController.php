@@ -98,7 +98,7 @@ class SetupController extends BaseController {
 
         if (file_exists(FOLDER_PROJECT . 'apps/config/config.ini')) {
 
-            $connect = $this->connectDatabase();
+            $connect = SetupController::connectDatabase();
             if (!$connect['connection']) {
                 $return = 'connect';
             }
@@ -159,7 +159,7 @@ class SetupController extends BaseController {
      * @return bool true caso conecte com sucesso ou false caso ocorra algum erro
      */
     private function connectDatabase() {
-        $this->view->disable();
+        //$this->view->disable();
 
         //Seta a configuração do banco de dados.
         $this->config = new \Phalcon\Config\Adapter\Ini(FOLDER_PROJECT . 'apps/config/config.ini');
@@ -177,7 +177,7 @@ class SetupController extends BaseController {
         //Efetua a conexão com o banco de dados
         try {
             $this->connection = new \Phalcon\Db\Adapter\Pdo\Mysql($db_conn);
-            $this->createTables();
+            SetupController::createTables();
             $data['connection'] = true;
             $data['message'] = "Banco de dados conectado e configurado!";
             return $data;
@@ -195,7 +195,7 @@ class SetupController extends BaseController {
      * Cria as tabelas necessárias para o funcionamento do sistema
      */
     private function createTables() {
-        $this->view->disable();
+        //$this->view->disable();
         if(!$this->connection->tableExists('layouts')) Tables::createTableLayouts($this->connection);
         if(!$this->connection->tableExists('blogs')) Tables::createTableBlogs($this->connection);
         if(!$this->connection->tableExists('user_type')) Tables::createTableUserType($this->connection);
@@ -206,9 +206,8 @@ class SetupController extends BaseController {
         if(!$this->connection->tableExists('posts')) Tables::createTablePosts($this->connection);
         if(!$this->connection->tableExists('post_categorie')) Tables::createTablePostCategories($this->connection);
         if(!$this->connection->tableExists('google_accounts')) Tables::createTableGoogleAccounts($this->connection);
-        if(!$this->connection->tableExists('facebook_accounts')) Tables::createTableFacebookPages($this->connection);
+        if(!$this->connection->tableExists('facebook_pages')) Tables::createTableFacebookPages($this->connection);
         if(!$this->connection->tableExists('twitter_accounts')) Tables::createTableTwitterAccounts($this->connection);
-        if(!$this->connection->tableExists('mail_settings')) Tables::createTableMailSettings($this->connection);
     }
 
     /**
