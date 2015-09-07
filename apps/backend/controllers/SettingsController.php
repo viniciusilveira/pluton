@@ -2,7 +2,6 @@
 /**
  * Class and Function List:
  * Function list:
- * - onConstruct()
  * - indexAction()
  * - newUserAction()
  * - addNewUserAction()
@@ -34,7 +33,6 @@ use Multiple\Backend\Models\FacebookPages;
 
 class SettingsController extends BaseController {
 
-
     /**
      * Carrega a tela principal do backend
      *  * @todo:
@@ -48,6 +46,7 @@ class SettingsController extends BaseController {
      */
 
     public function indexAction() {
+
         //$mail = new Mail();
         //$mail->sendMessage("Cadastro Pluton", array('viniciussilveira6@gmail.com'), 'teste 123 cadastro oi, tudo bem? =)');
         //die();
@@ -68,7 +67,6 @@ class SettingsController extends BaseController {
             $vars['user'] = $user_name[0];
             $vars['user_type_id'] = $user->user_type_id;
             $vars['user_img'] = $user->user_img;
-
 
             $posts = Posts::find(array(
                 "conditions" => "post_status_id = :status:",
@@ -96,25 +94,34 @@ class SettingsController extends BaseController {
      * @return [type] [description]
      */
     public function newUserAction() {
-        if ($this->request->getPost("user_id") != NULL) {
-            $result = Users::findFirstByUser_id($this->request->getPost("user_id"));
-            $vars['user']['user_id'] = $result->user_id;
-            $vars['user']['user_name'] = $result->user_name;
-            $vars['user']['user_login'] = $result->user_login;
-            $vars['user']['user_email'] = $result->user_email;
-            $vars['user']['user_type_id'] = $result->user_type_id;
-            $vars['user']['user_img'] = $result->user_img;
-            $vars['user']['user_active'] = $result->user_active;
-            $vars['edit_user'] = true;
-            $vars['not_disable'] = $this->request->getPost("not_disable");
+
+        $this->session->start();
+
+        if ($this->session->get("user_id") != NULL) {
+
+            if ($this->request->getPost("user_id") != NULL) {
+                $result = Users::findFirstByUser_id($this->request->getPost("user_id"));
+                $vars['user']['user_id'] = $result->user_id;
+                $vars['user']['user_name'] = $result->user_name;
+                $vars['user']['user_login'] = $result->user_login;
+                $vars['user']['user_email'] = $result->user_email;
+                $vars['user']['user_type_id'] = $result->user_type_id;
+                $vars['user']['user_img'] = $result->user_img;
+                $vars['user']['user_active'] = $result->user_active;
+                $vars['edit_user'] = true;
+                $vars['not_disable'] = $this->request->getPost("not_disable");
+            }
+            else {
+                $vars['edit_user'] = false;
+            }
+            $user_type = new UserType;
+            $vars['types'] = $user_type->getAllUserTypes();
+            $this->view->setVars($vars);
+            $this->view->render('settings', 'newUser');
         }
         else {
-            $vars['edit_user'] = false;
+            $this->view->pick('login/index');
         }
-        $user_type = new UserType;
-        $vars['types'] = $user_type->getAllUserTypes();
-        $this->view->setVars($vars);
-        $this->view->render('settings', 'newUser');
     }
 
     /**
@@ -163,22 +170,32 @@ class SettingsController extends BaseController {
      */
     public function listUsersAction() {
         $this->session->start();
-        $user_loged = Users::findFirstByUser_id($this->session->get("user_id"));
-        //var_dump($user_loged->user_type); die();
-        if($user_loged->user_type_id == 2){
-            $vars['users'] = Users::find(array(
-                "conditions" => "user_type_id > :user_type_id:",
-                "bind" => array("user_type_id" => $user_loged->user_type_id),
-                "order" => "user_name DESC"
-            ));
-        } else{
-            $vars['users'] = Users::find();
+
+        if ($this->session->get("user_id") != NULL) {
+            $this->session->start();
+            $user_loged = Users::findFirstByUser_id($this->session->get("user_id"));
+
+            //var_dump($user_loged->user_type); die();
+            if ($user_loged->user_type_id == 2) {
+                $vars['users'] = Users::find(array(
+                    "conditions" => "user_type_id > :user_type_id:",
+                    "bind" => array(
+                        "user_type_id" => $user_loged->user_type_id
+                    ) ,
+                    "order" => "user_name DESC"
+                ));
+            }
+            else {
+                $vars['users'] = Users::find();
+            }
+
+            $vars['success'] = true;
+            $this->view->setVars($vars);
+            $this->view->render("settings", "listUsers");
         }
-
-
-        $vars['success'] = true;
-        $this->view->setVars($vars);
-        $this->view->render("settings", "listUsers");
+        else {
+            $this->view->pick('login/index');
+        }
     }
 
     public function updateUserAction() {
@@ -315,6 +332,7 @@ class SettingsController extends BaseController {
         if (!empty($tw_account)) {
             $bearer_token = TwitterSdkController::generateBearerToken($tw_account->twitter_account_app_id, $tw_account->twitter_account_app_secret);
             $data_twitter = TwitterSdkController::getLookupTwitterProfileBlog($bearer_token, $tw_account->twitter_account_username);
+
             //var_dump($data_twitter); die();
             $vars['followers_count'] = $data_twitter[0]['followers_count'];
         }
@@ -323,10 +341,11 @@ class SettingsController extends BaseController {
         }
 
         $fb_page = FacebookPages::findFirst();
-        if(!empty($fb_page)){
+        if (!empty($fb_page)) {
             $facebook = FacebookController::facebook_count("https://www.facebook.com/" . $fb_page->facebook_page_name);
             $vars['facebook_likes'] = $facebook[0]['like_count'];
-        } else{
+        }
+        else {
             $vars['facebook_likes'] = 0;
         }
 
