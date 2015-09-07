@@ -5,6 +5,7 @@
  * - _registerServices()
  * - (()
  * - (()
+ * - (()
  * - main()
  * Classes list:
  * - Application extends \
@@ -43,7 +44,6 @@ class Application extends \Phalcon\Mvc\Application {
 
         //usando autoloader do composer para carregar as depêndencias instaladas via composer
         require_once FOLDER_PROJECT . 'vendor/autoload.php';
-
 
         $di->set('router', function () {
 

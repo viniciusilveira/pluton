@@ -6,8 +6,8 @@
  * - listPostsAction()
  * - newPostAction()
  * - editPostAction()
- * - insertCategoriesPost()
- * - updateCategoriesPost()
+ * - insertPostCategories()
+ * - updatePostCategories()
  * - newCategorieAction()
  * - getCategoriesByPost()
  * Classes list:
@@ -33,6 +33,8 @@ class PostController extends BaseController {
         $this->session->start();
         if ($this->session->get('user_id') != NULL) {
             $edit_post = false;
+            $user = Users::findFirstByUser_id($this->session->get('user_id'));
+
             //Caso a tela seja carregada para edição de post
             //Busca os dados do post informado via POST e envia para view
             if ($this->request->getPost('post_id') != NULL) {
@@ -43,14 +45,17 @@ class PostController extends BaseController {
                     $post_date = $this->dateFormat($p->post_date_posted, 2);
                 }
                 $edit_post = true;
+                $vars['user_logged'] = $user;
                 $vars['post_categories'] = $this->getCategoriesByPost($post);
                 $vars['post_content'] = $post_content;
                 $vars['post_date'] = $post_date;
                 $vars['post'] = $post[0];
             }
 
-            //busca o usuário logado para exibir como author
-            $author = Users::findFirstByUser_id($this->session->get('user_id'));
+            //busca o usuário logado para exibir como autor
+            $author = Users::findFirstByUser_id($user->user_id);
+
+            //Monta um array com todas as categorias cadastradas no sistema
             $obj_categories = Categories::getCategories();
             foreach ($obj_categories as $categorie) {
                 $array_categories[] = $categorie->categorie_name;
@@ -74,16 +79,34 @@ class PostController extends BaseController {
      */
     public function listPostsAction() {
         $this->session->start();
-
         if ($this->session->get('user_id') != NULL) {
             $user = Users::findFirstByUser_id($this->session->get('user_id'));
-            if ($user->user_type_id != 4 && $user->user_type_id != 5) {
+            if ($user->user_type_id < 3) {
                 $posts = Posts::find(array(
                     "order" => "post_date_posted DESC"
                 ));
             }
+            elseif ($user->user_type_id == 3) {
+                $usr = Users::find(array(
+                    "conditions" => "user_type_id > :user_type_id: OR user_id = :user_id: ",
+                    "bind" => array(
+                        "user_type_id" => $user->user_type_id,
+                        "user_id" => $user->user_id
+                    )
+                ));
+                foreach ($usr as $u) {
+                    $arr_id_users[] = $u->user_id;
+                }
+                $string_users = implode(",", $arr_id_users);
+                $posts = Posts::find(array(
+                    "conditions" => "post_author IN ({$string_users})",
+                    "order" => "post_date_posted DESC"
+                ));
+
+                //var_dump($posts); die();
+            }
             else {
-                $posts = Posts::findByUser_id($user->user_id);
+                $posts = Posts::findByPost_author($user->user_id);
             }
 
             $vars['posts'] = $posts;
@@ -111,6 +134,7 @@ class PostController extends BaseController {
         $post_editor = $this->request->getPost('post_author');
         $post_title = $this->request->getPost('post_title');
         $post_content = htmlentities($this->request->getPost('post_content'));
+
         //print_r($post_content); die();
         $post_status_id = $this->request->getPost('post_status_id');
 
@@ -165,11 +189,11 @@ class PostController extends BaseController {
      * @return boolean             true caso salve todos os ids ou false caso ocorra um erro
      */
     private function updatePostCategories($categories, $post_id) {
-        foreach($categories as $categorie){
+        foreach ($categories as $categorie) {
             $cat = Categories::findFirstByCategorie_name($categorie);
             $success = PostCategorie::deleteAllPostCategorieByPost($post_id);
             $success = $success ? PostCategorie::createPostCategorie($post_id, $cat->categorie_id) : $success;
-            if(!$success) break;
+            if (!$success) break;
         }
         return $success;
     }
