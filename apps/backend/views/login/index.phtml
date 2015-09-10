@@ -77,7 +77,7 @@ $("#prosseguir").click(function(){
                 //Caso o login tenha sido efetuado, redireciona pra página inicial.
                 //Se ocorreu alguma falha exibe um alert.
                 if(data.success){
-                    window.location.href = "<?= URL_PROJECT ?>settings/index";
+                    window.location.href = "<?= URL_PROJECT ?>dashboard/index";
                 }else{
                     swal({
                         title: "Erro!",

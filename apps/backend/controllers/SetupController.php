@@ -25,6 +25,8 @@ use Multiple\Backend\Models\Layouts;
 use Multiple\Backend\Models\UserType;
 use Multiple\Backend\Models\PostStatus;
 use Multiple\Backend\Models\UserBlog;
+use Multiple\Backend\Models\Menu;
+use Multiple\Backend\Models\Submenu;
 use Multiple\Library\Tables;
 
 /**
@@ -36,11 +38,6 @@ class SetupController extends BaseController {
 
     public $connection;
     private $config;
-    private $user;
-    private $blog;
-    private $layout;
-    private $userType;
-    private $tables;
 
     public function indexAction() {
 
@@ -159,6 +156,7 @@ class SetupController extends BaseController {
      * @return bool true caso conecte com sucesso ou false caso ocorra algum erro
      */
     private function connectDatabase() {
+
         //$this->view->disable();
 
         //Seta a configuração do banco de dados.
@@ -195,19 +193,22 @@ class SetupController extends BaseController {
      * Cria as tabelas necessárias para o funcionamento do sistema
      */
     private function createTables() {
-        //$this->view->disable();
-        if(!$this->connection->tableExists('layouts')) Tables::createTableLayouts($this->connection);
-        if(!$this->connection->tableExists('blogs')) Tables::createTableBlogs($this->connection);
-        if(!$this->connection->tableExists('user_type')) Tables::createTableUserType($this->connection);
-        if(!$this->connection->tableExists('users')) Tables::createTableUsers($this->connection);
-        if(!$this->connection->tableExists('users_blogs')) Tables::createTableUsersBlogs($this->connection);
-        if(!$this->connection->tableExists('categories')) Tables::createTableCategories($this->connection);
-        if(!$this->connection->tableExists('post_status')) Tables::createTablePostStatus($this->connection);
-        if(!$this->connection->tableExists('posts')) Tables::createTablePosts($this->connection);
-        if(!$this->connection->tableExists('post_categorie')) Tables::createTablePostCategories($this->connection);
-        if(!$this->connection->tableExists('google_accounts')) Tables::createTableGoogleAccounts($this->connection);
-        if(!$this->connection->tableExists('facebook_pages')) Tables::createTableFacebookPages($this->connection);
-        if(!$this->connection->tableExists('twitter_accounts')) Tables::createTableTwitterAccounts($this->connection);
+
+
+        if (!$this->connection->tableExists('layouts')) Tables::createTableLayouts($this->connection);
+        if (!$this->connection->tableExists('blogs')) Tables::createTableBlogs($this->connection);
+        if (!$this->connection->tableExists('user_type')) Tables::createTableUserType($this->connection);
+        if (!$this->connection->tableExists('users')) Tables::createTableUsers($this->connection);
+        if (!$this->connection->tableExists('users_blogs')) Tables::createTableUsersBlogs($this->connection);
+        if (!$this->connection->tableExists('categories')) Tables::createTableCategories($this->connection);
+        if (!$this->connection->tableExists('post_status')) Tables::createTablePostStatus($this->connection);
+        if (!$this->connection->tableExists('posts')) Tables::createTablePosts($this->connection);
+        if (!$this->connection->tableExists('post_categorie')) Tables::createTablePostCategories($this->connection);
+        if (!$this->connection->tableExists('google_accounts')) Tables::createTableGoogleAccounts($this->connection);
+        if (!$this->connection->tableExists('facebook_pages')) Tables::createTableFacebookPages($this->connection);
+        if (!$this->connection->tableExists('twitter_accounts')) Tables::createTableTwitterAccounts($this->connection);
+        if (!$this->connection->tableExists('menu')) Tables::CreateTableMenu($this->connection);
+        if (!$this->connection->tableExists('submenu')) Tables::createTableSubmenu($this->connection);
     }
 
     /**
@@ -223,6 +224,10 @@ class SetupController extends BaseController {
         return $success;
     }
 
+    /**
+     * Cria os status possíveis para postagens
+     * @return boolean true caso sucesso, false caso ocorra algum erro!
+     */
     private function createPostsStatus() {
 
         $success = PostStatus::createPostStatus("Publicado");
@@ -234,8 +239,33 @@ class SetupController extends BaseController {
     }
 
     /**
+     * Cria os menus e submenus da sidebar no banco de dados
+     * @return boolean true caso sucesso, false caso ocorra algum erro!
+     */
+    private function createMenus(){
+        $id_menu = Menu::createMenu("fa fa-users", "Usuários", "#sub-users", 2,"sub-users");
+        if($id_menu > 0){
+            $success = Submenu::createSubmenu($id_menu, "fa fa-user-plus", "Novo", "dashboard/newUser", 1);
+            $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "dashboard/listUsers", 2) : false;
+        } else{
+            $success = false;
+        }
+        $id_menu = $success ? Menu::createMenu("glyphicon glyphicon-tags", "Posts", "#sub-posts", 4, "sub-posts") : false;
+        if($id_menu > 0){
+            $success = Submenu::createSubmenu($id_menu, "glyphicon glyphicon-plus", "Novo", "post/index", 1);
+            $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "post/listPosts", 2) : false;
+        } else{
+            $success = false;
+        }
+        $id_menu = $success ? Menu::createMenu("fa fa-cogs", "Configurações", "settings/index", 2) : false;
+        $success = $id_menu > 0 ? Menu::createMenu("glyphicon glyphicon-refresh", "Atualizações", "update/index", 2) : false;
+
+        return $success;
+    }
+
+    /**
      * Efetua a "instalação" do sistema; Criando o usuário Super-Administrador e o blog
-     * @return [type] [description]
+     * @return json contendo mensagem de sucesso ou erro e um bolean contendo true ou false
      */
     public function installPlutonAction() {
 
@@ -255,15 +285,17 @@ class SetupController extends BaseController {
 
             $success = $this->createUsersTypes();
             $success = $success ? $this->createPostsStatus() : false;
-            $success = $success ? Layouts::createLayout($this->request->getPost('blog_name')) : false;
-
-            $success = $success ? Blogs::createBlog($blog_name) : false;
+            $layout_id = $success ? Layouts::createLayout() : false;
+            $success = $layout_id != 0 ? Blogs::createBlog($blog_name, $layout_id) : false;
             $blog = Blogs::findFirst();
 
             $success = $success ? Users::createUser($user_name, $user_email, $user_login, $user_passwd, 1, NULL, $blog->blog_id) : false;
             $user = Users::findFirst();
 
             $success = $success ? UserBlog::createUserBlog($user->user_id, $blog->blog_id) : false;
+
+            $success = $success ? $this->createMenus(): false;
+
 
             $data['message'] = $success ? 'Sistema Instalado Com sucesso!' : 'Ocorreu um erro durante a instalação. Por favor tente novamente';
             $data['success'] = $success;
@@ -272,10 +304,6 @@ class SetupController extends BaseController {
         catch(\PDOException $e) {
             $data['success'] = false;
             $data['message'] = "Ocorreu um erro: " . $e;
-
-            /**
-             * @todo: apagar todos os dados inseridos no banco
-             */
 
             echo json_encode($data);
         }

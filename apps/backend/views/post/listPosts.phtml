@@ -14,7 +14,6 @@
                         data-sort-name="title"
                         data-sort-order="asc"
                         data-search="true"
-                        data-show-refresh="true"
                         data-show-toggle="true"
                         data-show-columns="true"
                         data-query-params="queryParams"
@@ -90,15 +89,7 @@ function actionFormatter(value, row, index) {
 }
 window.actionEvents = {
     'click .edit': function (e, value, row, index) {
-
-        $.ajax({
-            url: '<?= URL_PROJECT ?>/post/index',
-            data: "post_id=" + row.id,
-            type: 'POST',
-            success: function(data){
-                $("#main").html(data);
-            }
-        });
+        window.location.href = '<?= URL_PROJECT ?>/post/index?post_id=' + row.id;
     }
 };
 </script>

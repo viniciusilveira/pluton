@@ -63,7 +63,7 @@ class Application extends \Phalcon\Mvc\Application {
                 'action' => 2,
             ));
 
-            $router->add("/settings", array(
+            $router->add("/admin", array(
                 'module' => 'backend',
                 'controller' => 'index',
                 'action' => 'index',

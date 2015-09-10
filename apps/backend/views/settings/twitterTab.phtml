@@ -46,7 +46,7 @@
 $("#save-twitter-account").click(function(){
     var form = $("#twitter-account").serialize();
     $.ajax({
-        url: "<?= URL_PROJECT ?>security/registerTwitterAccountsApiAccess",
+        url: "<?= URL_PROJECT ?>settings/registerTwitterAccountsApiAccess",
         data: form,
         dataType: 'json',
         type: "POST",
@@ -73,7 +73,7 @@ $("#save-twitter-account").click(function(){
 $("#edit-twitter-account").click(function(){
     var form = $("#twitter-account").serialize();
     $.ajax({
-        url: "<?= URL_PROJECT ?>security/updateTwitterAccountsApiAccess",
+        url: "<?= URL_PROJECT ?>settings/updateTwitterAccountsApiAccess",
         data: form,
         dataType: 'json',
         type: "POST",

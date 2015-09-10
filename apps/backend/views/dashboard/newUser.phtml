@@ -131,8 +131,7 @@ var Form = function(){
                 if(data.success){
                     swal.success('Dados Salvos com sucesso');
                     $(".confirm").click(function(){
-                        $.loadPartialView('main', '<?= URL_PROJECT?>settings/listUsers');
-                        $("#panel, #top-menu").attr("hidden", true);
+                        window.location.href ='<?= URL_PROJECT?>dashboard/listUsers';
                     });
                 } else{
                     swal.error(data.message);
@@ -158,9 +157,9 @@ var Form = function(){
      */
     var formSubmit = function(edit_user){
         if(!edit_user){
-            saveData('<?= URL_PROJECT ?>settings/addNewUser');
+            saveData('<?= URL_PROJECT ?>dashboard/addNewUser');
         } else{
-            saveData('<?= URL_PROJECT ?>settings/updateUser');
+            saveData('<?= URL_PROJECT ?>dashboard/updateUser');
         }
     }
 
@@ -196,7 +195,7 @@ var Form = function(){
         var swal = new Swal;
         var user_id = $("#inputUser_id").val();
         $.ajax({
-            url: '<?= URL_PROJECT ?>settings/ActiveOrdeactiveUser',
+            url: '<?= URL_PROJECT ?>dashboard/ActiveOrdeactiveUser',
             data: 'user_id=' + user_id,
             dataType: 'json',
             type: 'POST',
@@ -206,7 +205,7 @@ var Form = function(){
                 } else{
                     swal.error('Ocorreu um erro durante a operação. Tente novamente!');
                 }
-                $.loadPartialView('main', '<?= URL_PROJECT?>/settings/listUsers');
+                window.location.href = 'main', '<?= URL_PROJECT?>dashboard/listUsers';
             }
         });
     }
@@ -247,7 +246,7 @@ var Swal = function(){
  *Quando a view é carregada da tela listView recebe dados do usuário selecionado via post;
  *Então esses dados são salvos como objeto JSON na variavel data;
  */
-var data = ('<?= json_encode($user); ?>');
+var data = ('<?= json_encode($user_edit); ?>');
 
 var edit_user = ('<?= $edit_user ?>');
 if(edit_user){

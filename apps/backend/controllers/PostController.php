@@ -3,6 +3,7 @@
  * Class and Function List:
  * Function list:
  * - indexAction()
+ * - verifyPermissionEditPost()
  * - listPostsAction()
  * - newPostAction()
  * - editPostAction()
@@ -10,6 +11,7 @@
  * - updatePostCategories()
  * - newCategorieAction()
  * - getCategoriesByPost()
+ * - getPostsPerMonth()
  * Classes list:
  * - PostController extends BaseController
  */
@@ -32,35 +34,45 @@ class PostController extends BaseController {
     public function indexAction() {
         $this->session->start();
         if ($this->session->get('user_id') != NULL) {
+            $vars = $this->getUserLoggedInformation();
             $edit_post = false;
-            $user = Users::findFirstByUser_id($this->session->get('user_id'));
+
+            //busca o usuário logado para exibir como autor
+            $vars['author'] = Users::findFirstByUser_id($this->session->get("user_id"));
 
             //Caso a tela seja carregada para edição de post
             //Busca os dados do post informado via POST e envia para view
-            if ($this->request->getPost('post_id') != NULL) {
+            if ($this->request->get('post_id') != NULL) {
 
-                $post[0] = Posts::findFirstByPost_id($this->request->getPost('post_id'));
-                foreach ($post as $p) {
-                    $post_content = $string = str_replace(PHP_EOL, '', html_entity_decode($p->post_content));
-                    $post_date = $this->dateFormat($p->post_date_posted, 2);
+                $post[0] = Posts::findFirstByPost_id($this->request->get('post_id'));
+                $author = Users::findFirstByUser_id($post[0]->post_author);
+                $user_logged = Users::findFirstByUser_id($this->session->get('user_id'));
+                if ($this->verifyPermissionEditPost($author, $user_logged)) {
+                    foreach ($post as $p) {
+                        $post_content = $string = str_replace(PHP_EOL, '', html_entity_decode($p->post_content));
+                        $post_date = $this->dateFormat($p->post_date_posted, 2);
+                    }
+                    $edit_post = true;
+                    $vars['menus'] = $this->getSideBarMenus();
+                    $vars['author'] = $author;
+                    $vars['post_categories'] = $this->getCategoriesByPost($post);
+                    $vars['post_content'] = $post_content;
+                    $vars['post_date'] = $post_date;
+                    $vars['post'] = $post[0];
                 }
-                $edit_post = true;
-                $vars['user_logged'] = $user;
-                $vars['post_categories'] = $this->getCategoriesByPost($post);
-                $vars['post_content'] = $post_content;
-                $vars['post_date'] = $post_date;
-                $vars['post'] = $post[0];
+                else {
+                    $this->response->redirect("dashboard/notPermission");
+                }
             }
 
-            //busca o usuário logado para exibir como autor
-            $author = Users::findFirstByUser_id($user->user_id);
+
 
             //Monta um array com todas as categorias cadastradas no sistema
             $obj_categories = Categories::getCategories();
             foreach ($obj_categories as $categorie) {
                 $array_categories[] = $categorie->categorie_name;
             }
-            $vars['author'] = $author;
+
             $vars['categories'] = json_encode($array_categories);
             $vars['post_status'] = PostStatus::getPostStatus();
             $vars['edit_post'] = $edit_post;
@@ -72,6 +84,23 @@ class PostController extends BaseController {
         }
     }
 
+    private function verifyPermissionEditPost($author, $user_logged) {
+        if($user_logged->user_type_id == 1){
+            return true;
+        }elseif($author->user_type_id == 1 && ($user_logged->user_id != $author->user_id)){
+            return false;
+        } elseif(($author->user_type_id == 2 && $user_logged->user_type_id == 2) && ($author->user_id != $user_logged->user_id)){
+            return false;
+        } elseif(($author->user_type_id == 3 && $user_logged->user_type_id > 3)){
+            return false;
+        } elseif(($author->user_type_id > 3 && $user_logged->user_type_id > 3) && ($author->user_id != $user_logged->user_id)){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     /**
      * Carrega a view lasPosts filtrando os dados conforme solicitado
      * @param  string $filter tipo de filtro
@@ -80,6 +109,7 @@ class PostController extends BaseController {
     public function listPostsAction() {
         $this->session->start();
         if ($this->session->get('user_id') != NULL) {
+            $vars = $this->getUserLoggedInformation();
             $user = Users::findFirstByUser_id($this->session->get('user_id'));
             if ($user->user_type_id < 3) {
                 $posts = Posts::find(array(
@@ -104,11 +134,13 @@ class PostController extends BaseController {
                 ));
 
                 //var_dump($posts); die();
+
+
             }
             else {
                 $posts = Posts::findByPost_author($user->user_id);
             }
-
+            $vars['menus'] = $this->getSideBarMenus();
             $vars['posts'] = $posts;
             $vars['categories'] = $this->getCategoriesByPost($posts);
 
@@ -235,5 +267,8 @@ class PostController extends BaseController {
             }
         }
         return $ctg;
+    }
+
+    public function getPostsPerMonth() {
     }
 }

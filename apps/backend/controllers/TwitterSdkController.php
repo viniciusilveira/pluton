@@ -4,6 +4,12 @@ namespace Multiple\Backend\Controllers;
 class TwitterSdkController extends \Phalcon\Mvc\Controller
 {
 
+    /**
+     * Gera o token de acesso a API do twitter através do APPID e APPSECRET informados pelo usuário
+     * @param  string $app_id     app id da api do twitter
+     * @param  string $app_secret app secret da api do twitter
+     * @return string             token para acesso a api do twittter
+     */
     public function generateBearerToken($app_id, $app_secret) {
         $encoded_consumer_key = urlencode($app_id);
 
@@ -33,9 +39,16 @@ class TwitterSdkController extends \Phalcon\Mvc\Controller
         }
         $bearer_token = json_decode($bearer_token);
         $bearer_token = $bearer_token->{'access_token'};
+
         return $bearer_token;
     }
 
+    /**
+     * Retorna informações sobre o profile do twitter solicitado
+     * @param  string $bearer_token     token de acesso a api do twitter
+     * @param  string $twitter_username nome de usuário do perfil do twitter para verifcar dados
+     * @return array                   array contendo informações do perfil do twitter verificado
+     */
     public function getLookupTwitterProfileBlog($bearer_token, $twitter_username) {
         $url = "https://api.twitter.com/1.1/users/lookup.json";
         $formed_url = '?screen_name=' . $twitter_username;
@@ -46,7 +59,7 @@ class TwitterSdkController extends \Phalcon\Mvc\Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
-        //$r = json_decode($response, true); var_dump($response); die();
+
         return json_decode($response, true);
     }
 }

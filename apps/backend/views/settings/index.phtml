@@ -1,73 +1,39 @@
-<div id="wrapper">
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" style="font-family: 'Indie Flower'; font-size: 28px;"href="<?= URL_PROJECT ?>settings"><i class="fa fa-ship"></i> Pluton</a>
+<style>
+    div > form{
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+<div class="col-lg-12">
+    <hr>
+    <hr>
+    <div class="panel panel-default" >
+        <div class="panel-heading">
+            <label style="font-size: 30px;"><i class="fa fa-2x fa-cogs"></i> Configurações</label>
         </div>
-        <!-- /.navbar-header -->
-        <ul class="nav navbar-top-links navbar-right">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="glyphicon glyphicon-user"></i>  <i class="glyphicon glyphicon-chevron-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#" id="edit-profile"><i class="glyphicon glyphicon-pencil"></i>  Editar Perfil</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li id="logoff"><a href="<?= URL_PROJECT ?>login/logoff"><i class="glyphicon glyphicon-log-out"></i> Sair</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#preferences" data-toggle="tab"><i class="fa fa-2x fa-gear"></i> Preferências</a>
+                </li>
+                <li><a href="#google" data-toggle="tab"><i class="fa fa-2x fa-google"></i> Google Api</a>
+                </li>
+                <li><a href="#twitter" data-toggle="tab"><i class="fa fa-2x fa-twitter"></i> Twitter</a>
+                </li>
+                <li><a href="#facebook" data-toggle="tab"><i class="fa fa-2x fa-facebook"></i> Facebook</a>
+                </li>
             </li>
-            <!-- /.dropdown -->
         </ul>
-        <!-- /.navbar-top-links -->
-        <div class="navbar-default sidebar navbar-collapse" role="navigation">
-            <div id="MainMenu">
-                <div class="sidebar-search">
-                    <div class="input-group">
-                        <?php $img_profile = ($user_img == NULL) ? URL_PROJECT . "img/defaultProfile.png" : URL_PROJECT . "img/users/" . $user_img ?>
-                        <img width="35%" class="img-circle" src="<?= $img_profile; ?>">
-                        <label style="margin-left: 20px;">Bem vindo<br/> <?= $user ?></label>
-                    </div>
-                    <!-- /input-group -->
-                </div>
-                <!-- /sidebar-search -->
-                <?= $this->partial('settings/sidebar'); ?>
-            </div>
-            <!-- /MainMenu -->
-        </nav>
-        <div id="page-wrapper">
-            <div class="row">
-                <div id="main">
-                    <?= $this->partial('settings/main'); ?>
-                    <?= $this->partial('settings/informationPanel'); ?>
-                </div>
-
-                <!-- /.main -->
-            </div>
-            <!-- /.row -->
+        <!-- /.panel-heading -->
+        <div class="tab-content">
+            <?= $this->partial("settings/preferencesTab"); ?>
+            <?= $this->partial("settings/googleTab") ?>
+            <?= $this->partial("settings/twitterTab") ?>
+            <?= $this->partial("settings/facebookTab") ?>
         </div>
-        <!-- /#page-wrapper -->
     </div>
-    <!-- /#wrapper -->
-    <script>
-    $("#edit-profile").click(function(){
-
-        $.ajax({
-            url: '<?= URL_PROJECT ?>/settings/newUser',
-            data: "user_id=" + <?= $this->session->get("user_id") ?> + "&not_disable=1",
-            type: 'POST',
-            success: function(data){
-                $("#main").html(data);
-                $("#panel").attr("hidden", true);
-            }
-        });
-    });
-    </script>
+    <!-- /.panel-default -->
+</div>
+<!-- /.col-lg-8 -->

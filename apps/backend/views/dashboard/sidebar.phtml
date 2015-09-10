@@ -1,0 +1,49 @@
+<!--<div class="list-group panel">
+    <?php if($user_type_id == 1 || $user_type_id == 2){ ?>
+    <a href="#sub-users" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-users"></i> Usuários</a>
+    <div class="collapse" id="sub-users">
+        <a href="<?= URL_PROJECT ?>dashboard/newUser" class="list-group-item" id="new-user"><i class="fa fa-user-plus"></i> Novo</a>
+        <a href="<?= URL_PROJECT?>dashboard/listUsers" class="list-group-item" id="edit-user"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+    </div>
+    <!-- /sub-users
+    <?php } ?>
+    <a href="#sub-posts" class="list-group-item strong" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-tags"></i> Posts </a>
+    <div class="collapse" id="sub-posts">
+        <a href="<?= URL_PROJECT?>post/index" class="list-group-item" id="new-post"><i class="glyphicon glyphicon-plus"></i> Novo</a>
+        <a href="<?= URL_PROJECT?>post/listPosts" class="list-group-item" id="edit-post"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+    </div>
+    <?php if($user_type_id == 1 || $user_type_id == 2){ ?>
+    <a href="<?= URL_PROJECT?>settings/index" id="settings" class="list-group-item strong"><i class="fa fa-cogs"></i> Configurações </a>
+    <?php } ?>
+    <?php if($user_type_id == 1){ ?>
+    <a href="<?= URL_PROJECT?>update/index" class="list-group-item strong" id="update" ><i class="glyphicon glyphicon-refresh"></i> Atualizações </a>
+    <?php } ?>
+    <?php if($user_type_id == 1){ ?>
+    <a href="#" class="list-group-item strong" id="help" data-toggle="collapse" data-parent="#MainMenu"><i class="fa fa-question-circle"></i> Ajuda </a>
+    <?php } ?>
+</div>
+<!-- /.list-group -->
+
+<div class="list-group panel">
+<?php foreach($menus as $menu){  ?>
+    <?php if($menu['level_permission'] <= $user_type_id){ ?>
+        <a href="<?php if(!empty($menu['submenu'])){
+                    echo $menu['menu_href'];
+                } else{
+                    echo URL_PROJECT . $menu['menu_href'];
+                } ?>"
+
+        class="list-group-item strong" <?php if(!empty($menu['submenu'])) echo "data-parent='#MainMenu' data-toggle='collapse'"?>>
+            <i class="<?= $menu['menu_icon'] ?>"></i> <?= $menu['menu_name'] ?>
+        </a>
+        <?php if(!empty($menu['submenu'])) { ?>
+            <!-- remover # do menu_href para exibir aqui -->
+            <div class="collapse" id="<?= $menu['submenu_div_name'] ?>">
+                <?php foreach($menu['submenu'] as $submenu){ //var_dump($submenu); die();?>
+                    <a href="<?= URL_PROJECT . $submenu['submenu_href'] ?>" class="list-group-item"><i class="<?= $submenu['submenu_icon'] ?>"></i> <?= $submenu['submenu_name'] ?></a>
+                <?php } ?>
+            </div>
+        <?php } ?>
+    <?php } ?>
+<?php } ?>
+</div>

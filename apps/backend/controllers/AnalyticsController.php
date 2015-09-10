@@ -1,9 +1,22 @@
 <?php
+/**
+* Class and Function List:
+* Function list:
+* - index()
+* - getService()
+* - getFirstprofileId()
+* - getResults()
+* - getTotalSessions()
+* - getRealTimeInformation()
+* - getAccessPerMonth()
+* Classes list:
+* - AnalyticsController extends \
+*/
 namespace Multiple\Backend\Controllers;
 
 use Google_Client, Google_Service_Analytics, Google_Auth_AssertionCredentials;
 
-class AnalyticsController extends \Phalcon\Mvc\Controller{
+class AnalyticsController extends \Phalcon\Mvc\Controller {
 
     public function index() {
     }
@@ -18,16 +31,18 @@ class AnalyticsController extends \Phalcon\Mvc\Controller{
         // Use the developers console and replace the values with your
         // service account email, and relative location of your key file.
         $service_account_email = $google_account_login;
-        $key_file_location = FOLDER_PROJECT . "keys/". $google_account_key_file_name;
+        $key_file_location = FOLDER_PROJECT . "keys/" . $google_account_key_file_name;
 
         // Create and configure a new client object.
         $client = new Google_Client();
-        $client->setApplicationName("HelloAnalytics");
+        $client->setApplicationName("PlutonAnalytics");
         $analytics = new Google_Service_Analytics($client);
 
         // Read the generated client_secrets.p12 key.
         $key = file_get_contents($key_file_location);
-        $cred = new Google_Auth_AssertionCredentials($service_account_email, array(Google_Service_Analytics::ANALYTICS_READONLY), $key);
+        $cred = new Google_Auth_AssertionCredentials($service_account_email, array(
+            Google_Service_Analytics::ANALYTICS_READONLY
+        ) , $key);
         $client->setAssertionCredentials($cred);
         if ($client->getAuth()->isAccessTokenExpired()) {
             $client->getAuth()->refreshTokenWithAssertion($cred);
@@ -75,10 +90,10 @@ class AnalyticsController extends \Phalcon\Mvc\Controller{
         }
     }
 
+    // Calls the Core Reporting API and queries for the number of sessions
+    // for the last seven days.
     function getResults(&$analytics, $profileId, $initial, $final) {
 
-        // Calls the Core Reporting API and queries for the number of sessions
-        // for the last seven days.
         return $analytics->data_ga->get('ga:' . $profileId, $initial, $final, 'ga:sessions');
     }
 
@@ -103,12 +118,14 @@ class AnalyticsController extends \Phalcon\Mvc\Controller{
     /**
      * A funcionalidade de tempo real do google analytics ainda está em fase Beta e só é possível utiliza-la
      * sendo aprovado para o teste da funcionalidade;
-     * Caso consiga a aprovação vocẽ pode chamar este método na action index da classee SettingsController
+     * Caso consiga a aprovação vocẽ pode chamar este método na action index da classee DashboardController
      * @param  [type] $analytics [description]
      * @return [type]            [description]
      */
     public function getRealTimeInformation($analytics) {
-        $optParams = array('dimensions' => 'rt:medium');
+        $optParams = array(
+            'dimensions' => 'rt:medium'
+        );
 
         try {
             $results = $analytics->data_realtime->get('ga:66668523', 'rt:activeUsers', $optParams);
@@ -117,30 +134,32 @@ class AnalyticsController extends \Phalcon\Mvc\Controller{
         }
         catch(apiServiceException $e) {
 
-            // Handle API service exceptions.
+
             $error = $e->getMessage();
             return $error;
         }
     }
 
     public function getAccessPerMonth($google_account_login, $google_account_key_file_name) {
-    	$arr_months = $this->mountArrayMonths();
+        $arr_months = $this->mountArrayMonths();
         $analytics = AnalyticsController::getService($google_account_login, $google_account_key_file_name);
         $profileId = AnalyticsController::getFirstprofileId($analytics);
         $month = date('m');
-        for ($m = 1; $m <= $month; $m++) {
+        for ($m = 1;$m <= $month;$m++) {
             $initial = $m < 10 ? date('Y') . '-0' . $m . '-01' : date('Y') . '-' . $m . '-01';
 
             $final = date("Y-m-t", strtotime($initial));
             $result = AnalyticsController::getResults($analytics, $profileId, $initial, $final);
             $sessions[$m] = AnalyticsController::getTotalSessions($result);
-            $total_sessions += $sessions[$m];
+            $total_sessions+= $sessions[$m];
             $months[$m] = $arr_months[$m];
+
             //echo "initial: " . $initial . " final: " . $final . " sessions: " . $sessions[$m] . " <br> ";
+
         }
         $return['sessions'] = $sessions;
         $return['months'] = $months;
-        $return['total_sessions'] =$total_sessions;
+        $return['total_sessions'] = $total_sessions;
         return $return;
     }
 }

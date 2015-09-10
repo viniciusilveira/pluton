@@ -24,11 +24,10 @@ class Layouts extends \Phalcon\Mvc\Model {
      * Insere os dados do layout no banco de dados
      * @return boolean
      */
-    public function createLayout($layout_title) {
+    public function createLayout() {
         $layout = new Layouts();
         //Caso não seja passado os dados do layout, cria um padrão
         $layout->layout_banner = '';
-        $layout->layout_title = addslashes(htmlentities(($layout_title)));
         $layout->layout_subtitle = addslashes(htmlentities('Page Heading<small>Secondary Text</small>'));
         $layout->layout_navbar = addslashes(htmlentities('<ul class="nav navbar-nav">
                                         <li>
@@ -66,9 +65,9 @@ class Layouts extends \Phalcon\Mvc\Model {
                                                             </li>'));
         $layout->layout_footer = addslashes(htmlentities("<p>Copyright &copy; Your Website 2014</p>"));
 
-        $success = $layout->save();
+        $layout->save();
 
-        return $success;
+        return $layout->layout_id;
     }
 
     /**

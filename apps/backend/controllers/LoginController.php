@@ -13,8 +13,7 @@
 
 namespace Multiple\Backend\Controllers;
 
-use Multiple\Backend\Models\Users AS Users,
-    \Phalcon\Session\Adapter\Files as Session;
+use Multiple\Backend\Models\Users AS Users;
 
 class LoginController extends BaseController {
 
@@ -22,7 +21,7 @@ class LoginController extends BaseController {
 
         $this->session->start();
         if ($this->session->get("user_id") != NULL) {
-            $this->dispatcher->forward(array("controller" => 'settings', "action" => 'index'));
+            $this->dispatcher->forward(array("controller" => 'dashboard', "action" => 'index'));
         } else {
             $this->view->render('login', 'index');
         }

@@ -1,0 +1,73 @@
+<div class="tab-pane fade in active" id="preferences">
+    <div class="col-sm-8">
+        <div class="row">
+            <form id="preferences-form" name="preferences-form" role="form">
+                <div class="panel-heading">
+                    <label style="font-size: 18px;"> Preferências</label>
+                </div>
+                <div class="form-group input-group col-sm-10">
+                    <input type="text" name="title_blog" class="form-control" value="<?= $title ?>" placeholder="TÍTULO DO BLOG">
+                </div>
+                <div class="form-group input-group col-sm-10">
+                    <span class="input-group-addon"><i class="fa fa-link"></i></span>
+                    <input type="text" name="url_project" class="form-control" value="<?= $url ?>" placeholder="URL">
+                </div>
+
+                <div class="form-group input-group col-sm-10">
+                    <a href="#" id="edit-preferences" class="col-sm-5 btn btn-primary btn-warning"><span class="glyphicon glyphicon-edit"></span> Alterar</a>
+                    <?php if($user_type_id == 1){ ?>
+                        <a href="#" class="btn btn-primary btn-info" style="float:right;" id="theme-editor"><span class="glyphicon glyphicon-new-window"></span> Editar Aparência do Blog</a>
+                    <?php } ?>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                Atenção!
+            </div>
+            <div class="panel-body">
+
+            </div>
+            <div class="panel-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+$("#theme-editor").click(function(){
+    window.open("<?= URL_PROJECT ?>appearance/index");
+
+});
+
+$("#edit-preferences").click(function(){
+    var form = $("#preferences-form").serialize();
+    $.ajax({
+        url: "<?= URL_PROJECT ?>settings/updatePreferences",
+        data: form,
+        dataType: 'json',
+        type: "POST",
+        success: function(data){
+            if(data.success){
+                swal({
+                    title: "Sucesso!",
+                    text: "Dados Salvos Com sucesso! ",
+                    type: "success",
+                    confirmButtonText: "OK"
+                });
+            } else{
+                swal({
+                    title: "Erro!",
+                    text: "Por favor, verifique os dados Informados e tente Novamente!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+        }
+    });
+});
+</script>

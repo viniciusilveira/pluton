@@ -2,17 +2,20 @@
 /**
  * Class and Function List:
  * Function list:
- * - createTableParameters()
  * - createTableLayouts()
  * - createTableBlogs()
  * - createTableUserType()
  * - createTableUsers()
  * - createTableUsersBlogs()
  * - createTableCategories()
+ * - createTablePostStatus()
  * - createTablePosts()
  * - createTablePostCategories()
- * - createTablePostStatus()
- * - createTableSocialNetwork()
+ * - createTableGoogleAccounts()
+ * - createTableFacebookPages()
+ * - createTableTwitterAccounts()
+ * - CreateTableMenu()
+ * - createTableSubmenu()
  * Classes list:
  * - Tables
  */
@@ -48,11 +51,6 @@ class Tables {
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 200,
                     "notNull" => false
-                )) ,
-                new Column("layout_title", array(
-                    "type" => Column::TYPE_VARCHAR,
-                    "size" => 500,
-                    "notNull" => true
                 )) ,
 
                 new Column("layout_subtitle", array(
@@ -109,6 +107,10 @@ class Tables {
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 50,
                     "notNull" => true,
+                )) ,
+                new Column("blog_url", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
                 )) ,
                 new Column("blog_layout", array(
                     "type" => Column::TYPE_INTEGER,
@@ -294,6 +296,10 @@ class Tables {
         $connection->createTable("users_blogs", NULL, $table);
     }
 
+    /**
+     * Cria a tabela categories
+     * @param  $connection => Váriavel de conexão com o banco de dados
+     */
     public function createTableCategories($connection) {
         $table = array(
             "columns" => array(
@@ -314,6 +320,10 @@ class Tables {
         $connection->createTable("categories", NULL, $table);
     }
 
+    /**
+     * Cria a tabela post_status
+     * @param  $connection => Váriavel de conexão com o banco de dados
+     */
     public function createTablePostStatus($connection) {
         $table = array(
             "columns" => array(
@@ -360,7 +370,7 @@ class Tables {
                     "type" => Column::TYPE_DATE,
                     "notNull" => true
                 )) ,
-                 new Column("post_date_changed", array(
+                new Column("post_date_changed", array(
                     "type" => Column::TYPE_DATETIME
                 )) ,
                 new Column("post_author", array(
@@ -380,7 +390,7 @@ class Tables {
                     "type" => Column::TYPE_TEXT,
                     "size" => 65535,
                     "notNull" => true
-                )),
+                )) ,
                 new Column("post_status_id", array(
                     "type" => Column::TYPE_INTEGER,
                     "notNull" => true
@@ -393,7 +403,7 @@ class Tables {
                 )) ,
                 new Index("post_editor", array(
                     "post_editor"
-                )),
+                )) ,
                 new Index("post_status_id", array(
                     "post_status_id"
                 ))
@@ -416,12 +426,12 @@ class Tables {
                     "referencedColumns" => array(
                         "user_id"
                     ) ,
-                )),
+                )) ,
                 new Reference("post_status_fk_post", array(
                     "referencedTable" => "post_status",
                     "columns" => array(
                         "post_status_id"
-                    ),
+                    ) ,
                     "referencedColumns" => array(
                         "post_status_id"
                     )
@@ -431,6 +441,10 @@ class Tables {
         $connection->createTable("posts", NULL, $table);
     }
 
+    /**
+     * Cria a tabela post_categories
+     * @param  $connection => Váriavel de conexão com o banco de dados
+     */
     public function createTablePostCategories($connection) {
         $table = array(
             "columns" => array(
@@ -485,9 +499,11 @@ class Tables {
         $connection->createTable("post_categorie", NULL, $table);
     }
 
-
-
-    public function createTableGoogleAccounts($connection){
+    /**
+     * Cria a tabela google_accounts
+     * @param  $connection => Váriavel de conexão com o banco de dados
+     */
+    public function createTableGoogleAccounts($connection) {
         $table = array(
             "columns" => array(
                 new Column("google_account_id", array(
@@ -496,23 +512,23 @@ class Tables {
                     "size" => 10,
                     "notNull" => true,
                     "autoIncrement" => true,
-                )),
+                )) ,
                 new Column("blog_id", array(
                     "type" => Column::TYPE_INTEGER,
                     "size" => 10,
                     "notNull" => true,
-                )),
+                )) ,
                 new Column("google_account_login", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
                     "notNull" => true,
-                )),
+                )) ,
                 new Column("google_account_key_file_name", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
                     "notNull" => true,
-                )),
-            ),
+                )) ,
+            ) ,
             "indexes" => array(
                 new Index("blog_id", array(
                     "blog_id"
@@ -535,7 +551,7 @@ class Tables {
     }
 
     /**
-     * Cria a tabela facebook_accounts
+     * Cria a tabela facebook_pages
      * @param $connection => Variável de conexão com o banco de dados
      */
     public function createTableFacebookPages($connection) {
@@ -547,12 +563,12 @@ class Tables {
                     "size" => 10,
                     "notNull" => true,
                     "autoIncrement" => true,
-                )),
+                )) ,
                 new Column("blog_id", array(
                     "type" => Column::TYPE_INTEGER,
                     "size" => 10,
                     "notNull" => true,
-                )),
+                )) ,
                 new Column("facebook_page_name", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 50,
@@ -579,7 +595,11 @@ class Tables {
         $connection->createTable("facebook_pages", NULL, $table);
     }
 
-    public function createTableTwitterAccounts($connection){
+    /**
+     * Cria a tabela twitter_accounts
+     * @param  $connection => Váriavel de conexão com o banco de dados
+     */
+    public function createTableTwitterAccounts($connection) {
         $table = array(
             "columns" => array(
                 new Column("twitter_account_id", array(
@@ -588,12 +608,12 @@ class Tables {
                     "size" => 10,
                     "notNull" => true,
                     "autoIncrement" => true,
-                )),
+                )) ,
                 new Column("blog_id", array(
                     "type" => Column::TYPE_INTEGER,
                     "size" => 10,
                     "notNull" => true,
-                )),
+                )) ,
                 new Column("twitter_account_app_id", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
@@ -608,7 +628,7 @@ class Tables {
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 20,
                     "notNull" => true,
-                )),
+                )) ,
             ) ,
             "indexes" => array(
                 new Index("blog_id", array(
@@ -628,6 +648,96 @@ class Tables {
             )
         );
         $connection->createTable("twitter_accounts", NULL, $table);
+    }
 
+    /**
+     * Cria a tabela menu
+     * @param $connection => Váriavel de conexão com o banco de dados
+     */
+    public function CreateTableMenu($connection) {
+        $table = array(
+            "columns" => array(
+                new Column("menu_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true,
+                )) ,
+                new Column("menu_icon", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250
+                )) ,
+                new Column("menu_name", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250
+                )) ,
+                new Column("menu_href", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250
+                )),
+                new Column("menu_level_permission", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10
+                ))
+            )
+        );
+        $connection->createTable("menu", NULL, $table);
+    }
+
+    /**
+     * Cria a tabela submenu
+     * @param  $connection => Váriavel de conexão com o banco de dados
+     */
+    public function createTableSubmenu($connection) {
+        $table = array(
+            "columns" => array(
+                new Column("submenu_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true
+                )) ,
+                new Column("menu_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10,
+                    "notNull" => true
+                )) ,
+                new Column("submenu_icon", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
+                )) ,
+                new Column("submenu_name", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250
+                )) ,
+                new Column("submenu_href", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250
+                )) ,
+                new Column("submenu_order", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10
+                ))
+            ) ,
+            "indexes" => array(
+                new Index("menu_id", array(
+                    "menu_id"
+                ))
+            ) ,
+            "references" => array(
+                new Reference("submenu_fk_menu", array(
+                    "referencedTable" => "menu",
+                    "columns" => array(
+                        "menu_id"
+                    ) ,
+                    "referencedColumns" => array(
+                        "menu_id"
+                    ) ,
+                ))
+            )
+        );
+        $connection->createTable("submenu", NULL, $table);
     }
 }

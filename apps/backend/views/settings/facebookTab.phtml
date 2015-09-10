@@ -39,7 +39,7 @@
 $("#save-facebook-account").click(function(){
     var form = $("#facebook-account").serialize();
     $.ajax({
-        url: "<?= URL_PROJECT ?>security/registerFacebookPageName",
+        url: "<?= URL_PROJECT ?>settings/registerFacebookPageName",
         data: form,
         dataType: 'json',
         type: "POST",
@@ -66,7 +66,7 @@ $("#save-facebook-account").click(function(){
 $("#edit-facebook-account").click(function(){
     var form = $("#facebook-account").serialize();
     $.ajax({
-        url: "<?= URL_PROJECT ?>security/updateFacebookPageName",
+        url: "<?= URL_PROJECT ?>settings/updateFacebookPageName",
         data: form,
         dataType: 'json',
         type: "POST",
