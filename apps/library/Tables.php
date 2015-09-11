@@ -16,6 +16,7 @@
  * - createTableTwitterAccounts()
  * - CreateTableMenu()
  * - createTableSubmenu()
+ * - createTablePlugin()
  * Classes list:
  * - Tables
  */
@@ -675,7 +676,7 @@ class Tables {
                 new Column("menu_href", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250
-                )),
+                )) ,
                 new Column("menu_level_permission", array(
                     "type" => Column::TYPE_INTEGER,
                     "size" => 10
@@ -739,5 +740,47 @@ class Tables {
             )
         );
         $connection->createTable("submenu", NULL, $table);
+    }
+
+    public function createTablePlugin($connection) {
+        $table = array(
+            "columns" => array(
+                new Column("plugin_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "primary" => true,
+                    "size" => 10,
+                    "notNull" => true,
+                    "autoIncrement" => true
+                )) ,
+                new Column("menu_id", array(
+                    "type" => Column::TYPE_INTEGER,
+                    "size" => 10,
+                    "notNull" => true
+                )) ,
+                new Column("plugin_name", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
+                    "notNull" => true
+                )) ,
+            ) ,
+            "indexes" => array(
+                new Index("menu_id", array(
+                    "menu_id"
+                ))
+            ) ,
+            "references" => array(
+                new Reference("plugin_fk_menu", array(
+                    "referencedTable" => "menu",
+                    "columns" => array(
+                        "menu_id"
+                    ) ,
+                    "referencedColumns" => array(
+                        "menu_id"
+                    ) ,
+                ))
+            )
+        );
+
+        $connection->createTable("plugin", NULL, $table);
     }
 }
