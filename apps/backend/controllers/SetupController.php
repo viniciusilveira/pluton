@@ -13,6 +13,7 @@
  * - createTables()
  * - createUsersTypes()
  * - createPostsStatus()
+ * - createMenus()
  * - installPlutonAction()
  * Classes list:
  * - SetupController extends BaseController
@@ -194,7 +195,6 @@ class SetupController extends BaseController {
      */
     private function createTables() {
 
-
         if (!$this->connection->tableExists('layouts')) Tables::createTableLayouts($this->connection);
         if (!$this->connection->tableExists('blogs')) Tables::createTableBlogs($this->connection);
         if (!$this->connection->tableExists('user_type')) Tables::createTableUserType($this->connection);
@@ -242,24 +242,26 @@ class SetupController extends BaseController {
      * Cria os menus e submenus da sidebar no banco de dados
      * @return boolean true caso sucesso, false caso ocorra algum erro!
      */
-    private function createMenus(){
-        $id_menu = Menu::createMenu("fa fa-users", "Usuários", "#sub-users", 2,"sub-users");
-        if($id_menu > 0){
+    private function createMenus() {
+        $id_menu = Menu::createMenu("fa fa-users", "Usuários", "#sub-users", 2, "sub-users");
+        if ($id_menu > 0) {
             $success = Submenu::createSubmenu($id_menu, "fa fa-user-plus", "Novo", "dashboard/newUser", 1);
             $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "dashboard/listUsers", 2) : false;
-        } else{
+        }
+        else {
             $success = false;
         }
         $id_menu = $success ? Menu::createMenu("glyphicon glyphicon-tags", "Posts", "#sub-posts", 4, "sub-posts") : false;
-        if($id_menu > 0){
+        if ($id_menu > 0) {
             $success = Submenu::createSubmenu($id_menu, "glyphicon glyphicon-plus", "Novo", "post/index", 1);
             $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "post/listPosts", 2) : false;
-        } else{
+        }
+        else {
             $success = false;
         }
         $id_menu = $success ? Menu::createMenu("fa fa-cogs", "Configurações", "settings/index", 2) : false;
         $success = $id_menu > 0 ? Menu::createMenu("glyphicon glyphicon-refresh", "Atualizações", "update/index", 2) : false;
-
+        $success = $success ? Menu::createMenu("fa fa-puzzle-piece", "Plugins", "#sub-plugins", 1, "sub-plugins") : false;
         return $success;
     }
 
@@ -294,8 +296,7 @@ class SetupController extends BaseController {
 
             $success = $success ? UserBlog::createUserBlog($user->user_id, $blog->blog_id) : false;
 
-            $success = $success ? $this->createMenus(): false;
-
+            $success = $success ? $this->createMenus() : false;
 
             $data['message'] = $success ? 'Sistema Instalado Com sucesso!' : 'Ocorreu um erro durante a instalação. Por favor tente novamente';
             $data['success'] = $success;

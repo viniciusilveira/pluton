@@ -39,7 +39,7 @@ class PostController extends BaseController {
 
             //busca o usuário logado para exibir como autor
             $vars['author'] = Users::findFirstByUser_id($this->session->get("user_id"));
-
+            $vars['menus'] = $this->getSideBarMenus();
             //Caso a tela seja carregada para edição de post
             //Busca os dados do post informado via POST e envia para view
             if ($this->request->get('post_id') != NULL) {
@@ -53,7 +53,7 @@ class PostController extends BaseController {
                         $post_date = $this->dateFormat($p->post_date_posted, 2);
                     }
                     $edit_post = true;
-                    $vars['menus'] = $this->getSideBarMenus();
+
                     $vars['author'] = $author;
                     $vars['post_categories'] = $this->getCategoriesByPost($post);
                     $vars['post_content'] = $post_content;
