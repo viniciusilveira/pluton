@@ -52,6 +52,25 @@ class LoginController extends BaseController {
         echo json_encode($data);
     }
 
+
+    public function newCodeResetPasswordAction(){
+        // apps/backend/views/newCodeResetPassword
+    }
+
+    public function sendNewPasswordAction(){
+        $this->view->disable();
+        $email = $this->request->getPost("email");
+        $user = Users::findFirstByUser_email($email);
+        if(!empty($user)){
+            $new_password = $this->uid(8);
+            $user->user_passwd = sha1(md5($new_password));
+            $user->save();
+            $this->libMail->sendMessage("Nova senha - Pluton", array('viniciussilveira6@gmail.com'), 'Olá, sua nova senha de acesso ao sistema é: ' . $new_password);
+
+            return true;
+        }
+    }
+
     /**
      * Inicia a sessão do usuário ao efetuar o login
      * @param  string $user_login   nome de usuário

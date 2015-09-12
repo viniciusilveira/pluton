@@ -113,6 +113,14 @@ class Tables {
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
                 )) ,
+                new Column("blog_mail", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
+                )),
+                new Column("blog_mail_password", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 250,
+                )),
                 new Column("blog_layout", array(
                     "type" => Column::TYPE_INTEGER,
                     "size" => 10,

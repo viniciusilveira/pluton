@@ -83,6 +83,10 @@ class Application extends \Phalcon\Mvc\Application {
             return $router;
         });
 
+        $di->set("libMail", function () {
+            return new Multiple\Library\Mail;
+        });
+
         /**
          * Caso exista o arquivo de configuração config.ini coleta os dados existentes nele e
          * conecta com o banco de dados

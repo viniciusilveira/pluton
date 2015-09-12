@@ -21,6 +21,10 @@ class Blogs extends \Phalcon\Mvc\Model {
         $this->hasMany("blog_id", "Multiple\Backend\Models\UserBlog", "blog_id");
     }
 
+    /**
+     * Verifica se já existe um blog criado
+     * @return boolean true caso existe ou false caso não exista.
+     */
     public function verifyBlogExistAction() {
         return $this->count() > 0 ? true : false;
     }
@@ -28,7 +32,8 @@ class Blogs extends \Phalcon\Mvc\Model {
     /**
      * Cria um blog no banco de dados com o nome informado via parametro
      * @param  string $blog_name Nome do blog a ser criado
-     * @return boolean
+     * @param  int $layout_id id do layout do blog
+     * @return boolean            true caso sucesso ou false caso de erro.
      */
     public function createBlog($blog_name, $layout_id) {
         $blog = new Blogs();
@@ -39,10 +44,20 @@ class Blogs extends \Phalcon\Mvc\Model {
         return $success;
     }
 
-    public function updateBlog($blog_name, $blog_url){
+    /**
+     * Atualiza os dados de preferência do blog
+     * @param  string $blog_name          nome do blog
+     * @param  string $blog_url           url do blog
+     * @param  string $blog_mail          email principal
+     * @param  string $blog_mail_password senha do email principal
+     * @return boolean                     true caso sucesso ou false caso de erro.
+     */
+    public function updateBlog($blog_name, $blog_url, $blog_mail, $blog_mail_password){
         $blog = Blogs::findFirst();
         $blog->blog_name = $blog_name;
         $blog->blog_url = $blog_url;
+        $blog->blog_mail = $blog_mail;
+        $blog->blog_mail_password = $blog_mail_password;
         return $blog->save();
     }
 }

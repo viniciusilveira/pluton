@@ -20,6 +20,8 @@ namespace Multiple\Backend\Controllers;
 
 use Phalcon\Http\Response;
 
+use Multiple\Library\Mail;
+
 use Multiple\Backend\Controllers\AnalyticsController;
 use Multiple\Backend\Controllers\FacebookSdkController;
 use Multiple\Backend\Controllers\TwitterSdkController;
@@ -51,7 +53,7 @@ class DashboardController extends BaseController {
     public function indexAction() {
 
         //$mail = new Mail();
-        //$mail->sendMessage("Cadastro Pluton", array('viniciussilveira6@gmail.com'), 'teste 123 cadastro oi, tudo bem? =)');
+        //$this->libMail->sendMessage("Cadastro Pluton", array('viniciussilveira6@gmail.com'), 'teste 123 cadastro oi, tudo bem? =)');
         //die();
         //Inicia a sessão
         $this->session->start();

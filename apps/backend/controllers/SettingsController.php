@@ -27,6 +27,10 @@ use Multiple\Backend\Models\Blogs;
  */
 class SettingsController extends BaseController {
 
+    /**
+     * [indexAction description]
+     * @return [type] [description]
+     */
     public function indexAction() {
         $this->session->start();
         if ($this->session->get("user_id") != NULL) {
@@ -53,8 +57,9 @@ class SettingsController extends BaseController {
             if(!empty($preferences)){
                 $vars['title'] = $preferences->blog_name;
                 $vars['url'] = $preferences->blog_url;
+                $vars['mail'] = $preferences->blog_mail;
+                $vars['menus'] = $this->getSideBarMenus();
             }
-            $vars['menus'] = $this->getSideBarMenus();
             //Caso haja dados de conta a ser exibido seta as váriaveis para exibição na view
             if (!empty($vars)) $this->view->setVars($vars);
 
@@ -104,6 +109,10 @@ class SettingsController extends BaseController {
         echo json_encode($data);
     }
 
+    /**
+     * [registerFacebookPageNameAction description]
+     * @return [type] [description]
+     */
     public function registerFacebookPageNameAction() {
         $this->view->disable();
 
@@ -119,7 +128,10 @@ class SettingsController extends BaseController {
         $data['success'] = FacebookAccounts::updateFacebookAccount($fb_page_name);
         echo json_encode($data);
     }
-
+    /**
+     * [registerTwitterAccountsApiAccessAction description]
+     * @return [type] [description]
+     */
     public function registerTwitterAccountsApiAccessAction() {
         $this->view->disable();
         $tw_app_id = $this->request->getPost("app_id");
@@ -129,6 +141,10 @@ class SettingsController extends BaseController {
         echo json_encode($data);
     }
 
+    /**
+     * [updateTwitterAccountsApiAccessAction description]
+     * @return [type] [description]
+     */
     public function updateTwitterAccountsApiAccessAction() {
         $this->view->disable();
         $tw_app_id = $this->request->getPost("app_id");
@@ -138,12 +154,22 @@ class SettingsController extends BaseController {
         echo json_encode($data);
     }
 
+    /**
+     * [updatePreferencesAction description]
+     * @return [type] [description]
+     */
     public function updatePreferencesAction(){
         $this->view->disable();
         $title_blog = $this->request->getPost("title_blog");
         $url_project = $this->request->getPost("url_project");
-        $data['success'] = Blogs::updateBlog($title_blog, $url_project);
+        $mail_project = $this->request->getPost("mail_project");
+        $mail_password = $this->request->getPost("mail_password");
+        $data['success'] = Blogs::updateBlog($title_blog, $url_project, $mail_project, $mail_password);
 
         echo json_encode($data);
+    }
+
+    public function configureMail(){
+
     }
 }
