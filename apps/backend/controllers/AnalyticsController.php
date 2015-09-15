@@ -1,17 +1,18 @@
 <?php
 /**
-* Class and Function List:
-* Function list:
-* - index()
-* - getService()
-* - getFirstprofileId()
-* - getResults()
-* - getTotalSessions()
-* - getRealTimeInformation()
-* - getAccessPerMonth()
-* Classes list:
-* - AnalyticsController extends \
-*/
+ * Class and Function List:
+ * Function list:
+ * - index()
+ * - getService()
+ * - getFirstprofileId()
+ * - getResults()
+ * - getTotalSessions()
+ * - getRealTimeInformation()
+ * - getAccessPerMonth()
+ * - getCountryOriginAccess()
+ * Classes list:
+ * - AnalyticsController extends \
+ */
 namespace Multiple\Backend\Controllers;
 
 use Google_Client, Google_Service_Analytics, Google_Auth_AssertionCredentials;
@@ -134,7 +135,6 @@ class AnalyticsController extends \Phalcon\Mvc\Controller {
         }
         catch(apiServiceException $e) {
 
-
             $error = $e->getMessage();
             return $error;
         }
@@ -145,8 +145,8 @@ class AnalyticsController extends \Phalcon\Mvc\Controller {
         $analytics = AnalyticsController::getService($google_account_login, $google_account_key_file_name);
         $profileId = AnalyticsController::getFirstprofileId($analytics);
         $month = date('m');
-        for ($m = 1;$m <= $month;$m++) {
-            $initial = $m < 10 ? date('Y') . '-0' . $m . '-01' : date('Y') . '-' . $m . '-01';
+        for ($m = 0;$m+1 <= $month;$m++) {
+            $initial = $m < 10 ? date('Y') . '-0' . ($m+1) . '-01' : date('Y') . '-' . $m . '-01';
 
             $final = date("Y-m-t", strtotime($initial));
             $result = AnalyticsController::getResults($analytics, $profileId, $initial, $final);
@@ -156,10 +156,26 @@ class AnalyticsController extends \Phalcon\Mvc\Controller {
 
             //echo "initial: " . $initial . " final: " . $final . " sessions: " . $sessions[$m] . " <br> ";
 
+
         }
         $return['sessions'] = $sessions;
         $return['months'] = $months;
         $return['total_sessions'] = $total_sessions;
         return $return;
+    }
+
+    public function getCountryOriginAccess($google_account_login, $google_account_key_file_name) {
+        $analytics = AnalyticsController::getService($google_account_login, $google_account_key_file_name);
+        $profileId = AnalyticsController::getFirstprofileId($analytics);
+        $result = $analytics->data_ga->get('ga:' . $profileId, '2009-01-01',date('Y-m-d'), 'ga:sessions', array('dimensions' => 'ga:country','sort' => 'ga:country'));
+
+        return $result->getRows();
+    }
+
+    public function getPageViews($google_account_login, $google_account_key_file_name){
+        $analytics = AnalyticsController::getService($google_account_login, $google_account_key_file_name);
+        $profileId = AnalyticsController::getFirstprofileId($analytics);
+        $result = $analytics->data_ga->get('ga:' . $profileId, '2009-01-01',date('Y-m-d'), 'ga:pageviews');
+        return $result->getRows()[0][0];
     }
 }

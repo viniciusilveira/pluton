@@ -1,40 +1,17 @@
 <div class="panel-heading">
     <i class="glyphicon glyphicon-stats"></i> Acessos
-    <div class="pull-right">
-        <div class="btn-group">
-            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-             Actions
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu pull-right" role="menu">
-                <li><a href="#">Action</a>
-                </li>
-                <li><a href="#">Another action</a>
-                </li>
-                <li><a href="#">Something else here</a>
-                </li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a>
-                </li>
-            </ul>
-        </div>
-    </div>
 </div>
 <!-- /.panel-heading -->
 <div class="panel-body">
     <div>
         <canvas id="canvas" height="250" width="400"></canvas>
+        <small>Dados retirados de <a href="http://www.google.com/analytics/">Google Analytics</a></small>
     </div>
 </div>
 <!-- /.panel-body -->
 <script>
-    var sessions = <?= json_encode($sessions) ?>;
-    console.log(sessions);
-        var randomScalingFactor = function () {
-            return Math.round(Math.random() * 100)
-        };
         var lineChartData = {
-            labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+            labels: <?= json_encode($months) ?>,
             datasets: [
                 {
                     label: "Acessos",
@@ -44,7 +21,7 @@
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: sessions
+                    data: <?= json_encode($sessions) ?>
                 }
             ]
         }

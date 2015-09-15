@@ -1,0 +1,65 @@
+<div class="col-lg-12">
+    <div class="list-group">
+        <div class="col-lg-4">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-3x fa-exchange"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge"><?= $total_sessions?></div>
+                            <div>Acessos Únicos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-3x fa-exchange"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge"><?= $pageviews?></div>
+                            <div>Page Views</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+        	<a href="#">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-3x fa-exchange"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">R$<?= $total_sessions?>0,00</div>
+                            <div>Ganhos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <?php $this->partial("dashboard/graphics") ?>
+    </div>
+</div>
+<div class="panel-heading">
+    <i class="glyphicon glyphicon-stats"></i> Origem de Acessos
+</div>
+<div class="col-lg-4" >
+    <div class="panel panel-default">
+        <?php $this->partial("statistics/countryOriginGraphic") ?>
+    </div>
+</div>

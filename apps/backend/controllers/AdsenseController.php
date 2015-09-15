@@ -21,7 +21,7 @@ class AdsenseController extends BaseController {
 
         // Be sure to replace the contents of client_secrets.json with your developer
         // credentials.
-        $client->setAuthConfigFile('client_secrets.json');
+        $client->setAuthConfigFile(FOLDER_PROJECT . 'keys/client_secrets.json');
 
         // Create service.
         $service = new Google_Service_AdSense($client);

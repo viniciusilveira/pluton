@@ -1,0 +1,18 @@
+<canvas id="clients" width="100" height="130"></canvas>
+<small>Dados retirados de <a href="http://www.google.com/analytics/">Google Analytics</a></small>
+<script>
+    var barData = {
+        labels: <?= json_encode($countries) ?>,
+        datasets: [
+            {
+                label: 'Acessos únicos por país',
+                fillColor: '#382765',
+                data: <?= json_encode($sessions_country) ?>
+            }
+        ]
+    };
+    var context = document.getElementById('clients').getContext('2d');
+    var clientsChart = new Chart(context).Bar(barData, {
+        responsive: true
+    });
+</script>
