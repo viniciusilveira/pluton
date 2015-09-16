@@ -1,10 +1,10 @@
 <!-- Blog Search Well -->
 <div id="blog-search" data-id="searchbar" class="well">
-    <?= html_entity_decode($layout->layout_searchbar) ?>
+    <?= stripslashes(html_entity_decode($layout->layout_searchbar)) ?>
 </div>
 <!-- Side Widget Well -->
 <div id="side-widget" data-id="lateralbar" class="well">
-    <?= html_entity_decode($layout->layout_lateralbar) ?>
+    <?= stripslashes(html_entity_decode($layout->layout_lateralbar)) ?>
 </div>
 <script>
 $("#search").click(function(){

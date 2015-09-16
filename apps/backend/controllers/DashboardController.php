@@ -22,7 +22,7 @@ use Phalcon\Http\Response;
 
 use Multiple\Library\Mail;
 
-use Multiple\Backend\Controllers\AnalyticsController;
+use Multiple\Library\Analytics;
 use Multiple\Backend\Controllers\FacebookSdkController;
 use Multiple\Backend\Controllers\TwitterSdkController;
 use Multiple\Backend\Controllers\SettingsController;
@@ -36,26 +36,16 @@ use Multiple\Backend\Models\GoogleAccounts;
 use Multiple\Backend\Models\TwitterAccounts;
 use Multiple\Backend\Models\FacebookPages;
 
+/**
+ * Classe responsável por manipular as operações do usuário na área administrativa
+ */
 class DashboardController extends BaseController {
 
     /**
      * Carrega a tela principal do backend
-     *  * @todo:
-     * => Variáveis:
-     * $blog (boolean) => true caso exista um blog, false caso não exista
-     *
-     * redes sociais => Verificar como integrar ao blog
-     * usuários online => Como contar a quantidade de usuários online? É possível pelo analitics?
-     *
-     * Verificar o que mais é necessário para index
      */
-
     public function indexAction() {
 
-        //$mail = new Mail();
-        //$this->libMail->sendMessage("Cadastro Pluton", array('viniciussilveira6@gmail.com'), 'teste 123 cadastro oi, tudo bem? =)');
-        //die();
-        //Inicia a sessão
         $this->session->start();
 
         if ($this->session->get("user_id") != NULL) {
@@ -64,8 +54,7 @@ class DashboardController extends BaseController {
             $vars = $this->getUserLoggedInformation();
             $vars+= $this->getApiSocialsData();
 
-            //var_dump($vars); die();
-            $vars['total_posts'] = count($posts);
+            //Busca as últimas 15 postagens
             $posts = Posts::find(array(
                 "conditions" => "post_status_id = :status:",
                 "order" => "post_date_posted DESC",
@@ -74,37 +63,43 @@ class DashboardController extends BaseController {
                     "status" => 1
                 ) ,
             ));
+
+            //Conta o total de postagens existentes;
+            $vars['total_posts'] = count($posts);
+
+            //Cria uma prévia do conteúdo da postagem
             foreach ($posts as $post) {
                 $post_content[$post->post_id] = substr(strip_tags($post->post_content) , 0, 500) . "...";
             }
             $vars['posts'] = $posts;
             $vars['post_content'] = $post_content;
             $vars['menus'] = $this->getSideBarMenus();
+
             $this->view->setVars($vars);
             $this->view->render('dashboard', 'index');
         }
         else {
-            $this->view->pick('login/index');
+            $this->response->redirect(URL_PROJECT . "admin");
         }
     }
 
     /**
      * Carrega o formulário de cadastro de usuário na tela
-     * @return [type] [description]
      */
     public function newUserAction() {
 
         $this->session->start();
+        $user = Users::findFirstByUser_id($this->session->get("user_id"));
 
-        if ($this->session->get("user_id") != NULL) {
+        //Caso o usuário logado seja administrador ou super administrador OU o usuário logado solicitou a edição do próprio perfil carrega a tela
+        if (($user->user_id != NULL && $user->user_type_id <= 2) || (!empty($this->request->get("user_id")) && $this->request->get("user_id") == $user->user_id)) {
             $vars = $this->getUserLoggedInformation();
 
-            //var_dump($vars); die();
             if ($this->request->get("user_id") != NULL) {
                 $result = Users::findFirstByUser_id($this->request->get("user_id"));
 
                 if (!$this->verifyPermissionEditedUser($result, Users::findFirstByUser_id($this->session->get("user_id")))) {
-                    $this->response->redirect(URL_PROJECT . "dashboard/notPermission");
+                    $this->response->redirect(URL_PROJECT . "admin");
                 }
                 else {
                     $vars['user_edit']['user_id'] = $result->user_id;
@@ -124,20 +119,22 @@ class DashboardController extends BaseController {
             $user_type = new UserType;
             $vars['types'] = $user_type->getAllUserTypes();
             $vars['menus'] = $this->getSideBarMenus();
+
             //var_dump($vars); die();
             $this->view->setVars($vars);
             $this->view->render('dashboard', 'newUser');
         }
         else {
-            $this->view->pick('login/index');
+             // Caso contrário redireciona para página inicial
+            $this->response->redirect(URL_PROJECT . 'admin');
         }
     }
 
     /**
-     * Verifica se usuário logado possui permissão para editar o usuário solicitado
-     * @param  [type] $user_edit   [description]
-     * @param  [type] $user_logged [description]
-     * @return [type]              [description]
+     * Verifica se o usuário logado possui permissão para editar o usuário solicitado
+     * @param  Phalcon\Mvc\Model\Resultset $user_edit   Objeto de resultado com dados de usuário
+     * @param  Phalcon\Mvc\Model\Resultset $user_logged Objeto de resultado com dados de usuário
+     * @return boolean              Retorna verdadeiro caso possua permissão ou false caso contrário
      */
     private function verifyPermissionEditedUser($user_edit, $user_logged) {
         if ($user_logged->user_type_id == 1) {
@@ -155,7 +152,7 @@ class DashboardController extends BaseController {
     }
 
     /**
-     * [addNewUserAction description]
+     * Recebe os dados de um novo usuário via POST e adiciona no banco de dados
      */
     public function addNewUserAction() {
         $this->view->disable();
@@ -196,7 +193,7 @@ class DashboardController extends BaseController {
     }
 
     /**
-     * Busca todos os usuários do sistema e lista na tela
+     * Busca todos os usuários cadastrados no sistema e os exibe em uma tabela
      */
     public function listUsersAction() {
         $this->session->start();
@@ -225,16 +222,17 @@ class DashboardController extends BaseController {
             $this->view->render("dashboard", "listUsers");
         }
         else {
-            $this->view->pick('login/index');
+            $this->response->redirect('login/index');
         }
     }
 
+    /**
+     * Atualiza os dados do usuário pelos dados informados via POST
+     */
     public function updateUserAction() {
         $this->view->disable();
 
         $user_id = $this->request->getPost('user_id');
-
-        //var_dump($user); die();
 
         //Verifica se existe arquivo para upload, caso exista efetua o upload
         if ($this->request->hasFiles() == true) {
@@ -271,8 +269,7 @@ class DashboardController extends BaseController {
     }
 
     /**
-     * [deleteUserAction description]
-     * @return [type] [description]
+     * Altera o status de um usuário, se estiver ativo, desativa e se estiver desativado, ativa
      */
     public function ActiveOrdeactiveUserAction() {
         $this->view->disable();
@@ -332,6 +329,10 @@ class DashboardController extends BaseController {
         return $data;
     }
 
+    /**
+     * Utiliza o método BaseController::uid() para gerar um nome para a imagem de perfil a ser salva.
+     * @return string nome da imagem
+     */
     public function getImgName() {
         $img_name = $this->uid();
         $result = Users::findFirstByuser_img($img_name);
@@ -343,13 +344,19 @@ class DashboardController extends BaseController {
         }
     }
 
+    /**
+     * Busca no banco de dados informações sobre acessos ao blog (Google Analytics),
+     * seguidores do Twitter (Twitter API) e curtidas da página do facebook informada;
+     * Caso os dados sobre tais APIS e redes sociais não estejam configurados, todos os valores são retornados como 0
+     * @return array Array Contendo informações sobre Google Analytics, Twitter e Facebook
+     */
     public function getApiSocialsData() {
 
         //Dados do google analytics
         $google_account = GoogleAccounts::findFirst();
         if (!empty($google_account)) {
-            //AdsenseController::getEarnings($google_account->google_account_login, $google_account->google_account_key_file_name);
-            $data_analytics = AnalyticsController::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
+
+            $data_analytics = Analytics::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
             $vars['sessions'] = $data_analytics['sessions'];
             $vars['months'] = $data_analytics['months'];
             $vars['total_sessions'] = $data_analytics['total_sessions'];
@@ -359,19 +366,19 @@ class DashboardController extends BaseController {
             $vars['months'] = $this->mountArrayMonths();
         }
 
+        //Dados do Twitter
         $tw_account = TwitterAccounts::findFirst();
-
         if (!empty($tw_account)) {
             $bearer_token = TwitterSdkController::generateBearerToken($tw_account->twitter_account_app_id, $tw_account->twitter_account_app_secret);
             $data_twitter = TwitterSdkController::getLookupTwitterProfileBlog($bearer_token, $tw_account->twitter_account_username);
 
-            //var_dump($data_twitter); die();
             $vars['followers_count'] = $data_twitter[0]['followers_count'];
         }
         else {
             $vars['followers_count'] = 0;
         }
 
+        //Dados do Facebook
         $fb_page = FacebookPages::findFirst();
         if (!empty($fb_page)) {
             $facebook = FacebookController::facebook_count("https://www.facebook.com/" . $fb_page->facebook_page_name);

@@ -4,8 +4,9 @@
  * Function list:
  * - indexAction()
  * - getPostsPerPage()
- * - getPostCategories()
  * - getCategories()
+ * - getPostsIdByCategorie()
+ * - getAuthorIdByName()
  * - notFoundAction()
  * - postPageAction()
  * - aboutAction()
@@ -26,23 +27,28 @@ use Multiple\Frontend\Models\Layouts;
 use Multiple\Frontend\Models\Posts;
 use Multiple\Frontend\Models\Categories;
 use Multiple\Frontend\Models\PostCategorie;
+use Multiple\Frontend\Models\GoogleAccounts;
 
 class IndexController extends \Phalcon\Mvc\Controller {
 
-    /**
-     * Verifica se o sistema foi instalado e o blog criado, caso sim carrega a página inicial do blog,
-     * se não carrega a página de não encontrado
-     * @return [type] [description]
-     */
-    public function indexAction() {
 
+    public function indexAction() {
+        $this->session->start();
         $page = empty($_REQUEST['page']) ? 0 : $_REQUEST['page'];
+        $editor = $this->request->get('editor');
+        $user = Users::findFirstByUser_id($this->session->get("user_id"));
+        if ($editor && $user->user_type_id == 1) {
+            $vars['edit_appearance'] = true;
+        }
+
         $search = $this->request->get('search');
-        if(!empty($search)){
+        if (!empty($search)) {
             $str_posts_id = $this->getPostsIdByCategorie($search);
             $str_users_id = $this->getAuthorIdByName($search);
         }
-
+        $g_account = GoogleAccounts::findFirst();
+        $vars['script_analytics'] = $g_account->google_analytics_script;
+        //var_dump($g_account); die();
         $blog = Blogs::findFirst();
 
         $posts = $this->getPostsPerPage($page, $search, $str_posts_id, $str_users_id);
@@ -58,7 +64,6 @@ class IndexController extends \Phalcon\Mvc\Controller {
         foreach ($posts as $post) {
             $vars['post_title'][$post->post_id] = str_replace(" ", "-", $post->post_title, $count);
         }
-
         $vars['layout'] = Layouts::findFirst();
         $vars['posts'] = $posts;
         $vars['post_content'] = $post_content;
@@ -87,12 +92,12 @@ class IndexController extends \Phalcon\Mvc\Controller {
             $bind['search'] = "%" . $search . "%";
         }
 
-        if($str_posts_id != NULL){
-            $conditions .= " OR post_id IN ({$str_posts_id})";
+        if ($str_posts_id != NULL) {
+            $conditions.= " OR post_id IN ({$str_posts_id})";
         }
 
-        if($str_users_id != NULL){
-            $conditions .= "OR post_author IN ({$str_users_id})";
+        if ($str_users_id != NULL) {
+            $conditions.= "OR post_author IN ({$str_users_id})";
         }
 
         $order = "post_date_posted DESC, post_id DESC";
@@ -123,27 +128,31 @@ class IndexController extends \Phalcon\Mvc\Controller {
         return $cts;
     }
 
-    public function getPostsIdByCategorie($categorie_name){
+    public function getPostsIdByCategorie($categorie_name) {
         $categories = Categories::find(array(
             "conditions" => "categorie_name LIKE :categorie_name:",
-            "bind" => array("categorie_name" => "%" . $categorie_name . "%")
+            "bind" => array(
+                "categorie_name" => "%" . $categorie_name . "%"
+            )
         ));
-        foreach($categories as $categorie){
+        foreach ($categories as $categorie) {
             $post_categorie = PostCategorie::findByCategorie_id($categorie->categorie_id);
-            foreach($post_categorie as $pt){
-                $str_post_id = empty($str_post_id) ? $pt->post_id : $str_post_id .", " . $pt->post_id;
+            foreach ($post_categorie as $pt) {
+                $str_post_id = empty($str_post_id) ? $pt->post_id : $str_post_id . ", " . $pt->post_id;
             }
         }
         return $str_post_id;
     }
 
-    public function getAuthorIdByName($name){
+    public function getAuthorIdByName($name) {
         $users = Users::find(array(
             "conditions" => "user_login LIKE :user_login:",
-            "bind" => array("user_login" => "%" . $name . "%")
+            "bind" => array(
+                "user_login" => "%" . $name . "%"
+            )
         ));
 
-        foreach($users as $user){
+        foreach ($users as $user) {
             $str_user_id = empty($str_user_id) ? $user->user_id : $str_posts_id . ", " . $user->user_id;
         }
 

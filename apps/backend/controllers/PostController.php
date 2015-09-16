@@ -11,7 +11,6 @@
  * - updatePostCategories()
  * - newCategorieAction()
  * - getCategoriesByPost()
- * - getPostsPerMonth()
  * Classes list:
  * - PostController extends BaseController
  */
@@ -40,6 +39,7 @@ class PostController extends BaseController {
             //busca o usuário logado para exibir como autor
             $vars['author'] = Users::findFirstByUser_id($this->session->get("user_id"));
             $vars['menus'] = $this->getSideBarMenus();
+
             //Caso a tela seja carregada para edição de post
             //Busca os dados do post informado via POST e envia para view
             if ($this->request->get('post_id') != NULL) {
@@ -65,8 +65,6 @@ class PostController extends BaseController {
                 }
             }
 
-
-
             //Monta um array com todas as categorias cadastradas no sistema
             $obj_categories = Categories::getCategories();
             foreach ($obj_categories as $categorie) {
@@ -80,31 +78,39 @@ class PostController extends BaseController {
             $this->view->render("post", "index");
         }
         else {
-            $this->response->redirect(URL_PROJECT . 'settings');
+            $this->response->redirect(URL_PROJECT . 'admin');
         }
     }
 
+    /**
+     * Verifica se usuário possui permissão para editar postagens do autor
+     * @param  \Phalcon\Mvc\Resultset  Objeto do tipo Resultset contendo informações sobre o autor da postagem
+     * @param  \Phalcon\Mvc\Resultset  Objeto do tipo Resultset contendo informações sobre o usuário logado
+     * @return boolean  verdadeiro caso o usário logado possa editar postagens do autor ou falsó caso contrário
+     */
     private function verifyPermissionEditPost($author, $user_logged) {
-        if($user_logged->user_type_id == 1){
+        if ($user_logged->user_type_id == 1) {
             return true;
-        }elseif($author->user_type_id == 1 && ($user_logged->user_id != $author->user_id)){
-            return false;
-        } elseif(($author->user_type_id == 2 && $user_logged->user_type_id == 2) && ($author->user_id != $user_logged->user_id)){
-            return false;
-        } elseif(($author->user_type_id == 3 && $user_logged->user_type_id > 3)){
-            return false;
-        } elseif(($author->user_type_id > 3 && $user_logged->user_type_id > 3) && ($author->user_id != $user_logged->user_id)){
+        }
+        elseif ($author->user_type_id == 1 && ($user_logged->user_id != $author->user_id)) {
             return false;
         }
-        else{
+        elseif (($author->user_type_id == 2 && $user_logged->user_type_id == 2) && ($author->user_id != $user_logged->user_id)) {
+            return false;
+        }
+        elseif (($author->user_type_id == 3 && $user_logged->user_type_id > 3)) {
+            return false;
+        }
+        elseif (($author->user_type_id > 3 && $user_logged->user_type_id > 3) && ($author->user_id != $user_logged->user_id)) {
+            return false;
+        }
+        else {
             return true;
         }
     }
 
     /**
-     * Carrega a view lasPosts filtrando os dados conforme solicitado
-     * @param  string $filter tipo de filtro
-     * @param  [type] $value  valor a ser filtrado; tipo pode varia
+     * Carrega uma tabela listando as postagens existentes no sistema
      */
     public function listPostsAction() {
         $this->session->start();
@@ -132,10 +138,6 @@ class PostController extends BaseController {
                     "conditions" => "post_author IN ({$string_users})",
                     "order" => "post_date_posted DESC"
                 ));
-
-                //var_dump($posts); die();
-
-
             }
             else {
                 $posts = Posts::findByPost_author($user->user_id);
@@ -148,7 +150,7 @@ class PostController extends BaseController {
             $this->view->render("post", "listPosts");
         }
         else {
-            $this->response->redirect(URL_PROJECT . 'settings');
+            $this->response->redirect(URL_PROJECT . 'admin');
         }
     }
 
@@ -178,8 +180,7 @@ class PostController extends BaseController {
     }
 
     /**
-     * Recebe os dados via POST e salva as alterações recebidas no banco de dados
-     * @return [type] [description]
+     * Atualiza uma postagem conforme os dados recebidos via POST
      */
     public function editPostAction() {
         $this->view->disable();
@@ -232,7 +233,6 @@ class PostController extends BaseController {
 
     /**
      * Verifica se uma categoria informada já existe, caso não, insere no banco de dados
-     * @return json array contendo um boolean para informar o sucesso ou falha da operação
      */
     public function newCategorieAction() {
         $this->view->disable();
@@ -252,8 +252,8 @@ class PostController extends BaseController {
     }
 
     /**
-     * Recebe um objeto do tipo ResultSet[Posts] e retorna todas as categorias dos posts do objeto
-     * @param  object $posts ResultSet[Posts]
+     * Recebe um objeto do tipo \Phalcon\Mvc\ResultSet e retorna todas as categorias dos posts do objeto
+     * @param  object  \Phalcon\Mvc\ResultSet
      * @return array        Array contendo o array de cada post e uma string com as categorias dos posts
      */
     private function getCategoriesByPost($posts) {
@@ -267,8 +267,5 @@ class PostController extends BaseController {
             }
         }
         return $ctg;
-    }
-
-    public function getPostsPerMonth() {
     }
 }

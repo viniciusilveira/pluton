@@ -17,8 +17,15 @@ namespace Multiple\Backend\Controllers;
 
 use Multiple\Backend\Models\Users AS Users;
 
+/**
+ * Classe responsável pela manipulação de login e sessão do sistema
+ */
 class LoginController extends BaseController {
 
+    /**
+     * Caso o usuário esteja logado, carrega a página principal, caso contrário carrega a
+     * página de login.
+     */
     public function indexAction() {
 
         $this->session->start();
@@ -35,7 +42,6 @@ class LoginController extends BaseController {
 
     /**
      * Efetua o login no sistema
-     * @return json_encode array para o jquery
      */
     public function loginAction() {
 
@@ -62,13 +68,21 @@ class LoginController extends BaseController {
 
         // apps/backend/views/newCodeResetPassword
 
+
     }
 
+    /**
+     * Seta uma instância da classe Library\Mail
+     */
     private function setMailLibrary() {
         $blog = Blogs::findFirst();
         return new Mail($blog->blog_mail, $blog->blog_mail_password);
     }
 
+    /**
+     * Envia uma nova senha para o email do usuário
+     * @return boolean  true em caso de sucesso ou false em caso de falha
+     */
     public function sendNewPasswordAction() {
         $this->view->disable();
         $email = $this->request->getPost("email");
@@ -78,18 +92,16 @@ class LoginController extends BaseController {
             $new_password = $this->uid(8);
             $user->user_passwd = sha1(md5($new_password));
             $user->save();
-            $libMail->sendMessage("Nova senha - Pluton", array(
+            return $libMail->sendMessage("Nova senha - Pluton", array(
                 $email,
             ) , 'Olá, sua nova senha de acesso ao sistema é: ' . $new_password);
-
-            return true;
         }
     }
 
     /**
-     * Inicia a sessão do usuário ao efetuar o login
-     * @param  string $user_login   nome de usuário
-     * @return
+     * Inicia a sessão do usuário setando o id e login do mesmo em váriaveis de sessão
+     * @param  int $user_id id do usuário
+     * @param  string $user_login   nome do usuário
      */
     private function createSession($user_id, $user_login) {
         $this->session->start();

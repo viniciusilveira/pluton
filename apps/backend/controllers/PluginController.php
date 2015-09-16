@@ -19,8 +19,14 @@ use Multiple\Backend\Models\Submenu;
 use Multiple\Backend\Models\Plugin;
 use Multiple\Backend\Models\Users;
 
+/**
+ * Classe responsável pela manipulação de plugins no sistema
+ */
 class PluginController extends BaseController {
 
+    /**
+     * Carrega o Formulário para cadastro de um novo plugin
+     */
     public function indexAction() {
         $this->session->start();
         if ($this->session->get("user_id") != NULL) {
@@ -50,6 +56,9 @@ class PluginController extends BaseController {
         }
     }
 
+    /**
+     * Carrega tabela com uma lista dos plugins instalados
+     */
     public function listPluginsAction() {
         $this->session->start();
         if ($this->session->get("user_id") != NULL) {
@@ -69,6 +78,9 @@ class PluginController extends BaseController {
         $this->view->setVars($vars);
     }
 
+    /**
+     * Adiciona um novo plugin conforme dados recebidos via POST
+     */
     public function addPluginAction() {
         $this->view->disable();
         $plugin_name = $this->request->getPost("plugin_name");
@@ -104,6 +116,9 @@ class PluginController extends BaseController {
         echo json_encode($data);
     }
 
+    /**
+     * Atualiza um plugin conforme dados recebidos via POST
+     */
     public function updatePluginAction() {
         $this->view->disable();
         $plugin_name = $this->request->getPost("plugin_name");

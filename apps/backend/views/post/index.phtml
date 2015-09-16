@@ -273,7 +273,7 @@ tinymce.init({
 });
 
 function insert_contents(inst){
-    inst.setContent('<?= $post_content ?>');
+    inst.setContent('<?= html_entity_decode(stripslashes($post_content)) ?>');
 }
 /**
  * Carrega o datepicker

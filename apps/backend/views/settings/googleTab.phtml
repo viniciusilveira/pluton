@@ -12,6 +12,10 @@
                 <div class="form-group input-group col-sm-10">
                     <input type="file" id="input-p12-file" name="pk12_key" class="filestyle" data-buttonName="btn-primary" data-buttonText="Insira o arquivo de chave .p12">
                 </div>
+                <div class="form-group input-group col-sm-10">
+                    <label>Script Google Analytics</label>
+                    <textarea name="analytics_script" style="resize: none;" cols="79" rows="10"><?= html_entity_decode(stripslashes($google_analytics_script))?></textarea>
+                </div>
                 <div class="form-group input-group col-sm-6">
                     <?php if(empty($google_account_login)){ ?>
                     <a href="#" id="save-google-account" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Salvar</a>

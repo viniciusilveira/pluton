@@ -8,8 +8,15 @@
  */
 namespace Multiple\Backend\Controllers;
 
+/**
+ * Classe responsável por coletar dados referentes ao facebook
+ */
 class FacebookController extends \Phalcon\Mvc\Controller {
 
+	/**
+	 * Conta a quantidade de likes de uma página
+	 * @param  string $url nome da página a ser consultada
+	 */
     function facebook_count($url) {
 
         // Query in FQL

@@ -31,15 +31,16 @@ use Multiple\Backend\Models\Submenu;
 use Multiple\Library\Tables;
 
 /**
- * Classe para conexão e configuração dos dados necessários para inicialização
- * do blog
- *
+ * Classe para conexão e configuração dos dados necessários para utilização do sistema
  */
 class SetupController extends BaseController {
 
     public $connection;
     private $config;
 
+    /**
+     * Carrega a view setup/index.phtml
+     */
     public function indexAction() {
 
         // view/setup/index.phtml
@@ -57,13 +58,9 @@ class SetupController extends BaseController {
 
     }
 
-    public function newBlogAction() {
-
-        // views/setup/newBlog.phtml
-
-
-    }
-
+    /**
+     * Carrega a view de instalação do sistema.
+     */
     public function installAction() {
 
         // views/setup/newUser.phtml
@@ -113,8 +110,7 @@ class SetupController extends BaseController {
 
     /**
      * Recebe os dados do banco de dados via post;
-     * Cria o arquivo de configuração do banco de dados com os arquivos recebidos
-     * Conecta com o banco de dados
+     * Cria o arquivo de configuração do banco de dados e conecta com o banco de dados
      */
     public function databaseSettingsAction() {
 
@@ -264,7 +260,7 @@ class SetupController extends BaseController {
         $id_menu = $id_menu > 0 ? Menu::createMenu("fa fa-pie-chart", "Estatisticas", "statistics/index", 1) : false;
         $success = $id_menu > 0 ? Menu::createMenu("glyphicon glyphicon-refresh", "Atualizações", "update/index", 2) : false;
         $id_menu = $success ? Menu::createMenu("fa fa-puzzle-piece", "Plugins", "#sub-plugins", 1) : false;
-        if($id_menu > 0){
+        if ($id_menu > 0) {
             $success = Submenu::createSubmenu($id_menu, "glyphicon glyphicon-plus", "Novo", "plugin/index", 1);
             $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "plugin/listPlugins", 1) : false;
         }
@@ -273,7 +269,6 @@ class SetupController extends BaseController {
 
     /**
      * Efetua a "instalação" do sistema; Criando o usuário Super-Administrador e o blog
-     * @return json contendo mensagem de sucesso ou erro e um bolean contendo true ou false
      */
     public function installPlutonAction() {
 

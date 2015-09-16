@@ -52,9 +52,8 @@ var Raptor = function(){
     }
 }
 
-var editor = ('<?= $_REQUEST["editor"] ?>');
-var session = ('<?= $this->session->get(user_id);?>');
-if(editor && session != ''){
+var editor = ('<?= $edit_appearance ?>');
+if(editor){
     raptor = new Raptor;
     raptor.init();
 }

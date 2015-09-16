@@ -29,7 +29,7 @@
                 <!-- Preview Image -->
                 <hr>
                 <!-- Post Content -->
-                <p><?= html_entity_decode($post->post_content) ?></p>
+                <p><?= stripslashes(html_entity_decode($post->post_content)) ?></p>
                 <hr>
                 <!-- Blog Comments -->
                 <!-- Comments Form -->

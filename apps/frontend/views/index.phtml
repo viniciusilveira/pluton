@@ -8,6 +8,7 @@ footer {
     margin: 50px 0;
 }
 </style>
+
 <html class="no-js" lang="br">
     <head>
         <meta charset="utf-8">
@@ -29,7 +30,7 @@ footer {
         <script src="<?= URL_PROJECT ?>js/raptor.js"> </script>
         <script src="<?= URL_PROJECT ?>js/jquery.twbsPagination.min.js"> </script>
         <script src="<?= URL_PROJECT ?>js/custom.js"> </script>
-
+        <script><?= html_entity_decode(stripslashes($script_analytics)) ?></script>
         <?= $this->getContent(); ?>
     </body>
 </html>

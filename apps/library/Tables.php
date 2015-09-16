@@ -546,6 +546,10 @@ class Tables {
                     "size" => 250,
                     "notNull" => true,
                 )) ,
+                new Column("google_analytics_script", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 65535
+                )) ,
             ) ,
             "indexes" => array(
                 new Index("blog_id", array(

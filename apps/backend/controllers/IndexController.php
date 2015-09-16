@@ -10,6 +10,9 @@
 namespace Multiple\Backend\Controllers;
 use Multiple\Backend\Controllers\SetupController;
 
+/**
+ * Controlador inicial do sistema
+ */
 class IndexController extends BaseController{
 
     /**
@@ -21,8 +24,6 @@ class IndexController extends BaseController{
      * Caso ambos estejam OK, redireciona para tela de login.
      */
     public function indexAction() {
-
-        $setup = new SetupController();
 
         $database = SetupController::verifyDataBaseAction();
         switch ($database) {

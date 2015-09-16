@@ -24,12 +24,9 @@
                     <span><label style="color: #0066CC;">Este email é utilizado para fins administrativos. (Somente conta google)</label></span>
                 </div>
                 <div class="form-group input-group col-offset-2">
-                    <div class="col-sm-12">
-                        <label>Sobre o Blog:</label>
-                    </div>
-                    <div class="col-sm-12">
-                        <textarea name="post_content" id="inputPost_content" class="form-control" rows="3" required="required"></textarea>
-                    </div>
+                    <label>Sobre o Blog:</label>
+
+                    <textarea name="post_content" id="inputPost_content" class="form-control" rows="3" required="required"></textarea>
                 </div>
                 <div class="form-group input-group col-sm-10">
                     <a href="#" id="edit-preferences" class="col-sm-5 btn btn-primary btn-warning"><span class="glyphicon glyphicon-edit"></span> Salvar Informações</a>
@@ -93,7 +90,7 @@ $("#edit-preferences").click(function(){
  * Carrega o editor wysiwyg tinymce para edição de uma nova postagem
  */
 tinymce.init({
-    selector: "textarea",
+    selector: "#inputPost_content",
     theme: "modern",
     height : 300,
     width: 600,
@@ -116,4 +113,8 @@ tinymce.init({
     language: 'pt_BR'
 
 });
+
+function insert_contents(inst){
+    inst.setContent('<?= $blog_about ?>');
+}
 </script>

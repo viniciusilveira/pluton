@@ -5,13 +5,19 @@
  * - indexAction()
  * - getVersions()
  * Classes list:
- * - UpdateController extends \
+ * - UpdateController extends BaseController
  */
 
 namespace Multiple\Backend\Controllers;
 
+/**
+ * Classe responsável pela consulta da existência de novas atualizações do sistema
+ */
 class UpdateController extends BaseController {
 
+    /**
+     * Carrega uma view que exibe se o sistema está atualizado
+     */
     public function indexAction() {
 
         $this->session->start();
@@ -43,6 +49,9 @@ class UpdateController extends BaseController {
         }
     }
 
+    /**
+     * Busca todas as tags do repositório do Projeto
+     */
     public function getVersions() {
         $ch = curl_init();
 

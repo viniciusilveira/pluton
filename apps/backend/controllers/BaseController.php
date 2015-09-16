@@ -20,8 +20,16 @@ use Multiple\Backend\Models\Users;
 use Multiple\Backend\Models\Menu;
 use Multiple\Backend\Models\Submenu;
 
+
+/**
+ * Controlador principal do sistema, herdado por todos os outros controlladores
+ */
 class BaseController extends \Phalcon\Mvc\Controller {
 
+    /**
+     * Busca todas as informações do usuário logado
+     * @return array contendo nome de usuário, tipo e imagem de perfil do usuário logado
+     */
     public function getUserLoggedInformation() {
         $this->session->start();
         $user = Users::findFirstByUser_id($this->session->get("user_id"));
@@ -33,6 +41,10 @@ class BaseController extends \Phalcon\Mvc\Controller {
         return $vars;
     }
 
+    /**
+     * Busca as opções a serem exibidas no menu lateral do sistema
+     * @return array contendo menus e submenus
+     */
     public function getSideBarMenus() {
         $menus = Menu::find(array(
             'hydration' => Resultset::HYDRATE_ARRAYS
@@ -50,7 +62,7 @@ class BaseController extends \Phalcon\Mvc\Controller {
                 $menus[$id]['submenu_div_name'] = str_replace("#", "",$menus[$id]['menu_href']);
             }
         }
-        //echo "<pre>"; print_r($menus); die();
+
         return $menus;
     }
 
@@ -93,6 +105,10 @@ class BaseController extends \Phalcon\Mvc\Controller {
         }
     }
 
+    /**
+     * Monta um array com o nome dos 12 meses do calendário em pt_BR
+     * @return array contendo os meses do calendário em pt_BR
+     */
     public function mountArrayMonths() {
         $arr_months = array(
             0 => "Janeiro",

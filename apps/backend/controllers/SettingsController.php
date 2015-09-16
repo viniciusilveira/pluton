@@ -9,6 +9,7 @@
  * - updateFacebookPageNameAction()
  * - registerTwitterAccountsApiAccessAction()
  * - updateTwitterAccountsApiAccessAction()
+ * - updatePreferencesAction()
  * Classes list:
  * - SettingsController extends BaseController
  */
@@ -21,31 +22,38 @@ use Multiple\Backend\Models\FacebookPages;
 use Multiple\Backend\Models\TwitterAccounts;
 use Multiple\Backend\Models\MailSettings;
 use Multiple\Backend\Models\Blogs;
+use Multiple\Backend\Models\Users;
 
 /**
- * Classe responsável por manipular os dados do google analytics
+ * Classe responsável por manipular as configurações e opções do sistema
  */
 class SettingsController extends BaseController {
 
     /**
-     * [indexAction description]
-     * @return [type] [description]
+     * Carrega a tela inicial de configurações
      */
     public function indexAction() {
         $this->session->start();
-        if ($this->session->get("user_id") != NULL) {
+        $user = Users::findFirstByUser_id($this->session->get("user_id"));
+
+        if ($user->user_type_id <= 2) {
             $vars = $this->getUserLoggedInformation();
+
+            //Busca informações da conta google
             $google_account = GoogleAccounts::findFirst();
             if (!empty($google_account)) {
                 $vars['google_account_login'] = $google_account->google_account_login;
                 $vars['google_account_key_file_name'] = $google_account->google_account_key_file_name;
+                $vars['google_analytics_script'] = $google_account->google_analytics_script;
             }
 
+            //Busca informações da página do facebook
             $fb_page = FacebookPages::findFirst();
             if ($fb_page != NULL) {
                 $vars['fb_page_name'] = $fb_page->facebook_page_name;
             }
 
+            //Busca informações do twitter
             $tw_account = TwitterAccounts::findFirst();
             if (!empty($tw_account)) {
                 $vars['tw_account_app_id'] = $tw_account->twitter_account_app_id;
@@ -53,26 +61,28 @@ class SettingsController extends BaseController {
                 $vars['tw_account_username'] = $tw_account->twitter_account_username;
             }
 
+            //Busca as preferências do blog
             $preferences = Blogs::findFirst();
-            if(!empty($preferences)){
+            if (!empty($preferences)) {
                 $vars['title'] = $preferences->blog_name;
                 $vars['url'] = $preferences->blog_url;
                 $vars['mail'] = $preferences->blog_mail;
+                $vars['blog_about'] = $preferences->blog_about;
                 $vars['menus'] = $this->getSideBarMenus();
             }
+
             //Caso haja dados de conta a ser exibido seta as váriaveis para exibição na view
             if (!empty($vars)) $this->view->setVars($vars);
 
             $this->view->render("settings", "index");
         }
         else {
-            $this->response->redirect(URL_PROJECT . "settings");
+            $this->response->redirect(URL_PROJECT . "admin");
         }
     }
 
     /**
-     * Recebe os dados da conta google informados para o usuário e salva/atualiza no banco de dados
-     * @return json
+     * Insere os dados recebidos da conta google via post no banco de dados
      */
     public function registerGoogleAccountsApiAccessAction() {
         $this->view->disable();
@@ -82,12 +92,17 @@ class SettingsController extends BaseController {
                 $p12_key = $file;
             }
         }
+        //var_dump($_POST); die();
+        $g_script_analytics = $this->request->getPost("analytics_script");
         $p12_key->moveTo(FOLDER_PROJECT . "keys/" . $p12_key->getName());
-        $data['success'] = GoogleAccounts::createGoogleAccount($g_account, $p12_key->getName());
+        $data['success'] = GoogleAccounts::createGoogleAccount($g_account, $p12_key->getName(), $g_script_analytics);
 
         echo json_encode($data);
     }
 
+    /**
+     * Atualiuza os dados da conta google no banco de dados
+     */
     public function updateGoogleAccountsApiAccessAction() {
         $this->view->disable();
         $g_account = $this->request->getPost('g_account');
@@ -97,11 +112,13 @@ class SettingsController extends BaseController {
             }
         }
 
+        $g_script_analytics = $this->request->getPost("analytics_script");
+
         $google_account = GoogleAccounts::findFirst();
 
-        $data['success'] = GoogleAccounts::updateGoogleAccount($g_account, $p12_key->getName());
-        if ($data['success']) {
+        $data['success'] = GoogleAccounts::updateGoogleAccount($g_account, $p12_key->getName(), $g_script_analytics);
 
+        if ($data['success']) {
             //remove o arquivo antigo e insere o novo
             unlink(FOLDER_PROJECT . "keys/" . $google_account->google_account_key_file_name);
             $p12_key->moveTo(FOLDER_PROJECT . "keys/" . $p12_key->getName());
@@ -110,8 +127,7 @@ class SettingsController extends BaseController {
     }
 
     /**
-     * [registerFacebookPageNameAction description]
-     * @return [type] [description]
+     * Insere os dados da página do facebook no banco de dados
      */
     public function registerFacebookPageNameAction() {
         $this->view->disable();
@@ -121,6 +137,9 @@ class SettingsController extends BaseController {
         echo json_encode($data);
     }
 
+    /**
+     * Atualiza os dados da página do facebook no banco de dados
+     */
     public function updateFacebookPageNameAction() {
         $this->view->disable();
 
@@ -129,9 +148,9 @@ class SettingsController extends BaseController {
 
         echo json_encode($data);
     }
+
     /**
-     * [registerTwitterAccountsApiAccessAction description]
-     * @return [type] [description]
+     * Insere os dados do twitter no banco de dados
      */
     public function registerTwitterAccountsApiAccessAction() {
         $this->view->disable();
@@ -143,8 +162,7 @@ class SettingsController extends BaseController {
     }
 
     /**
-     * [updateTwitterAccountsApiAccessAction description]
-     * @return [type] [description]
+     * Atualiza os dados do twitter no banco de dados
      */
     public function updateTwitterAccountsApiAccessAction() {
         $this->view->disable();
@@ -156,10 +174,10 @@ class SettingsController extends BaseController {
     }
 
     /**
-     * [updatePreferencesAction description]
+     * Atualiza as preferências do sistema
      * @return [type] [description]
      */
-    public function updatePreferencesAction(){
+    public function updatePreferencesAction() {
         $this->view->disable();
         $title_blog = $this->request->getPost("title_blog");
         $url_project = $this->request->getPost("url_project");
