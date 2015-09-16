@@ -2,41 +2,12 @@
 <div id="blog-search" data-id="searchbar" class="well">
     <?= html_entity_decode($layout->layout_searchbar) ?>
 </div>
-<!-- Blog Categories Well -->
-<div class="well">
-    <h4 id="title-categories">Blog Categories</h4>
-    <div class="row">
-        <div class="col-lg-6">
-            <ul class="list-unstyled">
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.col-lg-6 -->
-        <div class="col-lg-6">
-            <ul class="list-unstyled">
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-                <li><a href="#">Category Name</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.col-lg-6 -->
-    </div>
-    <!-- /.row -->
-</div>
 <!-- Side Widget Well -->
 <div id="side-widget" data-id="lateralbar" class="well">
     <?= html_entity_decode($layout->layout_lateralbar) ?>
-
 </div>
+<script>
+$("#search").click(function(){
+	 window.location.href = '<?= URL_PROJECT ?>/index/index?search=' + $("#data-search").val();
+})
+</script>

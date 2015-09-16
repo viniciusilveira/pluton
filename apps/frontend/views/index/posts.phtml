@@ -7,7 +7,7 @@
 		<a id="post-title" id-post="<?= $post->post_id ?>" href="#"><?= $post->post_title ?></a>
 		</h2>
 		<p class="lead">
-		by <a href="#"><?= $post->author->user_login ?></a>
+		por <a id="author" data-id="<?= $post->author->user_id ?>" href="#"><?= $post->author->user_login ?></a>
 		</p>
 		<p><span class="glyphicon glyphicon-time"></span> Publicado em <?= $post->post_date_posted ?></p>
 		<hr>
@@ -17,6 +17,12 @@
 			<input type="hidden" name="post_id" id="post_id" value="<?= $post->post_id ?>"class="form-control" value="">
 			<input type="submit" class="btn btn-primary" value="Leia Mais"></span>
 		</form>
+		<hr>
+		<label style="font-size: 12px;">Categorias:
+			<?php foreach($categories[$post->post_id] as $categorie){ ?>
+				<a href="" data-id=" <?=$categorie ?>"><?= $categorie ?></a> /
+			<?php }?>
+		</label>
 	<?php } ?>
 <?php } else{ ?>
 	<img class="img-responsive" src="http://placehold.it/900x300" alt="">

@@ -261,6 +261,7 @@ class SetupController extends BaseController {
             $success = false;
         }
         $id_menu = $success ? Menu::createMenu("fa fa-cogs", "Configurações", "settings/index", 2) : false;
+        $id_menu = $id_menu > 0 ? Menu::createMenu("fa fa-pie-chart", "Estatisticas", "statistics/index", 1) : false;
         $success = $id_menu > 0 ? Menu::createMenu("glyphicon glyphicon-refresh", "Atualizações", "update/index", 2) : false;
         $id_menu = $success ? Menu::createMenu("fa fa-puzzle-piece", "Plugins", "#sub-plugins", 1) : false;
         if($id_menu > 0){

@@ -11,8 +11,8 @@ footer {
 <html class="no-js" lang="br">
     <head>
         <meta charset="utf-8">
-        <title><?= $layout->layout_title ?></title>
-        <meta name="description" content="<?= $layout->layout_title ?>">
+        <title><?= $blog_name ?></title>
+        <meta name="description" content="<?= $blog_name ?>">
         <meta name="author" content="viniciusilveira">
         <link rel="shortcut icon" href="<?= URL_PROJECT ?>img/logo.png"/>
         <link rel="stylesheet" href="<?= URL_PROJECT ?>css/style.css"/>
@@ -28,8 +28,6 @@ footer {
         <script src="<?= URL_PROJECT ?>js/chart.min.js"> </script>
         <script src="<?= URL_PROJECT ?>js/raptor.js"> </script>
         <script src="<?= URL_PROJECT ?>js/jquery.twbsPagination.min.js"> </script>
-        <script src="<?= URL_PROJECT ?>js/g-analytics.js"> </script>
-        <script src="<?= URL_PROJECT ?>js/facebook-api.js"> </script>
         <script src="<?= URL_PROJECT ?>js/custom.js"> </script>
 
         <?= $this->getContent(); ?>

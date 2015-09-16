@@ -125,7 +125,8 @@ class SettingsController extends BaseController {
         $this->view->disable();
 
         $fb_page_name = $this->request->getPost("page_name");
-        $data['success'] = FacebookAccounts::updateFacebookAccount($fb_page_name);
+        $data['success'] = FacebookPages::updateFacebookPage($fb_page_name);
+
         echo json_encode($data);
     }
     /**
@@ -164,12 +165,9 @@ class SettingsController extends BaseController {
         $url_project = $this->request->getPost("url_project");
         $mail_project = $this->request->getPost("mail_project");
         $mail_password = $this->request->getPost("mail_password");
-        $data['success'] = Blogs::updateBlog($title_blog, $url_project, $mail_project, $mail_password);
+        $blog_about = $this->request->getPost("blog_about");
+        $data['success'] = Blogs::updateBlog($title_blog, $url_project, $mail_project, $mail_password, $blog_about);
 
         echo json_encode($data);
-    }
-
-    public function configureMail(){
-
     }
 }

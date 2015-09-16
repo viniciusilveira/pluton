@@ -1,0 +1,68 @@
+<style>
+    .ml10 {
+        margin-left: 10px;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-heading">
+            <label style="font-size:30px"><i class="glyphicon glyphicon-list"></i> Lista de Plugins</label>
+        </div>
+        <table class="table table-bordered  table-striped"
+            data-toggle="table"
+            data-sort-name="title"
+            data-sort-order="asc"
+            data-search="true"
+            data-show-toggle="true"
+            data-show-columns="true"
+            data-query-params="queryParams"
+            data-pagination="true"
+            >
+            <thead>
+                <tr>
+                    <th data-field="id" data-sortable="true">#</th>
+                    <th data-field="name" data-sortable="true">Nome</th>
+                    <th data-field="login" data-sortable="true">Endereço</th>
+                    <th data-field="e-mail" data-sortable="true">Nível de Permissão</th>
+                    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($plugins as $id => $plugin){ ?>
+                <tr class="user" user="<?= $user->user_id?>" data-toggle="tooltip" title="Clique aqui para editar o usuário">
+                    <td><?= $plugin['plugin_id'] ?></td>
+                    <td><?= $plugin['plugin_name'] ?></td>
+                    <td><?= $menu[$id]['menu_href'] ?></td>
+                    <td><?= $menu[$id]['menu_level_permission'] ?></td>
+                </tr>
+                    <?php } ?>
+                </tbody>
+        </table>
+    </div>
+</div>
+    <script>
+    /**
+    * Ao clicar em qualquer usuário carrega a tela de edição de usuário
+    */
+    function actionFormatter(value, row, index) {
+        return [
+            '<a class="edit ml10" href="javascript:void(0)" title="Editar">',
+            '<i class="glyphicon glyphicon-edit"></i>',
+            '</a>'
+        ].join('');
+    }
+    window.actionEvents = {
+        'click .edit': function (e, value, row, index) {
+            window.location.href = '<?= URL_PROJECT?>plugin/index?plugin_id=' + row.id;
+        }
+    };
+    function queryParams() {
+        return {
+            type: 'owner',
+            sort: 'updated',
+            direction: 'desc',
+            per_page: 100,
+            page: 1
+        };
+    }
+    </script>

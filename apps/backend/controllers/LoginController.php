@@ -1,14 +1,16 @@
 <?php
-
 /**
  * Class and Function List:
  * Function list:
  * - indexAction()
  * - loginAction()
- * - creatSession()
- * - logoff()
+ * - newCodeResetPasswordAction()
+ * - setMailLibrary()
+ * - sendNewPasswordAction()
+ * - createSession()
+ * - logoffAction()
  * Classes list:
- * - LoginController extends SetupController
+ * - LoginController extends BaseController
  */
 
 namespace Multiple\Backend\Controllers;
@@ -21,11 +23,14 @@ class LoginController extends BaseController {
 
         $this->session->start();
         if ($this->session->get("user_id") != NULL) {
-            $this->dispatcher->forward(array("controller" => 'dashboard', "action" => 'index'));
-        } else {
+            $this->dispatcher->forward(array(
+                "controller" => 'dashboard',
+                "action" => 'index'
+            ));
+        }
+        else {
             $this->view->render('login', 'index');
         }
-
     }
 
     /**
@@ -44,7 +49,8 @@ class LoginController extends BaseController {
         if ($user->user_active) {
             $this->createSession($user->user_id, $user_login);
             $data['success'] = true;
-        } else {
+        }
+        else {
             $data['success'] = false;
             $data['message'] = 'Usuário ou senha invalido!';
         }
@@ -52,20 +58,29 @@ class LoginController extends BaseController {
         echo json_encode($data);
     }
 
+    public function newCodeResetPasswordAction() {
 
-    public function newCodeResetPasswordAction(){
         // apps/backend/views/newCodeResetPassword
+
     }
 
-    public function sendNewPasswordAction(){
+    private function setMailLibrary() {
+        $blog = Blogs::findFirst();
+        return new Mail($blog->blog_mail, $blog->blog_mail_password);
+    }
+
+    public function sendNewPasswordAction() {
         $this->view->disable();
         $email = $this->request->getPost("email");
         $user = Users::findFirstByUser_email($email);
-        if(!empty($user)){
+        $libmail = setMailLibrary();
+        if (!empty($user)) {
             $new_password = $this->uid(8);
             $user->user_passwd = sha1(md5($new_password));
             $user->save();
-            $this->libMail->sendMessage("Nova senha - Pluton", array('viniciussilveira6@gmail.com'), 'Olá, sua nova senha de acesso ao sistema é: ' . $new_password);
+            $libMail->sendMessage("Nova senha - Pluton", array(
+                $email,
+            ) , 'Olá, sua nova senha de acesso ao sistema é: ' . $new_password);
 
             return true;
         }
@@ -93,5 +108,4 @@ class LoginController extends BaseController {
         $this->session->destroy();
         $this->view->render('login', 'index');
     }
-
 }

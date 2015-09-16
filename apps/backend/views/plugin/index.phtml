@@ -1,31 +1,38 @@
 <div class="panel panel-default" >
     <div class="panel-heading">
-        <label style="font-size: 30px;"><i class="glyphicon glyphicon-plus"></i> Novo Plugin</label>
+        <?php if(!empty($plugin['plugin_id'])){ ?>
+            <label style="font-size: 30px;"><i class="glyphicon glyphicon-edit"></i> Editar Plugin</label>
+        <?php } else{?>
+            <label style="font-size: 30px;"><i class="glyphicon glyphicon-plus"></i> Novo Plugin</label>
+        <?php } ?>
     </div>
     <div class="panel-body">
         <div class="col-sm-8">
             <div class="row">
                 <form id="plugin" name="plugin" role="form">
+                    <input type="hidden" name="menu_id" value="<?= $menu['menu_id'] ?>">
+                    <input type="hidden" name="submenu1_id" value="<?= $submenu1['submenu_id'] ?>">
+                    <input type="hidden" name="submenu2_id" value="<?= $submenu2['submenu_id'] ?>">
                     <div class="form-group col-sm-10">
-                        <input type="text" name="plugin_name" class="form-control" value="" placeholder="Nome do Plugin">
+                        <input type="text" name="plugin_name" class="form-control" value="<?= $plugin['plugin_name']?>" placeholder="Nome do Plugin">
                     </div>
                     <div class="form-group col-sm-10">
-                        <input type="text" name="exibition_name" value="" class="form-control" placeholder="Nome de Exibição">
+                        <input type="text" name="exibition_name" value="<?= $menu['menu_name'] ?>" class="form-control" placeholder="Nome de Exibição">
                     </div>
                     <div class="form-group col-sm-10">
-                        <input type="text" name="icon" class="form-control" value="" placeholder="Ícone de exibição">
+                        <input type="text" name="icon" class="form-control" value="<?= $menu['menu_icon'] ?>" placeholder="Ícone de exibição">
                     </div>
                     <div class="form-group col-sm-10">
-                        <input type="text" name="url" class="form-control" value="" placeholder="URL ou controller/action">
+                        <input type="text" name="url" class="form-control" value="<?= $menu['menu_href'] ?>" placeholder="URL ou controller/action">
                     </div>
                     <div class="form-group col-sm-10">
-                        <select name="level_permission" class="form-control">
+                        <select name="level_permission" id="level_permission" class="form-control">
                             <option value="">Nível de Permissão</option>
-                            <option value="1"> Somente Super Administrador</option>
-                            <option value="2"> Super Administrador e Administrador</option>
-                            <option value="3"> Super Administrador, Administrador e Editor</option>
-                            <option value="4"> Super Administrador, Administrador, Editor e Autor</option>
-                            <option value="5"> Super Administrador, Administrador, Editor, Autor e colaborador</option>
+                            <option value="1"> 1 - Somente Super Administrador</option>
+                            <option value="2"> 2 - Super Administrador e Administrador</option>
+                            <option value="3"> 3 - Super Administrador, Administrador e Editor</option>
+                            <option value="4"> 4 - Super Administrador, Administrador, Editor e Autor</option>
+                            <option value="5"> 5 - Super Administrador, Administrador, Editor, Autor e colaborador</option>
                         </select>
                     </div>
                     <div class="form-group col-sm-10">
@@ -35,29 +42,29 @@
                         <label>Submenu 1</label>
                     </div>
                     <div class="form-group col-sm-10">
-                        <input type="text" name="submenu1_name" value="" class="form-control" placeholder="Nome de Exibição do submenu">
+                        <input type="text" name="submenu1_name" value="<?= $submenu1['submenu_name']?>" class="form-control" placeholder="Nome de Exibição do submenu">
                     </div>
                     <div class="form-group col-sm-10">
-                        <input type="text" name="submenu1_url" class="form-control" value="" placeholder="URL ou controller/action">
+                        <input type="text" name="submenu1_url" class="form-control" value="<?= $submenu1['submenu_href']?>" placeholder="URL ou controller/action">
                     </div>
                     <div class="form-group col-sm-10">
-                        <input type="text" name="submenu1_icon" class="form-control" value="" placeholder="Ícone de exibição">
+                        <input type="text" name="submenu1_icon" class="form-control" value="<?= $submenu1['submenu_icon']?>" placeholder="Ícone de exibição">
                     </div>
                     <div class="form-group col-sm-10">
                         <label>Submenu 2</label>
                     </div>
                      <div class="form-group col-sm-10">
-                        <input type="text" name="submenu2_name" value="" class="form-control" placeholder="Nome de Exibição do submenu">
+                        <input type="text" name="submenu2_name" value="<?= $submenu2['submenu_name']?>" class="form-control" placeholder="Nome de Exibição do submenu">
                     </div>
                     <div class="form-group col-sm-10">
-                        <input type="text" name="submenu2_url" class="form-control" value="" placeholder="URL ou controller/action">
+                        <input type="text" name="submenu2_url" class="form-control" value="<?= $submenu2['submenu_href']?>" placeholder="URL ou controller/action">
                     </div>
                     <div class="form-group col-sm-10">
-                        <input type="text" name="submenu2_icon" class="form-control" value="" placeholder="Ícone de exibição">
+                        <input type="text" name="submenu2_icon" class="form-control" value="<?= $submenu2['submenu_icon']?>" placeholder="Ícone de exibição">
                     </div>
 
                     <div class="form-group col-sm-6">
-                        <?php if(empty($plugin_id)){ ?>
+                        <?php if(empty($plugin['plugin_id'])){ ?>
                         <a href="#" id="save-plugin" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Adicionar</a>
                         <?php } else{ ?>
                         <a href="#" id="edit-plugin" class="btn btn-block btn-primary btn-warning"><span class="glyphicon glyphicon-edit"></span> Salvar Alterações</a>
@@ -81,6 +88,9 @@
 </div>
 
 <script>
+
+$("#level_permission").val(<?= $menu['menu_level_permission']?>);
+
 $("#save-plugin").click(function(){
     var form = $("#plugin").serialize();
     $.ajax({

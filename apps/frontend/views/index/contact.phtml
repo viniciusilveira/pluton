@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form role="form" id="send" method="post" >
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="InputName">Seu Nome</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="name" id="InputName" placeholder="Nome" required>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputEmail">Seu Email</label>
+                        <div class="input-group">
+                            <input type="email" class="form-control" id="InputEmail" name="email" placeholder="example@email.com" required  >
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputMessage">Mensagem</label>
+                        <div class="input-group"
+                            >
+                            <textarea name="message" id="InputMessage" class="form-control" rows="5" required></textarea>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                    </div>
+                    <input type="button" name="send" id="send" value="Enviar" class="btn btn-info pull-right">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+$("#send").click(function(){
+    var form = $("#send").serialize();
+    $.ajax({
+        url: "<?= URL_PROJECT ?>index/sendContact",
+        data: form,
+        dataType: 'json',
+        type: "POST",
+        success: function(data){
+            if(data.success){
+                swal({
+                    title: "Sucesso!",
+                    text: "Dados Salvos Com sucesso! ",
+                    type: "success",
+                    confirmButtonText: "OK"
+                });
+            } else{
+                swal({
+                    title: "Erro!",
+                    text: "Por favor, verifique os dados Informados e tente Novamente!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+        }
+    });
+});
+</script>

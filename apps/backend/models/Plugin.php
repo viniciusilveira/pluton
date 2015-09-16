@@ -24,7 +24,7 @@ class Plugin extends \Phalcon\Mvc\Model {
         $plugin = Plugin::findFirstByMenu_id($menu_id);
         $plugin->plugin_name = $plugin_name;
 
-        $return = $Plugin->save();
+        $return = $plugin->save();
 
         return $return;
     }

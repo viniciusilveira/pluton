@@ -52,12 +52,13 @@ class Blogs extends \Phalcon\Mvc\Model {
      * @param  string $blog_mail_password senha do email principal
      * @return boolean                     true caso sucesso ou false caso de erro.
      */
-    public function updateBlog($blog_name, $blog_url, $blog_mail, $blog_mail_password){
+    public function updateBlog($blog_name, $blog_url, $blog_mail, $blog_mail_password, $blog_about){
         $blog = Blogs::findFirst();
         $blog->blog_name = $blog_name;
         $blog->blog_url = $blog_url;
         $blog->blog_mail = $blog_mail;
         $blog->blog_mail_password = $blog_mail_password;
+        $blog->blog_about = $blog_about;
         return $blog->save();
     }
 }

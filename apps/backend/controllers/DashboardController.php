@@ -348,6 +348,7 @@ class DashboardController extends BaseController {
         //Dados do google analytics
         $google_account = GoogleAccounts::findFirst();
         if (!empty($google_account)) {
+            //AdsenseController::getEarnings($google_account->google_account_login, $google_account->google_account_key_file_name);
             $data_analytics = AnalyticsController::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
             $vars['sessions'] = $data_analytics['sessions'];
             $vars['months'] = $data_analytics['months'];

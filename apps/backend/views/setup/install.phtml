@@ -84,7 +84,7 @@
         }
         if(validate){
             $.ajax({
-            url: $.verifySettingsURL(window.location.href,'setup', 'installPluton'),
+            url: '<?= URL_PROJECT ?>setup/installPluton',
             data: $("#install").serialize(),
             type: 'POST',
             dataType: 'json',

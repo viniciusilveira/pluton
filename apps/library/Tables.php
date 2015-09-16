@@ -59,7 +59,17 @@ class Tables {
                     "size" => 500,
                     "notNull" => true
                 )) ,
-                new Column("layout_navbar", array(
+                new Column("layout_menu1", array(
+                    "type" => Column::TYPE_TEXT,
+                    "size" => 65535,
+                    "notNull" => true
+                )) ,
+                new Column("layout_menu2", array(
+                    "type" => Column::TYPE_TEXT,
+                    "size" => 65535,
+                    "notNull" => true
+                )) ,
+                new Column("layout_menu3", array(
                     "type" => Column::TYPE_TEXT,
                     "size" => 65535,
                     "notNull" => true
@@ -70,11 +80,6 @@ class Tables {
                     "notNull" => true
                 )) ,
                 new Column("layout_searchbar", array(
-                    "type" => Column::TYPE_TEXT,
-                    "size" => 65535,
-                    "notNull" => true
-                )) ,
-                new Column("layout_navigation", array(
                     "type" => Column::TYPE_TEXT,
                     "size" => 65535,
                     "notNull" => true
@@ -116,11 +121,15 @@ class Tables {
                 new Column("blog_mail", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
-                )),
+                )) ,
                 new Column("blog_mail_password", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
-                )),
+                )) ,
+                new Column("blog_about", array(
+                    "type" => Column::TYPE_VARCHAR,
+                    "size" => 65535
+                )) ,
                 new Column("blog_layout", array(
                     "type" => Column::TYPE_INTEGER,
                     "size" => 10,

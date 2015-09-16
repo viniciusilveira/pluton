@@ -51,8 +51,8 @@ class AnalyticsController extends \Phalcon\Mvc\Controller {
 
         return $analytics;
     }
-    function getFirstprofileId(&$analytics) {
 
+    function getFirstprofileId(&$analytics) {
         // Get the user's first view (profile) ID.
 
         // Get the list of accounts for the authorized user.
@@ -89,6 +89,7 @@ class AnalyticsController extends \Phalcon\Mvc\Controller {
         else {
             throw new Exception('No accounts found for this user.');
         }
+
     }
 
     // Calls the Core Reporting API and queries for the number of sessions

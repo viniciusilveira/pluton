@@ -10,7 +10,7 @@
 * - Categories extends \
 */
 namespace Multiple\Backend\Models;
-use Phalcon\Mvc\Model\Resultset;
+
 
 class Categories extends \Phalcon\Mvc\Model {
     public function initialize() {
