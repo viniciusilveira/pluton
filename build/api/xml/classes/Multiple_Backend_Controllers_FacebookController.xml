@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\FacebookController" namespace="Multiple\Backend\Controllers" name="FacebookController" abstract="false" final="false" start="14" end="32">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="FacebookController.php" realpath="/var/www/html/pluton/apps/backend/controllers/FacebookController.php" size="842" time="2015-09-16T20:48:14+00:00" unixtime="1442436494" sha1="26d4db1e9492ee883ebf18090fa7ce50d5d89fd6" relative="backend/controllers/FacebookController.php"/>
+  <docblock>
+    <description compact="Classe responsável por coletar dados referentes ao facebook"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Controller" namespace="Phalcon\Mvc" name="Controller" unresolved="true"/>
+  <method name="facebook_count" start="20" end="31" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Conta a quantidade de likes de uma página"/>
+      <param description="nome da página a ser consultada" type="string" variable="$url"/>
+    </docblock>
+    <parameter name="url" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="Query in FQL" line="22"/>
+      <comment value="Facebook Response is in JSON" line="28"/>
+    </inline>
+  </method>
+</class>

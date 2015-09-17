@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\PostController" namespace="Multiple\Backend\Controllers" name="PostController" abstract="false" final="false" start="28" end="271">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="PostController.php" realpath="/var/www/html/pluton/apps/backend/controllers/PostController.php" size="11261" time="2015-09-16T21:37:16+00:00" unixtime="1442439436" sha1="15ec869e6f0d9d8fa48a685a5d37b844d7b36450" relative="backend/controllers/PostController.php"/>
+  <docblock>
+    <description compact="Classe responsável pela manipulação das postagens e elementos relacionados as mesmas"/>
+  </docblock>
+  <extends full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController"/>
+  <method name="indexAction" start="33" end="83" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Carrega a view para criação de um novo post"/>
+    </docblock>
+  </method>
+  <method name="verifyPermissionEditPost" start="91" end="110" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="Verifica se usuário possui permissão para editar postagens do autor"/>
+      <param description="Objeto do tipo Resultset contendo informações sobre o autor da postagem" type="object">
+        <type full="\Phalcon\Mvc\Resultset" namespace="\Phalcon\Mvc" name="Resultset"/>
+      </param>
+      <param description="Objeto do tipo Resultset contendo informações sobre o usuário logado" type="object">
+        <type full="\Phalcon\Mvc\Resultset" namespace="\Phalcon\Mvc" name="Resultset"/>
+      </param>
+      <return description="verdadeiro caso o usário logado possa editar postagens do autor ou falsó caso contrário" type="boolean"/>
+    </docblock>
+    <parameter name="author" byreference="false" type="{unknown}"/>
+    <parameter name="user_logged" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="listPostsAction" start="115" end="155" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Carrega uma tabela listando as postagens existentes no sistema"/>
+    </docblock>
+  </method>
+  <method name="newPostAction" start="161" end="180" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Cria uma nova postagem utilizando os dados recebidos via Post"/>
+      <return description="true caso a postagem tenha sido salva ou false caso contrário" type="boolean"/>
+    </docblock>
+    <inline>
+      <comment value="print_r($post_content); die();" line="172"/>
+    </inline>
+  </method>
+  <method name="editPostAction" start="185" end="201" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Atualiza uma postagem conforme os dados recebidos via POST"/>
+    </docblock>
+  </method>
+  <method name="insertPostCategories" start="209" end="216" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="Insere todas as categorias do post na tabela categorie_post"/>
+      <param description="array contendo todas as categorias do post" type="array" variable="$categories"/>
+      <param description="id do post" type="int" variable="$id_post"/>
+      <return description="true caso salve todos os ids ou false caso ocorra um erro" type="boolean"/>
+    </docblock>
+    <parameter name="categories" byreference="false" type="{unknown}"/>
+    <parameter name="post_id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="updatePostCategories" start="224" end="232" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="Recebe as novas categorias e o id da postagem; Remove todos os PostCategories antigos e insere os novos;"/>
+      <param description="array contendo todas as categorias do post" type="array" variable="$categories"/>
+      <param description="id do post" type="int" variable="$post_id"/>
+      <return description="true caso salve todos os ids ou false caso ocorra um erro" type="boolean"/>
+    </docblock>
+    <parameter name="categories" byreference="false" type="{unknown}"/>
+    <parameter name="post_id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="newCategorieAction" start="237" end="252" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Verifica se uma categoria informada já existe, caso não, insere no banco de dados"/>
+    </docblock>
+  </method>
+  <method name="getCategoriesByPost" start="259" end="270" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="Recebe um objeto do tipo \Phalcon\Mvc\ResultSet e retorna todas as categorias dos posts do objeto"/>
+      <param type="object" variable="\Phalcon\Mvc\ResultSet"/>
+      <return description="Array contendo o array de cada post e uma string com as categorias dos posts" type="array"/>
+    </docblock>
+    <parameter name="posts" byreference="false" type="{unknown}"/>
+  </method>
+  <parent full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController">
+    <extends full="Phalcon\Mvc\Controller" namespace="Phalcon\Mvc" name="Controller" unresolved="true"/>
+    <method name="getUserLoggedInformation" start="33" end="42" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Busca todas as informações do usuário logado"/>
+        <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
+      </docblock>
+    </method>
+    <method name="getSideBarMenus" start="48" end="67" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
+        <return description="contendo menus e submenus" type="array"/>
+      </docblock>
+    </method>
+    <method name="uid" start="74" end="91" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
+        <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
+          <type full="Multiple\Backend\Controllers\type" namespace="Multiple\Backend\Controllers" name="type"/>
+        </param>
+        <return description="chave eletronica gerada" type="string"/>
+      </docblock>
+      <parameter name="l" byreference="false" type="integer" default="6"/>
+    </method>
+    <method name="dateFormat" start="99" end="106" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
+        <param description="data a ser alterada" type="object" variable="$data">
+          <type full="Multiple\Backend\Controllers\date" namespace="Multiple\Backend\Controllers" name="date"/>
+        </param>
+        <param description="indica o formato da data. 1 =&gt; Human, 2 =&gt; database" type="int" variable="$format"/>
+        <return description="data formatada" type="object">
+          <type full="Multiple\Backend\Controllers\date" namespace="Multiple\Backend\Controllers" name="date"/>
+        </return>
+      </docblock>
+      <parameter name="data" byreference="false" type="{unknown}"/>
+      <parameter name="format" byreference="false" type="{unknown}"/>
+    </method>
+    <method name="mountArrayMonths" start="112" end="128" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
+        <return description="contendo os meses do calendário em pt_BR" type="array"/>
+      </docblock>
+    </method>
+  </parent>
+</class>

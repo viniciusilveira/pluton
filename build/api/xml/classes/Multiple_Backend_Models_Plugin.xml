@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Plugin" namespace="Multiple\Backend\Models" name="Plugin" abstract="false" final="false" start="15" end="46">
+  <file path="/var/www/html/pluton/apps/backend/models" file="Plugin.php" realpath="/var/www/html/pluton/apps/backend/models/Plugin.php" size="1284" time="2015-09-17T04:07:42+00:00" unixtime="1442462862" sha1="19e0f66f193d24c7b5eca491551fd0d99ba18b07" relative="backend/models/Plugin.php"/>
+  <docblock>
+    <description compact="Classe responsável por manipular dados referentes aos plugins"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="createPlugin" start="23" end="30" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Cria um novo plugin"/>
+      <param description="id do menu ao qual o plugin se refere" type="int" variable="$menu_id"/>
+      <param description="nome do plugin" type="string" variable="$plugin_name"/>
+      <return description="Verdadeiro caso sucesso ou falso caso ocorra alguma falha" type="boolean"/>
+    </docblock>
+    <parameter name="menu_id" byreference="false" type="{unknown}"/>
+    <parameter name="plugin_name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="updatePlugin" start="38" end="45" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Atualiza um plugin existente"/>
+      <param description="id do menu ao qual o plugin se refere" type="int" variable="$menu_id"/>
+      <param description="nome do plugin" type="string" variable="$plugin_name"/>
+      <return description="Verdadeiro caso sucesso ou falso caso ocorra alguma falha" type="boolean"/>
+    </docblock>
+    <parameter name="menu_id" byreference="false" type="{unknown}"/>
+    <parameter name="plugin_name" byreference="false" type="{unknown}"/>
+  </method>
+</class>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Layouts" namespace="Multiple\Backend\Models" name="Layouts" abstract="false" final="false" start="16" end="103">
+  <file path="/var/www/html/pluton/apps/backend/models" file="Layouts.php" realpath="/var/www/html/pluton/apps/backend/models/Layouts.php" size="3876" time="2015-09-17T04:07:55+00:00" unixtime="1442462875" sha1="c4543da9a0cffb0d216ecf9025ef0316f4163bfe" relative="backend/models/Layouts.php"/>
+  <docblock>
+    <description compact="Classe responsável por manipular dados referentes ao Layout do blog"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="initialize" start="18" end="20" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="createLayout" start="26" end="52" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Insere os dados do layout no banco de dados"/>
+      <return description="verdadeiro caso sucesso ou falso caso ocorra algum erro" type="boolean"/>
+    </docblock>
+    <inline>
+      <comment value="Caso não seja passado os dados do layout, cria um padrão" line="29"/>
+    </inline>
+  </method>
+  <method name="updateLayout" start="60" end="102" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Atualiza os dados de uma deterimanda parte do layout"/>
+      <param description="parte do layout a ser alterada" type="string" variable="$attribute"/>
+      <param description="novo conteúdo a ser inserido" type="string" variable="$content"/>
+      <return description="Verdadeiro caso sucesso ou falso caso ocorra algum erro" type="boolean"/>
+    </docblock>
+    <parameter name="attribute" byreference="false" type="{unknown}"/>
+    <parameter name="content" byreference="false" type="{unknown}"/>
+  </method>
+</class>

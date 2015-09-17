@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="PostStatus.php" realpath="/var/www/html/pluton/apps/backend/models/PostStatus.php" size="1344" time="2015-09-17T04:12:40+00:00" unixtime="1442463160" sha1="271b65a4328f7cbfe25f780e9f5eb6448bed384c" relative="backend/models/PostStatus.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="3">
+    <token name="T_DOC_COMMENT">* Class and Function List:</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT">* Function list:</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT">* - initialize()</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT">* - getSource()</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT">* - getPostStatus()</token>
+  </line>
+  <line no="8">
+    <token name="T_DOC_COMMENT">* - createPostStatus()</token>
+  </line>
+  <line no="9">
+    <token name="T_DOC_COMMENT">* Classes list:</token>
+  </line>
+  <line no="10">
+    <token name="T_DOC_COMMENT">* - PostStatus extends \</token>
+  </line>
+  <line no="11">
+    <token name="T_DOC_COMMENT">*/</token>
+  </line>
+  <line no="12">
+    <token name="T_NAMESPACE">namespace</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="13"/>
+  <line no="14">
+    <token name="T_CLASS">class</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">PostStatus</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_EXTENDS">extends</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Mvc</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Model</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="15"/>
+  <line no="16">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">initialize</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="17">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setSource</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"post_status"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="18">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="19"/>
+  <line no="20">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="21">
+    <token name="T_DOC_COMMENT">     * Seta o nome da tabela ao qual a classe referencia no banco de dados</token>
+  </line>
+  <line no="22">
+    <token name="T_DOC_COMMENT">     * @return string nome da tabela</token>
+  </line>
+  <line no="23">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="24">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">getSource</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="25">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"post_status"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="26">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="27"/>
+  <line no="28">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="29">
+    <token name="T_DOC_COMMENT">     * Retorna status da postagem por id</token>
+  </line>
+  <line no="30">
+    <token name="T_DOC_COMMENT">     * @param  int $post_status_id id de um status de postagem</token>
+  </line>
+  <line no="31">
+    <token name="T_DOC_COMMENT">     * @return [type]                 [description]</token>
+  </line>
+  <line no="32">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="33">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">getPostStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$post_status_id</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">NULL</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="34">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$post_status</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_EMPTY">empty</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$post_status_id</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">PostStatus</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">findFirstByPost_status_id</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$post_status_id</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">PostStatus</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">find</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="35">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$post_status</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="36">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="37"/>
+  <line no="38">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="39">
+    <token name="T_DOC_COMMENT">     * Cria um novo status de postagem</token>
+  </line>
+  <line no="40">
+    <token name="T_DOC_COMMENT">     * @param  string $post_status_name Nome do status</token>
+  </line>
+  <line no="41">
+    <token name="T_DOC_COMMENT">     * @return boolean                   Verdadeiro caso sucesso ou falso caso ocorra algum erro</token>
+  </line>
+  <line no="42">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="43">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">createPostStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$post_status_name</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="44">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$post_status</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">PostStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="45">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$post_status</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">post_status_name</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$post_status_name</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="46">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$post_status</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">save</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="47">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="48">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="49"/>
+</source>

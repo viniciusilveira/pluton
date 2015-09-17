@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\UserType" namespace="Multiple\Backend\Models" name="UserType" abstract="false" final="false" start="13" end="39">
+  <file path="/var/www/html/pluton/apps/backend/models" file="UserType.php" realpath="/var/www/html/pluton/apps/backend/models/UserType.php" size="1069" time="2015-09-17T04:25:58+00:00" unixtime="1442463958" sha1="3e4c152328bae5991a14ba5e8976031a33c43c92" relative="backend/models/UserType.php"/>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="initialize" start="15" end="17" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getSource" start="23" end="25" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna o nome da tabela ao qual a classe referencia no banco de dados"/>
+      <return description="nome da tabela" type="string"/>
+    </docblock>
+  </method>
+  <method name="createUserType" start="33" end="38" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Cria um novo tipo de Usuário"/>
+      <param description="Descrição completa do tipo de usuário" type="string" variable="$user_type_descr"/>
+      <param description="abreviação do tipo de usuário" type="string" variable="$user_type_abrev"/>
+      <return description="true caso sucesso, false caso ocorra algum erro" type="object">
+        <type full="Multiple\Backend\Models\bollean" namespace="Multiple\Backend\Models" name="bollean"/>
+      </return>
+    </docblock>
+    <parameter name="user_type_descr" byreference="false" type="{unknown}"/>
+    <parameter name="user_type_abrev" byreference="false" type="{unknown}"/>
+  </method>
+</class>

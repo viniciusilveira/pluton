@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\PostStatus" namespace="Multiple\Backend\Models" name="PostStatus" abstract="false" final="false" start="14" end="48">
+  <file path="/var/www/html/pluton/apps/backend/models" file="PostStatus.php" realpath="/var/www/html/pluton/apps/backend/models/PostStatus.php" size="1344" time="2015-09-17T04:12:40+00:00" unixtime="1442463160" sha1="271b65a4328f7cbfe25f780e9f5eb6448bed384c" relative="backend/models/PostStatus.php"/>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="initialize" start="16" end="18" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getSource" start="24" end="26" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Seta o nome da tabela ao qual a classe referencia no banco de dados"/>
+      <return description="nome da tabela" type="string"/>
+    </docblock>
+  </method>
+  <method name="getPostStatus" start="33" end="36" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna status da postagem por id"/>
+      <param description="id de um status de postagem" type="int" variable="$post_status_id"/>
+      <return description="[description]" type="object">
+        <type full="Multiple\Backend\Models\[type]" namespace="Multiple\Backend\Models" name="[type]"/>
+      </return>
+    </docblock>
+    <parameter name="post_status_id" byreference="false" type="{unknown}" default="" constant="NULL"/>
+  </method>
+  <method name="createPostStatus" start="43" end="47" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Cria um novo status de postagem"/>
+      <param description="Nome do status" type="string" variable="$post_status_name"/>
+      <return description="Verdadeiro caso sucesso ou falso caso ocorra algum erro" type="boolean"/>
+    </docblock>
+    <parameter name="post_status_name" byreference="false" type="{unknown}"/>
+  </method>
+</class>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Submenu" namespace="Multiple\Backend\Models" name="Submenu" abstract="false" final="false" start="15" end="59">
+  <file path="/var/www/html/pluton/apps/backend/models" file="Submenu.php" realpath="/var/www/html/pluton/apps/backend/models/Submenu.php" size="2397" time="2015-09-17T04:19:24+00:00" unixtime="1442463564" sha1="4cb75719308f7c3aa6c766892983d765456cc945" relative="backend/models/Submenu.php"/>
+  <docblock>
+    <description compact="Classe responsável por manipular os dados referentes aos submenus"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="createSubmenu" start="27" end="37" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Cria um novo submenu"/>
+      <param description="id do menu ao qual o submenu se referência" type="int" variable="$menu_id"/>
+      <param description="nome do novo icone, pode ser referente a glyphicons do bootstrap(http://getbootstrap.com/components/)" type="string" variable="$submenu_icon">ou os icônes do font awesome (http://fortawesome.github.io/Font-Awesome/3.2.1/icons/)</param>
+      <param description="Nome do novo submenu" type="string" variable="$submenu_name"/>
+      <param description="Endereço que deve acessar" type="string" variable="$submenu_href"/>
+      <param description="Ordem de exibição dos submenus" type="int" variable="$submenu_order"/>
+      <return description="Verdadeiro caso sucesso ou falso caso ocorra algum erro" type="boolean"/>
+    </docblock>
+    <parameter name="menu_id" byreference="false" type="{unknown}"/>
+    <parameter name="submenu_icon" byreference="false" type="{unknown}"/>
+    <parameter name="submenu_name" byreference="false" type="{unknown}"/>
+    <parameter name="submenu_href" byreference="false" type="{unknown}"/>
+    <parameter name="submenu_order" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="updateSubmenu" start="49" end="58" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Atualiza um submenu"/>
+      <param description="id do submenu a ser atualizado" type="object" variable="$submenu_id">
+        <type full="Multiple\Backend\Models\[type]" namespace="Multiple\Backend\Models" name="[type]"/>
+      </param>
+      <param description="nome do novo icone, pode ser referente a glyphicons do bootstrap(http://getbootstrap.com/components/)" type="string" variable="$submenu_icon">ou os icônes do font awesome (http://fortawesome.github.io/Font-Awesome/3.2.1/icons/)</param>
+      <param description="Nome do novo submenu" type="string" variable="$submenu_name"/>
+      <param description="Endereço que deve acessar" type="string" variable="$submenu_href"/>
+      <param description="Ordem de exibição dos submenus" type="int" variable="$submenu_order"/>
+      <return description="Verdadeiro caso sucesso ou falso caso ocorra algum erro" type="boolean"/>
+    </docblock>
+    <parameter name="submenu_id" byreference="false" type="{unknown}"/>
+    <parameter name="submenu_icon" byreference="false" type="{unknown}"/>
+    <parameter name="submenu_name" byreference="false" type="{unknown}"/>
+    <parameter name="submenu_href" byreference="false" type="{unknown}"/>
+    <parameter name="submenu_order" byreference="false" type="{unknown}"/>
+  </method>
+</class>

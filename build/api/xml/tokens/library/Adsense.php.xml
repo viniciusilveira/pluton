@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/library" file="Adsense.php" realpath="/var/www/html/pluton/apps/library/Adsense.php" size="2375" time="2015-09-17T04:49:41+00:00" unixtime="1442465381" sha1="1e2648d20a7a26960bb38a5bd5334bb45c98b7ea" relative="library/Adsense.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="3">
+    <token name="T_DOC_COMMENT"> * Class and Function List:</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT"> * Function list:</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT"> * - getService()</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT"> * - getEarnings()</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT"> * Classes list:</token>
+  </line>
+  <line no="8">
+    <token name="T_DOC_COMMENT"> * - Adsense extends BaseController</token>
+  </line>
+  <line no="9">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="10">
+    <token name="T_NAMESPACE">namespace</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Library</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="11"/>
+  <line no="12">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Google_Client</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="13">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Google_Service_AdSense</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="14">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Google_Auth_AssertionCredentials</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="15"/>
+  <line no="16">
+    <token name="T_CLASS">class</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Adsense</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_EXTENDS">extends</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">BaseController</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="17"/>
+  <line no="18">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="19">
+    <token name="T_DOC_COMMENT">     * Retorna um objeto do tipo Google_Service_AdSense</token>
+  </line>
+  <line no="20">
+    <token name="T_DOC_COMMENT">     * @param  string $google_account_login         login da conta google</token>
+  </line>
+  <line no="21">
+    <token name="T_DOC_COMMENT">     * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google</token>
+  </line>
+  <line no="22">
+    <token name="T_DOC_COMMENT">     * @return Google_Service_Adsense               Objeto do tipo Google_Service_Adsense</token>
+  </line>
+  <line no="23">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="24">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">getService</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$google_account_login</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$google_account_key_file_name</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="25"/>
+  <line no="26">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$client</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Google_Client</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="27">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$service_account_email</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$google_account_login</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="28">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$key_file_location</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">FOLDER_PROJECT</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"keys/"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$google_account_key_file_name</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="29"/>
+  <line no="30">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">// Create and configure a new client object.</token>
+  </line>
+  <line no="31">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$client</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Google_Client</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="32">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$client</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setApplicationName</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"PlutonAdsense"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="33">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$service</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Google_Service_AdSense</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$client</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="34"/>
+  <line no="35">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">// Read the generated client_secrets.p12 key.</token>
+  </line>
+  <line no="36">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$key</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">file_get_contents</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$key_file_location</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="37">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$cred</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Google_Auth_AssertionCredentials</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$service_account_email</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="38">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_STRING">Google_Service_Adsense</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">ADSENSE_READONLY</token>
+  </line>
+  <line no="39">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$key</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="40">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$client</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setAssertionCredentials</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$cred</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="41">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$client</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getAuth</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">isAccessTokenExpired</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="42">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$client</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getAuth</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">refreshTokenWithAssertion</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$cred</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="43">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="44"/>
+  <line no="45">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$service</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="46">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="47"/>
+  <line no="48">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="49">
+    <token name="T_DOC_COMMENT">     * Retorna os ganhos com o google Adsense</token>
+  </line>
+  <line no="50">
+    <token name="T_DOC_COMMENT">     * **Classe n&#xE3;o utilizada no projeto pos o google n&#xE3;o aprovou o dom&#xED;nio plutoncms.tk para o Adsense</token>
+  </line>
+  <line no="51">
+    <token name="T_DOC_COMMENT">     * @param  string $google_account_login         login da conta google</token>
+  </line>
+  <line no="52">
+    <token name="T_DOC_COMMENT">     * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google</token>
+  </line>
+  <line no="53">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="54">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">getEarnings</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$google_account_login</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$google_account_key_file_name</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="55">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$adsense</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">AdsenseController</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">getService</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$google_account_login</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$google_account_key_file_name</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="56">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$optParams</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="57">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'metric'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="58">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'earnings'</token>
+  </line>
+  <line no="59">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="60">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'dimension'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'date'</token>
+  </line>
+  <line no="61">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="62">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$adsense</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">reports</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">generate</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'2009-01-01'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'2015-09-15'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$optParams</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="63"/>
+  <line no="64">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="65">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="66"/>
+</source>

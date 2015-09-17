@@ -116,8 +116,8 @@ class DashboardController extends BaseController {
             else {
                 $vars['edit_user'] = false;
             }
-            $user_type = new UserType;
-            $vars['types'] = $user_type->getAllUserTypes();
+
+            $vars['types'] = UserType::find();
             $vars['menus'] = $this->getSideBarMenus();
 
             //var_dump($vars); die();

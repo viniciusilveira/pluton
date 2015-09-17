@@ -1,0 +1,953 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/controllers" file="BaseController.php" realpath="/var/www/html/pluton/apps/backend/controllers/BaseController.php" size="3766" time="2015-09-16T20:45:10+00:00" unixtime="1442436310" sha1="adfd034e15bd0a472feb161b6be388ffd7b27eec" relative="backend/controllers/BaseController.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="3">
+    <token name="T_DOC_COMMENT"> * Class and Function List:</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT"> * Function list:</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT"> * - printArray()</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT"> * - getUserLoggedInformation()</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT"> * - getSideBarMenus()</token>
+  </line>
+  <line no="8">
+    <token name="T_DOC_COMMENT"> * - uid()</token>
+  </line>
+  <line no="9">
+    <token name="T_DOC_COMMENT"> * - dateFormat()</token>
+  </line>
+  <line no="10">
+    <token name="T_DOC_COMMENT"> * - mountArrayMonths()</token>
+  </line>
+  <line no="11">
+    <token name="T_DOC_COMMENT"> * Classes list:</token>
+  </line>
+  <line no="12">
+    <token name="T_DOC_COMMENT"> * - BaseController extends \</token>
+  </line>
+  <line no="13">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="14">
+    <token name="T_NAMESPACE">namespace</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Controllers</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="15"/>
+  <line no="16">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Session</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Adapter</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Files</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_AS">as</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Session</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="17">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Mvc</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Model</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Resultset</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="18"/>
+  <line no="19">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Users</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="20">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Menu</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="21">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Submenu</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="22"/>
+  <line no="23"/>
+  <line no="24">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="25">
+    <token name="T_DOC_COMMENT"> * Controlador principal do sistema, herdado por todos os outros controlladores</token>
+  </line>
+  <line no="26">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="27">
+    <token name="T_CLASS">class</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">BaseController</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_EXTENDS">extends</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Mvc</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Controller</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="28"/>
+  <line no="29">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="30">
+    <token name="T_DOC_COMMENT">     * Busca todas as informa&#xE7;&#xF5;es do usu&#xE1;rio logado</token>
+  </line>
+  <line no="31">
+    <token name="T_DOC_COMMENT">     * @return array contendo nome de usu&#xE1;rio, tipo e imagem de perfil do usu&#xE1;rio logado</token>
+  </line>
+  <line no="32">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="33">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">getUserLoggedInformation</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="34">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">session</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">start</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="35">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$user</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Users</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">findFirstByUser_id</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">session</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">get</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"user_id"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="36">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$user_name</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">explode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">" "</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$user</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">user_name</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="37">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$vars</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$user_name</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="38">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$vars</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user_type_id'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$user</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">user_type_id</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="39">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$vars</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user_img'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$user</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">user_img</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="40"/>
+  <line no="41">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$vars</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="42">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="43"/>
+  <line no="44">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="45">
+    <token name="T_DOC_COMMENT">     * Busca as op&#xE7;&#xF5;es a serem exibidas no menu lateral do sistema</token>
+  </line>
+  <line no="46">
+    <token name="T_DOC_COMMENT">     * @return array contendo menus e submenus</token>
+  </line>
+  <line no="47">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="48">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">getSideBarMenus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="49">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$menus</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Menu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">find</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="50">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'hydration'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Resultset</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">HYDRATE_ARRAYS</token>
+  </line>
+  <line no="51">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">toArray</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="52"/>
+  <line no="53">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_FOREACH">foreach</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$menus</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_AS">as</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$menu</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="54">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$menus</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'submenu'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Submenu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">find</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="55">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"conditions"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"menu_id = :menu_id:"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="56">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"bind"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="57">
+    <token name="T_WHITESPACE">                    </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"menu_id"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$menu</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"menu_id"</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+  </line>
+  <line no="58">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="59">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"hydration"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Resultset</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">HYDRATE_ARRAYS</token>
+  </line>
+  <line no="60">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">toArray</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="61">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_IF">if</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_EMPTY">empty</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$menus</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'submenu'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="62">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$menus</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'submenu_div_name'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">str_replace</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"#"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">""</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_VARIABLE">$menus</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_VARIABLE">$id</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'menu_href'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="63">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="64">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="65"/>
+  <line no="66">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$menus</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="67">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="68"/>
+  <line no="69">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="70">
+    <token name="T_DOC_COMMENT">     * Gera uma string aleat&#xF3;ria contendo n&#xFA;meros letras maiusculas e minusculas</token>
+  </line>
+  <line no="71">
+    <token name="T_DOC_COMMENT">     * @param type $l tamanho da chave a ser gerada (6 padr&#xE3;o)</token>
+  </line>
+  <line no="72">
+    <token name="T_DOC_COMMENT">     * @return string chave eletronica gerada</token>
+  </line>
+  <line no="73">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="74">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">uid</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$l</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">6</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="75">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$s</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="76"/>
+  <line no="77">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$uid</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">null</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="78">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$loop</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="79">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_DO">do</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="80">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_WHILE">while</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">strlen</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$uid</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_LT">&lt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$l</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="81">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$uid</token>
+    <token name="T_CONCAT_EQUAL">.=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$s</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_STRING">mt_rand</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">strlen</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$s</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_MINUS">-</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="82">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="83">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$params</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="84">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'uid'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$uid</token>
+  </line>
+  <line no="85">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="86"/>
+  <line no="87">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$loop</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_EMPTY">empty</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$result</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">true</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="88">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_WHILE">while</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$loop</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="89"/>
+  <line no="90">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$uid</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="91">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="92"/>
+  <line no="93">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="94">
+    <token name="T_DOC_COMMENT">     * Altera o formato da data para human ou database conforme o parametro informado</token>
+  </line>
+  <line no="95">
+    <token name="T_DOC_COMMENT">     * @param  date $data   data a ser alterada</token>
+  </line>
+  <line no="96">
+    <token name="T_DOC_COMMENT">     * @param  int $format indica o formato da data. 1 =&gt; Human, 2 =&gt; database</token>
+  </line>
+  <line no="97">
+    <token name="T_DOC_COMMENT">     * @return date         data formatada</token>
+  </line>
+  <line no="98">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="99">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">dateFormat</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$format</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="100">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$format</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_IS_EQUAL">==</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="101">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">join</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'-'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">array_reverse</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">explode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'/'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="102">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="103">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="104">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">join</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'/'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">array_reverse</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">explode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'-'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="105">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="106">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="107"/>
+  <line no="108">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="109">
+    <token name="T_DOC_COMMENT">     * Monta um array com o nome dos 12 meses do calend&#xE1;rio em pt_BR</token>
+  </line>
+  <line no="110">
+    <token name="T_DOC_COMMENT">     * @return array contendo os meses do calend&#xE1;rio em pt_BR</token>
+  </line>
+  <line no="111">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="112">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mountArrayMonths</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="113">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$arr_months</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="114">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Janeiro"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="115">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Fevereiro"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="116">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">2</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Mar&#xE7;o"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="117">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">3</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Abril"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="118">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">4</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Maio"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="119">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">5</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Junho"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="120">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">6</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Julho"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="121">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">7</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Agosto"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="122">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">8</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Setembro"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="123">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">9</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Outubro"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="124">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">10</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Novembro"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="125">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_LNUMBER">11</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Dezembro"</token>
+  </line>
+  <line no="126">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="127">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$arr_months</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="128">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="129">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="130"/>
+</source>

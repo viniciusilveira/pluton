@@ -1,11 +1,12 @@
 <?php
-
 /**
  * Class and Function List:
  * Function list:
  * - initialize()
  * - verifyUsersExistAction()
  * - createUser()
+ * - updateUser()
+ * - ActiveOrdeactiveUser()
  * - getUser()
  * - userExists()
  * Classes list:
@@ -16,16 +17,18 @@ namespace Multiple\Backend\Models;
 use \Phalcon\Mvc\Model\Query;
 
 /**
- * Class Users
- * @package Multiple\Backend\Models
+ * Classe responsável por manipular dados referentes aos usuários
  */
-class Users extends \Phalcon\Mvc\Model
-{
+class Users extends \Phalcon\Mvc\Model {
 
     public function initialize() {
 
-        $this->hasOne("user_type_id", "Multiple\Backend\Models\UserType", "user_type_id", array('alias' => "user_type"));
-        $this->hasOne("blog_id", "Multiple\Backend\Models\UserBlogs", "blog_id", array('alias' => 'blogs'));
+        $this->hasOne("user_type_id", "Multiple\Backend\Models\UserType", "user_type_id", array(
+            'alias' => "user_type"
+        ));
+        $this->hasOne("blog_id", "Multiple\Backend\Models\UserBlogs", "blog_id", array(
+            'alias' => 'blogs'
+        ));
     }
 
     /**
@@ -33,15 +36,11 @@ class Users extends \Phalcon\Mvc\Model
      * @return bool true caso exista, false caso não exista nenhum
      */
     public function verifyUsersExistAction() {
-
-        /**
-         * @todo: verificar outra maneira para contar os usuários,
-         * pois dá fatal error quando a tabela não existe.
-         */
         try {
             $total_users = Users::count();
             return $total_users > 0 ? true : false;
-        } catch(PDO\Exception $e){
+        }
+        catch(PDO\Exception $e) {
             return false;
         }
     }
@@ -55,7 +54,7 @@ class Users extends \Phalcon\Mvc\Model
      * @param  string $user_type   Nível de acesso do Usuário (Informar aqui os níveis existentes)
      * @param  string $user_img    Nome da imagem de perfil do usuário salva no servidor (Seguir o padrão login.jpeg)
      * @param  int    $user_blog   Id do blog de acesso do usuário
-     * @return bool   $success     true caso o usuário seja criado, ou false caso ocorra algum erro.
+     * @return bool   $success     Verdadeiro caso o usuário seja criado, ou falso caso ocorra algum erro.
      */
     public function createUser($user_name, $user_email, $user_login, $user_passwd, $user_type_id, $user_img = NULL, $user_blog = NULL) {
         $user = new Users();
@@ -101,6 +100,10 @@ class Users extends \Phalcon\Mvc\Model
         return $success;
     }
 
+    /**
+     * Altera o status de um usuário; Ativa se estiver desativado e desativa caso contrário
+     * @param int $user_id id do usuário
+     */
     public function ActiveOrdeactiveUser($user_id) {
         $user = Users::findFirstByUser_id($user_id);
         $user->user_active = !$user->user_active ? 1 : 0;
@@ -116,19 +119,25 @@ class Users extends \Phalcon\Mvc\Model
      */
     public function getUser($user_login) {
 
-        $user = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_login:")->bind(array("user_login" => $user_login))->execute();
+        $user = Users::query()->where("user_login = :user_login:")->orWhere("user_email = :user_login:")->bind(array(
+            "user_login" => $user_login
+        ))->execute();
 
         return $user->getFirst();
     }
 
     /**
-     * Verifica se existe usuário cadastrado com o login ou senha informados
-     * @param  string $user_login
-     * @param  string $user_email
-     * @return boolean true caso usuário exista ou false caso contrario
+     * Verifica se existe usuário cadastrado com o login ou email informados
+     * @param  string $user_login login do novo usuaŕio
+     * @param  string $user_email email do novo usuário
+     * @return boolean Verdadeiro caso usuário exista ou falso caso contrário
      */
     public function userExists($user_name, $user_login, $user_email) {
-        $user = Users::query()->where("user_name = :user_name:")->orWhere("user_login = :user_login:")->orWhere("user_email = :user_email:")->bind(array("user_name" => $user_name, "user_login" => $user_login, "user_email" => $user_email))->execute();
+        $user = Users::query()->where("user_name = :user_name:")->orWhere("user_login = :user_login:")->orWhere("user_email = :user_email:")->bind(array(
+            "user_name" => $user_name,
+            "user_login" => $user_login,
+            "user_email" => $user_email
+        ))->execute();
         $result = $user->getFirst();
         return !empty($result);
     }

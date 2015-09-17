@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/frontend" file="Module.php" realpath="/var/www/html/pluton/apps/frontend/Module.php" size="1576" time="2015-08-30T22:59:40+00:00" unixtime="1440975580" sha1="c2726200234c4f6516dd9f2fc3a48cdc4162c3d2" relative="frontend/Module.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="3">
+    <token name="T_DOC_COMMENT"> * Class and Function List:</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT"> * Function list:</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT"> * - registerAutoloaders()</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT"> * - registerServices()</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT"> * - (()</token>
+  </line>
+  <line no="8">
+    <token name="T_DOC_COMMENT"> * - (()</token>
+  </line>
+  <line no="9">
+    <token name="T_DOC_COMMENT"> * Classes list:</token>
+  </line>
+  <line no="10">
+    <token name="T_DOC_COMMENT"> * - Module</token>
+  </line>
+  <line no="11">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="12">
+    <token name="T_NAMESPACE">namespace</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Frontend</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="13"/>
+  <line no="14">
+    <token name="T_CLASS">class</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Module</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="15"/>
+  <line no="16">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">registerAutoloaders</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="17"/>
+  <line no="18">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$loader</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Loader</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="19"/>
+  <line no="20">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$loader</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">registerNamespaces</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="21">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'Multiple\Frontend\Controllers'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'../apps/frontend/controllers/'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="22">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'Multiple\Frontend\Models'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'../apps/frontend/models/'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="23">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'Multiple\Frontend\Plugins'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'../apps/frontend/plugins/'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="24">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'Multiple\Library'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'../apps/library/'</token>
+  </line>
+  <line no="25">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="26"/>
+  <line no="27">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$loader</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">register</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="28">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="29"/>
+  <line no="30">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="31">
+    <token name="T_DOC_COMMENT">     * Register the services here to make them general or register in the ModuleDefinition to make them module-specific</token>
+  </line>
+  <line no="32">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="33">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">registerServices</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$di</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="34"/>
+  <line no="35">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//Registering a dispatcher</token>
+  </line>
+  <line no="36">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$di</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">set</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'dispatcher'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="37">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$dispatcher</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Mvc</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Dispatcher</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="38"/>
+  <line no="39">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_COMMENT">//Attach a event listener to the dispatcher</token>
+  </line>
+  <line no="40">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$eventManager</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Events</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Manager</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="41">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$eventManager</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">attach</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'dispatch'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Acl</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'frontend'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="42"/>
+  <line no="43">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$dispatcher</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setEventsManager</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$eventManager</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="44">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$dispatcher</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setDefaultNamespace</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Multiple\Frontend\Controllers\\"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="45">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$dispatcher</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="46">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="47"/>
+  <line no="48">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//Registering the view component</token>
+  </line>
+  <line no="49">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$di</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">set</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'view'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="50">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$view</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Mvc</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">View</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="51">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$view</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setViewsDir</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'../apps/frontend/views/'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="52">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$view</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="53">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="54">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="55">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="56"/>
+</source>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Blogs" namespace="Multiple\Backend\Models" name="Blogs" abstract="false" final="false" start="18" end="66">
+  <file path="/var/www/html/pluton/apps/backend/models" file="Blogs.php" realpath="/var/www/html/pluton/apps/backend/models/Blogs.php" size="2105" time="2015-09-17T04:08:13+00:00" unixtime="1442462893" sha1="08421d4996a190b9e29cd17c1297cf0fe057ae69" relative="backend/models/Blogs.php"/>
+  <docblock>
+    <description compact="Class Blogs"/>
+    <package value="Multiple\Backend\Models"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="initialize" start="20" end="23" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="verifyBlogExistAction" start="29" end="31" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Verifica se já existe um blog criado"/>
+      <return description="true caso existe ou false caso não exista." type="boolean"/>
+    </docblock>
+  </method>
+  <method name="createBlog" start="39" end="46" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Cria um blog no banco de dados com o nome informado via parametro"/>
+      <param description="Nome do blog a ser criado" type="string" variable="$blog_name"/>
+      <param description="id do layout do blog" type="int" variable="$layout_id"/>
+      <return description="true caso sucesso ou false caso de erro." type="boolean"/>
+    </docblock>
+    <parameter name="blog_name" byreference="false" type="{unknown}"/>
+    <parameter name="layout_id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="updateBlog" start="57" end="65" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Atualiza os dados de preferência do blog"/>
+      <param description="nome do blog" type="string" variable="$blog_name"/>
+      <param description="url do blog" type="string" variable="$blog_url"/>
+      <param description="email principal" type="string" variable="$blog_mail"/>
+      <param description="senha do email principal" type="string" variable="$blog_mail_password"/>
+      <param description="pequeno texto sobre o blog" type="string" variable="$blog_about"/>
+      <return description="true caso sucesso ou false caso de erro." type="boolean"/>
+    </docblock>
+    <parameter name="blog_name" byreference="false" type="{unknown}"/>
+    <parameter name="blog_url" byreference="false" type="{unknown}"/>
+    <parameter name="blog_mail" byreference="false" type="{unknown}"/>
+    <parameter name="blog_mail_password" byreference="false" type="{unknown}"/>
+    <parameter name="blog_about" byreference="false" type="{unknown}"/>
+  </method>
+</class>

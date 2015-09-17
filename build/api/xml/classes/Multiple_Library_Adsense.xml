@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Adsense" namespace="Multiple\Library" name="Adsense" abstract="false" final="false" start="16" end="65">
+  <file path="/var/www/html/pluton/apps/library" file="Adsense.php" realpath="/var/www/html/pluton/apps/library/Adsense.php" size="2375" time="2015-09-17T04:49:41+00:00" unixtime="1442465381" sha1="1e2648d20a7a26960bb38a5bd5334bb45c98b7ea" relative="library/Adsense.php"/>
+  <extends full="Multiple\Library\BaseController" namespace="Multiple\Library" name="BaseController" unresolved="true"/>
+  <method name="getService" start="24" end="46" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna um objeto do tipo Google_Service_AdSense"/>
+      <param description="login da conta google" type="string" variable="$google_account_login"/>
+      <param description="Nome do arquivo chave para acesso a API do google" type="string" variable="$google_account_key_file_name"/>
+      <return description="Objeto do tipo Google_Service_Adsense" type="object">
+        <type full="Multiple\Library\Google_Service_Adsense" namespace="Multiple\Library" name="Google_Service_Adsense"/>
+      </return>
+    </docblock>
+    <parameter name="google_account_login" byreference="false" type="{unknown}"/>
+    <parameter name="google_account_key_file_name" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="Create and configure a new client object." line="30"/>
+      <comment value="Read the generated client_secrets.p12 key." line="35"/>
+    </inline>
+  </method>
+  <method name="getEarnings" start="54" end="64" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna os ganhos com o google Adsense **Classe não utilizada no projeto pos o google não aprovou o domínio plutoncms.tk para o Adsense"/>
+      <param description="login da conta google" type="string" variable="$google_account_login"/>
+      <param description="Nome do arquivo chave para acesso a API do google" type="string" variable="$google_account_key_file_name"/>
+    </docblock>
+    <parameter name="google_account_login" byreference="false" type="{unknown}"/>
+    <parameter name="google_account_key_file_name" byreference="false" type="{unknown}"/>
+  </method>
+</class>

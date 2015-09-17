@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/library" file="Acl.php" realpath="/var/www/html/pluton/apps/library/Acl.php" size="437" time="2015-09-17T04:33:33+00:00" unixtime="1442464413" sha1="a1adb83535811328f8096f5af5cece0494fadaef" relative="library/Acl.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="3">
+    <token name="T_DOC_COMMENT">* Class and Function List:</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT">* Function list:</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT">* - __construct()</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT">* - beforeExecuteRoute()</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT">* Classes list:</token>
+  </line>
+  <line no="8">
+    <token name="T_DOC_COMMENT">* - Acl extends \</token>
+  </line>
+  <line no="9">
+    <token name="T_DOC_COMMENT">*/</token>
+  </line>
+  <line no="10">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Events</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Event</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="11">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Mvc</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Dispatcher</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="12"/>
+  <line no="13">
+    <token name="T_CLASS">class</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Acl</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_EXTENDS">extends</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Mvc</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">User</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Component</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="14"/>
+  <line no="15">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PROTECTED">protected</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$_module</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="16"/>
+  <line no="17">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">__construct</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$module</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="18">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">_module</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$module</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="19">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="20"/>
+  <line no="21">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">beforeExecuteRoute</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">Event</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$event</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Dispatcher</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$dispatcher</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="22"/>
+  <line no="23">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="24">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="25"/>
+</source>

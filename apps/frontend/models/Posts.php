@@ -2,7 +2,7 @@
 /**
  * Class and Function List:
  * Function list:
- * - onConstruct()
+ * - initialize()
  * Classes list:
  * - Posts extends \
  */

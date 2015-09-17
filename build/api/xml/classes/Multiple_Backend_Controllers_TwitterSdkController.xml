@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\TwitterSdkController" namespace="Multiple\Backend\Controllers" name="TwitterSdkController" abstract="false" final="false" start="4" end="65">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="TwitterSdkController.php" realpath="/var/www/html/pluton/apps/backend/controllers/TwitterSdkController.php" size="2971" time="2015-09-11T00:34:11+00:00" unixtime="1441931651" sha1="7ae8d291911a84b4a28ce02f7c5141c56ff38019" relative="backend/controllers/TwitterSdkController.php"/>
+  <extends full="Phalcon\Mvc\Controller" namespace="Phalcon\Mvc" name="Controller" unresolved="true"/>
+  <method name="generateBearerToken" start="13" end="44" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Gera o token de acesso a API do twitter através do APPID e APPSECRET informados pelo usuário"/>
+      <param description="app id da api do twitter" type="string" variable="$app_id"/>
+      <param description="app secret da api do twitter" type="string" variable="$app_secret"/>
+      <return description="token para acesso a api do twittter" type="string"/>
+    </docblock>
+    <parameter name="app_id" byreference="false" type="{unknown}"/>
+    <parameter name="app_secret" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getLookupTwitterProfileBlog" start="52" end="64" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna informações sobre o profile do twitter solicitado"/>
+      <param description="token de acesso a api do twitter" type="string" variable="$bearer_token"/>
+      <param description="nome de usuário do perfil do twitter para verifcar dados" type="string" variable="$twitter_username"/>
+      <return description="array contendo informações do perfil do twitter verificado" type="array"/>
+    </docblock>
+    <parameter name="bearer_token" byreference="false" type="{unknown}"/>
+    <parameter name="twitter_username" byreference="false" type="{unknown}"/>
+  </method>
+</class>

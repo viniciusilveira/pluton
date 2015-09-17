@@ -3,10 +3,9 @@
  * Class and Function List:
  * Function list:
  * - getService()
- * - getFirstprofileId()
  * - getEarnings()
  * Classes list:
- * - AdsenseController extends BaseController
+ * - Adsense extends BaseController
  */
 namespace Multiple\Library;
 
@@ -16,6 +15,12 @@ use Google_Auth_AssertionCredentials;
 
 class Adsense extends BaseController {
 
+    /**
+     * Retorna um objeto do tipo Google_Service_AdSense
+     * @param  string $google_account_login         login da conta google
+     * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google
+     * @return Google_Service_Adsense               Objeto do tipo Google_Service_Adsense
+     */
     public function getService($google_account_login, $google_account_key_file_name) {
 
         $client = new Google_Client();
@@ -27,7 +32,7 @@ class Adsense extends BaseController {
         $client->setApplicationName("PlutonAdsense");
         $service = new Google_Service_AdSense($client);
 
-         // Read the generated client_secrets.p12 key.
+        // Read the generated client_secrets.p12 key.
         $key = file_get_contents($key_file_location);
         $cred = new Google_Auth_AssertionCredentials($service_account_email, array(
             Google_Service_Adsense::ADSENSE_READONLY
@@ -40,10 +45,21 @@ class Adsense extends BaseController {
         return $service;
     }
 
+    /**
+     * Retorna os ganhos com o google Adsense
+     * **Classe não utilizada no projeto pos o google não aprovou o domínio plutoncms.tk para o Adsense
+     * @param  string $google_account_login         login da conta google
+     * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google
+     */
     public function getEarnings($google_account_login, $google_account_key_file_name) {
         $adsense = AdsenseController::getService($google_account_login, $google_account_key_file_name);
-        $optParams = array('metric' => array('earnings'), 'dimension' => 'date');
+        $optParams = array(
+            'metric' => array(
+                'earnings'
+            ) ,
+            'dimension' => 'date'
+        );
         $data = $adsense->reports->generate('2009-01-01', '2015-09-15', $optParams);
-        var_dump($data);
+
     }
 }

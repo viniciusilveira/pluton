@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Frontend\Models\Categories" namespace="Multiple\Frontend\Models" name="Categories" abstract="false" final="false" start="10" end="11">
+  <file path="/var/www/html/pluton/apps/frontend/models" file="Categories.php" realpath="/var/www/html/pluton/apps/frontend/models/Categories.php" size="188" time="2015-09-17T04:55:28+00:00" unixtime="1442465728" sha1="68bb0ee51e7d2292aeff45b7d74ee6669a4099a9" relative="frontend/models/Categories.php"/>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+</class>

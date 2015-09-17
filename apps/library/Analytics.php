@@ -23,24 +23,21 @@ class Analytics extends \Phalcon\Mvc\Controller {
     public function index() {
     }
 
+    /**
+     * Cria um objeto do tipo Google_Service_Analytics
+     * @param  string $google_account_login         login da conta google
+     * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google
+     * @return Google_Service_Analytics             Objeto do tipo Google_Service_Analytics
+     */
     public function getService($google_account_login, $google_account_key_file_name) {
 
-        // Creates and returns the Analytics service object.
-
-        // Load the Google API PHP Client Library.
-        //require_once 'google-api-php-client/src/Google/autoload.php';
-
-        // Use the developers console and replace the values with your
-        // service account email, and relative location of your key file.
         $service_account_email = $google_account_login;
         $key_file_location = FOLDER_PROJECT . "keys/" . $google_account_key_file_name;
 
-        // Create and configure a new client object.
         $client = new Google_Client();
         $client->setApplicationName("PlutonAnalytics");
         $analytics = new Google_Service_Analytics($client);
 
-        // Read the generated client_secrets.p12 key.
         $key = file_get_contents($key_file_location);
         $cred = new Google_Auth_AssertionCredentials($service_account_email, array(
             Google_Service_Analytics::ANALYTICS_READONLY
@@ -53,48 +50,47 @@ class Analytics extends \Phalcon\Mvc\Controller {
         return $analytics;
     }
 
+    /**
+     * Busca o id do primeiro perfil cadastrado na conta google
+     * @param  Google_Service_Analytics &$analytics objeto do tipo Google_Service_Analytics
+     * @return int si perfil
+     */
     function getFirstprofileId(&$analytics) {
 
-        // Get the user's first view (profile) ID.
-
-        // Get the list of accounts for the authorized user.
         $accounts = $analytics->management_accounts->listManagementAccounts();
 
         if (count($accounts->getItems()) > 0) {
             $items = $accounts->getItems();
             $firstAccountId = $items[0]->getId();
 
-            // Get the list of properties for the authorized user.
             $properties = $analytics->management_webproperties->listManagementWebproperties($firstAccountId);
 
             if (count($properties->getItems()) > 0) {
                 $items = $properties->getItems();
                 $firstPropertyId = $items[0]->getId();
 
-                // Get the list of views (profiles) for the authorized user.
                 $profiles = $analytics->management_profiles->listManagementProfiles($firstAccountId, $firstPropertyId);
 
                 if (count($profiles->getItems()) > 0) {
                     $items = $profiles->getItems();
 
-                    // Return the first view (profile) ID.
                     return $items[0]->getId();
                 }
-                else {
-                    throw new Exception('No views (profiles) found for this user.');
-                }
-            }
-            else {
-                throw new Exception('No properties found for this user.');
             }
         }
         else {
-            throw new Exception('No accounts found for this user.');
+            return -1;
         }
     }
 
-    // Calls the Core Reporting API and queries for the number of sessions
-    // for the last seven days.
+    /**
+     * Retorna o total de sessões
+     * @param  Google_Service_Analytics &$analytics objeto do tipo Google_Service_Analytics
+     * @param  id $profileId  id od profile do usuário
+     * @param  date $initial    Data inicial dos resultados
+     * @param  date $final    Data final dos resultados
+     * @return array array     Total de sessões
+     */
     function getResults(&$analytics, $profileId, $initial, $final) {
 
         return $analytics->data_ga->get('ga:' . $profileId, $initial, $final, 'ga:sessions');
@@ -119,10 +115,11 @@ class Analytics extends \Phalcon\Mvc\Controller {
     }
 
     /**
-     * A funcionalidade de tempo real do google analytics ainda está em fase Beta e só é possível utiliza-la
+     * Busca informações de acesso em tempo real
+     * *A funcionalidade de tempo real do google analytics ainda está em fase Beta e só é possível utiliza-la
      * sendo aprovado para o teste da funcionalidade;
      * Caso consiga a aprovação vocẽ pode chamar este método na action index da classee DashboardController
-     * @param  [type] $analytics [description]
+     * @param  Google_Service_Analytics &$analytics objeto do tipo Google_Service_Analytics
      * @return [type]            [description]
      */
     public function getRealTimeInformation($analytics) {
@@ -142,6 +139,12 @@ class Analytics extends \Phalcon\Mvc\Controller {
         }
     }
 
+    /**
+     * Retorna os acessos únicos por mês, desde janeiro do ano corrente até o mês atual
+     * @param  string $google_account_login         Login da conta google
+     * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google
+     * @return array contendo informações sobre sessões únicas
+     */
     public function getAccessPerMonth($google_account_login, $google_account_key_file_name) {
         $arr_months = $this->mountArrayMonths();
         $analytics = Analytics::getService($google_account_login, $google_account_key_file_name);
@@ -166,6 +169,12 @@ class Analytics extends \Phalcon\Mvc\Controller {
         return $return;
     }
 
+    /**
+     * Quantidade de acessos de cada país
+     * @param  string $google_account_login         Login da conta google
+     * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google
+     * @return array contendo informações sobre sessões e país de origem
+     */
     public function getCountryOriginAccess($google_account_login, $google_account_key_file_name) {
         $analytics = Analytics::getService($google_account_login, $google_account_key_file_name);
         $profileId = Analytics::getFirstprofileId($analytics);
@@ -177,6 +186,12 @@ class Analytics extends \Phalcon\Mvc\Controller {
         return $result->getRows();
     }
 
+    /**
+     * Busca as Visualizações de páginas do blog
+     * @param  string $google_account_login         Login da conta google
+     * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google
+     * @return array contendo informações sobre visualizações de página
+     */
     public function getPageViews($google_account_login, $google_account_key_file_name) {
         $analytics = Analytics::getService($google_account_login, $google_account_key_file_name);
         $profileId = Analytics::getFirstprofileId($analytics);

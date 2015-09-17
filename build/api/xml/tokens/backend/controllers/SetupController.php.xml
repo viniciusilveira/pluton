@@ -1,0 +1,2896 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/controllers" file="SetupController.php" realpath="/var/www/html/pluton/apps/backend/controllers/SetupController.php" size="12418" time="2015-09-16T21:41:17+00:00" unixtime="1442439677" sha1="822a9f56117f764b1cac623f8e01670b0c62465a" relative="backend/controllers/SetupController.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="3">
+    <token name="T_DOC_COMMENT"> * Class and Function List:</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT"> * Function list:</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT"> * - indexAction()</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT"> * - databaseConfigAction()</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT"> * - newBlogAction()</token>
+  </line>
+  <line no="8">
+    <token name="T_DOC_COMMENT"> * - installAction()</token>
+  </line>
+  <line no="9">
+    <token name="T_DOC_COMMENT"> * - verifyInstalation()</token>
+  </line>
+  <line no="10">
+    <token name="T_DOC_COMMENT"> * - verifyDataBaseAction()</token>
+  </line>
+  <line no="11">
+    <token name="T_DOC_COMMENT"> * - databaseSettingsAction()</token>
+  </line>
+  <line no="12">
+    <token name="T_DOC_COMMENT"> * - connectDatabase()</token>
+  </line>
+  <line no="13">
+    <token name="T_DOC_COMMENT"> * - createTables()</token>
+  </line>
+  <line no="14">
+    <token name="T_DOC_COMMENT"> * - createUsersTypes()</token>
+  </line>
+  <line no="15">
+    <token name="T_DOC_COMMENT"> * - createPostsStatus()</token>
+  </line>
+  <line no="16">
+    <token name="T_DOC_COMMENT"> * - createMenus()</token>
+  </line>
+  <line no="17">
+    <token name="T_DOC_COMMENT"> * - installPlutonAction()</token>
+  </line>
+  <line no="18">
+    <token name="T_DOC_COMMENT"> * Classes list:</token>
+  </line>
+  <line no="19">
+    <token name="T_DOC_COMMENT"> * - SetupController extends BaseController</token>
+  </line>
+  <line no="20">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="21">
+    <token name="T_NAMESPACE">namespace</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Controllers</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="22"/>
+  <line no="23">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Users</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="24">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Blogs</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="25">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Layouts</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="26">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">UserType</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="27">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">PostStatus</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="28">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">UserBlog</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="29">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Menu</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="30">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Backend</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Models</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Submenu</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="31">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Library</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="32"/>
+  <line no="33">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="34">
+    <token name="T_DOC_COMMENT"> * Classe para conex&#xE3;o e configura&#xE7;&#xE3;o dos dados necess&#xE1;rios para utiliza&#xE7;&#xE3;o do sistema</token>
+  </line>
+  <line no="35">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="36">
+    <token name="T_CLASS">class</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">SetupController</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_EXTENDS">extends</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">BaseController</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="37"/>
+  <line no="38">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$connection</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="39">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$config</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="40"/>
+  <line no="41">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="42">
+    <token name="T_DOC_COMMENT">     * Carrega a view setup/index.phtml</token>
+  </line>
+  <line no="43">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="44">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">indexAction</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="45"/>
+  <line no="46">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">// view/setup/index.phtml</token>
+  </line>
+  <line no="47"/>
+  <line no="48"/>
+  <line no="49">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="50"/>
+  <line no="51">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="52">
+    <token name="T_DOC_COMMENT">     * Carrega a view para inser&#xE7;&#xE3;o dos dados de conex&#xE3;o com o banco de dados</token>
+  </line>
+  <line no="53">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="54">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">databaseConfigAction</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="55"/>
+  <line no="56">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">// views/setup/databaseConfig.phtml</token>
+  </line>
+  <line no="57"/>
+  <line no="58"/>
+  <line no="59">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="60"/>
+  <line no="61">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="62">
+    <token name="T_DOC_COMMENT">     * Carrega a view de instala&#xE7;&#xE3;o do sistema.</token>
+  </line>
+  <line no="63">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="64">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">installAction</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="65"/>
+  <line no="66">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">// views/setup/newUser.phtml</token>
+  </line>
+  <line no="67"/>
+  <line no="68"/>
+  <line no="69">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="70"/>
+  <line no="71">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="72">
+    <token name="T_DOC_COMMENT">     * Verifica a instala&#xE7;&#xE3;o do sistema, caso esteja tudo ok retorna a string 'ok',</token>
+  </line>
+  <line no="73">
+    <token name="T_DOC_COMMENT">     * caso contr&#xE1;rio retorna o que falta ser configurado.</token>
+  </line>
+  <line no="74">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="75">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">verifyInstalation</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="76">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">file_exists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">FOLDER_PROJECT</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'apps/config/config.ini'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="77">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_STRING">Users</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">verifyUsersExistAction</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'ok'</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="78">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="79">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="80">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'file'</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="81">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="82"/>
+  <line no="83">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$return</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="84">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="85"/>
+  <line no="86">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="87">
+    <token name="T_DOC_COMMENT">     * Verifica se o banco de dados est&#xE1; configurado corretamente, caso n&#xE3;o esteja,</token>
+  </line>
+  <line no="88">
+    <token name="T_DOC_COMMENT">     * efetua as configura&#xE7;&#xF5;es necess&#xE1;rias.</token>
+  </line>
+  <line no="89">
+    <token name="T_DOC_COMMENT">     * @return string contendo o dado n&#xE3;o criado no banco de dados, ou 'ok' caso</token>
+  </line>
+  <line no="90">
+    <token name="T_DOC_COMMENT">     * j&#xE1; esteja tudo criado</token>
+  </line>
+  <line no="91">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="92">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">verifyDataBaseAction</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="93"/>
+  <line no="94">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">file_exists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">FOLDER_PROJECT</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'apps/config/config.ini'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="95"/>
+  <line no="96">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$connect</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">SetupController</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">connectDatabase</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="97">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$connect</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'connection'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="98">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'connect'</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="99">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="100">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="101">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_STRING">Users</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">verifyUsersExistAction</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'ok'</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="102">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="103">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="104">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="105">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'file'</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="106">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="107"/>
+  <line no="108">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$return</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="109">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="110"/>
+  <line no="111">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="112">
+    <token name="T_DOC_COMMENT">     * Recebe os dados do banco de dados via post;</token>
+  </line>
+  <line no="113">
+    <token name="T_DOC_COMMENT">     * Cria o arquivo de configura&#xE7;&#xE3;o do banco de dados e conecta com o banco de dados</token>
+  </line>
+  <line no="114">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="115">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">databaseSettingsAction</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="116"/>
+  <line no="117">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//Informa que a action n&#xE3;o possui nenhuma view para exibi&#xE7;&#xE3;o</token>
+  </line>
+  <line no="118">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">view</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">disable</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="119"/>
+  <line no="120">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//Dados do banco de dados recebidos via POST;</token>
+  </line>
+  <line no="121"/>
+  <line no="122">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$database_name</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">request</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getPost</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'database_name'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="123">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$database_user</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">request</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getPost</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'database_user'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="124">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$database_passwd</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">request</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getPost</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'database_passwd'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="125">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$database_host</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">request</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getPost</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'database_host'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="126"/>
+  <line no="127">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//Cria o arquivo de conex&#xE3;o com o banco de dados;</token>
+  </line>
+  <line no="128">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_STRING">file_exists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">FOLDER_PROJECT</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'apps/config/config.ini'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="129">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_STRING">is_dir</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">FOLDER_PROJECT</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'apps/config/'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">mkdir</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">FOLDER_PROJECT</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'apps/config/'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">NULL</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="130">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$config_file</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">fopen</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">FOLDER_PROJECT</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'apps/config/config.ini'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'w'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="131">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$writing_file</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"[database]\n"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="132">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$writing_file</token>
+    <token name="T_CONCAT_EQUAL">.=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"adapter  = Mysql\n"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="133">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$writing_file</token>
+    <token name="T_CONCAT_EQUAL">.=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">host     = </token>
+    <token name="T_CURLY_OPEN">{</token>
+    <token name="T_VARIABLE">$database_host</token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">\n</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="134">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$writing_file</token>
+    <token name="T_CONCAT_EQUAL">.=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">username = </token>
+    <token name="T_CURLY_OPEN">{</token>
+    <token name="T_VARIABLE">$database_user</token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">\n</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="135">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$writing_file</token>
+    <token name="T_CONCAT_EQUAL">.=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">password = </token>
+    <token name="T_CURLY_OPEN">{</token>
+    <token name="T_VARIABLE">$database_passwd</token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">\n</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="136">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$writing_file</token>
+    <token name="T_CONCAT_EQUAL">.=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">name     = </token>
+    <token name="T_CURLY_OPEN">{</token>
+    <token name="T_VARIABLE">$database_name</token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+    <token name="T_ENCAPSED_AND_WHITESPACE">\n</token>
+    <token name="T_PHPDOX_DOUBLE_QUOTES">"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="137"/>
+  <line no="138">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_STRING">fwrite</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$config_file</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$writing_file</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="139">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_STRING">fclose</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$config_file</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="140"/>
+  <line no="141">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connectDatabase</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="142">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="143">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="144">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'success'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="145">
+    <token name="T_WHITESPACE">                </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'message'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Imposs&#xED;vel acessar o arquivo de configura&#xE7;&#xE3;o (pluton/apps/config/config.ini). Verifique as permiss&#xF5;es de acesso da pasta e tente novamente!"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="146">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="147">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">json_encode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="148">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="149">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="150"/>
+  <line no="151">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="152">
+    <token name="T_DOC_COMMENT">     * Configura e executa a conex&#xE3;o com o banco de dados</token>
+  </line>
+  <line no="153">
+    <token name="T_DOC_COMMENT">     * @return bool true caso conecte com sucesso ou false caso ocorra algum erro</token>
+  </line>
+  <line no="154">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="155">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">connectDatabase</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="156"/>
+  <line no="157">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//$this-&gt;view-&gt;disable();</token>
+  </line>
+  <line no="158"/>
+  <line no="159">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//Seta a configura&#xE7;&#xE3;o do banco de dados.</token>
+  </line>
+  <line no="160">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">config</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Config</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Adapter</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Ini</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">FOLDER_PROJECT</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'apps/config/config.ini'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="161"/>
+  <line no="162">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//Cria um array com os dados do banco</token>
+  </line>
+  <line no="163">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$db_conn</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="164">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"host"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">config</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">database</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">host</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="165">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"username"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">config</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">database</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">username</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="166">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"password"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">config</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">database</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">password</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="167">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"dbname"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">config</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">database</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">name</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+  </line>
+  <line no="168">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"charset"</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'utf8'</token>
+  </line>
+  <line no="169">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="170">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$db_conn</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"persistent"</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="171"/>
+  <line no="172">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//Efetua a conex&#xE3;o com o banco de dados</token>
+  </line>
+  <line no="173">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_TRY">try</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="174">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NEW">new</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Phalcon</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Db</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Adapter</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Pdo</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Mysql</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$db_conn</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="175">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_STRING">SetupController</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTables</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="176">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'connection'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">true</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="177">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'message'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Banco de dados conectado e configurado!"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="178">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="179">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="180">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_CATCH">catch</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">PDOException</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$e</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="181">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_STRING">unlink</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">FOLDER_PROJECT</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'apps/config/config.ini'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="182">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'connection'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="183">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'message'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Ocorreu um problema ao conectar com o banco de dados. Verifique os dados informados e tente novamente!"</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="184">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'log'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$e</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="185">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="186">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="187">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="188"/>
+  <line no="189">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="190">
+    <token name="T_DOC_COMMENT">     * Cria as tabelas necess&#xE1;rias para o funcionamento do sistema</token>
+  </line>
+  <line no="191">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="192">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">createTables</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="193"/>
+  <line no="194">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'layouts'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableLayouts</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="195">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'blogs'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableBlogs</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="196">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user_type'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableUserType</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="197">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'users'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableUsers</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="198">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'users_blogs'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableUsersBlogs</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="199">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'categories'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableCategories</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="200">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'post_status'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTablePostStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="201">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'posts'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTablePosts</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="202">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'post_categorie'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTablePostCategories</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="203">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'google_accounts'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableGoogleAccounts</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="204">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'facebook_pages'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableFacebookPages</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="205">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'twitter_accounts'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableTwitterAccounts</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="206">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'menu'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">CreateTableMenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="207">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'submenu'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTableSubmenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="208">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">tableExists</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'plugin'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Tables</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createTablePlugin</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">connection</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="209">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="210"/>
+  <line no="211">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="212">
+    <token name="T_DOC_COMMENT">     * Cria os tipos de usu&#xE1;rios no sistema</token>
+  </line>
+  <line no="213">
+    <token name="T_DOC_COMMENT">     * @return boolean true caso sucesso, false caso ocorra algum erro!</token>
+  </line>
+  <line no="214">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="215">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">createUsersTypes</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="216">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">UserType</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createUserType</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'SUPER ADMINISTRADOR'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'SA'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="217">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">UserType</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createUserType</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'ADMINISTRADOR'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'A'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="218">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">UserType</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createUserType</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'EDITOR'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'E'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="219">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">UserType</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createUserType</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'AUTOR'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'AT'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="220">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">UserType</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createUserType</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'COLABORADOR'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'C'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="221">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="222">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="223"/>
+  <line no="224">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="225">
+    <token name="T_DOC_COMMENT">     * Cria os status poss&#xED;veis para postagens</token>
+  </line>
+  <line no="226">
+    <token name="T_DOC_COMMENT">     * @return boolean true caso sucesso, false caso ocorra algum erro!</token>
+  </line>
+  <line no="227">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="228">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">createPostsStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="229"/>
+  <line no="230">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">PostStatus</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createPostStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Publicado"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="231">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">PostStatus</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createPostStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Pendente"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="232">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">PostStatus</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createPostStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Rascunho"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="233">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EXCLAMATION_MARK">!</token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">PostStatus</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createPostStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Lixo"</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="234"/>
+  <line no="235">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="236">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="237"/>
+  <line no="238">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="239">
+    <token name="T_DOC_COMMENT">     * Cria os menus e submenus da sidebar no banco de dados</token>
+  </line>
+  <line no="240">
+    <token name="T_DOC_COMMENT">     * @return boolean true caso sucesso, false caso ocorra algum erro!</token>
+  </line>
+  <line no="241">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="242">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">createMenus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="243">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Menu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createMenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"fa fa-users"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Usu&#xE1;rios"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"#sub-users"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">2</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="244">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_GT">&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="245">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Submenu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createSubmenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"fa fa-user-plus"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Novo"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"dashboard/newUser"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="246">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Submenu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createSubmenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"glyphicon glyphicon-edit"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Editar"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"dashboard/listUsers"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">2</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="247">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="248">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="249">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="250">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="251">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Menu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createMenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"glyphicon glyphicon-tags"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Posts"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"#sub-posts"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">4</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="252">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_GT">&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="253">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Submenu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createSubmenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"glyphicon glyphicon-plus"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Novo"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"post/index"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="254">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Submenu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createSubmenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"glyphicon glyphicon-edit"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Editar"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"post/listPosts"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">2</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="255">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="256">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_ELSE">else</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="257">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="258">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="259">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Menu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createMenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"fa fa-cogs"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Configura&#xE7;&#xF5;es"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"settings/index"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">2</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="260">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_GT">&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Menu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createMenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"fa fa-pie-chart"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Estatisticas"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"statistics/index"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="261">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_GT">&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Menu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createMenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"glyphicon glyphicon-refresh"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Atualiza&#xE7;&#xF5;es"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"update/index"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">2</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="262">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Menu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createMenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"fa fa-puzzle-piece"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Plugins"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"#sub-plugins"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="263">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_IF">if</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_GT">&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="264">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Submenu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createSubmenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"glyphicon glyphicon-plus"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Novo"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"plugin/index"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="265">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Submenu</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createSubmenu</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$id_menu</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"glyphicon glyphicon-edit"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Editar"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"plugin/listPlugins"</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="266">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="267">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="268">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="269"/>
+  <line no="270">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="271">
+    <token name="T_DOC_COMMENT">     * Efetua a "instala&#xE7;&#xE3;o" do sistema; Criando o usu&#xE1;rio Super-Administrador e o blog</token>
+  </line>
+  <line no="272">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="273">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">installPlutonAction</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="274"/>
+  <line no="275">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_COMMENT">//Informa que a action n&#xE3;o possui nenhuma view para exibi&#xE7;&#xE3;o</token>
+  </line>
+  <line no="276">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">view</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">disable</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="277"/>
+  <line no="278">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$blog_name</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">request</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getPost</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'blog_name'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="279">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$user_name</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">request</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getPost</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user_name'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="280">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$user_email</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">request</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getPost</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user_email'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="281">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$user_login</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">request</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getPost</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user_login'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="282">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$user_passwd</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">sha1</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_STRING">md5</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">request</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getPost</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'user_passwd'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="283"/>
+  <line no="284">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="285">
+    <token name="T_DOC_COMMENT">         * Insere os dados necess&#xE1;rios no banco de dados para utiliza&#xE7;&#xE3;o inicial do sistema</token>
+  </line>
+  <line no="286">
+    <token name="T_DOC_COMMENT">         */</token>
+  </line>
+  <line no="287">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_TRY">try</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="288"/>
+  <line no="289">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">createUsersTypes</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="290">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">createPostsStatus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="291">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$layout_id</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Layouts</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createLayout</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="292">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$layout_id</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_IS_NOT_EQUAL">!=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">0</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Blogs</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createBlog</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$blog_name</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$layout_id</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="293">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$blog</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Blogs</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">findFirst</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="294"/>
+  <line no="295">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Users</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createUser</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$user_name</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$user_email</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$user_login</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$user_passwd</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">NULL</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$blog</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">blog_id</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="296">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$user</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Users</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">findFirst</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="297"/>
+  <line no="298">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">UserBlog</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">createUserBlog</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$user</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">user_id</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$blog</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">blog_id</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="299"/>
+  <line no="300">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">createMenus</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="301"/>
+  <line no="302">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'message'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_QUESTION_MARK">?</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'Sistema Instalado Com sucesso!'</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_COLON">:</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'Ocorreu um erro durante a instala&#xE7;&#xE3;o. Por favor tente novamente'</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="303">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'success'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$success</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="304">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">json_encode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="305">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="306">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_CATCH">catch</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">PDOException</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$e</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="307">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'success'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">false</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="308">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_OPEN_SQUARE">[</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'message'</token>
+    <token name="T_PHPDOX_CLOSE_SQUARE">]</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">"Ocorreu um erro: "</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_DOT">.</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$e</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="309"/>
+  <line no="310">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_ECHO">echo</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">json_encode</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$data</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="311">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="312">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="313">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="314"/>
+</source>

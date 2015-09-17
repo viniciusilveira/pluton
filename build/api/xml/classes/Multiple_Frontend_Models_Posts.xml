@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Frontend\Models\Posts" namespace="Multiple\Frontend\Models" name="Posts" abstract="false" final="false" start="11" end="28">
+  <file path="/var/www/html/pluton/apps/frontend/models" file="Posts.php" realpath="/var/www/html/pluton/apps/frontend/models/Posts.php" size="804" time="2015-09-17T04:55:15+00:00" unixtime="1442465715" sha1="b25ea2523ca382d2233a5f54ce25ff59621ac01b" relative="frontend/models/Posts.php"/>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="initialize" start="13" end="27" abstract="false" final="false" static="false" visibility="public"/>
+</class>

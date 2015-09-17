@@ -5,6 +5,7 @@
  * - initialize()
  * - verifyBlogExistAction()
  * - createBlog()
+ * - updateBlog()
  * Classes list:
  * - Blogs extends \
  */
@@ -50,9 +51,10 @@ class Blogs extends \Phalcon\Mvc\Model {
      * @param  string $blog_url           url do blog
      * @param  string $blog_mail          email principal
      * @param  string $blog_mail_password senha do email principal
+     * @param  string $blog_about         pequeno texto sobre o blog
      * @return boolean                     true caso sucesso ou false caso de erro.
      */
-    public function updateBlog($blog_name, $blog_url, $blog_mail, $blog_mail_password, $blog_about){
+    public function updateBlog($blog_name, $blog_url, $blog_mail, $blog_mail_password, $blog_about) {
         $blog = Blogs::findFirst();
         $blog->blog_name = $blog_name;
         $blog->blog_url = $blog_url;

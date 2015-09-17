@@ -1,0 +1,455 @@
+<?xml version="1.0"?>
+<source xmlns="http://xml.phpdox.net/token">
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/library" file="Mail.php" realpath="/var/www/html/pluton/apps/library/Mail.php" size="2137" time="2015-09-17T04:51:53+00:00" unixtime="1442465513" sha1="7862fabf6c3d3ccdac2ff25949cafee06b804130" relative="library/Mail.php"/>
+  <line no="1">
+    <token name="T_OPEN_TAG">&lt;?php</token>
+  </line>
+  <line no="2">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="3">
+    <token name="T_DOC_COMMENT"> * Class and Function List:</token>
+  </line>
+  <line no="4">
+    <token name="T_DOC_COMMENT"> * Function list:</token>
+  </line>
+  <line no="5">
+    <token name="T_DOC_COMMENT"> * - __construct()</token>
+  </line>
+  <line no="6">
+    <token name="T_DOC_COMMENT"> * - sendMessage()</token>
+  </line>
+  <line no="7">
+    <token name="T_DOC_COMMENT"> * - sendContactMessage()</token>
+  </line>
+  <line no="8">
+    <token name="T_DOC_COMMENT"> * Classes list:</token>
+  </line>
+  <line no="9">
+    <token name="T_DOC_COMMENT"> * - Mail</token>
+  </line>
+  <line no="10">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="11">
+    <token name="T_NAMESPACE">namespace</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Multiple</token>
+    <token name="T_NS_SEPARATOR">\</token>
+    <token name="T_STRING">Library</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="12"/>
+  <line no="13">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Swift_Message</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_AS">AS</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Message</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="14">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Swift_SmtpTransport</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_AS">AS</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Smtp</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="15">
+    <token name="T_USE">use</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Swift_Mailer</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_AS">AS</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Mailer</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="16"/>
+  <line no="17">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="18">
+    <token name="T_DOC_COMMENT"> * Classe para envios e confirma&#xE7;&#xE3;o de emails utilizando Swift Mailer</token>
+  </line>
+  <line no="19">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="20">
+    <token name="T_CLASS">class</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Mail</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="21"/>
+  <line no="22">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$transport</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="23">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$mailer</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="24">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$mail</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="25">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$mail_password</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="26"/>
+  <line no="27">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="28">
+    <token name="T_DOC_COMMENT">     * Efetua a configura&#xE7;&#xE3;o do swift para envio de emails</token>
+  </line>
+  <line no="29">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="30">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">__construct</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$blog_mail</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$blog_mail_password</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="31">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mail</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$blog_mail</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="32">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mail_password</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$blog_mail_password</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="33">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">transport</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Smtp</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">newInstance</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'smtp.gmail.com'</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">465</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_CONSTANT_ENCAPSED_STRING">'ssl'</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setUsername</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mail</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setPassword</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mail_password</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="34"/>
+  <line no="35">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mailer</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Mailer</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">newInstance</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">transport</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="36">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="37"/>
+  <line no="38">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="39">
+    <token name="T_DOC_COMMENT">     * Envia um email</token>
+  </line>
+  <line no="40">
+    <token name="T_DOC_COMMENT">     * @param  string   $subject    Assunto do email</token>
+  </line>
+  <line no="41">
+    <token name="T_DOC_COMMENT">     * @param  array    $addresse   Array com todos os destinat&#xE1;rios do email</token>
+  </line>
+  <line no="42">
+    <token name="T_DOC_COMMENT">     * @param  string   $body       Conte&#xFA;do da mensagem</token>
+  </line>
+  <line no="43">
+    <token name="T_DOC_COMMENT">     * @return bool                 true caso o email tenha sido enviado ou false caso ocorra algum erro</token>
+  </line>
+  <line no="44">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="45">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">sendMessage</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$subject</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$addresse</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$body</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="46"/>
+  <line no="47">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$message</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Message</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">newInstance</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$subject</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setFrom</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="48">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">transport</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getUsername</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mail</token>
+  </line>
+  <line no="49">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setTo</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$addresse</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setBody</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$body</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="50"/>
+  <line no="51">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mailer</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">send</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$message</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="52">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="53"/>
+  <line no="54">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="55">
+    <token name="T_DOC_COMMENT">     * Envia um email para o email principal do sistema</token>
+  </line>
+  <line no="56">
+    <token name="T_DOC_COMMENT">     * @param  string $subject Assunto do email</token>
+  </line>
+  <line no="57">
+    <token name="T_DOC_COMMENT">     * @param  strin $sender  Remetente do email</token>
+  </line>
+  <line no="58">
+    <token name="T_DOC_COMMENT">     * @param  string $body    Conte&#xFA;do da mensagem</token>
+  </line>
+  <line no="59">
+    <token name="T_DOC_COMMENT">     * @return bool                 true caso o email tenha sido enviado ou false caso ocorra algum erro</token>
+  </line>
+  <line no="60">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="61">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PUBLIC">public</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_FUNCTION">function</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">sendContactMessage</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$subject</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$sender</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$body</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_CURLY">{</token>
+  </line>
+  <line no="62"/>
+  <line no="63">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$message</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_STRING">Message</token>
+    <token name="T_DOUBLE_COLON">::</token>
+    <token name="T_STRING">newInstance</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$subject</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setFrom</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_ARRAY">array</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+  </line>
+  <line no="64">
+    <token name="T_WHITESPACE">            </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">transport</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">getUsername</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_DOUBLE_ARROW">=&gt;</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$sender</token>
+  </line>
+  <line no="65">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setTo</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mail</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">setBody</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$body</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="66"/>
+  <line no="67">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_RETURN">return</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$this</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">mailer</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">send</token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
+    <token name="T_VARIABLE">$message</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="68">
+    <token name="T_WHITESPACE">    </token>
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="69">
+    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
+  </line>
+  <line no="70"/>
+</source>

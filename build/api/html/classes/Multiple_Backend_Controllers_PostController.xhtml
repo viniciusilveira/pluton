@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Multiple\Backend\Controllers\PostController</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml#Multiple_Backend_Controllers">Multiple\Backend\Controllers</a>
+          </li>
+          <li class="separator">PostController</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/backend/controllers/PostController.php.xhtml#line28">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Multiple\Backend\Controllers\</small>PostController</h1>
+        <h4>Classe responsável pela manipulação das postagens e elementos relacionados as mesmas</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class PostController
+                extends <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController.xhtml">BaseController</a>
+            {<br/><ul class="none"><li>// methods</li><li>public void <a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/indexAction.xhtml">indexAction</a>()
+                    </li><li>private boolean <a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/verifyPermissionEditPost.xhtml">verifyPermissionEditPost</a>()
+                    </li><li>public void <a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/listPostsAction.xhtml">listPostsAction</a>()
+                    </li><li>public boolean <a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/newPostAction.xhtml">newPostAction</a>()
+                    </li><li>public void <a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/editPostAction.xhtml">editPostAction</a>()
+                    </li><li>private boolean <a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/insertPostCategories.xhtml">insertPostCategories</a>()
+                    </li><li>private boolean <a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/updatePostCategories.xhtml">updatePostCategories</a>()
+                    </li><li>public void <a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/newCategorieAction.xhtml">newCategorieAction</a>()
+                    </li><li>private array <a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/getCategoriesByPost.xhtml">getCategoriesByPost</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Multiple\Backend\Controllers\BaseController">BaseController</span></li><li>public array <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getUserLoggedInformation.xhtml">getUserLoggedInformation</a>()
+                        </li><li>public array <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getSideBarMenus.xhtml">getSideBarMenus</a>()
+                        </li><li>public string <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/uid.xhtml">uid</a>()
+                        </li><li>public date <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/dateFormat.xhtml">dateFormat</a>()
+                        </li><li>public array <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/mountArrayMonths.xhtml">mountArrayMonths</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController.xhtml">Multiple\Backend\Controllers\BaseController</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="getCategoriesByPost"><a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/getCategoriesByPost.xhtml">getCategoriesByPost()</a>
+                — Recebe um objeto do tipo \Phalcon\Mvc\ResultSet e retorna todas as categorias dos posts do objeto</li>
+            <li id="insertPostCategories"><a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/insertPostCategories.xhtml">insertPostCategories()</a>
+                — Insere todas as categorias do post na tabela categorie_post</li>
+            <li id="updatePostCategories"><a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/updatePostCategories.xhtml">updatePostCategories()</a>
+                — Recebe as novas categorias e o id da postagem; Remove todos os PostCategories antigos e insere os novos;</li>
+            <li id="verifyPermissionEditPost"><a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/verifyPermissionEditPost.xhtml">verifyPermissionEditPost()</a>
+                — Verifica se usuário possui permissão para editar postagens do autor</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="editPostAction"><a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/editPostAction.xhtml">editPostAction()</a>
+                — Atualiza uma postagem conforme os dados recebidos via POST</li>
+            <li id="indexAction"><a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/indexAction.xhtml">indexAction()</a>
+                — Carrega a view para criação de um novo post</li>
+            <li id="listPostsAction"><a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/listPostsAction.xhtml">listPostsAction()</a>
+                — Carrega uma tabela listando as postagens existentes no sistema</li>
+            <li id="newCategorieAction"><a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/newCategorieAction.xhtml">newCategorieAction()</a>
+                — Verifica se uma categoria informada já existe, caso não, insere no banco de dados</li>
+            <li id="newPostAction"><a title="Multiple\Backend\Controllers\PostController" href="../classes/Multiple_Backend_Controllers_PostController/newPostAction.xhtml">newPostAction()</a>
+                — Cria uma nova postagem utilizando os dados recebidos via Post</li>
+          </ul>
+          <h3>Inherited from <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController.xhtml">Multiple\Backend\Controllers\BaseController</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="dateFormat"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/dateFormat.xhtml">dateFormat()</a>
+                — Altera o formato da data para human ou database conforme o parametro informado</li>
+            <li id="getSideBarMenus"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getSideBarMenus.xhtml">getSideBarMenus()</a>
+                — Busca as opções a serem exibidas no menu lateral do sistema</li>
+            <li id="getUserLoggedInformation"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getUserLoggedInformation.xhtml">getUserLoggedInformation()</a>
+                — Busca todas as informações do usuário logado</li>
+            <li id="mountArrayMonths"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/mountArrayMonths.xhtml">mountArrayMonths()</a>
+                — Monta um array com o nome dos 12 meses do calendário em pt_BR</li>
+            <li id="uid"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/uid.xhtml">uid()</a>
+                — Gera uma string aleatória contendo números letras maiusculas e minusculas</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.1.1 - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

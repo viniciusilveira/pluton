@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Analytics" namespace="Multiple\Library" name="Analytics" abstract="false" final="false" start="21" end="201">
+  <file path="/var/www/html/pluton/apps/library" file="Analytics.php" realpath="/var/www/html/pluton/apps/library/Analytics.php" size="7652" time="2015-09-17T04:49:37+00:00" unixtime="1442465377" sha1="c265f9074c057d5d4b321b6e5d2db177fb999d99" relative="library/Analytics.php"/>
+  <extends full="Phalcon\Mvc\Controller" namespace="Phalcon\Mvc" name="Controller" unresolved="true"/>
+  <method name="index" start="23" end="24" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getService" start="32" end="51" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Cria um objeto do tipo Google_Service_Analytics"/>
+      <param description="login da conta google" type="string" variable="$google_account_login"/>
+      <param description="Nome do arquivo chave para acesso a API do google" type="string" variable="$google_account_key_file_name"/>
+      <return description="Objeto do tipo Google_Service_Analytics" type="object">
+        <type full="Google_Service_Analytics" namespace="" name="Google_Service_Analytics"/>
+      </return>
+    </docblock>
+    <parameter name="google_account_login" byreference="false" type="{unknown}"/>
+    <parameter name="google_account_key_file_name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getFirstprofileId" start="58" end="84" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Busca o id do primeiro perfil cadastrado na conta google"/>
+      <param description="&amp;$analytics objeto do tipo Google_Service_Analytics" type="object">
+        <type full="Google_Service_Analytics" namespace="" name="Google_Service_Analytics"/>
+      </param>
+      <return description="si perfil" type="int"/>
+    </docblock>
+    <parameter name="analytics" byreference="true" type="{unknown}"/>
+  </method>
+  <method name="getResults" start="94" end="97" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna o total de sessões"/>
+      <param description="&amp;$analytics objeto do tipo Google_Service_Analytics" type="object">
+        <type full="Google_Service_Analytics" namespace="" name="Google_Service_Analytics"/>
+      </param>
+      <param description="id od profile do usuário" type="object" variable="$profileId">
+        <type full="Multiple\Library\id" namespace="Multiple\Library" name="id"/>
+      </param>
+      <param description="Data inicial dos resultados" type="object" variable="$initial">
+        <type full="Multiple\Library\date" namespace="Multiple\Library" name="date"/>
+      </param>
+      <param description="Data final dos resultados" type="object" variable="$final">
+        <type full="Multiple\Library\date" namespace="Multiple\Library" name="date"/>
+      </param>
+      <return description="array     Total de sessões" type="array"/>
+    </docblock>
+    <parameter name="analytics" byreference="true" type="{unknown}"/>
+    <parameter name="profileId" byreference="false" type="{unknown}"/>
+    <parameter name="initial" byreference="false" type="{unknown}"/>
+    <parameter name="final" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getTotalSessions" start="99" end="115" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="result" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getRealTimeInformation" start="125" end="140" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Busca informações de acesso em tempo real *A funcionalidade de tempo real do google analytics ainda está em fase Beta e só é possível utiliza-la sendo aprovado para o teste da funcionalidade; Caso consiga a aprovação vocẽ pode chamar este método na action index da classee DashboardController"/>
+      <param description="&amp;$analytics objeto do tipo Google_Service_Analytics" type="object">
+        <type full="Google_Service_Analytics" namespace="" name="Google_Service_Analytics"/>
+      </param>
+      <return description="[description]" type="object">
+        <type full="Multiple\Library\[type]" namespace="Multiple\Library" name="[type]"/>
+      </return>
+    </docblock>
+    <parameter name="analytics" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getAccessPerMonth" start="148" end="170" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna os acessos únicos por mês, desde janeiro do ano corrente até o mês atual"/>
+      <param description="Login da conta google" type="string" variable="$google_account_login"/>
+      <param description="Nome do arquivo chave para acesso a API do google" type="string" variable="$google_account_key_file_name"/>
+      <return description="contendo informações sobre sessões únicas" type="array"/>
+    </docblock>
+    <parameter name="google_account_login" byreference="false" type="{unknown}"/>
+    <parameter name="google_account_key_file_name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getCountryOriginAccess" start="178" end="187" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Quantidade de acessos de cada país"/>
+      <param description="Login da conta google" type="string" variable="$google_account_login"/>
+      <param description="Nome do arquivo chave para acesso a API do google" type="string" variable="$google_account_key_file_name"/>
+      <return description="contendo informações sobre sessões e país de origem" type="array"/>
+    </docblock>
+    <parameter name="google_account_login" byreference="false" type="{unknown}"/>
+    <parameter name="google_account_key_file_name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getPageViews" start="195" end="200" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Busca as Visualizações de páginas do blog"/>
+      <param description="Login da conta google" type="string" variable="$google_account_login"/>
+      <param description="Nome do arquivo chave para acesso a API do google" type="string" variable="$google_account_key_file_name"/>
+      <return description="contendo informações sobre visualizações de página" type="array"/>
+    </docblock>
+    <parameter name="google_account_login" byreference="false" type="{unknown}"/>
+    <parameter name="google_account_key_file_name" byreference="false" type="{unknown}"/>
+  </method>
+</class>

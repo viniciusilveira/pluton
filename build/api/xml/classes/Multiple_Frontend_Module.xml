@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Frontend\Module" namespace="Multiple\Frontend" name="Module" abstract="false" final="false" start="14" end="55">
+  <file path="/var/www/html/pluton/apps/frontend" file="Module.php" realpath="/var/www/html/pluton/apps/frontend/Module.php" size="1576" time="2015-08-30T22:59:40+00:00" unixtime="1440975580" sha1="c2726200234c4f6516dd9f2fc3a48cdc4162c3d2" relative="frontend/Module.php"/>
+  <method name="registerAutoloaders" start="16" end="28" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="registerServices" start="33" end="54" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Register the services here to make them general or register in the ModuleDefinition to make them module-specific"/>
+    </docblock>
+    <parameter name="di" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="Registering a dispatcher" line="35"/>
+      <comment value="Registering the view component" line="48"/>
+    </inline>
+  </method>
+</class>

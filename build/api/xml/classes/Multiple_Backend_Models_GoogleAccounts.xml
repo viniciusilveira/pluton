@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\GoogleAccounts" namespace="Multiple\Backend\Models" name="GoogleAccounts" abstract="false" final="false" start="18" end="71">
+  <file path="/var/www/html/pluton/apps/backend/models" file="GoogleAccounts.php" realpath="/var/www/html/pluton/apps/backend/models/GoogleAccounts.php" size="2538" time="2015-09-17T04:08:00+00:00" unixtime="1442462880" sha1="79cd11f39548d56e28f6ff047c9f8fb3ef81f335" relative="backend/models/GoogleAccounts.php"/>
+  <docblock>
+    <description compact="Classe responsável por manipular dados da conta google do blog"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="initialize" start="20" end="25" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getSource" start="31" end="33" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna o nome da tabela do banco de dados a qual a classe se refere"/>
+      <return description="Nome da tabela no banco de dados" type="string"/>
+    </docblock>
+  </method>
+  <method name="createGoogleAccount" start="42" end="53" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Salva os dados referente a API do google"/>
+      <param description="email da conta informada" type="string" variable="$g_account"/>
+      <param description="do arquivo de chave gerado pelo google" variable="$key_file_name" type="object">
+        <type full="Multiple\Backend\Models\Nome" namespace="Multiple\Backend\Models" name="Nome"/>
+      </param>
+      <param description="para verificação de acessos ao site pelo Google Analytics" variable="$g_analytics_script" type="object">
+        <type full="Multiple\Backend\Models\script" namespace="Multiple\Backend\Models" name="script"/>
+      </param>
+      <return description="true caso sucesso ou false caso ocorra alguma falha" type="boolean"/>
+    </docblock>
+    <parameter name="g_account" byreference="false" type="{unknown}"/>
+    <parameter name="key_file_name" byreference="false" type="{unknown}"/>
+    <parameter name="g_analytics_script" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="Valor padrão do id do blog" line="48"/>
+    </inline>
+  </method>
+  <method name="updateGoogleAccount" start="62" end="70" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Atualiza os dados referente a API do google"/>
+      <param description="email da conta informada" type="string" variable="$g_account"/>
+      <param description="do arquivo de chave gerado pelo google" variable="$key_file_name" type="object">
+        <type full="Multiple\Backend\Models\Nome" namespace="Multiple\Backend\Models" name="Nome"/>
+      </param>
+      <param description="para verificação de acessos ao site pelo Google Analytics" variable="$g_analytics_script" type="object">
+        <type full="Multiple\Backend\Models\script" namespace="Multiple\Backend\Models" name="script"/>
+      </param>
+      <return description="true caso sucesso ou false caso ocorra alguma falha" type="boolean"/>
+    </docblock>
+    <parameter name="g_account" byreference="false" type="{unknown}"/>
+    <parameter name="key_file_name" byreference="false" type="{unknown}"/>
+    <parameter name="g_analytics_script" byreference="false" type="{unknown}"/>
+  </method>
+</class>

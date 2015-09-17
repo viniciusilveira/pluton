@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Users" namespace="Multiple\Backend\Models" name="Users" abstract="false" final="false" start="22" end="144">
+  <file path="/var/www/html/pluton/apps/backend/models" file="Users.php" realpath="/var/www/html/pluton/apps/backend/models/Users.php" size="5408" time="2015-09-17T04:28:33+00:00" unixtime="1442464113" sha1="9d587a377774524aa0adbb0277b2fa55ffa83f19" relative="backend/models/Users.php"/>
+  <docblock>
+    <description compact="Classe responsável por manipular dados referentes aos usuários"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="initialize" start="24" end="32" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="verifyUsersExistAction" start="38" end="46" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Verifica se existe usuários criado no banco de dados"/>
+      <return description="true caso exista, false caso não exista nenhum" type="object">
+        <type full="Multiple\Backend\Models\bool" namespace="Multiple\Backend\Models" name="bool"/>
+      </return>
+    </docblock>
+  </method>
+  <method name="createUser" start="59" end="73" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Cria um novo usuário no banco de dados"/>
+      <param description="Nome do Usuário" type="string" variable="$user_name"/>
+      <param description="Email do Usuário" type="string" variable="$user_email"/>
+      <param description="Login de acesso do Usuário" type="string" variable="$user_login"/>
+      <param description="Senha Criptografada do Usuário" type="string" variable="$user_passwd"/>
+      <param description="Nível de acesso do Usuário (Informar aqui os níveis existentes)" type="string" variable="$user_type"/>
+      <param description="Nome da imagem de perfil do usuário salva no servidor (Seguir o padrão login.jpeg)" type="string" variable="$user_img"/>
+      <param description="Id do blog de acesso do usuário" type="int" variable="$user_blog"/>
+      <return description="$success     Verdadeiro caso o usuário seja criado, ou falso caso ocorra algum erro." type="object">
+        <type full="Multiple\Backend\Models\bool" namespace="Multiple\Backend\Models" name="bool"/>
+      </return>
+    </docblock>
+    <parameter name="user_name" byreference="false" type="{unknown}"/>
+    <parameter name="user_email" byreference="false" type="{unknown}"/>
+    <parameter name="user_login" byreference="false" type="{unknown}"/>
+    <parameter name="user_passwd" byreference="false" type="{unknown}"/>
+    <parameter name="user_type_id" byreference="false" type="{unknown}"/>
+    <parameter name="user_img" byreference="false" type="{unknown}" default="" constant="NULL"/>
+    <parameter name="user_blog" byreference="false" type="{unknown}" default="" constant="NULL"/>
+  </method>
+  <method name="updateUser" start="87" end="101" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Atualiza os dados de um usuário"/>
+      <param description="id do Usuário" type="int" variable="$user_id"/>
+      <param description="Nome do Usuário" type="string" variable="$user_name"/>
+      <param description="Email do Usuário" type="string" variable="$user_email"/>
+      <param description="Login de acesso do Usuário" type="string" variable="$user_login"/>
+      <param description="Senha Criptografada do Usuário" type="string" variable="$user_passwd"/>
+      <param description="Nível de acesso do Usuário (Informar aqui os níveis existentes)" type="string" variable="$user_type"/>
+      <param description="Nome da imagem de perfil do usuário salva no servidor (Seguir o padrão login.jpeg)" type="string" variable="$user_img"/>
+      <param description="Id do blog de acesso do usuário" type="int" variable="$user_blog"/>
+      <return description="$success     true caso o usuário seja criado, ou false caso ocorra algum erro." type="object">
+        <type full="Multiple\Backend\Models\bool" namespace="Multiple\Backend\Models" name="bool"/>
+      </return>
+    </docblock>
+    <parameter name="user_id" byreference="false" type="{unknown}"/>
+    <parameter name="user_name" byreference="false" type="{unknown}"/>
+    <parameter name="user_email" byreference="false" type="{unknown}"/>
+    <parameter name="user_login" byreference="false" type="{unknown}"/>
+    <parameter name="user_passwd" byreference="false" type="{unknown}"/>
+    <parameter name="user_type_id" byreference="false" type="{unknown}"/>
+    <parameter name="user_img" byreference="false" type="{unknown}" default="" constant="NULL"/>
+    <parameter name="user_blog" byreference="false" type="{unknown}" default="" constant="NULL"/>
+  </method>
+  <method name="ActiveOrdeactiveUser" start="107" end="113" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Altera o status de um usuário; Ativa se estiver desativado e desativa caso contrário"/>
+      <param description="id do usuário" type="int" variable="$user_id"/>
+    </docblock>
+    <parameter name="user_id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getUser" start="120" end="127" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Busca um usuário pelo login/email do mesmo"/>
+      <param description="login do usuário" type="string" variable="$user_login"/>
+      <return description="Users   objeto do tipo Users contendo os dados do usuário encontrado no banco de dados" type="object">
+        <type full="Multiple\Backend\Models\objeto" namespace="Multiple\Backend\Models" name="objeto"/>
+      </return>
+    </docblock>
+    <parameter name="user_login" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="userExists" start="135" end="143" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Verifica se existe usuário cadastrado com o login ou email informados"/>
+      <param description="login do novo usuaŕio" type="string" variable="$user_login"/>
+      <param description="email do novo usuário" type="string" variable="$user_email"/>
+      <return description="Verdadeiro caso usuário exista ou falso caso contrário" type="boolean"/>
+    </docblock>
+    <parameter name="user_name" byreference="false" type="{unknown}"/>
+    <parameter name="user_login" byreference="false" type="{unknown}"/>
+    <parameter name="user_email" byreference="false" type="{unknown}"/>
+  </method>
+</class>

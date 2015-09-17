@@ -29,9 +29,14 @@ use Multiple\Frontend\Models\Categories;
 use Multiple\Frontend\Models\PostCategorie;
 use Multiple\Frontend\Models\GoogleAccounts;
 
+/**
+ * Controlador principal do módulo frontend
+ */
 class IndexController extends \Phalcon\Mvc\Controller {
 
-
+    /**
+     * Carrega a tela principal do blog
+     */
     public function indexAction() {
         $this->session->start();
         $page = empty($_REQUEST['page']) ? 0 : $_REQUEST['page'];
@@ -48,6 +53,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
         }
         $g_account = GoogleAccounts::findFirst();
         $vars['script_analytics'] = $g_account->google_analytics_script;
+
         //var_dump($g_account); die();
         $blog = Blogs::findFirst();
 
@@ -80,7 +86,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
     /**
      * Recebe o número da página e retorna os itens a serem exibidos naquela página
      * @param  int $page número da página a ser exibida na tela
-     * @return Resultset      result contendo os posts retornados
+     * @return \Phalcon\Model\Resultset      result contendo os posts retornados
      */
     public function getPostsPerPage($page, $search = NULL, $str_posts_id = NULL, $str_users_id) {
         $conditions = "post_status_id = :status:";
@@ -113,6 +119,11 @@ class IndexController extends \Phalcon\Mvc\Controller {
         return $posts;
     }
 
+    /**
+     * Retorna todas as categorias de um post
+     * @param  \Phalcon\Mvc\Resultset $posts Objeto Resultset com informações sobre posts
+     * @return array         array contendo todoas as categorias da postagem
+     */
     public function getCategories($posts) {
         foreach ($posts as $post) {
             $post_categorie = $post->post_categorie;
@@ -128,6 +139,11 @@ class IndexController extends \Phalcon\Mvc\Controller {
         return $cts;
     }
 
+    /**
+     * Retrona os ids de postagens com a categoria informada
+     * @param  string $categorie_name nome da categoria
+     * @return string                 String contendo todos os ids de postagens com a categoria informada
+     */
     public function getPostsIdByCategorie($categorie_name) {
         $categories = Categories::find(array(
             "conditions" => "categorie_name LIKE :categorie_name:",
@@ -144,6 +160,11 @@ class IndexController extends \Phalcon\Mvc\Controller {
         return $str_post_id;
     }
 
+    /**
+     * Retorna o autor pelo nome
+     * @param  string $name Nome ou parte do, do autor
+     * @return array       Array contendo informações sobre o autor da postagem
+     */
     public function getAuthorIdByName($name) {
         $users = Users::find(array(
             "conditions" => "user_login LIKE :user_login:",
@@ -159,6 +180,9 @@ class IndexController extends \Phalcon\Mvc\Controller {
         return $str_user_id;
     }
 
+    /**
+     * Carrega a view não encontrado
+     */
     public function notFoundAction() {
 
         //view/index/notFound.phtml

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Mail" namespace="Multiple\Library" name="Mail" abstract="false" final="false" start="20" end="69">
+  <file path="/var/www/html/pluton/apps/library" file="Mail.php" realpath="/var/www/html/pluton/apps/library/Mail.php" size="2137" time="2015-09-17T04:51:53+00:00" unixtime="1442465513" sha1="7862fabf6c3d3ccdac2ff25949cafee06b804130" relative="library/Mail.php"/>
+  <docblock>
+    <description compact="Classe para envios e confirmação de emails utilizando Swift Mailer"/>
+  </docblock>
+  <member name="transport" visibility="private" static="false" line="22"/>
+  <member name="mailer" visibility="private" static="false" line="23"/>
+  <member name="mail" visibility="private" static="false" line="24"/>
+  <member name="mail_password" visibility="private" static="false" line="25"/>
+  <constructor name="__construct" start="30" end="36" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Efetua a configuração do swift para envio de emails"/>
+    </docblock>
+    <parameter name="blog_mail" byreference="false" type="{unknown}"/>
+    <parameter name="blog_mail_password" byreference="false" type="{unknown}"/>
+  </constructor>
+  <method name="sendMessage" start="45" end="52" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Envia um email"/>
+      <param description="Assunto do email" type="string" variable="$subject"/>
+      <param description="Array com todos os destinatários do email" type="array" variable="$addresse"/>
+      <param description="Conteúdo da mensagem" type="string" variable="$body"/>
+      <return description="true caso o email tenha sido enviado ou false caso ocorra algum erro" type="object">
+        <type full="Multiple\Library\bool" namespace="Multiple\Library" name="bool"/>
+      </return>
+    </docblock>
+    <parameter name="subject" byreference="false" type="{unknown}"/>
+    <parameter name="addresse" byreference="false" type="{unknown}"/>
+    <parameter name="body" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="sendContactMessage" start="61" end="68" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Envia um email para o email principal do sistema"/>
+      <param description="Assunto do email" type="string" variable="$subject"/>
+      <param description="Remetente do email" type="object" variable="$sender">
+        <type full="Multiple\Library\strin" namespace="Multiple\Library" name="strin"/>
+      </param>
+      <param description="Conteúdo da mensagem" type="string" variable="$body"/>
+      <return description="true caso o email tenha sido enviado ou false caso ocorra algum erro" type="object">
+        <type full="Multiple\Library\bool" namespace="Multiple\Library" name="bool"/>
+      </return>
+    </docblock>
+    <parameter name="subject" byreference="false" type="{unknown}"/>
+    <parameter name="sender" byreference="false" type="{unknown}"/>
+    <parameter name="body" byreference="false" type="{unknown}"/>
+  </method>
+</class>

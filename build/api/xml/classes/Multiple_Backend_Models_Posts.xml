@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Posts" namespace="Multiple\Backend\Models" name="Posts" abstract="false" final="false" start="19" end="97">
+  <file path="/var/www/html/pluton/apps/backend/models" file="Posts.php" realpath="/var/www/html/pluton/apps/backend/models/Posts.php" size="3643" time="2015-09-17T04:15:18+00:00" unixtime="1442463318" sha1="13734f36a038618c281346b8af01178db31dfe60" relative="backend/models/Posts.php"/>
+  <docblock>
+    <description compact="Classe responsável por manipular dados referentes aos Posts"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="onConstruct" start="21" end="35" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="createNewPost" start="49" end="66" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Cria uma nova postagem"/>
+      <param description="data da criação do post" type="object" variable="$post_date_create">
+        <type full="Multiple\Backend\Models\date" namespace="Multiple\Backend\Models" name="date"/>
+      </param>
+      <param description="data que aparecerá no blog como postado" type="object" variable="$post_date_posted">
+        <type full="Multiple\Backend\Models\date" namespace="Multiple\Backend\Models" name="date"/>
+      </param>
+      <param description="data da ultima modificação da postagem" type="object" variable="$post_date_changed">
+        <type full="Multiple\Backend\Models\date" namespace="Multiple\Backend\Models" name="date"/>
+      </param>
+      <param description="id do autor da postagem" type="int" variable="$post_author"/>
+      <param description="id do editor da postagem" type="int" variable="$post_editor"/>
+      <param description="titulo do post" type="string" variable="$post_title"/>
+      <param description="conteudo da postagem" type="string" variable="$post_content"/>
+      <param description="status do post" type="object" variable="$post_status_id">
+        <type full="Multiple\Backend\Models\id" namespace="Multiple\Backend\Models" name="id"/>
+      </param>
+      <return description="id da nova postagem caso sucesso ou zero caso false" type="int"/>
+    </docblock>
+    <parameter name="post_date_create" byreference="false" type="{unknown}"/>
+    <parameter name="post_date_posted" byreference="false" type="{unknown}"/>
+    <parameter name="post_date_changed" byreference="false" type="{unknown}"/>
+    <parameter name="post_author" byreference="false" type="{unknown}"/>
+    <parameter name="post_editor" byreference="false" type="{unknown}"/>
+    <parameter name="post_title" byreference="false" type="{unknown}"/>
+    <parameter name="post_content" byreference="false" type="{unknown}"/>
+    <parameter name="post_status_id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="updatePostAction" start="80" end="96" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Atualiza uma postagem"/>
+      <param description="ido do post a ser atualizado" type="int" variable="$pos_id"/>
+      <param description="data que aparecerá no blog como postado" type="object" variable="$post_date_posted">
+        <type full="Multiple\Backend\Models\date" namespace="Multiple\Backend\Models" name="date"/>
+      </param>
+      <param description="data da ultima modificação da postagem" type="object" variable="$post_date_changed">
+        <type full="Multiple\Backend\Models\date" namespace="Multiple\Backend\Models" name="date"/>
+      </param>
+      <param description="id do autor da postagem" type="int" variable="$post_author"/>
+      <param description="id do editor da postagem" type="int" variable="$post_editor"/>
+      <param description="titulo do post" type="string" variable="$post_title"/>
+      <param description="conteudo da postagem" type="string" variable="$post_content"/>
+      <param description="status do post" type="object" variable="$post_status_id">
+        <type full="Multiple\Backend\Models\id" namespace="Multiple\Backend\Models" name="id"/>
+      </param>
+      <return description="id da postagem caso sucesso ou -1 caso ocorra algum erro" type="int"/>
+    </docblock>
+    <parameter name="post_id" byreference="false" type="{unknown}"/>
+    <parameter name="post_date_posted" byreference="false" type="{unknown}"/>
+    <parameter name="post_date_changed" byreference="false" type="{unknown}"/>
+    <parameter name="post_author" byreference="false" type="{unknown}"/>
+    <parameter name="post_editor" byreference="false" type="{unknown}"/>
+    <parameter name="post_title" byreference="false" type="{unknown}"/>
+    <parameter name="post_content" byreference="false" type="{unknown}"/>
+    <parameter name="post_status_id" byreference="false" type="{unknown}"/>
+  </method>
+</class>

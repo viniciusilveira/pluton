@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController" abstract="false" final="false" start="27" end="129">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="BaseController.php" realpath="/var/www/html/pluton/apps/backend/controllers/BaseController.php" size="3766" time="2015-09-16T20:45:10+00:00" unixtime="1442436310" sha1="adfd034e15bd0a472feb161b6be388ffd7b27eec" relative="backend/controllers/BaseController.php"/>
+  <docblock>
+    <description compact="Controlador principal do sistema, herdado por todos os outros controlladores"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Controller" namespace="Phalcon\Mvc" name="Controller" unresolved="true"/>
+  <method name="getUserLoggedInformation" start="33" end="42" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Busca todas as informações do usuário logado"/>
+      <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
+    </docblock>
+  </method>
+  <method name="getSideBarMenus" start="48" end="67" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
+      <return description="contendo menus e submenus" type="array"/>
+    </docblock>
+  </method>
+  <method name="uid" start="74" end="91" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
+      <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
+        <type full="Multiple\Backend\Controllers\type" namespace="Multiple\Backend\Controllers" name="type"/>
+      </param>
+      <return description="chave eletronica gerada" type="string"/>
+    </docblock>
+    <parameter name="l" byreference="false" type="integer" default="6"/>
+  </method>
+  <method name="dateFormat" start="99" end="106" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
+      <param description="data a ser alterada" type="object" variable="$data">
+        <type full="Multiple\Backend\Controllers\date" namespace="Multiple\Backend\Controllers" name="date"/>
+      </param>
+      <param description="indica o formato da data. 1 =&gt; Human, 2 =&gt; database" type="int" variable="$format"/>
+      <return description="data formatada" type="object">
+        <type full="Multiple\Backend\Controllers\date" namespace="Multiple\Backend\Controllers" name="date"/>
+      </return>
+    </docblock>
+    <parameter name="data" byreference="false" type="{unknown}"/>
+    <parameter name="format" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="mountArrayMonths" start="112" end="128" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
+      <return description="contendo os meses do calendário em pt_BR" type="array"/>
+    </docblock>
+  </method>
+  <extenders>
+    <extender full="Multiple\Backend\Controllers\UpdateController" namespace="Multiple\Backend\Controllers" name="UpdateController"/>
+    <extender full="Multiple\Backend\Controllers\IndexController" namespace="Multiple\Backend\Controllers" name="IndexController"/>
+    <extender full="Multiple\Backend\Controllers\AppearanceController" namespace="Multiple\Backend\Controllers" name="AppearanceController"/>
+    <extender full="Multiple\Backend\Controllers\StatisticsController" namespace="Multiple\Backend\Controllers" name="StatisticsController"/>
+    <extender full="Multiple\Backend\Controllers\PluginController" namespace="Multiple\Backend\Controllers" name="PluginController"/>
+    <extender full="Multiple\Backend\Controllers\PostController" namespace="Multiple\Backend\Controllers" name="PostController"/>
+    <extender full="Multiple\Backend\Controllers\DashboardController" namespace="Multiple\Backend\Controllers" name="DashboardController"/>
+    <extender full="Multiple\Backend\Controllers\LoginController" namespace="Multiple\Backend\Controllers" name="LoginController"/>
+    <extender full="Multiple\Backend\Controllers\SetupController" namespace="Multiple\Backend\Controllers" name="SetupController"/>
+    <extender full="Multiple\Backend\Controllers\SettingsController" namespace="Multiple\Backend\Controllers" name="SettingsController"/>
+  </extenders>
+</class>

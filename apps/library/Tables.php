@@ -763,6 +763,10 @@ class Tables {
         $connection->createTable("submenu", NULL, $table);
     }
 
+    /**
+     * Cria a tabela plugin
+     * @param $connection => Variável de conexão com o banco de dados
+     */
     public function createTablePlugin($connection) {
         $table = array(
             "columns" => array(

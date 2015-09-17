@@ -13,6 +13,9 @@
  */
 namespace Multiple\Backend\Models;
 
+/**
+ * Classe responsável por manipular dados referentes aos Posts
+ */
 class Posts extends \Phalcon\Mvc\Model {
 
     public function onConstruct() {
@@ -32,7 +35,7 @@ class Posts extends \Phalcon\Mvc\Model {
     }
 
     /**
-     * Cria uma nova postagem no banco de dados
+     * Cria uma nova postagem
      * @param  date $post_date_create  data da criação do post
      * @param  date $post_date_posted  data que aparecerá no blog como postado
      * @param  date $post_date_changed data da ultima modificação da postagem
@@ -62,6 +65,18 @@ class Posts extends \Phalcon\Mvc\Model {
         }
     }
 
+    /**
+     * Atualiza uma postagem
+     * @param  int $pos_id ido do post a ser atualizado
+     * @param  date $post_date_posted  data que aparecerá no blog como postado
+     * @param  date $post_date_changed data da ultima modificação da postagem
+     * @param  int $post_author       id do autor da postagem
+     * @param  int $post_editor       id do editor da postagem
+     * @param  string $post_title        titulo do post
+     * @param  string $post_content      conteudo da postagem
+     * @param  id $post_status_id    status do post
+     * @return int id da postagem caso sucesso ou -1 caso ocorra algum erro
+     */
     public function updatePostAction($post_id, $post_date_posted, $post_date_changed, $post_author, $post_editor, $post_title, $post_content, $post_status_id) {
 
         $post = Posts::findFirstByPost_id($post_id);

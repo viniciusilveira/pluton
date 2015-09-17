@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Frontend\Controllers\IndexController" namespace="Multiple\Frontend\Controllers" name="IndexController" abstract="false" final="false" start="35" end="238">
+  <file path="/var/www/html/pluton/apps/frontend/controllers" file="IndexController.php" realpath="/var/www/html/pluton/apps/frontend/controllers/IndexController.php" size="7695" time="2015-09-17T04:53:46+00:00" unixtime="1442465626" sha1="e07fa82450000221a6d6e3bfa66d061980483e3f" relative="frontend/controllers/IndexController.php"/>
+  <docblock>
+    <description compact="Controlador principal do módulo frontend"/>
+  </docblock>
+  <extends full="Phalcon\Mvc\Controller" namespace="Phalcon\Mvc" name="Controller" unresolved="true"/>
+  <method name="indexAction" start="40" end="84" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Carrega a tela principal do blog"/>
+    </docblock>
+    <inline>
+      <comment value="caso o blog esteja criado carrega a index; se não carrega a pagina not found" line="82"/>
+    </inline>
+  </method>
+  <method name="getPostsPerPage" start="91" end="120" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Recebe o número da página e retorna os itens a serem exibidos naquela página"/>
+      <param description="número da página a ser exibida na tela" type="int" variable="$page"/>
+      <return description="result contendo os posts retornados" type="object">
+        <type full="\Phalcon\Model\Resultset" namespace="\Phalcon\Model" name="Resultset"/>
+      </return>
+    </docblock>
+    <parameter name="page" byreference="false" type="{unknown}"/>
+    <parameter name="search" byreference="false" type="{unknown}" default="" constant="NULL"/>
+    <parameter name="str_posts_id" byreference="false" type="{unknown}" default="" constant="NULL"/>
+    <parameter name="str_users_id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getCategories" start="127" end="140" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna todas as categorias de um post"/>
+      <param description="Objeto Resultset com informações sobre posts" type="object" variable="$posts">
+        <type full="\Phalcon\Mvc\Resultset" namespace="\Phalcon\Mvc" name="Resultset"/>
+      </param>
+      <return description="array contendo todoas as categorias da postagem" type="array"/>
+    </docblock>
+    <parameter name="posts" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getPostsIdByCategorie" start="147" end="161" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retrona os ids de postagens com a categoria informada"/>
+      <param description="nome da categoria" type="string" variable="$categorie_name"/>
+      <return description="String contendo todos os ids de postagens com a categoria informada" type="string"/>
+    </docblock>
+    <parameter name="categorie_name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getAuthorIdByName" start="168" end="181" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Retorna o autor pelo nome"/>
+      <param description="Nome ou parte do, do autor" type="string" variable="$name"/>
+      <return description="Array contendo informações sobre o autor da postagem" type="array"/>
+    </docblock>
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="notFoundAction" start="186" end="191" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Carrega a view não encontrado"/>
+    </docblock>
+  </method>
+  <method name="postPageAction" start="196" end="205" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Carrega a página de posts exibidindo a postagem informada via REQUEST"/>
+    </docblock>
+  </method>
+  <method name="aboutAction" start="207" end="213" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="contactAction" start="215" end="220" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="setMailLibrary" start="222" end="225" abstract="false" final="false" static="false" visibility="private"/>
+  <method name="sendContactAction" start="227" end="237" abstract="false" final="false" static="false" visibility="public"/>
+</class>

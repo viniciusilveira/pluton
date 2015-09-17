@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\AppearanceController" namespace="Multiple\Backend\Controllers" name="AppearanceController" abstract="false" final="false" start="16" end="46">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="AppearanceController.php" realpath="/var/www/html/pluton/apps/backend/controllers/AppearanceController.php" size="1182" time="2015-09-16T20:42:09+00:00" unixtime="1442436129" sha1="4278a17283a1ff775bcce3fed35a41e2cf4843d8" relative="backend/controllers/AppearanceController.php"/>
+  <docblock>
+    <description compact="Classe responsável pela edição da aparência do blog"/>
+  </docblock>
+  <extends full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController"/>
+  <method name="indexAction" start="21" end="24" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Redireciona para a página inicial do blog permitindo a edição do mesmo"/>
+    </docblock>
+  </method>
+  <method name="saveAction" start="29" end="45" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Salva a alteração da parte do layout recebida via post"/>
+    </docblock>
+  </method>
+  <parent full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController">
+    <extends full="Phalcon\Mvc\Controller" namespace="Phalcon\Mvc" name="Controller" unresolved="true"/>
+    <method name="getUserLoggedInformation" start="33" end="42" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Busca todas as informações do usuário logado"/>
+        <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
+      </docblock>
+    </method>
+    <method name="getSideBarMenus" start="48" end="67" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
+        <return description="contendo menus e submenus" type="array"/>
+      </docblock>
+    </method>
+    <method name="uid" start="74" end="91" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
+        <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
+          <type full="Multiple\Backend\Controllers\type" namespace="Multiple\Backend\Controllers" name="type"/>
+        </param>
+        <return description="chave eletronica gerada" type="string"/>
+      </docblock>
+      <parameter name="l" byreference="false" type="integer" default="6"/>
+    </method>
+    <method name="dateFormat" start="99" end="106" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
+        <param description="data a ser alterada" type="object" variable="$data">
+          <type full="Multiple\Backend\Controllers\date" namespace="Multiple\Backend\Controllers" name="date"/>
+        </param>
+        <param description="indica o formato da data. 1 =&gt; Human, 2 =&gt; database" type="int" variable="$format"/>
+        <return description="data formatada" type="object">
+          <type full="Multiple\Backend\Controllers\date" namespace="Multiple\Backend\Controllers" name="date"/>
+        </return>
+      </docblock>
+      <parameter name="data" byreference="false" type="{unknown}"/>
+      <parameter name="format" byreference="false" type="{unknown}"/>
+    </method>
+    <method name="mountArrayMonths" start="112" end="128" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
+        <return description="contendo os meses do calendário em pt_BR" type="array"/>
+      </docblock>
+    </method>
+  </parent>
+</class>

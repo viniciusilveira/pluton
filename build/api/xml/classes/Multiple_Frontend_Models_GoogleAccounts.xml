@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Frontend\Models\GoogleAccounts" namespace="Multiple\Frontend\Models" name="GoogleAccounts" abstract="false" final="false" start="11" end="18">
+  <file path="/var/www/html/pluton/apps/frontend/models" file="GoogleAccounts.php" realpath="/var/www/html/pluton/apps/frontend/models/GoogleAccounts.php" size="427" time="2015-09-17T04:55:26+00:00" unixtime="1442465726" sha1="fffedbfeb23d851d170b252d54211d6bace142c9" relative="frontend/models/GoogleAccounts.php"/>
+  <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
+  <method name="initialize" start="12" end="17" abstract="false" final="false" static="false" visibility="public"/>
+</class>

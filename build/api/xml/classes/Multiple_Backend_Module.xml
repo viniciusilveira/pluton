@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Module" namespace="Multiple\Backend" name="Module" abstract="false" final="false" start="14" end="55">
+  <file path="/var/www/html/pluton/apps/backend" file="Module.php" realpath="/var/www/html/pluton/apps/backend/Module.php" size="1442" time="2015-08-30T22:59:40+00:00" unixtime="1440975580" sha1="add60448e5c398fca16b4e97c50338ba241c224a" relative="backend/Module.php"/>
+  <method name="registerAutoloaders" start="16" end="28" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="registerServices" start="33" end="54" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Registra os serviços específicos para este módulo"/>
+    </docblock>
+    <parameter name="di" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="Registra o dispatcher" line="35"/>
+      <comment value="Registra os diretórios das views" line="48"/>
+    </inline>
+  </method>
+</class>

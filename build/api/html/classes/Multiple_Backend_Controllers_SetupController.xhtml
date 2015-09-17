@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Multiple\Backend\Controllers\SetupController</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml#Multiple_Backend_Controllers">Multiple\Backend\Controllers</a>
+          </li>
+          <li class="separator">SetupController</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/backend/controllers/SetupController.php.xhtml#line36">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Multiple\Backend\Controllers\</small>SetupController</h1>
+        <h4>Classe para conexão e configuração dos dados necessários para utilização do sistema</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class SetupController
+                extends <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController.xhtml">BaseController</a>
+            {<br/><ul class="none"><li>// members</li><li>public  <a href="#members">$connection</a>;
+                    </li><li>private  <a href="#members">$config</a>;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/indexAction.xhtml">indexAction</a>()
+                    </li><li>public void <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/databaseConfigAction.xhtml">databaseConfigAction</a>()
+                    </li><li>public void <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/installAction.xhtml">installAction</a>()
+                    </li><li>public void <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/verifyInstalation.xhtml">verifyInstalation</a>()
+                    </li><li>public string <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/verifyDataBaseAction.xhtml">verifyDataBaseAction</a>()
+                    </li><li>public void <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/databaseSettingsAction.xhtml">databaseSettingsAction</a>()
+                    </li><li>private bool <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/connectDatabase.xhtml">connectDatabase</a>()
+                    </li><li>private void <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/createTables.xhtml">createTables</a>()
+                    </li><li>private boolean <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/createUsersTypes.xhtml">createUsersTypes</a>()
+                    </li><li>private boolean <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/createPostsStatus.xhtml">createPostsStatus</a>()
+                    </li><li>private boolean <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/createMenus.xhtml">createMenus</a>()
+                    </li><li>public void <a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/installPlutonAction.xhtml">installPlutonAction</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Multiple\Backend\Controllers\BaseController">BaseController</span></li><li>public array <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getUserLoggedInformation.xhtml">getUserLoggedInformation</a>()
+                        </li><li>public array <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getSideBarMenus.xhtml">getSideBarMenus</a>()
+                        </li><li>public string <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/uid.xhtml">uid</a>()
+                        </li><li>public date <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/dateFormat.xhtml">dateFormat</a>()
+                        </li><li>public array <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/mountArrayMonths.xhtml">mountArrayMonths</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController.xhtml">Multiple\Backend\Controllers\BaseController</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="config">
+              <strong>$config</strong>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul class="members">
+            <li id="connection">
+              <strong>$connection</strong>
+            </li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="connectDatabase"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/connectDatabase.xhtml">connectDatabase()</a>
+                — Configura e executa a conexão com o banco de dados</li>
+            <li id="createMenus"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/createMenus.xhtml">createMenus()</a>
+                — Cria os menus e submenus da sidebar no banco de dados</li>
+            <li id="createPostsStatus"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/createPostsStatus.xhtml">createPostsStatus()</a>
+                — Cria os status possíveis para postagens</li>
+            <li id="createTables"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/createTables.xhtml">createTables()</a>
+                — Cria as tabelas necessárias para o funcionamento do sistema</li>
+            <li id="createUsersTypes"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/createUsersTypes.xhtml">createUsersTypes()</a>
+                — Cria os tipos de usuários no sistema</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="databaseConfigAction"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/databaseConfigAction.xhtml">databaseConfigAction()</a>
+                — Carrega a view para inserção dos dados de conexão com o banco de dados</li>
+            <li id="databaseSettingsAction"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/databaseSettingsAction.xhtml">databaseSettingsAction()</a>
+                — Recebe os dados do banco de dados via post; Cria o arquivo de configuração do banco de dados e conecta com o banco de dados</li>
+            <li id="indexAction"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/indexAction.xhtml">indexAction()</a>
+                — Carrega a view setup/index.phtml</li>
+            <li id="installAction"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/installAction.xhtml">installAction()</a>
+                — Carrega a view de instalação do sistema.</li>
+            <li id="installPlutonAction"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/installPlutonAction.xhtml">installPlutonAction()</a>
+                — Efetua a "instalação" do sistema; Criando o usuário Super-Administrador e o blog</li>
+            <li id="verifyDataBaseAction"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/verifyDataBaseAction.xhtml">verifyDataBaseAction()</a>
+                — Verifica se o banco de dados está configurado corretamente, caso não esteja, efetua as configurações necessárias.</li>
+            <li id="verifyInstalation"><a title="Multiple\Backend\Controllers\SetupController" href="../classes/Multiple_Backend_Controllers_SetupController/verifyInstalation.xhtml">verifyInstalation()</a>
+                — Verifica a instalação do sistema, caso esteja tudo ok retorna a string 'ok', caso contrário retorna o que falta ser configurado.</li>
+          </ul>
+          <h3>Inherited from <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController.xhtml">Multiple\Backend\Controllers\BaseController</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="dateFormat"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/dateFormat.xhtml">dateFormat()</a>
+                — Altera o formato da data para human ou database conforme o parametro informado</li>
+            <li id="getSideBarMenus"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getSideBarMenus.xhtml">getSideBarMenus()</a>
+                — Busca as opções a serem exibidas no menu lateral do sistema</li>
+            <li id="getUserLoggedInformation"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getUserLoggedInformation.xhtml">getUserLoggedInformation()</a>
+                — Busca todas as informações do usuário logado</li>
+            <li id="mountArrayMonths"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/mountArrayMonths.xhtml">mountArrayMonths()</a>
+                — Monta um array com o nome dos 12 meses do calendário em pt_BR</li>
+            <li id="uid"><a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/uid.xhtml">uid()</a>
+                — Gera uma string aleatória contendo números letras maiusculas e minusculas</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.1.1 - Copyright (C) 2010 - 2015 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

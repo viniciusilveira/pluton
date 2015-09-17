@@ -11,8 +11,7 @@
 namespace Multiple\Backend\Models;
 
 /**
- * Class Layouts
- * @package Multiple\Backend\Models
+ * Classe responsável por manipular dados referentes ao Layout do blog
  */
 class Layouts extends \Phalcon\Mvc\Model {
 
@@ -22,10 +21,11 @@ class Layouts extends \Phalcon\Mvc\Model {
 
     /**
      * Insere os dados do layout no banco de dados
-     * @return boolean
+     * @return boolean verdadeiro caso sucesso ou falso caso ocorra algum erro
      */
     public function createLayout() {
         $layout = new Layouts();
+
         //Caso não seja passado os dados do layout, cria um padrão
         $layout->layout_banner = '';
         $layout->layout_subtitle = addslashes(htmlentities('Page Heading<small>Secondary Text</small>'));
@@ -52,9 +52,10 @@ class Layouts extends \Phalcon\Mvc\Model {
     }
 
     /**
-     * Busca um layout pelo id
-     * @param  int $id_layout id do layout
-     * @return array            array com os dados do layout retornado
+     * Atualiza os dados de uma deterimanda parte do layout
+     * @param  string $attribute parte do layout a ser alterada
+     * @param  string $content   novo conteúdo a ser inserido
+     * @return boolean            Verdadeiro caso sucesso ou falso caso ocorra algum erro
      */
     public function updateLayout($attribute, $content) {
         $content = addslashes(htmlentities($content));
@@ -89,14 +90,14 @@ class Layouts extends \Phalcon\Mvc\Model {
             case 'footer':
                 $layout->layout_footer = $content;
                 return $layout->save();
-                break;
+            break;
             case 'navigation':
                 $layout->layout_navigation = $content;
                 return $layout->save();
-                break;
+            break;
             default:
                 return false;
-                break;
+            break;
         }
     }
 }

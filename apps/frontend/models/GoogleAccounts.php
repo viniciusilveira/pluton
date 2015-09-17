@@ -1,11 +1,11 @@
 <?php
 /**
-* Class and Function List:
-* Function list:
-* - initialize()
-* Classes list:
-* - GoogleAccounts extends \
-*/
+ * Class and Function List:
+ * Function list:
+ * - initialize()
+ * Classes list:
+ * - GoogleAccounts extends \
+ */
 namespace Multiple\Frontend\Models;
 
 class GoogleAccounts extends \Phalcon\Mvc\Model {

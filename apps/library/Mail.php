@@ -1,18 +1,18 @@
 <?php
 /**
-* Class and Function List:
-* Function list:
-* - __construct()
-* - sendMessage()
-* Classes list:
-* - Mail
-*/
+ * Class and Function List:
+ * Function list:
+ * - __construct()
+ * - sendMessage()
+ * - sendContactMessage()
+ * Classes list:
+ * - Mail
+ */
 namespace Multiple\Library;
 
 use Swift_Message AS Message;
 use Swift_SmtpTransport AS Smtp;
 use Swift_Mailer AS Mailer;
-
 
 /**
  * Classe para envios e confirmação de emails utilizando Swift Mailer
@@ -37,10 +37,10 @@ class Mail {
 
     /**
      * Envia um email
-     * @param  string 	$subject  	Assunto do email
-     * @param  array 	$addresse  	Array com todos os destinatários do email
-     * @param  string 	$body     	Conteúdo da menssagem
-     * @return bool		            true caso o email tenha sido enviado ou false caso ocorra algum erro
+     * @param  string   $subject    Assunto do email
+     * @param  array    $addresse   Array com todos os destinatários do email
+     * @param  string   $body       Conteúdo da mensagem
+     * @return bool                 true caso o email tenha sido enviado ou false caso ocorra algum erro
      */
     public function sendMessage($subject, $addresse, $body) {
 
@@ -51,10 +51,17 @@ class Mail {
         return $this->mailer->send($message);
     }
 
-    public function sendContactMessage($subject, $addresse, $body){
+    /**
+     * Envia um email para o email principal do sistema
+     * @param  string $subject Assunto do email
+     * @param  strin $sender  Remetente do email
+     * @param  string $body    Conteúdo da mensagem
+     * @return bool                 true caso o email tenha sido enviado ou false caso ocorra algum erro
+     */
+    public function sendContactMessage($subject, $sender, $body) {
 
         $message = Message::newInstance($subject)->setFrom(array(
-            $this->transport->getUsername() => $addresse
+            $this->transport->getUsername() => $sender
         ))->setTo($this->mail)->setBody($body);
 
         return $this->mailer->send($message);
