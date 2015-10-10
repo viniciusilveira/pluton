@@ -6,6 +6,10 @@
         <div class="row">
             <form name="google-account" id="google-account" role="form">
                 <div class="form-group input-group col-sm-10">
+                    <div class="col-sm-5"><label>Analytics: </label><input type="checkbox" class="my-checkbox" checked></div>
+                    <div class="col-sm-5"><label>Adsense: </label><input type="checkbox" class="my-checkbox" checked></div>
+                </div>
+                <div class="form-group input-group col-sm-10">
                     <span class="input-group-addon"><i class="fa fa-google"></i></span>
                     <input type="text" name="g_account" id="g_account" value="<?= $google_account_login ?>" class="form-control" placeholder="XXXXXXXXXXXXXXXXXX@developer.gserviceaccount.com">
                 </div>
@@ -13,7 +17,7 @@
                     <input type="file" id="input-p12-file" name="pk12_key" class="filestyle" data-buttonName="btn-primary" data-buttonText="Insira o arquivo de chave .p12">
                 </div>
                 <div class="form-group input-group col-sm-10">
-                    <label>Script Google Analytics</label>
+                    <div class="col-sm-10"><label>Script Google Analytics: </label></div>
                     <textarea name="analytics_script" style="resize: none;" cols="79" rows="10"><?= html_entity_decode(stripslashes($google_analytics_script))?></textarea>
                 </div>
                 <div class="form-group input-group col-sm-6">

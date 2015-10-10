@@ -1,8 +1,15 @@
 <?php
-namespace Multiple\Backend\Controllers;
+/**
+ * Class and Function List:
+ * Function list:
+ * - generateBearerToken()
+ * - getLookupTwitterProfileBlog()
+ * Classes list:
+ * - TwitterSdk extends BaseController
+ */
+namespace Multiple\Library;
 
-class TwitterSdkController extends \Phalcon\Mvc\Controller
-{
+class TwitterSdk extends BaseController {
 
     /**
      * Gera o token de acesso a API do twitter através do APPID e APPSECRET informados pelo usuário
@@ -18,7 +25,14 @@ class TwitterSdkController extends \Phalcon\Mvc\Controller
         $bearer_token = $encoded_consumer_key . ':' . $encoded_consumer_secret;
         $base64_consumer_key = base64_encode($bearer_token);
         $url = "https://api.twitter.com/oauth2/token";
-        $headers = array("POST /oauth2/token HTTP/1.1", "Host: api.twitter.com", "User-Agent: Twitter Application-only OAuth App", "Authorization: Basic " . $base64_consumer_key, "Content-Type: application/x-www-form-urlencoded;charset=UTF-8", "Content-Length: 29");
+        $headers = array(
+            "POST /oauth2/token HTTP/1.1",
+            "Host: api.twitter.com",
+            "User-Agent: Twitter Application-only OAuth App",
+            "Authorization: Basic " . $base64_consumer_key,
+            "Content-Type: application/x-www-form-urlencoded;charset=UTF-8",
+            "Content-Length: 29"
+        );
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -52,7 +66,12 @@ class TwitterSdkController extends \Phalcon\Mvc\Controller
     public function getLookupTwitterProfileBlog($bearer_token, $twitter_username) {
         $url = "https://api.twitter.com/1.1/users/lookup.json";
         $formed_url = '?screen_name=' . $twitter_username;
-        $headers = array("GET /1.1/users/lookup.json" . $formed_url . " HTTP/1.1", "Host: api.twitter.com", "User-Agent: Twitter Application-only OAuth App", "Authorization: Bearer " . $bearer_token,);
+        $headers = array(
+            "GET /1.1/users/lookup.json" . $formed_url . " HTTP/1.1",
+            "Host: api.twitter.com",
+            "User-Agent: Twitter Application-only OAuth App",
+            "Authorization: Bearer " . $bearer_token,
+        );
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url . $formed_url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);

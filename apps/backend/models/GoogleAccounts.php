@@ -47,7 +47,7 @@ class GoogleAccounts extends \Phalcon\Mvc\Model {
 
         //Valor padrão do id do blog
         $google_account->blog_id = 1;
-        $return = $googleAccount->save();
+        $return = $google_account->save();
 
         return $return;
     }

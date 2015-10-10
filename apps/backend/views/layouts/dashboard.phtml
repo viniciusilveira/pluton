@@ -58,6 +58,6 @@
     <!-- /#wrapper -->
     <script>
     $("#edit-profile").click(function(){
-        window.location.href = '<?= URL_PROJECT?>dashboard/newUser?user_id= <?= $this->session->get("user_id") ?>';
+        window.location.href = '<?= URL_PROJECT?>users/index?user_id= <?= $this->session->get("user_id") ?>';
     });
     </script>

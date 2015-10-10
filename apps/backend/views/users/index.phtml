@@ -2,6 +2,7 @@
 
     img{cursor: pointer;}
 </style>
+
 <div class="col-lg-12">
     <hr>
     <hr>
@@ -21,7 +22,7 @@
                 <div class="col-sm-8">
                     <div class="row">
                         <div class="col-sm-2 div-img-profile">
-                            <img src="http://www.placecage.com/g/200/300"  name="preview_img" id="imgPreview_img" class="img-responsive img-thumbnail" alt="Image">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=75&txt=500%C3%97500&w=500&h=500"  name="preview_img" id="imgPreview_img" class="img-responsive img-thumbnail" alt="Image">
                         </div>
                         <div class=" col-sm-10">
                             <input type="text" name="user_name" id="inputUser_name" class="form-control" value="" required="required" placeholder="Nome Completo">
@@ -58,7 +59,7 @@
                             <div class="row text-center">
                                 <?php if(!$not_disable){ ?>
                                     <button type="button" id="deactive" class="btn btn-primary btn-lg">
-                                        <?= $user['user_active'] ? 'Desativar' : 'Ativar' ?>
+                                        <?= $user_edit['user_active'] ? 'Desativar' : 'Ativar' ?>
                                     </button>
                                 <?php } ?>
                                 <button type="button" id="edit" class="btn btn-primary btn-lg">Salvar</button>
@@ -131,7 +132,7 @@ var Form = function(){
                 if(data.success){
                     swal.success('Dados Salvos com sucesso');
                     $(".confirm").click(function(){
-                        window.location.href ='<?= URL_PROJECT?>dashboard/listUsers';
+                        window.location.href ='<?= URL_PROJECT?>users/listUsers';
                     });
                 } else{
                     swal.error(data.message);
@@ -157,9 +158,9 @@ var Form = function(){
      */
     var formSubmit = function(edit_user){
         if(!edit_user){
-            saveData('<?= URL_PROJECT ?>dashboard/addNewUser');
+            saveData('<?= URL_PROJECT ?>users/addNewUser');
         } else{
-            saveData('<?= URL_PROJECT ?>dashboard/updateUser');
+            saveData('<?= URL_PROJECT ?>users/updateUser');
         }
     }
 
@@ -195,7 +196,7 @@ var Form = function(){
         var swal = new Swal;
         var user_id = $("#inputUser_id").val();
         $.ajax({
-            url: '<?= URL_PROJECT ?>dashboard/ActiveOrdeactiveUser',
+            url: '<?= URL_PROJECT ?>users/ActiveOrdeactiveUser',
             data: 'user_id=' + user_id,
             dataType: 'json',
             type: 'POST',
@@ -205,7 +206,7 @@ var Form = function(){
                 } else{
                     swal.error('Ocorreu um erro durante a operação. Tente novamente!');
                 }
-                window.location.href = 'main', '<?= URL_PROJECT?>dashboard/listUsers';
+                window.location.href = '<?= URL_PROJECT?>users/listUsers';
             }
         });
     }
@@ -247,7 +248,7 @@ var Swal = function(){
  *Então esses dados são salvos como objeto JSON na variavel data;
  */
 var data = ('<?= json_encode($user_edit); ?>');
-
+console.log(data);
 var edit_user = ('<?= $edit_user ?>');
 if(edit_user){
     form = new Form;
@@ -268,7 +269,7 @@ $("#edit").click(function(){
 });
 
 $("#deactive").click(function(){
-    if("<?= $user['user_active'] ?>"){
+    if(data.user_active){
         var text = 'Ao desativar o usuário o mesmo não podera mais acessar o sistema. Nenhuma informação será deletada.';
     } else{
         var text = 'Deseja realmente reativar o usuário?';

@@ -4,7 +4,6 @@
  * Function list:
  * - indexAction()
  * - databaseConfigAction()
- * - newBlogAction()
  * - installAction()
  * - verifyInstalation()
  * - verifyDataBaseAction()
@@ -242,8 +241,8 @@ class SetupController extends BaseController {
     private function createMenus() {
         $id_menu = Menu::createMenu("fa fa-users", "Usuários", "#sub-users", 2);
         if ($id_menu > 0) {
-            $success = Submenu::createSubmenu($id_menu, "fa fa-user-plus", "Novo", "dashboard/newUser", 1);
-            $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "dashboard/listUsers", 2) : false;
+            $success = Submenu::createSubmenu($id_menu, "fa fa-user-plus", "Novo", "users/newUser", 1);
+            $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "users/listUsers", 2) : false;
         }
         else {
             $success = false;

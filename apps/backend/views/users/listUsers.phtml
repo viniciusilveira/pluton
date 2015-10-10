@@ -57,7 +57,7 @@
     }
     window.actionEvents = {
         'click .edit': function (e, value, row, index) {
-            window.location.href = '<?= URL_PROJECT?>dashboard/newUser?user_id=' + row.id;
+            window.location.href = '<?= URL_PROJECT?>users/index?user_id=' + row.id;
         }
     };
     function queryParams() {

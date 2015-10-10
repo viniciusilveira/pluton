@@ -18,10 +18,7 @@ namespace Multiple\Library;
 
 use Google_Client, Google_Service_Analytics, Google_Auth_AssertionCredentials;
 
-class Analytics extends \Phalcon\Mvc\Controller {
-
-    public function index() {
-    }
+class Analytics {
 
     /**
      * Cria um objeto do tipo Google_Service_Analytics
@@ -29,7 +26,7 @@ class Analytics extends \Phalcon\Mvc\Controller {
      * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google
      * @return Google_Service_Analytics             Objeto do tipo Google_Service_Analytics
      */
-    public function getService($google_account_login, $google_account_key_file_name) {
+    private function getService($google_account_login, $google_account_key_file_name) {
 
         $service_account_email = $google_account_login;
         $key_file_location = FOLDER_PROJECT . "keys/" . $google_account_key_file_name;
@@ -55,7 +52,7 @@ class Analytics extends \Phalcon\Mvc\Controller {
      * @param  Google_Service_Analytics &$analytics objeto do tipo Google_Service_Analytics
      * @return int si perfil
      */
-    function getFirstprofileId(&$analytics) {
+    private function getFirstprofileId(&$analytics) {
 
         $accounts = $analytics->management_accounts->listManagementAccounts();
 
@@ -96,7 +93,7 @@ class Analytics extends \Phalcon\Mvc\Controller {
         return $analytics->data_ga->get('ga:' . $profileId, $initial, $final, 'ga:sessions');
     }
 
-    public function getTotalSessions($result) {
+    private function getTotalSessions($result) {
         if (count($result->getRows()) > 0) {
 
             // Get the profile name.
@@ -151,7 +148,7 @@ class Analytics extends \Phalcon\Mvc\Controller {
         $profileId = Analytics::getFirstprofileId($analytics);
         $month = date('m');
         for ($m = 0;$m + 1 <= $month;$m++) {
-            $initial = $m < 10 ? date('Y') . '-0' . ($m + 1) . '-01' : date('Y') . '-' . $m . '-01';
+            $initial = $m + 1 < 10 ? date('Y') . '-0' . ($m + 1) . '-01' : date('Y') . '-' . ($m + 1) . '-01';
 
             $final = date("Y-m-t", strtotime($initial));
             $result = Analytics::getResults($analytics, $profileId, $initial, $final);

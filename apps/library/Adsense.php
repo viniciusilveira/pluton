@@ -13,7 +13,7 @@ use Google_Client;
 use Google_Service_AdSense;
 use Google_Auth_AssertionCredentials;
 
-class Adsense extends BaseController {
+class Adsense{
 
     /**
      * Retorna um objeto do tipo Google_Service_AdSense
@@ -52,7 +52,7 @@ class Adsense extends BaseController {
      * @param  string $google_account_key_file_name Nome do arquivo chave para acesso a API do google
      */
     public function getEarnings($google_account_login, $google_account_key_file_name) {
-        $adsense = AdsenseController::getService($google_account_login, $google_account_key_file_name);
+        $adsense = Adsense::getService($google_account_login, $google_account_key_file_name);
         $optParams = array(
             'metric' => array(
                 'earnings'

@@ -20,7 +20,6 @@ namespace Multiple\Backend\Controllers;
 use Multiple\Backend\Models\GoogleAccounts;
 use Multiple\Backend\Models\FacebookPages;
 use Multiple\Backend\Models\TwitterAccounts;
-use Multiple\Backend\Models\MailSettings;
 use Multiple\Backend\Models\Blogs;
 use Multiple\Backend\Models\Users;
 
@@ -92,10 +91,11 @@ class SettingsController extends BaseController {
                 $p12_key = $file;
             }
         }
+
         //var_dump($_POST); die();
         $g_script_analytics = $this->request->getPost("analytics_script");
         $p12_key->moveTo(FOLDER_PROJECT . "keys/" . $p12_key->getName());
-        $data['success'] = GoogleAccounts::createGoogleAccount($g_account, $p12_key->getName(), $g_script_analytics);
+        $data['success'] = GoogleAccounts::createGoogleAccount($g_account, $p12_key->getName() , $g_script_analytics);
 
         echo json_encode($data);
     }
@@ -116,9 +116,10 @@ class SettingsController extends BaseController {
 
         $google_account = GoogleAccounts::findFirst();
 
-        $data['success'] = GoogleAccounts::updateGoogleAccount($g_account, $p12_key->getName(), $g_script_analytics);
+        $data['success'] = GoogleAccounts::updateGoogleAccount($g_account, $p12_key->getName() , $g_script_analytics);
 
         if ($data['success']) {
+
             //remove o arquivo antigo e insere o novo
             unlink(FOLDER_PROJECT . "keys/" . $google_account->google_account_key_file_name);
             $p12_key->moveTo(FOLDER_PROJECT . "keys/" . $p12_key->getName());

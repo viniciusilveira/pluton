@@ -2,22 +2,22 @@
 /**
  * Class and Function List:
  * Function list:
- * - facebook_count()
+ * - facebookCount()
  * Classes list:
- * - FacebookController extends \
+ * - Facebook extends BaseController
  */
-namespace Multiple\Backend\Controllers;
+namespace Multiple\Library;
 
 /**
  * Classe responsável por coletar dados referentes ao facebook
  */
-class FacebookController extends \Phalcon\Mvc\Controller {
+class Facebook extends BaseController {
 
-	/**
-	 * Conta a quantidade de likes de uma página
-	 * @param  string $url nome da página a ser consultada
-	 */
-    function facebook_count($url) {
+    /**
+     * Conta a quantidade de likes de uma página
+     * @param  string $url nome da página a ser consultada
+     */
+    function facebookCount($url) {
 
         // Query in FQL
         $fql = "SELECT share_count, like_count, comment_count ";

@@ -52,7 +52,7 @@ class UpdateController extends BaseController {
     /**
      * Busca todas as tags do repositório do Projeto
      */
-    public function getVersions() {
+    private function getVersions() {
         $ch = curl_init();
 
         // Seta a url e as propriedades

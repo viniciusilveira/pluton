@@ -4,25 +4,28 @@
             <form id="twitter-account" name="twitter-account" role="form">
                 <div class="panel-heading">
                     <label style="font-size: 18px;"> Configurar API do Twitter</label>
-                    </div>
-                    <div class="form-group input-group col-sm-10">
-                        <span class="input-group-addon">@</span>
-                        <input type="text" name="app_id" class="form-control" value="<?= $tw_account_app_id ?>" placeholder="APP ID">
-                    </div>
-                    <div class="form-group input-group col-sm-10">
-                        <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
-                        <input type="password" name="app_secret" value="<?= $tw_account_app_secret ?>" class="form-control" placeholder="APP Secret">
-                    </div>
-                    <div class="form-group input-group col-sm-10">
-                        <span class="input-group-addon">twitter.com/</span>
-                        <input type="text" name="username" class="form-control" value="<?= $tw_account_username ?>" placeholder="exemplo">
-                    </div>
-                    <div class="form-group input-group col-sm-6">
-                        <?php if(empty($tw_account_app_id)){ ?>
-                            <a href="#" id="save-twitter-account" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Salvar</a>
-                        <?php } else{ ?>
-                            <a href="#" id="edit-twitter-account" class="btn btn-block btn-primary btn-warning"><span class="glyphicon glyphicon-edit"></span> Alterar</a>
-                    <?php }?>
+                </div>
+                <div class="form-group input-group col-sm-10">
+                    <input type="checkbox" class="my-checkbox" checked>
+                </div>
+                <div class="form-group input-group col-sm-10">
+                    <span class="input-group-addon">@</span>
+                    <input type="text" name="app_id" class="form-control" value="<?= $tw_account_app_id ?>" placeholder="APP ID">
+                </div>
+                <div class="form-group input-group col-sm-10">
+                    <span class="input-group-addon glyphicon glyphicon-asterisk"></span>
+                    <input type="password" name="app_secret" value="<?= $tw_account_app_secret ?>" class="form-control" placeholder="APP Secret">
+                </div>
+                <div class="form-group input-group col-sm-10">
+                    <span class="input-group-addon">twitter.com/</span>
+                    <input type="text" name="username" class="form-control" value="<?= $tw_account_username ?>" placeholder="exemplo">
+                </div>
+                <div class="form-group input-group col-sm-6">
+                    <?php if(empty($tw_account_app_id)){ ?>
+                        <a href="#" id="save-twitter-account" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Salvar</a>
+                    <?php } else{ ?>
+                        <a href="#" id="edit-twitter-account" class="btn btn-block btn-primary btn-warning"><span class="glyphicon glyphicon-edit"></span> Alterar</a>
+                <?php }?>
                 </div>
             </form>
         </div>
