@@ -9,7 +9,7 @@
 		<p class="lead">
 		por <a id="author" data-id="<?= $post->author->user_id ?>" href="#"><?= $post->author->user_login ?></a>
 		</p>
-		<p><span class="glyphicon glyphicon-time"></span> Publicado em <?= $post->post_date_posted ?></p>
+		<p><span class="glyphicon glyphicon-time"></span> Publicado em <?= join('/', array_reverse(explode('-', $post->post_date_posted))) ?></p>
 		<hr>
 		<div class="div-post"><?= strip_tags(stripslashes(html_entity_decode($post_content[$post->post_id]))) ?></div>
 		<hr>

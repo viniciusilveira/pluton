@@ -22,7 +22,7 @@
                 </p>
                 <hr>
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span>  Publicado em <?= $post->post_date_posted ?></p>
+                <p><span class="glyphicon glyphicon-time"></span>  Publicado em <?= join('/', array_reverse(explode('-', $post->post_date_posted))) ?></p>
                 <hr>
                 <!-- Preview Image -->
                 <hr>
