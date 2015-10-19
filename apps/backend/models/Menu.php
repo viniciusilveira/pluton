@@ -23,12 +23,13 @@ class Menu extends \Phalcon\Mvc\Model {
      * @param  int $menu_level_permission    Nível de permissão do menu
      * @return int                        id do menu inserido
      */
-    public function createMenu($menu_icon, $menu_name, $menu_href, $menu_level_permission) {
+    public function createMenu($menu_icon, $menu_name, $menu_href, $menu_level_permission, $menu_active) {
         $menu = new Menu();
         $menu->menu_icon = $menu_icon;
         $menu->menu_name = $menu_name;
         $menu->menu_href = $menu_href;
         $menu->menu_level_permission = $menu_level_permission;
+        $menu->menu_active = $menu_active;
         $menu->save();
 
         return $menu->menu_id;

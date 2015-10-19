@@ -88,7 +88,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
      * @param  int $page número da página a ser exibida na tela
      * @return \Phalcon\Model\Resultset      result contendo os posts retornados
      */
-    public function getPostsPerPage($page, $search = NULL, $str_posts_id = NULL, $str_users_id) {
+    private function getPostsPerPage($page, $search = NULL, $str_posts_id = NULL, $str_users_id) {
         $conditions = "post_status_id = :status:";
         $bind = array(
             "status" => 1
@@ -124,7 +124,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
      * @param  \Phalcon\Mvc\Resultset $posts Objeto Resultset com informações sobre posts
      * @return array         array contendo todoas as categorias da postagem
      */
-    public function getCategories($posts) {
+    private function getCategories($posts) {
         foreach ($posts as $post) {
             $post_categorie = $post->post_categorie;
             foreach ($post_categorie as $pc) {
@@ -144,7 +144,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
      * @param  string $categorie_name nome da categoria
      * @return string                 String contendo todos os ids de postagens com a categoria informada
      */
-    public function getPostsIdByCategorie($categorie_name) {
+    private function getPostsIdByCategorie($categorie_name) {
         $categories = Categories::find(array(
             "conditions" => "categorie_name LIKE :categorie_name:",
             "bind" => array(
@@ -165,7 +165,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
      * @param  string $name Nome ou parte do, do autor
      * @return array       Array contendo informações sobre o autor da postagem
      */
-    public function getAuthorIdByName($name) {
+    private function getAuthorIdByName($name) {
         $users = Users::find(array(
             "conditions" => "user_login LIKE :user_login:",
             "bind" => array(
@@ -216,6 +216,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
         $blog = Blogs::findFirst();
         $vars['blog_name'] = $blog->blog_name;
         $vars['layout'] = Layouts::findFirst();
+        $vars['send_mail'] = $blog->blog_send_mail;
         $this->view->setVars($vars);
     }
 

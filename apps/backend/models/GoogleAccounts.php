@@ -39,11 +39,13 @@ class GoogleAccounts extends \Phalcon\Mvc\Model {
      * @param  $g_analytics_script script para verificação de acessos ao site pelo Google Analytics
      * @return boolean            true caso sucesso ou false caso ocorra alguma falha
      */
-    public function createGoogleAccount($g_account, $key_file_name, $g_analytics_script) {
+    public function createGoogleAccount($g_account, $key_file_name, $g_analytics_script, $g_analytics_active, $g_adsense_active) {
         $google_account = new GoogleAccounts();
         $google_account->google_account_login = $g_account;
         $google_account->google_account_key_file_name = $key_file_name;
         $google_account->google_analytics_script = addslashes(htmlentities($g_analytics_script));
+        $google_account->google_analytics_active = $g_analytics_active;
+        $google_account->google_adsense_active = $g_adsense_active;
 
         //Valor padrão do id do blog
         $google_account->blog_id = 1;
@@ -59,11 +61,13 @@ class GoogleAccounts extends \Phalcon\Mvc\Model {
      * @param  $g_analytics_script script para verificação de acessos ao site pelo Google Analytics
      * @return boolean            true caso sucesso ou false caso ocorra alguma falha
      */
-    public function updateGoogleAccount($g_account, $key_file_name, $g_analytics_script) {
+    public function updateGoogleAccount($g_account, $key_file_name, $g_analytics_script, $g_analytics_active, $g_adsense_active) {
         $google_account = GoogleAccounts::findFirst();
         $google_account->google_account_login = $g_account;
         $google_account->google_account_key_file_name = $key_file_name;
         $google_account->google_analytics_script = addslashes(htmlentities($g_analytics_script));
+        $google_account->google_analytics_active = $g_analytics_active;
+        $google_account->google_adsense_active = $g_adsense_active;
         $return = $google_account->save();
 
         return $return;

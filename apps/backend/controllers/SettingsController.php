@@ -44,12 +44,15 @@ class SettingsController extends BaseController {
                 $vars['google_account_login'] = $google_account->google_account_login;
                 $vars['google_account_key_file_name'] = $google_account->google_account_key_file_name;
                 $vars['google_analytics_script'] = $google_account->google_analytics_script;
+                $vars['google_analytics_active'] = $google_account->google_analytics_active;
+                $vars['google_adsense_active'] = $google_account->google_adsense_active;
             }
 
             //Busca informações da página do facebook
             $fb_page = FacebookPages::findFirst();
             if ($fb_page != NULL) {
                 $vars['fb_page_name'] = $fb_page->facebook_page_name;
+                $vars['fb_active'] = $fb_page->facebook_active;
             }
 
             //Busca informações do twitter
@@ -58,6 +61,7 @@ class SettingsController extends BaseController {
                 $vars['tw_account_app_id'] = $tw_account->twitter_account_app_id;
                 $vars['tw_account_app_secret'] = $tw_account->twitter_account_app_secret;
                 $vars['tw_account_username'] = $tw_account->twitter_account_username;
+                $vars['tw_active'] = $tw_account->twitter_active;
             }
 
             //Busca as preferências do blog
@@ -66,6 +70,7 @@ class SettingsController extends BaseController {
                 $vars['title'] = $preferences->blog_name;
                 $vars['url'] = $preferences->blog_url;
                 $vars['mail'] = $preferences->blog_mail;
+                $vars['mail_active'] = $preferences->blog_send_mail;
                 $vars['blog_about'] = $preferences->blog_about;
                 $vars['menus'] = $this->getSideBarMenus();
             }
@@ -94,8 +99,10 @@ class SettingsController extends BaseController {
 
         //var_dump($_POST); die();
         $g_script_analytics = $this->request->getPost("analytics_script");
+        $g_analytics_active = $this->request->getPost("analytics_active") == 'on' ? true : false;
+        $g_adsense_active = $this->request->getPost("adsense_active") == 'on' ? true : false;
         $p12_key->moveTo(FOLDER_PROJECT . "keys/" . $p12_key->getName());
-        $data['success'] = GoogleAccounts::createGoogleAccount($g_account, $p12_key->getName() , $g_script_analytics);
+        $data['success'] = GoogleAccounts::createGoogleAccount($g_account, $p12_key->getName() , $g_script_analytics, $g_analytics_active, $g_adsense_active);
 
         echo json_encode($data);
     }
@@ -113,10 +120,12 @@ class SettingsController extends BaseController {
         }
 
         $g_script_analytics = $this->request->getPost("analytics_script");
+        $g_analytics_active = $this->request->getPost("analytics_active") == 'on' ? true : false;
+        $g_adsense_active = $this->request->getPost("adsense_active") == 'on' ? true : false;
 
         $google_account = GoogleAccounts::findFirst();
 
-        $data['success'] = GoogleAccounts::updateGoogleAccount($g_account, $p12_key->getName() , $g_script_analytics);
+        $data['success'] = GoogleAccounts::updateGoogleAccount($g_account, $p12_key->getName() , $g_script_analytics, $g_analytics_active, $g_adsense_active);
 
         if ($data['success']) {
 
@@ -134,7 +143,8 @@ class SettingsController extends BaseController {
         $this->view->disable();
 
         $fb_page_name = $this->request->getPost("page_name");
-        $data['success'] = FacebookPages::createFacebookPage($fb_page_name);
+        $fb_active = $this->request->getPost('fb_active') == 'on' ? true : false;
+        $data['success'] = FacebookPages::createFacebookPage($fb_page_name, $fb_active);
         echo json_encode($data);
     }
 
@@ -145,7 +155,8 @@ class SettingsController extends BaseController {
         $this->view->disable();
 
         $fb_page_name = $this->request->getPost("page_name");
-        $data['success'] = FacebookPages::updateFacebookPage($fb_page_name);
+        $fb_active = $this->request->getPost('fb_active') == 'on' ? true : false;
+        $data['success'] = FacebookPages::updateFacebookPage($fb_page_name, $fb_active);
 
         echo json_encode($data);
     }
@@ -158,7 +169,8 @@ class SettingsController extends BaseController {
         $tw_app_id = $this->request->getPost("app_id");
         $tw_app_secret = $this->request->getPost("app_secret");
         $tw_username = $this->request->getPost("username");
-        $data['success'] = TwitterAccounts::createTwitterAccount($tw_app_id, $tw_app_secret, $tw_username);
+        $tw_active = $this->request->getPost("twitter_active") == 'on' ? true : false;
+        $data['success'] = TwitterAccounts::createTwitterAccount($tw_app_id, $tw_app_secret, $tw_username, $tw_active);
         echo json_encode($data);
     }
 
@@ -170,7 +182,8 @@ class SettingsController extends BaseController {
         $tw_app_id = $this->request->getPost("app_id");
         $tw_app_secret = $this->request->getPost("app_secret");
         $tw_username = $this->request->getPost("username");
-        $data['success'] = TwitterAccounts::updateTwitterAccount($tw_app_id, $tw_app_secret, $tw_username);
+        $tw_active = $this->request->getPost("twitter_active") == 'on' ? true : false;
+        $data['success'] = TwitterAccounts::updateTwitterAccount($tw_app_id, $tw_app_secret, $tw_username, $tw_active);
         echo json_encode($data);
     }
 
@@ -179,13 +192,15 @@ class SettingsController extends BaseController {
      * @return [type] [description]
      */
     public function updatePreferencesAction() {
+
         $this->view->disable();
         $title_blog = $this->request->getPost("title_blog");
         $url_project = $this->request->getPost("url_project");
         $mail_project = $this->request->getPost("mail_project");
         $mail_password = $this->request->getPost("mail_password");
+        $send_mail = $this->request->getPost("send_mail") == 'on' ? true : false;
         $blog_about = $this->request->getPost("blog_about");
-        $data['success'] = Blogs::updateBlog($title_blog, $url_project, $mail_project, $mail_password, $blog_about);
+        $data['success'] = Blogs::updateBlog($title_blog, $url_project, $mail_project, $mail_password, $send_mail, $blog_about);
 
         echo json_encode($data);
     }

@@ -32,12 +32,13 @@ class TwitterAccounts extends \Phalcon\Mvc\Model {
      * @param  string $username   Nome do usuário a ser monitorado
      * @return boolean  Verdadeiro caso sucesso ou falso caso ocorra algum erro
      */
-    public function createTwitterAccount($app_id, $app_secret, $username) {
+    public function createTwitterAccount($app_id, $app_secret, $username, $tw_active) {
         $twitter_account = new TwitterAccounts();
         $twitter_account->twitter_account_app_id = $app_id;
         $twitter_account->blog_id = 1;
         $twitter_account->twitter_account_app_secret = $app_secret;
         $twitter_account->twitter_account_username = $username;
+        $twitter_account->twitter_active = $tw_active;
         $return = $twitter_account->save();
         return $return;
     }
@@ -49,11 +50,12 @@ class TwitterAccounts extends \Phalcon\Mvc\Model {
      * @param  string $username   Nome do usuário a ser monitorado
      * @return boolean  Verdadeiro caso sucesso ou falso caso ocorra algum erro
      */
-    public function updateTwitterAccount($app_id, $app_secret, $username) {
+    public function updateTwitterAccount($app_id, $app_secret, $username, $tw_active) {
         $twitter_account = TwitterAccounts::FindFirst();
         $twitter_account->twitter_account_app_id = $app_id;
         $twitter_account->twitter_account_app_secret = $app_secret;
         $twitter_account->twitter_account_username = $username;
+        $twitter_account->twitter_active = $tw_active;
         $return = $twitter_account->save();
 
         return $return;

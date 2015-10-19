@@ -80,8 +80,9 @@ class DashboardController extends BaseController {
 
         //Dados do google analytics
         $google_account = GoogleAccounts::findFirst();
-        if (!empty($google_account)) {
+        $vars['analytics_active'] = $google_account->google_analytics_active;
 
+        if (!empty($google_account) && ($google_account->google_analytics_active)) {
             $data_analytics = Analytics::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
             $vars['sessions'] = $data_analytics['sessions'];
             $vars['months'] = $data_analytics['months'];
@@ -94,7 +95,8 @@ class DashboardController extends BaseController {
 
         //Dados do Twitter
         $tw_account = TwitterAccounts::findFirst();
-        if (!empty($tw_account)) {
+        $vars['tw_active'] = $tw_account->twitter_active;
+        if (!empty($tw_account) && $tw_account->twitter_active) {
             $bearer_token = TwitterSdk::generateBearerToken($tw_account->twitter_account_app_id, $tw_account->twitter_account_app_secret);
             $data_twitter = TwitterSdk::getLookupTwitterProfileBlog($bearer_token, $tw_account->twitter_account_username);
 
@@ -106,7 +108,8 @@ class DashboardController extends BaseController {
 
         //Dados do Facebook
         $fb_page = FacebookPages::findFirst();
-        if (!empty($fb_page)) {
+        $vars['fb_active'] = $fb_page->facebook_active;
+        if (!empty($fb_page) && $fb_page->facebook_active) {
             $facebook = Facebook::facebookCount("https://www.facebook.com/" . $fb_page->facebook_page_name);
             $vars['facebook_likes'] = $facebook[0]['like_count'];
         }

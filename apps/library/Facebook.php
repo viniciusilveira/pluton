@@ -11,7 +11,7 @@ namespace Multiple\Library;
 /**
  * Classe responsável por coletar dados referentes ao facebook
  */
-class Facebook extends BaseController {
+class Facebook {
 
     /**
      * Conta a quantidade de likes de uma página

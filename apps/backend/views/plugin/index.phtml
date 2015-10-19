@@ -62,7 +62,9 @@
                     <div class="form-group col-sm-10">
                         <input type="text" name="submenu2_icon" class="form-control" value="<?= $submenu2['submenu_icon']?>" placeholder="Ícone de exibição">
                     </div>
-
+                    <div class="form-group input-group col-sm-10">
+                        <div class="col-sm-5"><label>Ativar: </label><input type="checkbox" class="my-checkbox" checked></div>
+                    </div>
                     <div class="form-group col-sm-6">
                         <?php if(empty($plugin['plugin_id'])){ ?>
                         <a href="#" id="save-plugin" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Adicionar</a>
@@ -132,5 +134,11 @@ $("#edit-plugin").click(function(){
             }
         }
     });
+});
+
+$(".my-checkbox").bootstrapSwitch({
+    state: true,
+    size: "small",
+    offColor: "warning"
 });
 </script>

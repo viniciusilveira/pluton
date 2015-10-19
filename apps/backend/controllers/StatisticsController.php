@@ -24,20 +24,29 @@ class StatisticsController extends BaseController {
         $this->session->start();
         if ($this->session->get("user_id") != NULL) {
             $vars = $this->getUserLoggedInformation();
-            $google_account = GoogleAccounts::findFirst();
-            $result_countries = Analytics::getCountryOriginAccess($google_account->google_account_login, $google_account->google_account_key_file_name);
-            foreach ($result_countries as $id => $country) {
-                $countries[$id] = $country[0];
-                $sessions_country[$id] = $country[1];
-            }
-            $sessions = Analytics::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
-            $vars['sessions'] = $sessions['sessions'];
-            $vars['months'] = $sessions['months'];
-            $vars['total_sessions'] = $sessions['total_sessions'];
             $vars['menus'] = $this->getSideBarMenus();
-            $vars['countries'] = $countries;
-            $vars['sessions_country'] = $sessions_country;
-            $vars['pageviews'] = Analytics::getPageViews($google_account->google_account_login, $google_account->google_account_key_file_name);
+            $vars['months'] = $sessions['months'];
+
+            $google_account = GoogleAccounts::findFirst();
+            if($google_account->google_analytics_active){
+                $result_countries = Analytics::getCountryOriginAccess($google_account->google_account_login, $google_account->google_account_key_file_name);
+                foreach ($result_countries as $id => $country) {
+                    $countries[$id] = $country[0];
+                    $sessions_country[$id] = $country[1];
+                }
+                $sessions = Analytics::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
+                $vars['sessions'] = $sessions['sessions'];
+                $vars['total_sessions'] = $sessions['total_sessions'];
+
+                $vars['countries'] = $countries;
+                $vars['sessions_country'] = $sessions_country;
+                $vars['pageviews'] = Analytics::getPageViews($google_account->google_account_login, $google_account->google_account_key_file_name);
+            } else{
+                $vars['sessions'] = 0;
+                $vars['total_sessions'] = 0;
+                $vars['pageviews'] = 0;
+            }
+
             $this->view->setVars($vars);
         }
     }

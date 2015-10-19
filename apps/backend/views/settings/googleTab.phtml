@@ -6,8 +6,8 @@
         <div class="row">
             <form name="google-account" id="google-account" role="form">
                 <div class="form-group input-group col-sm-10">
-                    <div class="col-sm-5"><label>Analytics: </label><input type="checkbox" class="my-checkbox" checked></div>
-                    <div class="col-sm-5"><label>Adsense: </label><input type="checkbox" class="my-checkbox" checked></div>
+                    <div class="col-sm-5"><label>Analytics: </label><input type="checkbox" name="analytics_active" class="analytics-checkbox" ></div>
+                    <div class="col-sm-5"><label>Adsense: </label><input type="checkbox" name="adsense_active" class="adsense-checkbox" ></div>
                 </div>
                 <div class="form-group input-group col-sm-10">
                     <span class="input-group-addon"><i class="fa fa-google"></i></span>
@@ -166,5 +166,17 @@ $("#input-p12-file").change(function(){
                     confirmButtonText: "OK"
             });
         }
+});
+
+$(".adsense-checkbox").bootstrapSwitch({
+    state: <?= $google_adsense_active ?>,
+    size: "small",
+    offColor: "warning"
+});
+
+$(".analytics-checkbox").bootstrapSwitch({
+    state: <?= $google_analytics_active ?>,
+    size: "small",
+    offColor: "warning"
 });
 </script>

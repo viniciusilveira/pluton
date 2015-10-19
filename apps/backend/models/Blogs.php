@@ -34,12 +34,14 @@ class Blogs extends \Phalcon\Mvc\Model {
      * Cria um blog no banco de dados com o nome informado via parametro
      * @param  string $blog_name Nome do blog a ser criado
      * @param  int $layout_id id do layout do blog
+     * @param  bool $blog_send_mail Informa se o envio de email está ativo
      * @return boolean            true caso sucesso ou false caso de erro.
      */
-    public function createBlog($blog_name, $layout_id) {
+    public function createBlog($blog_name, $layout_id, $blog_send_mail) {
         $blog = new Blogs();
         $blog->blog_name = $blog_name;
         $blog->blog_layout = $layout_id;
+        $blog->blog_send_mail = $blog_send_mail;
         $success = $blog->save();
 
         return $success;
@@ -51,15 +53,17 @@ class Blogs extends \Phalcon\Mvc\Model {
      * @param  string $blog_url           url do blog
      * @param  string $blog_mail          email principal
      * @param  string $blog_mail_password senha do email principal
+     * @param  bool $blog_send_mail Informa se o envio de email está ativo
      * @param  string $blog_about         pequeno texto sobre o blog
      * @return boolean                     true caso sucesso ou false caso de erro.
      */
-    public function updateBlog($blog_name, $blog_url, $blog_mail, $blog_mail_password, $blog_about) {
+    public function updateBlog($blog_name, $blog_url, $blog_mail, $blog_mail_password, $blog_send_mail, $blog_about) {
         $blog = Blogs::findFirst();
         $blog->blog_name = $blog_name;
         $blog->blog_url = $blog_url;
         $blog->blog_mail = $blog_mail;
         $blog->blog_mail_password = $blog_mail_password;
+        $blog->blog_send_mail = $blog_send_mail;
         $blog->blog_about = $blog_about;
         return $blog->save();
     }

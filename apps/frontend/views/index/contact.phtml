@@ -1,5 +1,6 @@
 <div class="container">
     <div class="row">
+    <?php if($send_mail){ ?>
         <div class="col-md-12">
             <form role="form" id="send" method="post" >
                 <div class="col-lg-6">
@@ -26,6 +27,12 @@
                 </div>
             </form>
         </div>
+    <?php }  else{?>
+        <div class="col-md-12">
+                <h1 class="text-center" style="color: blue;"> <b>Desculpe</b> </h1>
+                <h2 class="text-center"> Este serviço não está disponível no momento. Tente novamente mais tarde. </h2>
+            </div>
+    <?php } ?>
     </div>
 </div>
 

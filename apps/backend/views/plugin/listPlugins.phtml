@@ -24,6 +24,7 @@
                     <th data-field="name" data-sortable="true">Nome</th>
                     <th data-field="login" data-sortable="true">Endereço</th>
                     <th data-field="e-mail" data-sortable="true">Nível de Permissão</th>
+                    <th data-field="status" data-sortable="true">Status</th>
                     <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">Editar</th>
                 </tr>
             </thead>
@@ -34,13 +35,14 @@
                     <td><?= $plugin['plugin_name'] ?></td>
                     <td><?= $menu[$id]['menu_href'] ?></td>
                     <td><?= $menu[$id]['menu_level_permission'] ?></td>
+                    <td><?= $menu[$id]['menu_active']?></td>
                 </tr>
                     <?php } ?>
                 </tbody>
         </table>
     </div>
 </div>
-    <script>
+<script>
     /**
     * Ao clicar em qualquer usuário carrega a tela de edição de usuário
     */
@@ -56,6 +58,7 @@
             window.location.href = '<?= URL_PROJECT?>plugin/index?plugin_id=' + row.id;
         }
     };
+
     function queryParams() {
         return {
             type: 'owner',
@@ -65,4 +68,4 @@
             page: 1
         };
     }
-    </script>
+</script>

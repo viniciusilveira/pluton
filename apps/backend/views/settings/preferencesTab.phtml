@@ -14,7 +14,7 @@
                     <input type="text" name="url_project" class="form-control" value="<?= $url ?>" placeholder="URL">
                 </div>
                 <div class="form-group input-group col-offset-2">
-                    <label>Envio de E-mails: </label><input type="checkbox" class="my-checkbox" checked>
+                    <label>Envio de E-mails: </label><input type="checkbox" name="send_mail" class="mail-checkbox" checked>
                 </div>
                 <div class="form-group input-group col-sm-10">
 
@@ -72,7 +72,11 @@ $("#edit-preferences").click(function(){
     });
 });
 
-
+$(".mail-checkbox").bootstrapSwitch({
+    state: <?= $mail_active ?>,
+    size: "small",
+    offColor: "warning"
+});
 
 /**
  * Carrega o editor wysiwyg tinymce para edição de uma nova postagem

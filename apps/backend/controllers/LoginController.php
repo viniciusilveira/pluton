@@ -16,7 +16,7 @@
 namespace Multiple\Backend\Controllers;
 
 use Multiple\Backend\Models\Users AS Users;
-
+use Multiple\Backend\Models\Blogs;
 /**
  * Classe responsável pela manipulação de login e sessão do sistema
  */
@@ -65,6 +65,9 @@ class LoginController extends BaseController {
     }
 
     public function newCodeResetPasswordAction() {
+        $preferences = Blogs::findFirst();
+        $vars['send_mail'] = $preferences->blog_send_mail;
+        $this->view->setVars($vars);
 
         // apps/backend/views/newCodeResetPassword
 

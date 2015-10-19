@@ -126,6 +126,9 @@ class Tables {
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 250,
                 )) ,
+                new Column("blog_send_mail", array(
+                    "type" => Column::TYPE_BOOLEAN
+                )) ,
                 new Column("blog_about", array(
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 65535
@@ -550,6 +553,12 @@ class Tables {
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 65535
                 )) ,
+                new Column("google_analytics_active", array(
+                    "type" => Column::TYPE_BOOLEAN
+                )) ,
+                new Column("google_adsense_active", array(
+                    "type" => Column::TYPE_BOOLEAN
+                ))
             ) ,
             "indexes" => array(
                 new Index("blog_id", array(
@@ -595,6 +604,9 @@ class Tables {
                     "type" => Column::TYPE_VARCHAR,
                     "size" => 50,
                     "notNull" => true,
+                )) ,
+                new Column("facebook_active", array(
+                    "type" => Column::TYPE_BOOLEAN
                 )) ,
             ) ,
             "indexes" => array(
@@ -651,6 +663,9 @@ class Tables {
                     "size" => 20,
                     "notNull" => true,
                 )) ,
+                new Column("twitter_active", array(
+                    "type" => Column::TYPE_BOOLEAN
+                )) ,
             ) ,
             "indexes" => array(
                 new Index("blog_id", array(
@@ -701,6 +716,9 @@ class Tables {
                 new Column("menu_level_permission", array(
                     "type" => Column::TYPE_INTEGER,
                     "size" => 10
+                )) ,
+                new Column("menu_active", array(
+                    "type" => Column::TYPE_BOOLEAN,
                 ))
             )
         );
