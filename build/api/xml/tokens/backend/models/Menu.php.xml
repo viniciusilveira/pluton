@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="Menu.php" realpath="/var/www/html/pluton/apps/backend/models/Menu.php" size="2225" time="2015-09-17T04:07:51+00:00" unixtime="1442462871" sha1="03fffb4fc9966374b50450337da6e7b5b6a5aaf8" relative="backend/models/Menu.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="Menu.php" realpath="/var/www/html/pluton/apps/backend/models/Menu.php" size="2339" time="2015-10-24T17:49:11+00:00" unixtime="1445708951" sha1="c665c81d8693ac7fc06a2b4ce2e5b97dcdbcd2f8" relative="backend/models/Menu.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -111,6 +111,9 @@
     <token name="T_PHPDOX_COMMA">,</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$menu_level_permission</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$menu_active</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
@@ -176,13 +179,24 @@
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$menu</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">menu_active</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$menu_active</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="33">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$menu</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
     <token name="T_STRING">save</token>
     <token name="T_PHPDOX_OPEN_BRACKET">(</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="33"/>
-  <line no="34">
+  <line no="34"/>
+  <line no="35">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
@@ -191,43 +205,43 @@
     <token name="T_STRING">menu_id</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="35">
+  <line no="36">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="36"/>
-  <line no="37">
+  <line no="37"/>
+  <line no="38">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="38">
+  <line no="39">
     <token name="T_DOC_COMMENT">     * Atualiza um menu existente</token>
   </line>
-  <line no="39">
+  <line no="40">
     <token name="T_DOC_COMMENT">     * @param int menu_id id do menu ao ser atualizado</token>
   </line>
-  <line no="40">
+  <line no="41">
     <token name="T_DOC_COMMENT">     * @param  string $menu_icon             nome do novo icone, pode ser referente a glyphicons do bootstrap(http://getbootstrap.com/components/)</token>
   </line>
-  <line no="41">
+  <line no="42">
     <token name="T_DOC_COMMENT">     * ou os ic&#xF4;nes do font awesome (http://fortawesome.github.io/Font-Awesome/3.2.1/icons/)</token>
   </line>
-  <line no="42">
+  <line no="43">
     <token name="T_DOC_COMMENT">     * @param  string $menu_name             nome do menu</token>
   </line>
-  <line no="43">
+  <line no="44">
     <token name="T_DOC_COMMENT">     * @param  string $menu_href             Endere&#xE7;o que deve acessar</token>
   </line>
-  <line no="44">
+  <line no="45">
     <token name="T_DOC_COMMENT">     * @param  int $menu_level_permission    N&#xED;vel de permiss&#xE3;o do menu</token>
   </line>
-  <line no="45">
+  <line no="46">
     <token name="T_DOC_COMMENT">     * @return boolean verdadeiro caso sucesso ou falso caso ocorra alguma falha</token>
   </line>
-  <line no="46">
+  <line no="47">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="47">
+  <line no="48">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -248,11 +262,14 @@
     <token name="T_PHPDOX_COMMA">,</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$menu_level_permission</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$menu_active</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="48">
+  <line no="49">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$menu</token>
     <token name="T_WHITESPACE"> </token>
@@ -266,7 +283,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="49">
+  <line no="50">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$menu</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -277,7 +294,7 @@
     <token name="T_VARIABLE">$menu_icon</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="50">
+  <line no="51">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$menu</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -288,7 +305,7 @@
     <token name="T_VARIABLE">$menu_name</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="51">
+  <line no="52">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$menu</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -299,7 +316,7 @@
     <token name="T_VARIABLE">$menu_href</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="52">
+  <line no="53">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$menu</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -310,7 +327,18 @@
     <token name="T_VARIABLE">$menu_level_permission</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="53">
+  <line no="54">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$menu</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">menu_active</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$menu_active</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="55">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$success</token>
     <token name="T_WHITESPACE"> </token>
@@ -323,20 +351,20 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="54"/>
-  <line no="55">
+  <line no="56"/>
+  <line no="57">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$success</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="56">
+  <line no="58">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="57">
+  <line no="59">
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="58"/>
+  <line no="60"/>
 </source>

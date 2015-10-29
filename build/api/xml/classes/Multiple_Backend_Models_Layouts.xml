@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Layouts" namespace="Multiple\Backend\Models" name="Layouts" abstract="false" final="false" start="16" end="103">
-  <file path="/var/www/html/pluton/apps/backend/models" file="Layouts.php" realpath="/var/www/html/pluton/apps/backend/models/Layouts.php" size="3876" time="2015-09-17T04:07:55+00:00" unixtime="1442462875" sha1="c4543da9a0cffb0d216ecf9025ef0316f4163bfe" relative="backend/models/Layouts.php"/>
+  <file path="/var/www/html/pluton/apps/backend/models" file="Layouts.php" realpath="/var/www/html/pluton/apps/backend/models/Layouts.php" size="3876" time="2015-09-17T05:03:25+00:00" unixtime="1442466205" sha1="c4543da9a0cffb0d216ecf9025ef0316f4163bfe" relative="backend/models/Layouts.php"/>
   <docblock>
     <description compact="Classe responsável por manipular dados referentes ao Layout do blog"/>
   </docblock>

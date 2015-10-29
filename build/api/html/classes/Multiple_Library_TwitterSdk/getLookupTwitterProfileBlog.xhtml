@@ -36,12 +36,12 @@
             <a href="../../classes.xhtml">Classes</a>
           </li>
           <li class="separator">
-            <a href="../../classes.xhtml#Multiple_Backend_Controllers">Multiple\Backend\Controllers</a>
+            <a href="../../classes.xhtml#Multiple_Library">Multiple\Library</a>
           </li>
           <li class="separator">
-            <a title="Multiple\Backend\Controllers\FacebookController" href="../../classes/Multiple_Backend_Controllers_FacebookController.xhtml">FacebookController</a>
+            <a title="Multiple\Library\TwitterSdk" href="../../classes/Multiple_Library_TwitterSdk.xhtml">TwitterSdk</a>
           </li>
-          <li class="separator">facebook_count</li>
+          <li class="separator">getLookupTwitterProfileBlog</li>
         </ul>
       </div>
       <nav class="box">
@@ -56,27 +56,41 @@
             <a href="#parameter">Parameter</a>
           </li>
           <li>
-            <a href="../../source/backend/controllers/FacebookController.php.xhtml#line20">Source</a>
+            <a href="#return">Return</a>
+          </li>
+          <li>
+            <a href="../../source/library/TwitterSdk.php.xhtml#line70">Source</a>
           </li>
         </ul>
       </nav>
       <section>
-        <h1><small>Multiple\Backend\Controllers\FacebookController::</small>facebook_count</h1>
-        <h4>Conta a quantidade de likes de uma página</h4>
+        <h1><small>Multiple\Library\TwitterSdk::</small>getLookupTwitterProfileBlog</h1>
+        <h4>Retorna informações sobre o profile do twitter solicitado</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>public function facebook_count(string
-        $url )
+          <code>public function getLookupTwitterProfileBlog(string
+        $bearer_token,
+            string
+        $twitter_username )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
         <dl class="styled">
-          <dt><code>$url</code>
+          <dt><code>$bearer_token</code>
                 —
                 string</dt>
-          <dd>nome da página a ser consultada</dd>
+          <dd>token de acesso a api do twitter</dd>
+          <dt><code>$twitter_username</code>
+                —
+                string</dt>
+          <dd>nome de usuário do perfil do twitter para verifcar dados</dd>
+        </dl>
+        <h2 id="return">Returns</h2>
+        <dl class="styled">
+          <dt>array</dt>
+          <dd>array contendo informações do perfil do twitter verificado</dd>
         </dl>
       </section>
     </div>

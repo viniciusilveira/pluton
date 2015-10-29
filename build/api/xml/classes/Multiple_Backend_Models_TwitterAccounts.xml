@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\TwitterAccounts" namespace="Multiple\Backend\Models" name="TwitterAccounts" abstract="false" final="false" start="14" end="61">
-  <file path="/var/www/html/pluton/apps/backend/models" file="TwitterAccounts.php" realpath="/var/www/html/pluton/apps/backend/models/TwitterAccounts.php" size="2097" time="2015-09-17T04:22:50+00:00" unixtime="1442463770" sha1="88dd193458c46ca474cd30812588c9111def7a67" relative="backend/models/TwitterAccounts.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\TwitterAccounts" namespace="Multiple\Backend\Models" name="TwitterAccounts" abstract="false" final="false" start="18" end="67">
+  <file path="/var/www/html/pluton/apps/backend/models" file="TwitterAccounts.php" realpath="/var/www/html/pluton/apps/backend/models/TwitterAccounts.php" size="2333" time="2015-10-29T05:19:13+00:00" unixtime="1446095953" sha1="1dee1a37578b0f7083bf71cfe7224765c5d84e84" relative="backend/models/TwitterAccounts.php"/>
+  <docblock>
+    <description compact="Classe responsável pelo gerenciamento de dados referente a contas da rede social twitter"/>
+  </docblock>
   <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
-  <method name="initialize" start="16" end="18" abstract="false" final="false" static="false" visibility="public"/>
-  <method name="getSource" start="24" end="26" abstract="false" final="false" static="false" visibility="public">
+  <method name="initialize" start="20" end="22" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getSource" start="28" end="30" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Retorna o nome da tabela ao qual a classe referencia no banco de dados"/>
       <return description="nome da tabela" type="string"/>
     </docblock>
   </method>
-  <method name="createTwitterAccount" start="35" end="43" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTwitterAccount" start="39" end="48" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Insere dados referentes ao twitter"/>
       <param description="APP ID fornecido pelo twitter" type="string" variable="$app_id"/>
@@ -20,8 +23,9 @@
     <parameter name="app_id" byreference="false" type="{unknown}"/>
     <parameter name="app_secret" byreference="false" type="{unknown}"/>
     <parameter name="username" byreference="false" type="{unknown}"/>
+    <parameter name="tw_active" byreference="false" type="{unknown}"/>
   </method>
-  <method name="updateTwitterAccount" start="52" end="60" abstract="false" final="false" static="false" visibility="public">
+  <method name="updateTwitterAccount" start="57" end="66" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Atualiza os dados referentes ao twitter"/>
       <param description="APP ID fornecido pelo twitter" type="string" variable="$app_id"/>
@@ -32,5 +36,6 @@
     <parameter name="app_id" byreference="false" type="{unknown}"/>
     <parameter name="app_secret" byreference="false" type="{unknown}"/>
     <parameter name="username" byreference="false" type="{unknown}"/>
+    <parameter name="tw_active" byreference="false" type="{unknown}"/>
   </method>
 </class>

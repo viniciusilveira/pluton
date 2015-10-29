@@ -18,6 +18,9 @@ namespace Multiple\Library;
 
 use Google_Client, Google_Service_Analytics, Google_Auth_AssertionCredentials;
 
+/**
+ * Classe responsável pelo gerenciamento das funcionalidades do Google Analytics
+ */
 class Analytics {
 
     /**

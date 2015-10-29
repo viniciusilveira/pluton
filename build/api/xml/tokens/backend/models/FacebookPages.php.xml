@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="FacebookPages.php" realpath="/var/www/html/pluton/apps/backend/models/FacebookPages.php" size="1631" time="2015-09-17T04:08:03+00:00" unixtime="1442462883" sha1="68695439efeffc7302ef67873e3257bee3450298" relative="backend/models/FacebookPages.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="FacebookPages.php" realpath="/var/www/html/pluton/apps/backend/models/FacebookPages.php" size="1763" time="2015-10-19T23:38:52+00:00" unixtime="1445297932" sha1="d25f63c28418b9fcf82b0a61b3b5bee30f6d0b2e" relative="backend/models/FacebookPages.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -170,6 +170,9 @@
     <token name="T_STRING">createFacebookPage</token>
     <token name="T_PHPDOX_OPEN_BRACKET">(</token>
     <token name="T_VARIABLE">$page_name</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$fb_active</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
@@ -211,6 +214,17 @@
   </line>
   <line no="43">
     <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$facebook_page</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">facebook_active</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$fb_active</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="44">
+    <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_EQUAL">=</token>
@@ -222,36 +236,36 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="44"/>
-  <line no="45">
+  <line no="45"/>
+  <line no="46">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$return</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="46">
+  <line no="47">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="47"/>
-  <line no="48">
+  <line no="48"/>
+  <line no="49">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="49">
+  <line no="50">
     <token name="T_DOC_COMMENT">     * Atualiza dados referente a p&#xE1;gina do facebook</token>
   </line>
-  <line no="50">
+  <line no="51">
     <token name="T_DOC_COMMENT">     * @param  string $page_name nome da p&#xE1;gina</token>
   </line>
-  <line no="51">
+  <line no="52">
     <token name="T_DOC_COMMENT">     * @return boolean            verdadeiro caso sucesso ou falso caso ocorra alguma falha</token>
   </line>
-  <line no="52">
+  <line no="53">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="53">
+  <line no="54">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -260,11 +274,14 @@
     <token name="T_STRING">updateFacebookPage</token>
     <token name="T_PHPDOX_OPEN_BRACKET">(</token>
     <token name="T_VARIABLE">$page_name</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$fb_active</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="54">
+  <line no="55">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$facebook_page</token>
     <token name="T_WHITESPACE"> </token>
@@ -277,7 +294,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="55">
+  <line no="56">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$facebook_page</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -288,7 +305,18 @@
     <token name="T_VARIABLE">$page_name</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="56">
+  <line no="57">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$facebook_page</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">facebook_active</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$fb_active</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="58">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$return</token>
     <token name="T_WHITESPACE"> </token>
@@ -301,20 +329,20 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="57"/>
-  <line no="58">
+  <line no="59"/>
+  <line no="60">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$return</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="59">
+  <line no="61">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="60">
+  <line no="62">
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="61"/>
+  <line no="63"/>
 </source>

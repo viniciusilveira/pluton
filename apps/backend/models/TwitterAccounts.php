@@ -11,6 +11,10 @@
  */
 namespace Multiple\Backend\Models;
 
+
+/**
+ * Classe responsável pelo gerenciamento de dados referente a contas da rede social twitter
+ */
 class TwitterAccounts extends \Phalcon\Mvc\Model {
 
     public function initialize() {

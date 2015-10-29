@@ -108,7 +108,7 @@ class SettingsController extends BaseController {
     }
 
     /**
-     * Atualiuza os dados da conta google no banco de dados
+     * Atualiza os dados da conta google no banco de dados
      */
     public function updateGoogleAccountsApiAccessAction() {
         $this->view->disable();
@@ -189,7 +189,6 @@ class SettingsController extends BaseController {
 
     /**
      * Atualiza as preferências do sistema
-     * @return [type] [description]
      */
     public function updatePreferencesAction() {
 

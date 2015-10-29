@@ -204,6 +204,9 @@ class IndexController extends \Phalcon\Mvc\Controller {
         $this->view->setVars($vars);
     }
 
+    /**
+     * Carrega a página com informações sobre o blog
+     */
     public function aboutAction() {
         $blog = Blogs::findFirst();
         $vars['blog_name'] = $blog->blog_name;
@@ -212,6 +215,9 @@ class IndexController extends \Phalcon\Mvc\Controller {
         $this->view->setVars($vars);
     }
 
+    /**
+     * Carrega a página de contato
+     */
     public function contactAction() {
         $blog = Blogs::findFirst();
         $vars['blog_name'] = $blog->blog_name;
@@ -220,11 +226,17 @@ class IndexController extends \Phalcon\Mvc\Controller {
         $this->view->setVars($vars);
     }
 
+     /**
+     * Seta uma instância da classe Library\Mail
+     */
     private function setMailLibrary() {
         $blog = Blogs::findFirst();
         return new Mail($blog->blog_mail, $blog->blog_mail_password);
     }
 
+    /**
+     * Envia mensagens para o email padrão do sistema
+     */
     public function sendContactAction() {
         $this->view->disable();
 

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/library" file="Adsense.php" realpath="/var/www/html/pluton/apps/library/Adsense.php" size="2375" time="2015-09-17T04:49:41+00:00" unixtime="1442465381" sha1="1e2648d20a7a26960bb38a5bd5334bb45c98b7ea" relative="library/Adsense.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/library" file="Adsense.php" realpath="/var/www/html/pluton/apps/library/Adsense.php" size="2341" time="2015-10-10T19:52:21+00:00" unixtime="1444506741" sha1="836dfa137a75173d927dc85958a09cc81660e13b" relative="library/Adsense.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -60,11 +60,6 @@
     <token name="T_CLASS">class</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">Adsense</token>
-    <token name="T_WHITESPACE"> </token>
-    <token name="T_EXTENDS">extends</token>
-    <token name="T_WHITESPACE"> </token>
-    <token name="T_STRING">BaseController</token>
-    <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
   <line no="17"/>
@@ -334,7 +329,7 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_EQUAL">=</token>
     <token name="T_WHITESPACE"> </token>
-    <token name="T_STRING">AdsenseController</token>
+    <token name="T_STRING">Adsense</token>
     <token name="T_DOUBLE_COLON">::</token>
     <token name="T_STRING">getService</token>
     <token name="T_PHPDOX_OPEN_BRACKET">(</token>

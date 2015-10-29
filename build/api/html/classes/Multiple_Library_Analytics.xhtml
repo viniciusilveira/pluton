@@ -50,28 +50,24 @@
             <a href="#synopsis">Synopsis</a>
           </li>
           <li>
-            <a href="#hierarchy">Hierarchy</a>
-          </li>
-          <li>
             <a href="#methods">Methods</a>
           </li>
           <li>
-            <a href="../source/library/Analytics.php.xhtml#line21">Source</a>
+            <a href="../source/library/Analytics.php.xhtml#line24">Source</a>
           </li>
         </ul>
       </nav>
       <section>
         <h1 id="introduction"><small>Multiple\Library\</small>Analytics</h1>
-        <h4/>
+        <h4>Classe responsável pelo gerenciamento das funcionalidades do Google Analytics</h4>
         <p/>
+        <ul/>
         <h2 id="synopsis">Synopsis</h2>
         <div class="synopsis">class Analytics
-                extends Controller
-            {<br/><ul class="none"><li>// methods</li><li>public void <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/index.xhtml">index</a>()
-                    </li><li>public Google_Service_Analytics <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getService.xhtml">getService</a>()
-                    </li><li>public int <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getFirstprofileId.xhtml">getFirstprofileId</a>()
+            {<br/><ul class="none"><li>// methods</li><li>private Google_Service_Analytics <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getService.xhtml">getService</a>()
+                    </li><li>private int <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getFirstprofileId.xhtml">getFirstprofileId</a>()
                     </li><li>public array <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getResults.xhtml">getResults</a>()
-                    </li><li>public void <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getTotalSessions.xhtml">getTotalSessions</a>()
+                    </li><li>private void <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getTotalSessions.xhtml">getTotalSessions</a>()
                     </li><li>public [type] <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getRealTimeInformation.xhtml">getRealTimeInformation</a>()
                     </li><li>public array <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getAccessPerMonth.xhtml">getAccessPerMonth</a>()
                     </li><li>public array <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getCountryOriginAccess.xhtml">getCountryOriginAccess</a>()
@@ -79,37 +75,30 @@
                     </li></ul>
 
             }<br/></div>
-        <h2 id="hierarchy">Hierarchy</h2>
-        <div class="styled">
-          <h4>Extends</h4>
-          <ul>
-            <li>Phalcon\Mvc\Controller</li>
-          </ul>
-        </div>
         <h2 id="methods">Methods</h2>
         <div class="styled">
+          <h4>private</h4>
+          <ul>
+            <li id="getFirstprofileId"><a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getFirstprofileId.xhtml">getFirstprofileId()</a>
+                — Busca o id do primeiro perfil cadastrado na conta google</li>
+            <li id="getService"><a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getService.xhtml">getService()</a>
+                — Cria um objeto do tipo Google_Service_Analytics</li>
+            <li id="getTotalSessions">
+              <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getTotalSessions.xhtml">getTotalSessions()</a>
+            </li>
+          </ul>
           <h4>public</h4>
           <ul>
             <li id="getAccessPerMonth"><a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getAccessPerMonth.xhtml">getAccessPerMonth()</a>
                 — Retorna os acessos únicos por mês, desde janeiro do ano corrente até o mês atual</li>
             <li id="getCountryOriginAccess"><a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getCountryOriginAccess.xhtml">getCountryOriginAccess()</a>
                 — Quantidade de acessos de cada país</li>
-            <li id="getFirstprofileId"><a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getFirstprofileId.xhtml">getFirstprofileId()</a>
-                — Busca o id do primeiro perfil cadastrado na conta google</li>
             <li id="getPageViews"><a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getPageViews.xhtml">getPageViews()</a>
                 — Busca as Visualizações de páginas do blog</li>
             <li id="getRealTimeInformation"><a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getRealTimeInformation.xhtml">getRealTimeInformation()</a>
                 — Busca informações de acesso em tempo real *A funcionalidade de tempo real do google analytics ainda está em fase Beta e só é possível utiliza-la sendo aprovado para o teste da funcionalidade; Caso consiga a aprovação vocẽ pode chamar este método na action index da classee DashboardController</li>
             <li id="getResults"><a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getResults.xhtml">getResults()</a>
                 — Retorna o total de sessões</li>
-            <li id="getService"><a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getService.xhtml">getService()</a>
-                — Cria um objeto do tipo Google_Service_Analytics</li>
-            <li id="getTotalSessions">
-              <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/getTotalSessions.xhtml">getTotalSessions()</a>
-            </li>
-            <li id="index">
-              <a title="Multiple\Library\Analytics" href="../classes/Multiple_Library_Analytics/index.xhtml">index()</a>
-            </li>
           </ul>
         </div>
       </section>

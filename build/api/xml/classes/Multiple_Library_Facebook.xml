@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Facebook" namespace="Multiple\Library" name="Facebook" abstract="false" final="false" start="14" end="32">
+  <file path="/var/www/html/pluton/apps/library" file="Facebook.php" realpath="/var/www/html/pluton/apps/library/Facebook.php" size="801" time="2015-10-19T23:38:52+00:00" unixtime="1445297932" sha1="7efb8f0d7e55a193142c05016a1611cc85129a35" relative="library/Facebook.php"/>
+  <docblock>
+    <description compact="Classe responsável por coletar dados referentes ao facebook"/>
+  </docblock>
+  <method name="facebookCount" start="20" end="31" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Conta a quantidade de likes de uma página"/>
+      <param description="nome da página a ser consultada" type="string" variable="$url"/>
+    </docblock>
+    <parameter name="url" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="Query in FQL" line="22"/>
+      <comment value="Facebook Response is in JSON" line="28"/>
+    </inline>
+  </method>
+</class>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Analytics" namespace="Multiple\Library" name="Analytics" abstract="false" final="false" start="21" end="201">
-  <file path="/var/www/html/pluton/apps/library" file="Analytics.php" realpath="/var/www/html/pluton/apps/library/Analytics.php" size="7652" time="2015-09-17T04:49:37+00:00" unixtime="1442465377" sha1="c265f9074c057d5d4b321b6e5d2db177fb999d99" relative="library/Analytics.php"/>
-  <extends full="Phalcon\Mvc\Controller" namespace="Phalcon\Mvc" name="Controller" unresolved="true"/>
-  <method name="index" start="23" end="24" abstract="false" final="false" static="false" visibility="public"/>
-  <method name="getService" start="32" end="51" abstract="false" final="false" static="false" visibility="public">
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Analytics" namespace="Multiple\Library" name="Analytics" abstract="false" final="false" start="24" end="201">
+  <file path="/var/www/html/pluton/apps/library" file="Analytics.php" realpath="/var/www/html/pluton/apps/library/Analytics.php" size="7693" time="2015-10-29T05:23:24+00:00" unixtime="1446096204" sha1="8161f16e6bc05fc1d095f7cae035b05a5b5756e1" relative="library/Analytics.php"/>
+  <docblock>
+    <description compact="Classe responsável pelo gerenciamento das funcionalidades do Google Analytics"/>
+  </docblock>
+  <method name="getService" start="32" end="51" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Cria um objeto do tipo Google_Service_Analytics"/>
       <param description="login da conta google" type="string" variable="$google_account_login"/>
@@ -15,7 +16,7 @@
     <parameter name="google_account_login" byreference="false" type="{unknown}"/>
     <parameter name="google_account_key_file_name" byreference="false" type="{unknown}"/>
   </method>
-  <method name="getFirstprofileId" start="58" end="84" abstract="false" final="false" static="false" visibility="public">
+  <method name="getFirstprofileId" start="58" end="84" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Busca o id do primeiro perfil cadastrado na conta google"/>
       <param description="&amp;$analytics objeto do tipo Google_Service_Analytics" type="object">
@@ -47,7 +48,7 @@
     <parameter name="initial" byreference="false" type="{unknown}"/>
     <parameter name="final" byreference="false" type="{unknown}"/>
   </method>
-  <method name="getTotalSessions" start="99" end="115" abstract="false" final="false" static="false" visibility="public">
+  <method name="getTotalSessions" start="99" end="115" abstract="false" final="false" static="false" visibility="private">
     <parameter name="result" byreference="false" type="{unknown}"/>
   </method>
   <method name="getRealTimeInformation" start="125" end="140" abstract="false" final="false" static="false" visibility="public">

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="GoogleAccounts.php" realpath="/var/www/html/pluton/apps/backend/models/GoogleAccounts.php" size="2538" time="2015-09-17T04:08:00+00:00" unixtime="1442462880" sha1="79cd11f39548d56e28f6ff047c9f8fb3ef81f335" relative="backend/models/GoogleAccounts.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="GoogleAccounts.php" realpath="/var/www/html/pluton/apps/backend/models/GoogleAccounts.php" size="2899" time="2015-10-19T23:38:52+00:00" unixtime="1445297932" sha1="50c31cd05da019ce6949ff2898cc873746dcc2a3" relative="backend/models/GoogleAccounts.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -210,6 +210,12 @@
     <token name="T_PHPDOX_COMMA">,</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$g_analytics_script</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$g_analytics_active</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$g_adsense_active</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
@@ -266,12 +272,34 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="47"/>
+  <line no="47">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$google_account</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">google_analytics_active</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$g_analytics_active</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
   <line no="48">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$google_account</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">google_adsense_active</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$g_adsense_active</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="49"/>
+  <line no="50">
     <token name="T_WHITESPACE">        </token>
     <token name="T_COMMENT">//Valor padr&#xE3;o do id do blog</token>
   </line>
-  <line no="49">
+  <line no="51">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$google_account</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -282,55 +310,55 @@
     <token name="T_LNUMBER">1</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="50">
+  <line no="52">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_EQUAL">=</token>
     <token name="T_WHITESPACE"> </token>
-    <token name="T_VARIABLE">$googleAccount</token>
+    <token name="T_VARIABLE">$google_account</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
     <token name="T_STRING">save</token>
     <token name="T_PHPDOX_OPEN_BRACKET">(</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="51"/>
-  <line no="52">
+  <line no="53"/>
+  <line no="54">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$return</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="53">
+  <line no="55">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="54"/>
-  <line no="55">
+  <line no="56"/>
+  <line no="57">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="56">
+  <line no="58">
     <token name="T_DOC_COMMENT">     * Atualiza os dados referente a API do google</token>
   </line>
-  <line no="57">
+  <line no="59">
     <token name="T_DOC_COMMENT">     * @param  string $g_account email da conta informada</token>
   </line>
-  <line no="58">
+  <line no="60">
     <token name="T_DOC_COMMENT">     * @param  $key_file_name Nome do arquivo de chave gerado pelo google</token>
   </line>
-  <line no="59">
+  <line no="61">
     <token name="T_DOC_COMMENT">     * @param  $g_analytics_script script para verifica&#xE7;&#xE3;o de acessos ao site pelo Google Analytics</token>
   </line>
-  <line no="60">
+  <line no="62">
     <token name="T_DOC_COMMENT">     * @return boolean            true caso sucesso ou false caso ocorra alguma falha</token>
   </line>
-  <line no="61">
+  <line no="63">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="62">
+  <line no="64">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -345,11 +373,17 @@
     <token name="T_PHPDOX_COMMA">,</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$g_analytics_script</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$g_analytics_active</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$g_adsense_active</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="63">
+  <line no="65">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$google_account</token>
     <token name="T_WHITESPACE"> </token>
@@ -362,7 +396,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="64">
+  <line no="66">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$google_account</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -373,7 +407,7 @@
     <token name="T_VARIABLE">$g_account</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="65">
+  <line no="67">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$google_account</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -384,7 +418,7 @@
     <token name="T_VARIABLE">$key_file_name</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="66">
+  <line no="68">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$google_account</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -401,7 +435,29 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="67">
+  <line no="69">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$google_account</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">google_analytics_active</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$g_analytics_active</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="70">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$google_account</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">google_adsense_active</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$g_adsense_active</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="71">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$return</token>
     <token name="T_WHITESPACE"> </token>
@@ -414,20 +470,20 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="68"/>
-  <line no="69">
+  <line no="72"/>
+  <line no="73">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$return</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="70">
+  <line no="74">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="71">
+  <line no="75">
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="72"/>
+  <line no="76"/>
 </source>

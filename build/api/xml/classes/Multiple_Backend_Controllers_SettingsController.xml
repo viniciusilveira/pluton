@@ -1,51 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\SettingsController" namespace="Multiple\Backend\Controllers" name="SettingsController" abstract="false" final="false" start="30" end="191">
-  <file path="/var/www/html/pluton/apps/backend/controllers" file="SettingsController.php" realpath="/var/www/html/pluton/apps/backend/controllers/SettingsController.php" size="7088" time="2015-09-16T22:55:24+00:00" unixtime="1442444124" sha1="dd6a19cd8adf68c343cccb517607eed2b240ec11" relative="backend/controllers/SettingsController.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\SettingsController" namespace="Multiple\Backend\Controllers" name="SettingsController" abstract="false" final="false" start="29" end="206">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="SettingsController.php" realpath="/var/www/html/pluton/apps/backend/controllers/SettingsController.php" size="8339" time="2015-10-29T05:15:12+00:00" unixtime="1446095712" sha1="c5544bc877f69533b514cda9621da81210b6885f" relative="backend/controllers/SettingsController.php"/>
   <docblock>
     <description compact="Classe responsável por manipular as configurações e opções do sistema"/>
   </docblock>
   <extends full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController"/>
-  <method name="indexAction" start="35" end="82" abstract="false" final="false" static="false" visibility="public">
+  <method name="indexAction" start="34" end="86" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Carrega a tela inicial de configurações"/>
     </docblock>
   </method>
-  <method name="registerGoogleAccountsApiAccessAction" start="87" end="101" abstract="false" final="false" static="false" visibility="public">
+  <method name="registerGoogleAccountsApiAccessAction" start="91" end="108" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Insere os dados recebidos da conta google via post no banco de dados"/>
     </docblock>
   </method>
-  <method name="updateGoogleAccountsApiAccessAction" start="106" end="127" abstract="false" final="false" static="false" visibility="public">
+  <method name="updateGoogleAccountsApiAccessAction" start="113" end="137" abstract="false" final="false" static="false" visibility="public">
     <docblock>
-      <description compact="Atualiuza os dados da conta google no banco de dados"/>
+      <description compact="Atualiza os dados da conta google no banco de dados"/>
     </docblock>
   </method>
-  <method name="registerFacebookPageNameAction" start="132" end="138" abstract="false" final="false" static="false" visibility="public">
+  <method name="registerFacebookPageNameAction" start="142" end="149" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Insere os dados da página do facebook no banco de dados"/>
     </docblock>
   </method>
-  <method name="updateFacebookPageNameAction" start="143" end="150" abstract="false" final="false" static="false" visibility="public">
+  <method name="updateFacebookPageNameAction" start="154" end="162" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Atualiza os dados da página do facebook no banco de dados"/>
     </docblock>
   </method>
-  <method name="registerTwitterAccountsApiAccessAction" start="155" end="162" abstract="false" final="false" static="false" visibility="public">
+  <method name="registerTwitterAccountsApiAccessAction" start="167" end="175" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Insere os dados do twitter no banco de dados"/>
     </docblock>
   </method>
-  <method name="updateTwitterAccountsApiAccessAction" start="167" end="174" abstract="false" final="false" static="false" visibility="public">
+  <method name="updateTwitterAccountsApiAccessAction" start="180" end="188" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Atualiza os dados do twitter no banco de dados"/>
     </docblock>
   </method>
-  <method name="updatePreferencesAction" start="180" end="190" abstract="false" final="false" static="false" visibility="public">
+  <method name="updatePreferencesAction" start="193" end="205" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Atualiza as preferências do sistema"/>
-      <return description="[description]" type="object">
-        <type full="Multiple\Backend\Controllers\[type]" namespace="Multiple\Backend\Controllers" name="[type]"/>
-      </return>
     </docblock>
   </method>
   <parent full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController">
@@ -56,13 +53,13 @@
         <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
       </docblock>
     </method>
-    <method name="getSideBarMenus" start="48" end="67" abstract="false" final="false" static="false" visibility="public">
+    <method name="getSideBarMenus" start="48" end="68" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
         <return description="contendo menus e submenus" type="array"/>
       </docblock>
     </method>
-    <method name="uid" start="74" end="91" abstract="false" final="false" static="false" visibility="public">
+    <method name="uid" start="75" end="92" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
         <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
@@ -72,7 +69,7 @@
       </docblock>
       <parameter name="l" byreference="false" type="integer" default="6"/>
     </method>
-    <method name="dateFormat" start="99" end="106" abstract="false" final="false" static="false" visibility="public">
+    <method name="dateFormat" start="100" end="107" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
         <param description="data a ser alterada" type="object" variable="$data">
@@ -86,7 +83,7 @@
       <parameter name="data" byreference="false" type="{unknown}"/>
       <parameter name="format" byreference="false" type="{unknown}"/>
     </method>
-    <method name="mountArrayMonths" start="112" end="128" abstract="false" final="false" static="false" visibility="public">
+    <method name="mountArrayMonths" start="113" end="129" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
         <return description="contendo os meses do calendário em pt_BR" type="array"/>

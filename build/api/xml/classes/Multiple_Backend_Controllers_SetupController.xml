@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\SetupController" namespace="Multiple\Backend\Controllers" name="SetupController" abstract="false" final="false" start="36" end="313">
-  <file path="/var/www/html/pluton/apps/backend/controllers" file="SetupController.php" realpath="/var/www/html/pluton/apps/backend/controllers/SetupController.php" size="12418" time="2015-09-16T21:41:17+00:00" unixtime="1442439677" sha1="822a9f56117f764b1cac623f8e01670b0c62465a" relative="backend/controllers/SetupController.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\SetupController" namespace="Multiple\Backend\Controllers" name="SetupController" abstract="false" final="false" start="35" end="312">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="SetupController.php" realpath="/var/www/html/pluton/apps/backend/controllers/SetupController.php" size="12417" time="2015-10-24T17:56:29+00:00" unixtime="1445709389" sha1="6c7bddef487743f5ba48c79fc623b8b4ec40ba46" relative="backend/controllers/SetupController.php"/>
   <docblock>
     <description compact="Classe para conexão e configuração dos dados necessários para utilização do sistema"/>
   </docblock>
   <extends full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController"/>
-  <member name="connection" visibility="public" static="false" line="38"/>
-  <member name="config" visibility="private" static="false" line="39"/>
-  <method name="indexAction" start="44" end="49" abstract="false" final="false" static="false" visibility="public">
+  <member name="connection" visibility="public" static="false" line="37"/>
+  <member name="config" visibility="private" static="false" line="38"/>
+  <method name="indexAction" start="43" end="48" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Carrega a view setup/index.phtml"/>
     </docblock>
   </method>
-  <method name="databaseConfigAction" start="54" end="59" abstract="false" final="false" static="false" visibility="public">
+  <method name="databaseConfigAction" start="53" end="58" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Carrega a view para inserção dos dados de conexão com o banco de dados"/>
     </docblock>
   </method>
-  <method name="installAction" start="64" end="69" abstract="false" final="false" static="false" visibility="public">
+  <method name="installAction" start="63" end="68" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Carrega a view de instalação do sistema."/>
     </docblock>
   </method>
-  <method name="verifyInstalation" start="75" end="84" abstract="false" final="false" static="false" visibility="public">
+  <method name="verifyInstalation" start="74" end="83" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Verifica a instalação do sistema, caso esteja tudo ok retorna a string 'ok', caso contrário retorna o que falta ser configurado."/>
     </docblock>
   </method>
-  <method name="verifyDataBaseAction" start="92" end="109" abstract="false" final="false" static="false" visibility="public">
+  <method name="verifyDataBaseAction" start="91" end="108" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Verifica se o banco de dados está configurado corretamente, caso não esteja, efetua as configurações necessárias."/>
       <return description="contendo o dado não criado no banco de dados, ou 'ok' caso" type="string">já esteja tudo criado</return>
     </docblock>
   </method>
-  <method name="databaseSettingsAction" start="115" end="149" abstract="false" final="false" static="false" visibility="public">
+  <method name="databaseSettingsAction" start="114" end="148" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Recebe os dados do banco de dados via post; Cria o arquivo de configuração do banco de dados e conecta com o banco de dados"/>
     </docblock>
     <inline>
-      <comment value="Informa que a action não possui nenhuma view para exibição" line="117"/>
-      <comment value="Dados do banco de dados recebidos via POST;" line="120"/>
-      <comment value="Cria o arquivo de conexão com o banco de dados;" line="127"/>
+      <comment value="Informa que a action não possui nenhuma view para exibição" line="116"/>
+      <comment value="Dados do banco de dados recebidos via POST;" line="119"/>
+      <comment value="Cria o arquivo de conexão com o banco de dados;" line="126"/>
     </inline>
   </method>
-  <method name="connectDatabase" start="155" end="187" abstract="false" final="false" static="false" visibility="private">
+  <method name="connectDatabase" start="154" end="186" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Configura e executa a conexão com o banco de dados"/>
       <return description="true caso conecte com sucesso ou false caso ocorra algum erro" type="object">
@@ -51,42 +51,42 @@
       </return>
     </docblock>
     <inline>
-      <comment value="$this-&gt;view-&gt;disable();" line="157"/>
-      <comment value="Seta a configuração do banco de dados." line="159"/>
-      <comment value="Cria um array com os dados do banco" line="162"/>
-      <comment value="Efetua a conexão com o banco de dados" line="172"/>
+      <comment value="$this-&gt;view-&gt;disable();" line="156"/>
+      <comment value="Seta a configuração do banco de dados." line="158"/>
+      <comment value="Cria um array com os dados do banco" line="161"/>
+      <comment value="Efetua a conexão com o banco de dados" line="171"/>
     </inline>
   </method>
-  <method name="createTables" start="192" end="209" abstract="false" final="false" static="false" visibility="private">
+  <method name="createTables" start="191" end="208" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Cria as tabelas necessárias para o funcionamento do sistema"/>
     </docblock>
   </method>
-  <method name="createUsersTypes" start="215" end="222" abstract="false" final="false" static="false" visibility="private">
+  <method name="createUsersTypes" start="214" end="221" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Cria os tipos de usuários no sistema"/>
       <return description="true caso sucesso, false caso ocorra algum erro!" type="boolean"/>
     </docblock>
   </method>
-  <method name="createPostsStatus" start="228" end="236" abstract="false" final="false" static="false" visibility="private">
+  <method name="createPostsStatus" start="227" end="235" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Cria os status possíveis para postagens"/>
       <return description="true caso sucesso, false caso ocorra algum erro!" type="boolean"/>
     </docblock>
   </method>
-  <method name="createMenus" start="242" end="268" abstract="false" final="false" static="false" visibility="private">
+  <method name="createMenus" start="241" end="267" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Cria os menus e submenus da sidebar no banco de dados"/>
       <return description="true caso sucesso, false caso ocorra algum erro!" type="boolean"/>
     </docblock>
   </method>
-  <method name="installPlutonAction" start="273" end="312" abstract="false" final="false" static="false" visibility="public">
+  <method name="installPlutonAction" start="272" end="311" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Efetua a &quot;instalação&quot; do sistema; Criando o usuário Super-Administrador e o blog"/>
     </docblock>
     <inline>
-      <comment value="Informa que a action não possui nenhuma view para exibição" line="275"/>
-      <comment value="Insere os dados necessários no banco de dados para utilização inicial do sistema" line="284"/>
+      <comment value="Informa que a action não possui nenhuma view para exibição" line="274"/>
+      <comment value="Insere os dados necessários no banco de dados para utilização inicial do sistema" line="283"/>
     </inline>
   </method>
   <parent full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController">
@@ -97,13 +97,13 @@
         <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
       </docblock>
     </method>
-    <method name="getSideBarMenus" start="48" end="67" abstract="false" final="false" static="false" visibility="public">
+    <method name="getSideBarMenus" start="48" end="68" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
         <return description="contendo menus e submenus" type="array"/>
       </docblock>
     </method>
-    <method name="uid" start="74" end="91" abstract="false" final="false" static="false" visibility="public">
+    <method name="uid" start="75" end="92" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
         <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
@@ -113,7 +113,7 @@
       </docblock>
       <parameter name="l" byreference="false" type="integer" default="6"/>
     </method>
-    <method name="dateFormat" start="99" end="106" abstract="false" final="false" static="false" visibility="public">
+    <method name="dateFormat" start="100" end="107" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
         <param description="data a ser alterada" type="object" variable="$data">
@@ -127,7 +127,7 @@
       <parameter name="data" byreference="false" type="{unknown}"/>
       <parameter name="format" byreference="false" type="{unknown}"/>
     </method>
-    <method name="mountArrayMonths" start="112" end="128" abstract="false" final="false" static="false" visibility="public">
+    <method name="mountArrayMonths" start="113" end="129" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
         <return description="contendo os meses do calendário em pt_BR" type="array"/>

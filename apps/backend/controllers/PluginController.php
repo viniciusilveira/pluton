@@ -88,7 +88,7 @@ class PluginController extends BaseController {
         $menu_icon = $this->request->getPost("icon");
         $menu_url = $this->request->getPost("url");
         $menu_level_permission = $this->request->getPost("level_permission");
-        $menu_active = $this->request->getPost("menu_active");
+        $menu_active = $this->request->getPost("menu_active") == 'on' ? true : false;
 
         $id_menu = Menu::createMenu($menu_icon, $menu_name, $menu_url, $menu_level_permission, $menu_active);
 
@@ -129,9 +129,9 @@ class PluginController extends BaseController {
         $menu_icon = $this->request->getPost("icon");
         $menu_url = $this->request->getPost("url");
         $menu_level_permission = $this->request->getPost("level_permission");
-        $menu_active = $this->request->getPost("menu_active");
+        $menu_active = $this->request->getPost("menu_active") == 'on' ? true : false;
 
-        $success = Menu::updateMenu($id_menu, $menu_icon, $menu_name, $menu_url, $menu_level_permission);
+        $success = Menu::updateMenu($id_menu, $menu_icon, $menu_name, $menu_url, $menu_level_permission, $menu_active);
 
         $success = Plugin::updatePlugin($id_menu, $plugin_name);
 

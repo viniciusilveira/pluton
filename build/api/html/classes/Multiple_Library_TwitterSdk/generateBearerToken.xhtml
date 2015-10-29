@@ -36,12 +36,12 @@
             <a href="../../classes.xhtml">Classes</a>
           </li>
           <li class="separator">
-            <a href="../../classes.xhtml#Multiple_Backend_Controllers">Multiple\Backend\Controllers</a>
+            <a href="../../classes.xhtml#Multiple_Library">Multiple\Library</a>
           </li>
           <li class="separator">
-            <a title="Multiple\Backend\Controllers\DashboardController" href="../../classes/Multiple_Backend_Controllers_DashboardController.xhtml">DashboardController</a>
+            <a title="Multiple\Library\TwitterSdk" href="../../classes/Multiple_Library_TwitterSdk.xhtml">TwitterSdk</a>
           </li>
-          <li class="separator">verifyPermissionEditedUser</li>
+          <li class="separator">generateBearerToken</li>
         </ul>
       </div>
       <nav class="box">
@@ -59,38 +59,38 @@
             <a href="#return">Return</a>
           </li>
           <li>
-            <a href="../../source/backend/controllers/DashboardController.php.xhtml#line139">Source</a>
+            <a href="../../source/library/TwitterSdk.php.xhtml#line24">Source</a>
           </li>
         </ul>
       </nav>
       <section>
-        <h1><small>Multiple\Backend\Controllers\DashboardController::</small>verifyPermissionEditedUser</h1>
-        <h4>Verifica se o usuário logado possui permissão para editar o usuário solicitado</h4>
+        <h1><small>Multiple\Library\TwitterSdk::</small>generateBearerToken</h1>
+        <h4>Gera o token de acesso a API do twitter através do APPID e APPSECRET informados pelo usuário</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>private function verifyPermissionEditedUser(<a title="Multiple\Backend\Controllers\Phalcon\Mvc\Model\Resultset" href="../../classes/Multiple_Backend_Controllers_Phalcon_Mvc_Model_Resultset.xhtml">Resultset</a>
-        $user_edit,
-            <a title="Multiple\Backend\Controllers\Phalcon\Mvc\Model\Resultset" href="../../classes/Multiple_Backend_Controllers_Phalcon_Mvc_Model_Resultset.xhtml">Resultset</a>
-        $user_logged )
+          <code>public function generateBearerToken(string
+        $app_id,
+            string
+        $app_secret )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
         <dl class="styled">
-          <dt><code>$user_edit</code>
+          <dt><code>$app_id</code>
                 —
-                object</dt>
-          <dd>Objeto de resultado com dados de usuário<br/><br/><br/>      </dd>
-          <dt><code>$user_logged</code>
+                string</dt>
+          <dd>app id da api do twitter</dd>
+          <dt><code>$app_secret</code>
                 —
-                object</dt>
-          <dd>Objeto de resultado com dados de usuário<br/><br/><br/>      </dd>
+                string</dt>
+          <dd>app secret da api do twitter</dd>
         </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
-          <dt>boolean</dt>
-          <dd>Retorna verdadeiro caso possua permissão ou false caso contrário</dd>
+          <dt>string</dt>
+          <dd>token para acesso a api do twittter</dd>
         </dl>
       </section>
     </div>

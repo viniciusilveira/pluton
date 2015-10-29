@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\UpdateController" namespace="Multiple\Backend\Controllers" name="UpdateController" abstract="false" final="false" start="16" end="73">
-  <file path="/var/www/html/pluton/apps/backend/controllers" file="UpdateController.php" realpath="/var/www/html/pluton/apps/backend/controllers/UpdateController.php" size="2329" time="2015-09-16T21:44:31+00:00" unixtime="1442439871" sha1="17f80cc58db8498230ea3bfe6b5ee04fcb67c01f" relative="backend/controllers/UpdateController.php"/>
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="UpdateController.php" realpath="/var/www/html/pluton/apps/backend/controllers/UpdateController.php" size="2330" time="2015-10-10T19:52:21+00:00" unixtime="1444506741" sha1="48c2806fe1b0da428d50e2c1353e52984e5e1b0e" relative="backend/controllers/UpdateController.php"/>
   <docblock>
     <description compact="Classe responsável pela consulta da existência de novas atualizações do sistema"/>
   </docblock>
@@ -10,7 +10,7 @@
       <description compact="Carrega uma view que exibe se o sistema está atualizado"/>
     </docblock>
   </method>
-  <method name="getVersions" start="55" end="72" abstract="false" final="false" static="false" visibility="public">
+  <method name="getVersions" start="55" end="72" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Busca todas as tags do repositório do Projeto"/>
     </docblock>
@@ -29,13 +29,13 @@
         <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
       </docblock>
     </method>
-    <method name="getSideBarMenus" start="48" end="67" abstract="false" final="false" static="false" visibility="public">
+    <method name="getSideBarMenus" start="48" end="68" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
         <return description="contendo menus e submenus" type="array"/>
       </docblock>
     </method>
-    <method name="uid" start="74" end="91" abstract="false" final="false" static="false" visibility="public">
+    <method name="uid" start="75" end="92" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
         <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
@@ -45,7 +45,7 @@
       </docblock>
       <parameter name="l" byreference="false" type="integer" default="6"/>
     </method>
-    <method name="dateFormat" start="99" end="106" abstract="false" final="false" static="false" visibility="public">
+    <method name="dateFormat" start="100" end="107" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
         <param description="data a ser alterada" type="object" variable="$data">
@@ -59,7 +59,7 @@
       <parameter name="data" byreference="false" type="{unknown}"/>
       <parameter name="format" byreference="false" type="{unknown}"/>
     </method>
-    <method name="mountArrayMonths" start="112" end="128" abstract="false" final="false" static="false" visibility="public">
+    <method name="mountArrayMonths" start="113" end="129" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
         <return description="contendo os meses do calendário em pt_BR" type="array"/>

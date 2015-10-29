@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\FacebookPages" namespace="Multiple\Backend\Models" name="FacebookPages" abstract="false" final="false" start="17" end="60">
-  <file path="/var/www/html/pluton/apps/backend/models" file="FacebookPages.php" realpath="/var/www/html/pluton/apps/backend/models/FacebookPages.php" size="1631" time="2015-09-17T04:08:03+00:00" unixtime="1442462883" sha1="68695439efeffc7302ef67873e3257bee3450298" relative="backend/models/FacebookPages.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\FacebookPages" namespace="Multiple\Backend\Models" name="FacebookPages" abstract="false" final="false" start="17" end="62">
+  <file path="/var/www/html/pluton/apps/backend/models" file="FacebookPages.php" realpath="/var/www/html/pluton/apps/backend/models/FacebookPages.php" size="1763" time="2015-10-19T23:38:52+00:00" unixtime="1445297932" sha1="d25f63c28418b9fcf82b0a61b3b5bee30f6d0b2e" relative="backend/models/FacebookPages.php"/>
   <docblock>
     <description compact="Classe responsável por manipular dados referentes ao Facebook"/>
   </docblock>
@@ -16,20 +16,22 @@
       <return description="Nome da classe" type="string"/>
     </docblock>
   </method>
-  <method name="createFacebookPage" start="39" end="46" abstract="false" final="false" static="false" visibility="public">
+  <method name="createFacebookPage" start="39" end="47" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Insere dados referente a página do facebook"/>
       <param description="nome da página" type="string" variable="$page_name"/>
       <return description="verdadeiro caso sucesso ou falso caso ocorra alguma falha" type="boolean"/>
     </docblock>
     <parameter name="page_name" byreference="false" type="{unknown}"/>
+    <parameter name="fb_active" byreference="false" type="{unknown}"/>
   </method>
-  <method name="updateFacebookPage" start="53" end="59" abstract="false" final="false" static="false" visibility="public">
+  <method name="updateFacebookPage" start="54" end="61" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Atualiza dados referente a página do facebook"/>
       <param description="nome da página" type="string" variable="$page_name"/>
       <return description="verdadeiro caso sucesso ou falso caso ocorra alguma falha" type="boolean"/>
     </docblock>
     <parameter name="page_name" byreference="false" type="{unknown}"/>
+    <parameter name="fb_active" byreference="false" type="{unknown}"/>
   </method>
 </class>

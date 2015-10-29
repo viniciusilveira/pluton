@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class xmlns="http://xml.phpdox.net/src" full="Multiple\Frontend\Models\PostCategorie" namespace="Multiple\Frontend\Models" name="PostCategorie" abstract="false" final="false" start="12" end="31">
-  <file path="/var/www/html/pluton/apps/frontend/models" file="PostCategorie.php" realpath="/var/www/html/pluton/apps/frontend/models/PostCategorie.php" size="798" time="2015-09-17T04:55:20+00:00" unixtime="1442465720" sha1="16ec3cd830a8631d26f7f4d0ed412282553f4992" relative="frontend/models/PostCategorie.php"/>
+  <file path="/var/www/html/pluton/apps/frontend/models" file="PostCategorie.php" realpath="/var/www/html/pluton/apps/frontend/models/PostCategorie.php" size="798" time="2015-09-17T05:03:25+00:00" unixtime="1442466205" sha1="16ec3cd830a8631d26f7f4d0ed412282553f4992" relative="frontend/models/PostCategorie.php"/>
   <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
   <method name="initialize" start="14" end="22" abstract="false" final="false" static="false" visibility="public"/>
   <method name="getSource" start="28" end="30" abstract="false" final="false" static="false" visibility="public">

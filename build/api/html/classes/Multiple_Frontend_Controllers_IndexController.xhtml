@@ -69,10 +69,10 @@
         <div class="synopsis">class IndexController
                 extends Controller
             {<br/><ul class="none"><li>// methods</li><li>public void <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/indexAction.xhtml">indexAction</a>()
-                    </li><li>public Resultset <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getPostsPerPage.xhtml">getPostsPerPage</a>()
-                    </li><li>public array <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getCategories.xhtml">getCategories</a>()
-                    </li><li>public string <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getPostsIdByCategorie.xhtml">getPostsIdByCategorie</a>()
-                    </li><li>public array <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getAuthorIdByName.xhtml">getAuthorIdByName</a>()
+                    </li><li>private Resultset <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getPostsPerPage.xhtml">getPostsPerPage</a>()
+                    </li><li>private array <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getCategories.xhtml">getCategories</a>()
+                    </li><li>private string <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getPostsIdByCategorie.xhtml">getPostsIdByCategorie</a>()
+                    </li><li>private array <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getAuthorIdByName.xhtml">getAuthorIdByName</a>()
                     </li><li>public void <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/notFoundAction.xhtml">notFoundAction</a>()
                     </li><li>public void <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/postPageAction.xhtml">postPageAction</a>()
                     </li><li>public void <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/aboutAction.xhtml">aboutAction</a>()
@@ -93,18 +93,6 @@
         <div class="styled">
           <h4>private</h4>
           <ul>
-            <li id="setMailLibrary">
-              <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/setMailLibrary.xhtml">setMailLibrary()</a>
-            </li>
-          </ul>
-          <h4>public</h4>
-          <ul>
-            <li id="aboutAction">
-              <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/aboutAction.xhtml">aboutAction()</a>
-            </li>
-            <li id="contactAction">
-              <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/contactAction.xhtml">contactAction()</a>
-            </li>
             <li id="getAuthorIdByName"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getAuthorIdByName.xhtml">getAuthorIdByName()</a>
                 — Retorna o autor pelo nome</li>
             <li id="getCategories"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getCategories.xhtml">getCategories()</a>
@@ -113,15 +101,23 @@
                 — Retrona os ids de postagens com a categoria informada</li>
             <li id="getPostsPerPage"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/getPostsPerPage.xhtml">getPostsPerPage()</a>
                 — Recebe o número da página e retorna os itens a serem exibidos naquela página</li>
+            <li id="setMailLibrary"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/setMailLibrary.xhtml">setMailLibrary()</a>
+                — Seta uma instância da classe Library\Mail</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="aboutAction"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/aboutAction.xhtml">aboutAction()</a>
+                — Carrega a página com informações sobre o blog</li>
+            <li id="contactAction"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/contactAction.xhtml">contactAction()</a>
+                — Carrega a página de contato</li>
             <li id="indexAction"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/indexAction.xhtml">indexAction()</a>
                 — Carrega a tela principal do blog</li>
             <li id="notFoundAction"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/notFoundAction.xhtml">notFoundAction()</a>
                 — Carrega a view não encontrado</li>
             <li id="postPageAction"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/postPageAction.xhtml">postPageAction()</a>
                 — Carrega a página de posts exibidindo a postagem informada via REQUEST</li>
-            <li id="sendContactAction">
-              <a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/sendContactAction.xhtml">sendContactAction()</a>
-            </li>
+            <li id="sendContactAction"><a title="Multiple\Frontend\Controllers\IndexController" href="../classes/Multiple_Frontend_Controllers_IndexController/sendContactAction.xhtml">sendContactAction()</a>
+                — Envia mensagens para o email padrão do sistema</li>
           </ul>
         </div>
       </section>

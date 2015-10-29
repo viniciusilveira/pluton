@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Tables" namespace="Multiple\Library" name="Tables" abstract="false" final="false" start="34" end="811">
-  <file path="/var/www/html/pluton/apps/library" file="Tables.php" realpath="/var/www/html/pluton/apps/library/Tables.php" size="27801" time="2015-09-17T04:53:28+00:00" unixtime="1442465608" sha1="cbe7aae155992fc3d68a709b3f8d62a346f219e9" relative="library/Tables.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Tables" namespace="Multiple\Library" name="Tables" abstract="false" final="false" start="34" end="829">
+  <file path="/var/www/html/pluton/apps/library" file="Tables.php" realpath="/var/www/html/pluton/apps/library/Tables.php" size="28558" time="2015-10-19T23:38:52+00:00" unixtime="1445297932" sha1="731793e568b547ad86960fe9f8fa7349956d5cd3" relative="library/Tables.php"/>
   <docblock>
     <description compact="Class Tables Library Responsável por criar todas as tabelas necessárias para o projeto."/>
     <package value="Multiple\Library"/>
@@ -14,7 +14,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTableBlogs" start="101" end="157" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTableBlogs" start="101" end="160" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela blogs"/>
       <param description="Variável de conexão com o banco de dados" variable="$connection" type="object">
@@ -23,7 +23,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTableUserType" start="163" end="186" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTableUserType" start="166" end="189" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela user_type"/>
       <param description="de conexão com o banco de dados" variable="$connection" type="object">
@@ -32,7 +32,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTableUsers" start="192" end="258" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTableUsers" start="195" end="261" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela users"/>
       <param description="Variável de conexão com o banco de dados" variable="$connection" type="object">
@@ -41,7 +41,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTableUsersBlogs" start="264" end="315" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTableUsersBlogs" start="267" end="318" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela users_blogs"/>
       <param description="Variável de conexão com o banco de dados" variable="$connection" type="object">
@@ -50,7 +50,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTableCategories" start="321" end="339" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTableCategories" start="324" end="342" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela categories"/>
       <param description="Váriavel de conexão com o banco de dados" variable="$connection" type="object">
@@ -59,7 +59,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTablePostStatus" start="345" end="362" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTablePostStatus" start="348" end="365" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela post_status"/>
       <param description="Váriavel de conexão com o banco de dados" variable="$connection" type="object">
@@ -68,7 +68,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTablePosts" start="368" end="460" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTablePosts" start="371" end="463" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela posts"/>
       <param description="Variável de conexão com o banco de dados" variable="$connection" type="object">
@@ -77,7 +77,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTablePostCategories" start="466" end="518" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTablePostCategories" start="469" end="521" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela post_categories"/>
       <param description="Váriavel de conexão com o banco de dados" variable="$connection" type="object">
@@ -86,7 +86,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTableGoogleAccounts" start="524" end="573" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTableGoogleAccounts" start="527" end="582" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela google_accounts"/>
       <param description="Váriavel de conexão com o banco de dados" variable="$connection" type="object">
@@ -95,7 +95,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTableFacebookPages" start="579" end="618" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTableFacebookPages" start="588" end="630" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela facebook_pages"/>
       <param description="Variável de conexão com o banco de dados" variable="$connection" type="object">
@@ -104,7 +104,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTableTwitterAccounts" start="624" end="673" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTableTwitterAccounts" start="636" end="688" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela twitter_accounts"/>
       <param description="Váriavel de conexão com o banco de dados" variable="$connection" type="object">
@@ -113,7 +113,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="CreateTableMenu" start="679" end="708" abstract="false" final="false" static="false" visibility="public">
+  <method name="CreateTableMenu" start="694" end="726" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela menu"/>
       <param description="Váriavel de conexão com o banco de dados" variable="$connection" type="object">
@@ -122,7 +122,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTableSubmenu" start="714" end="764" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTableSubmenu" start="732" end="782" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela submenu"/>
       <param description="Váriavel de conexão com o banco de dados" variable="$connection" type="object">
@@ -131,7 +131,7 @@
     </docblock>
     <parameter name="connection" byreference="false" type="{unknown}"/>
   </method>
-  <method name="createTablePlugin" start="770" end="810" abstract="false" final="false" static="false" visibility="public">
+  <method name="createTablePlugin" start="788" end="828" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria a tabela plugin"/>
       <param description="Variável de conexão com o banco de dados" variable="$connection" type="object">

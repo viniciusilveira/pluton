@@ -53,13 +53,10 @@
             <a href="#hierarchy">Hierarchy</a>
           </li>
           <li>
-            <a href="#tasks">Tasks</a>
-          </li>
-          <li>
             <a href="#methods">Methods</a>
           </li>
           <li>
-            <a href="../source/backend/controllers/DashboardController.php.xhtml#line42">Source</a>
+            <a href="../source/backend/controllers/DashboardController.php.xhtml#line29">Source</a>
           </li>
         </ul>
       </nav>
@@ -72,14 +69,6 @@
         <div class="synopsis">class DashboardController
                 extends <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController.xhtml">BaseController</a>
             {<br/><ul class="none"><li>// methods</li><li>public void <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/indexAction.xhtml">indexAction</a>()
-                    </li><li>public void <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/newUserAction.xhtml">newUserAction</a>()
-                    </li><li>private boolean <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/verifyPermissionEditedUser.xhtml">verifyPermissionEditedUser</a>()
-                    </li><li>public void <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/addNewUserAction.xhtml">addNewUserAction</a>()
-                    </li><li>public void <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/listUsersAction.xhtml">listUsersAction</a>()
-                    </li><li>public void <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/updateUserAction.xhtml">updateUserAction</a>()
-                    </li><li>public void <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/ActiveOrdeactiveUserAction.xhtml">ActiveOrdeactiveUserAction</a>()
-                    </li><li>private string <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/uploadImage.xhtml">uploadImage</a>()
-                    </li><li>public string <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/getImgName.xhtml">getImgName</a>()
                     </li><li>public array <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/getApiSocialsData.xhtml">getApiSocialsData</a>()
                     </li></ul><ul class="none"><li>// Inherited methods from <span title="Multiple\Backend\Controllers\BaseController">BaseController</span></li><li>public array <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getUserLoggedInformation.xhtml">getUserLoggedInformation</a>()
                         </li><li>public array <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController/getSideBarMenus.xhtml">getSideBarMenus</a>()
@@ -98,47 +87,14 @@
             </li>
           </ul>
         </div>
-        <h2 id="tasks">Tasks</h2>
-        <table class="styled">
-          <thead>
-            <tr>
-              <th style="width:3em;">Line</th>
-              <th>Task</th>
-            </tr>
-          </thead>
-          <tr>
-            <td class="nummeric">291+</td>
-            <td>: Action para upload de imagens para o servidor</td>
-          </tr>
-        </table>
         <h2 id="methods">Methods</h2>
         <div class="styled">
-          <h4>private</h4>
-          <ul>
-            <li id="uploadImage">
-              <a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/uploadImage.xhtml">uploadImage()</a>
-            </li>
-            <li id="verifyPermissionEditedUser"><a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/verifyPermissionEditedUser.xhtml">verifyPermissionEditedUser()</a>
-                — Verifica se o usuário logado possui permissão para editar o usuário solicitado</li>
-          </ul>
           <h4>public</h4>
           <ul>
-            <li id="ActiveOrdeactiveUserAction"><a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/ActiveOrdeactiveUserAction.xhtml">ActiveOrdeactiveUserAction()</a>
-                — Altera o status de um usuário, se estiver ativo, desativa e se estiver desativado, ativa</li>
-            <li id="addNewUserAction"><a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/addNewUserAction.xhtml">addNewUserAction()</a>
-                — Recebe os dados de um novo usuário via POST e adiciona no banco de dados</li>
             <li id="getApiSocialsData"><a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/getApiSocialsData.xhtml">getApiSocialsData()</a>
                 — Busca no banco de dados informações sobre acessos ao blog (Google Analytics), seguidores do Twitter (Twitter API) e curtidas da página do facebook informada; Caso os dados sobre tais APIS e redes sociais não estejam configurados, todos os valores são retornados como 0</li>
-            <li id="getImgName"><a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/getImgName.xhtml">getImgName()</a>
-                — Utiliza o método BaseController::uid() para gerar um nome para a imagem de perfil a ser salva.</li>
             <li id="indexAction"><a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/indexAction.xhtml">indexAction()</a>
                 — Carrega a tela principal do backend</li>
-            <li id="listUsersAction"><a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/listUsersAction.xhtml">listUsersAction()</a>
-                — Busca todos os usuários cadastrados no sistema e os exibe em uma tabela</li>
-            <li id="newUserAction"><a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/newUserAction.xhtml">newUserAction()</a>
-                — Carrega o formulário de cadastro de usuário na tela</li>
-            <li id="updateUserAction"><a title="Multiple\Backend\Controllers\DashboardController" href="../classes/Multiple_Backend_Controllers_DashboardController/updateUserAction.xhtml">updateUserAction()</a>
-                — Atualiza os dados do usuário pelos dados informados via POST</li>
           </ul>
           <h3>Inherited from <a title="Multiple\Backend\Controllers\BaseController" href="../classes/Multiple_Backend_Controllers_BaseController.xhtml">Multiple\Backend\Controllers\BaseController</a></h3>
           <h4>public</h4>

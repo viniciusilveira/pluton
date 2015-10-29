@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="PostStatus.php" realpath="/var/www/html/pluton/apps/backend/models/PostStatus.php" size="1344" time="2015-09-17T04:12:40+00:00" unixtime="1442463160" sha1="271b65a4328f7cbfe25f780e9f5eb6448bed384c" relative="backend/models/PostStatus.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="PostStatus.php" realpath="/var/www/html/pluton/apps/backend/models/PostStatus.php" size="1375" time="2015-10-29T05:18:23+00:00" unixtime="1446095903" sha1="ceac4846c505c1749489e924e23d406a971a2346" relative="backend/models/PostStatus.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -137,7 +137,7 @@
     <token name="T_DOC_COMMENT">     * @param  int $post_status_id id de um status de postagem</token>
   </line>
   <line no="31">
-    <token name="T_DOC_COMMENT">     * @return [type]                 [description]</token>
+    <token name="T_DOC_COMMENT">     * @return \Phalcon\Mvc\Model\Resultset  Objeto contendo o status de postagens</token>
   </line>
   <line no="32">
     <token name="T_DOC_COMMENT">     */</token>

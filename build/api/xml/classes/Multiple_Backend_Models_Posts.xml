@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Posts" namespace="Multiple\Backend\Models" name="Posts" abstract="false" final="false" start="19" end="97">
-  <file path="/var/www/html/pluton/apps/backend/models" file="Posts.php" realpath="/var/www/html/pluton/apps/backend/models/Posts.php" size="3643" time="2015-09-17T04:15:18+00:00" unixtime="1442463318" sha1="13734f36a038618c281346b8af01178db31dfe60" relative="backend/models/Posts.php"/>
+  <file path="/var/www/html/pluton/apps/backend/models" file="Posts.php" realpath="/var/www/html/pluton/apps/backend/models/Posts.php" size="3643" time="2015-09-17T05:03:25+00:00" unixtime="1442466205" sha1="13734f36a038618c281346b8af01178db31dfe60" relative="backend/models/Posts.php"/>
   <docblock>
     <description compact="Classe responsável por manipular dados referentes aos Posts"/>
   </docblock>

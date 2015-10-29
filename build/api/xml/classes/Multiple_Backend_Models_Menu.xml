@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Menu" namespace="Multiple\Backend\Models" name="Menu" abstract="false" final="false" start="15" end="57">
-  <file path="/var/www/html/pluton/apps/backend/models" file="Menu.php" realpath="/var/www/html/pluton/apps/backend/models/Menu.php" size="2225" time="2015-09-17T04:07:51+00:00" unixtime="1442462871" sha1="03fffb4fc9966374b50450337da6e7b5b6a5aaf8" relative="backend/models/Menu.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Menu" namespace="Multiple\Backend\Models" name="Menu" abstract="false" final="false" start="15" end="59">
+  <file path="/var/www/html/pluton/apps/backend/models" file="Menu.php" realpath="/var/www/html/pluton/apps/backend/models/Menu.php" size="2339" time="2015-10-24T17:49:11+00:00" unixtime="1445708951" sha1="c665c81d8693ac7fc06a2b4ce2e5b97dcdbcd2f8" relative="backend/models/Menu.php"/>
   <docblock>
     <description compact="Classe responsável por manipular dados referentes ao menu"/>
   </docblock>
   <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
-  <method name="createMenu" start="26" end="35" abstract="false" final="false" static="false" visibility="public">
+  <method name="createMenu" start="26" end="36" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria um novo menu"/>
       <param description="nome do novo icone, pode ser referente a glyphicons do bootstrap(http://getbootstrap.com/components/)" type="string" variable="$menu_icon">ou os icônes do font awesome (http://fortawesome.github.io/Font-Awesome/3.2.1/icons/)</param>
@@ -18,8 +18,9 @@
     <parameter name="menu_name" byreference="false" type="{unknown}"/>
     <parameter name="menu_href" byreference="false" type="{unknown}"/>
     <parameter name="menu_level_permission" byreference="false" type="{unknown}"/>
+    <parameter name="menu_active" byreference="false" type="{unknown}"/>
   </method>
-  <method name="updateMenu" start="47" end="56" abstract="false" final="false" static="false" visibility="public">
+  <method name="updateMenu" start="48" end="58" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Atualiza um menu existente"/>
       <param description="menu_id id do menu ao ser atualizado" type="int"/>
@@ -34,5 +35,6 @@
     <parameter name="menu_name" byreference="false" type="{unknown}"/>
     <parameter name="menu_href" byreference="false" type="{unknown}"/>
     <parameter name="menu_level_permission" byreference="false" type="{unknown}"/>
+    <parameter name="menu_active" byreference="false" type="{unknown}"/>
   </method>
 </class>

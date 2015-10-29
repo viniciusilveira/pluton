@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/library" file="Analytics.php" realpath="/var/www/html/pluton/apps/library/Analytics.php" size="7652" time="2015-09-17T04:49:37+00:00" unixtime="1442465377" sha1="c265f9074c057d5d4b321b6e5d2db177fb999d99" relative="library/Analytics.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/library" file="Analytics.php" realpath="/var/www/html/pluton/apps/library/Analytics.php" size="7693" time="2015-10-29T05:23:24+00:00" unixtime="1446096204" sha1="8161f16e6bc05fc1d095f7cae035b05a5b5756e1" relative="library/Analytics.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -72,37 +72,20 @@
   </line>
   <line no="20"/>
   <line no="21">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="22">
+    <token name="T_DOC_COMMENT"> * Classe respons&#xE1;vel pelo gerenciamento das funcionalidades do Google Analytics</token>
+  </line>
+  <line no="23">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="24">
     <token name="T_CLASS">class</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">Analytics</token>
     <token name="T_WHITESPACE"> </token>
-    <token name="T_EXTENDS">extends</token>
-    <token name="T_WHITESPACE"> </token>
-    <token name="T_NS_SEPARATOR">\</token>
-    <token name="T_STRING">Phalcon</token>
-    <token name="T_NS_SEPARATOR">\</token>
-    <token name="T_STRING">Mvc</token>
-    <token name="T_NS_SEPARATOR">\</token>
-    <token name="T_STRING">Controller</token>
-    <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
-  </line>
-  <line no="22"/>
-  <line no="23">
-    <token name="T_WHITESPACE">    </token>
-    <token name="T_PUBLIC">public</token>
-    <token name="T_WHITESPACE"> </token>
-    <token name="T_FUNCTION">function</token>
-    <token name="T_WHITESPACE"> </token>
-    <token name="T_STRING">index</token>
-    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
-    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
-    <token name="T_WHITESPACE"> </token>
-    <token name="T_PHPDOX_OPEN_CURLY">{</token>
-  </line>
-  <line no="24">
-    <token name="T_WHITESPACE">    </token>
-    <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
   <line no="25"/>
   <line no="26">
@@ -126,7 +109,7 @@
   </line>
   <line no="32">
     <token name="T_WHITESPACE">    </token>
-    <token name="T_PUBLIC">public</token>
+    <token name="T_PRIVATE">private</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_FUNCTION">function</token>
     <token name="T_WHITESPACE"> </token>
@@ -327,6 +310,8 @@
   </line>
   <line no="58">
     <token name="T_WHITESPACE">    </token>
+    <token name="T_PRIVATE">private</token>
+    <token name="T_WHITESPACE"> </token>
     <token name="T_FUNCTION">function</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">getFirstprofileId</token>
@@ -658,7 +643,7 @@
   <line no="98"/>
   <line no="99">
     <token name="T_WHITESPACE">    </token>
-    <token name="T_PUBLIC">public</token>
+    <token name="T_PRIVATE">private</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_FUNCTION">function</token>
     <token name="T_WHITESPACE"> </token>
@@ -1051,6 +1036,10 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$m</token>
     <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_PLUS">+</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_LT">&lt;</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_LNUMBER">10</token>
@@ -1093,7 +1082,13 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_DOT">.</token>
     <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_OPEN_BRACKET">(</token>
     <token name="T_VARIABLE">$m</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_PLUS">+</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_LNUMBER">1</token>
+    <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_DOT">.</token>
     <token name="T_WHITESPACE"> </token>

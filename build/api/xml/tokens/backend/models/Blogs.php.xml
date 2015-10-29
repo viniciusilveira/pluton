@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="Blogs.php" realpath="/var/www/html/pluton/apps/backend/models/Blogs.php" size="2105" time="2015-09-17T04:08:13+00:00" unixtime="1442462893" sha1="08421d4996a190b9e29cd17c1297cf0fe057ae69" relative="backend/models/Blogs.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="Blogs.php" realpath="/var/www/html/pluton/apps/backend/models/Blogs.php" size="2389" time="2015-10-19T23:38:52+00:00" unixtime="1445297932" sha1="c743e6922a015145b68556a1fd55cea5d50777b7" relative="backend/models/Blogs.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -190,12 +190,15 @@
     <token name="T_DOC_COMMENT">     * @param  int $layout_id id do layout do blog</token>
   </line>
   <line no="37">
-    <token name="T_DOC_COMMENT">     * @return boolean            true caso sucesso ou false caso de erro.</token>
+    <token name="T_DOC_COMMENT">     * @param  bool $blog_send_mail Informa se o envio de email est&#xE1; ativo</token>
   </line>
   <line no="38">
-    <token name="T_DOC_COMMENT">     */</token>
+    <token name="T_DOC_COMMENT">     * @return boolean            true caso sucesso ou false caso de erro.</token>
   </line>
   <line no="39">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="40">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -207,11 +210,14 @@
     <token name="T_PHPDOX_COMMA">,</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$layout_id</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$blog_send_mail</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="40">
+  <line no="41">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$blog</token>
     <token name="T_WHITESPACE"> </token>
@@ -224,7 +230,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="41">
+  <line no="42">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$blog</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -235,7 +241,7 @@
     <token name="T_VARIABLE">$blog_name</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="42">
+  <line no="43">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$blog</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -246,7 +252,18 @@
     <token name="T_VARIABLE">$layout_id</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="43">
+  <line no="44">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$blog</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">blog_send_mail</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$blog_send_mail</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="45">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$success</token>
     <token name="T_WHITESPACE"> </token>
@@ -259,48 +276,51 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="44"/>
-  <line no="45">
+  <line no="46"/>
+  <line no="47">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$success</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="46">
+  <line no="48">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="47"/>
-  <line no="48">
+  <line no="49"/>
+  <line no="50">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="49">
+  <line no="51">
     <token name="T_DOC_COMMENT">     * Atualiza os dados de prefer&#xEA;ncia do blog</token>
   </line>
-  <line no="50">
+  <line no="52">
     <token name="T_DOC_COMMENT">     * @param  string $blog_name          nome do blog</token>
   </line>
-  <line no="51">
+  <line no="53">
     <token name="T_DOC_COMMENT">     * @param  string $blog_url           url do blog</token>
   </line>
-  <line no="52">
+  <line no="54">
     <token name="T_DOC_COMMENT">     * @param  string $blog_mail          email principal</token>
   </line>
-  <line no="53">
+  <line no="55">
     <token name="T_DOC_COMMENT">     * @param  string $blog_mail_password senha do email principal</token>
   </line>
-  <line no="54">
-    <token name="T_DOC_COMMENT">     * @param  string $blog_about         pequeno texto sobre o blog</token>
-  </line>
-  <line no="55">
-    <token name="T_DOC_COMMENT">     * @return boolean                     true caso sucesso ou false caso de erro.</token>
-  </line>
   <line no="56">
-    <token name="T_DOC_COMMENT">     */</token>
+    <token name="T_DOC_COMMENT">     * @param  bool $blog_send_mail Informa se o envio de email est&#xE1; ativo</token>
   </line>
   <line no="57">
+    <token name="T_DOC_COMMENT">     * @param  string $blog_about         pequeno texto sobre o blog</token>
+  </line>
+  <line no="58">
+    <token name="T_DOC_COMMENT">     * @return boolean                     true caso sucesso ou false caso de erro.</token>
+  </line>
+  <line no="59">
+    <token name="T_DOC_COMMENT">     */</token>
+  </line>
+  <line no="60">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -320,12 +340,15 @@
     <token name="T_VARIABLE">$blog_mail_password</token>
     <token name="T_PHPDOX_COMMA">,</token>
     <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$blog_send_mail</token>
+    <token name="T_PHPDOX_COMMA">,</token>
+    <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$blog_about</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="58">
+  <line no="61">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$blog</token>
     <token name="T_WHITESPACE"> </token>
@@ -338,7 +361,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="59">
+  <line no="62">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$blog</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -349,7 +372,7 @@
     <token name="T_VARIABLE">$blog_name</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="60">
+  <line no="63">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$blog</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -360,7 +383,7 @@
     <token name="T_VARIABLE">$blog_url</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="61">
+  <line no="64">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$blog</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -371,7 +394,7 @@
     <token name="T_VARIABLE">$blog_mail</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="62">
+  <line no="65">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$blog</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -382,7 +405,18 @@
     <token name="T_VARIABLE">$blog_mail_password</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="63">
+  <line no="66">
+    <token name="T_WHITESPACE">        </token>
+    <token name="T_VARIABLE">$blog</token>
+    <token name="T_OBJECT_OPERATOR">-&gt;</token>
+    <token name="T_STRING">blog_send_mail</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_PHPDOX_EQUAL">=</token>
+    <token name="T_WHITESPACE"> </token>
+    <token name="T_VARIABLE">$blog_send_mail</token>
+    <token name="T_PHPDOX_SEMICOLON">;</token>
+  </line>
+  <line no="67">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$blog</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -393,7 +427,7 @@
     <token name="T_VARIABLE">$blog_about</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="64">
+  <line no="68">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
@@ -404,12 +438,12 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="65">
+  <line no="69">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="66">
+  <line no="70">
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="67"/>
+  <line no="71"/>
 </source>

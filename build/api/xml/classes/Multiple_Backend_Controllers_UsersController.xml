@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\UsersController" namespace="Multiple\Backend\Controllers" name="UsersController" abstract="false" final="false" start="27" end="290">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="UsersController.php" realpath="/var/www/html/pluton/apps/backend/controllers/UsersController.php" size="11211" time="2015-10-29T05:16:12+00:00" unixtime="1446095772" sha1="d37ed04bd477d8f5ac6449784bc34f56536de105" relative="backend/controllers/UsersController.php"/>
+  <docblock>
+    <description compact="Classe responsável pelo gerenciamento e controle de usuários"/>
+  </docblock>
+  <extends full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController"/>
+  <method name="indexAction" start="32" end="75" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Carrega o formulário de cadastro de usuário na tela"/>
+    </docblock>
+    <inline>
+      <comment value="Caso o usuário logado seja administrador ou super administrador OU o usuário logado solicitou a edição do próprio perfil carrega a tela" line="37"/>
+    </inline>
+  </method>
+  <method name="verifyPermissionEditedUser" start="83" end="96" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="Verifica se o usuário logado possui permissão para editar o usuário solicitado"/>
+      <param description="Objeto de resultado com dados de usuário" type="object" variable="$user_edit">
+        <type full="Multiple\Backend\Controllers\Phalcon\Mvc\Model\Resultset" namespace="Multiple\Backend\Controllers\Phalcon\Mvc\Model" name="Resultset"/>
+      </param>
+      <param description="Objeto de resultado com dados de usuário" type="object" variable="$user_logged">
+        <type full="Multiple\Backend\Controllers\Phalcon\Mvc\Model\Resultset" namespace="Multiple\Backend\Controllers\Phalcon\Mvc\Model" name="Resultset"/>
+      </param>
+      <return description="Retorna verdadeiro caso possua permissão ou false caso contrário" type="boolean"/>
+    </docblock>
+    <parameter name="user_edit" byreference="false" type="{unknown}"/>
+    <parameter name="user_logged" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="addNewUserAction" start="101" end="137" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Recebe os dados de um novo usuário via POST e adiciona no banco de dados"/>
+    </docblock>
+  </method>
+  <method name="listUsersAction" start="142" end="171" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Busca todos os usuários cadastrados no sistema e os exibe em uma tabela"/>
+    </docblock>
+  </method>
+  <method name="updateUserAction" start="176" end="213" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Atualiza os dados do usuário pelos dados informados via POST"/>
+    </docblock>
+    <inline>
+      <comment value="Verifica se existe arquivo para upload, caso exista efetua o upload" line="181"/>
+    </inline>
+  </method>
+  <method name="ActiveOrdeactiveUserAction" start="218" end="225" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Altera o status de um usuário, se estiver ativo, desativa e se estiver desativado, ativa"/>
+    </docblock>
+  </method>
+  <method name="uploadImage" start="235" end="274" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="Action para upload de imagens para o servidor"/>
+      <param description="imagem" type="object" variable="$file">
+        <type full="Multiple\Backend\Controllers\file" namespace="Multiple\Backend\Controllers" name="file"/>
+      </param>
+      <param description="Largura máxima da imagem" type="int" variable="$width"/>
+      <param description="Altura máxima da imagem" type="int" variable="$heigth"/>
+      <param description="Tamanho máximo da imagem" type="int" variable="$size"/>
+      <return description="Nome da imagem ou erro caso ocorroa algum." type="string"/>
+    </docblock>
+    <parameter name="file" byreference="false" type="{unknown}"/>
+    <parameter name="width" byreference="false" type="{unknown}"/>
+    <parameter name="heigth" byreference="false" type="{unknown}"/>
+    <parameter name="size" byreference="false" type="{unknown}"/>
+    <parameter name="name_img" byreference="false" type="{unknown}" default="" constant="NULL"/>
+    <inline>
+      <comment value="Pega as dimensões da imagem" line="237"/>
+      <comment value="Verifica se o arquivo é uma imagem" line="240"/>
+    </inline>
+  </method>
+  <method name="getImgName" start="280" end="289" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Utiliza o método BaseController::uid() para gerar um nome para a imagem de perfil a ser salva."/>
+      <return description="nome da imagem" type="string"/>
+    </docblock>
+  </method>
+  <parent full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController">
+    <extends full="Phalcon\Mvc\Controller" namespace="Phalcon\Mvc" name="Controller" unresolved="true"/>
+    <method name="getUserLoggedInformation" start="33" end="42" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Busca todas as informações do usuário logado"/>
+        <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
+      </docblock>
+    </method>
+    <method name="getSideBarMenus" start="48" end="68" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
+        <return description="contendo menus e submenus" type="array"/>
+      </docblock>
+    </method>
+    <method name="uid" start="75" end="92" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
+        <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
+          <type full="Multiple\Backend\Controllers\type" namespace="Multiple\Backend\Controllers" name="type"/>
+        </param>
+        <return description="chave eletronica gerada" type="string"/>
+      </docblock>
+      <parameter name="l" byreference="false" type="integer" default="6"/>
+    </method>
+    <method name="dateFormat" start="100" end="107" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
+        <param description="data a ser alterada" type="object" variable="$data">
+          <type full="Multiple\Backend\Controllers\date" namespace="Multiple\Backend\Controllers" name="date"/>
+        </param>
+        <param description="indica o formato da data. 1 =&gt; Human, 2 =&gt; database" type="int" variable="$format"/>
+        <return description="data formatada" type="object">
+          <type full="Multiple\Backend\Controllers\date" namespace="Multiple\Backend\Controllers" name="date"/>
+        </return>
+      </docblock>
+      <parameter name="data" byreference="false" type="{unknown}"/>
+      <parameter name="format" byreference="false" type="{unknown}"/>
+    </method>
+    <method name="mountArrayMonths" start="113" end="129" abstract="false" final="false" static="false" visibility="public">
+      <docblock>
+        <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
+        <return description="contendo os meses do calendário em pt_BR" type="array"/>
+      </docblock>
+    </method>
+  </parent>
+</class>

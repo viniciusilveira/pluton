@@ -28,7 +28,7 @@ class PostStatus extends \Phalcon\Mvc\Model {
     /**
      * Retorna status da postagem por id
      * @param  int $post_status_id id de um status de postagem
-     * @return [type]                 [description]
+     * @return \Phalcon\Mvc\Model\Resultset  Objeto contendo o status de postagens
      */
     public function getPostStatus($post_status_id = NULL) {
         $post_status = !empty($post_status_id) ? PostStatus::findFirstByPost_status_id($post_status_id) : PostStatus::find();

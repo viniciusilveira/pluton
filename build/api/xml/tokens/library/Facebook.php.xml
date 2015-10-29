@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/controllers" file="FacebookController.php" realpath="/var/www/html/pluton/apps/backend/controllers/FacebookController.php" size="842" time="2015-09-16T20:48:14+00:00" unixtime="1442436494" sha1="26d4db1e9492ee883ebf18090fa7ce50d5d89fd6" relative="backend/controllers/FacebookController.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/library" file="Facebook.php" realpath="/var/www/html/pluton/apps/library/Facebook.php" size="801" time="2015-10-19T23:38:52+00:00" unixtime="1445297932" sha1="7efb8f0d7e55a193142c05016a1611cc85129a35" relative="library/Facebook.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -14,13 +14,13 @@
     <token name="T_DOC_COMMENT"> * Function list:</token>
   </line>
   <line no="5">
-    <token name="T_DOC_COMMENT"> * - facebook_count()</token>
+    <token name="T_DOC_COMMENT"> * - facebookCount()</token>
   </line>
   <line no="6">
     <token name="T_DOC_COMMENT"> * Classes list:</token>
   </line>
   <line no="7">
-    <token name="T_DOC_COMMENT"> * - FacebookController extends \</token>
+    <token name="T_DOC_COMMENT"> * - Facebook extends BaseController</token>
   </line>
   <line no="8">
     <token name="T_DOC_COMMENT"> */</token>
@@ -30,9 +30,7 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">Multiple</token>
     <token name="T_NS_SEPARATOR">\</token>
-    <token name="T_STRING">Backend</token>
-    <token name="T_NS_SEPARATOR">\</token>
-    <token name="T_STRING">Controllers</token>
+    <token name="T_STRING">Library</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
   <line no="10"/>
@@ -48,38 +46,29 @@
   <line no="14">
     <token name="T_CLASS">class</token>
     <token name="T_WHITESPACE"> </token>
-    <token name="T_STRING">FacebookController</token>
-    <token name="T_WHITESPACE"> </token>
-    <token name="T_EXTENDS">extends</token>
-    <token name="T_WHITESPACE"> </token>
-    <token name="T_NS_SEPARATOR">\</token>
-    <token name="T_STRING">Phalcon</token>
-    <token name="T_NS_SEPARATOR">\</token>
-    <token name="T_STRING">Mvc</token>
-    <token name="T_NS_SEPARATOR">\</token>
-    <token name="T_STRING">Controller</token>
+    <token name="T_STRING">Facebook</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
   <line no="15"/>
   <line no="16">
-    <token name="T_WHITESPACE">	</token>
+    <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
   <line no="17">
-    <token name="T_DOC_COMMENT">	 * Conta a quantidade de likes de uma p&#xE1;gina</token>
+    <token name="T_DOC_COMMENT">     * Conta a quantidade de likes de uma p&#xE1;gina</token>
   </line>
   <line no="18">
-    <token name="T_DOC_COMMENT">	 * @param  string $url nome da p&#xE1;gina a ser consultada</token>
+    <token name="T_DOC_COMMENT">     * @param  string $url nome da p&#xE1;gina a ser consultada</token>
   </line>
   <line no="19">
-    <token name="T_DOC_COMMENT">	 */</token>
+    <token name="T_DOC_COMMENT">     */</token>
   </line>
   <line no="20">
     <token name="T_WHITESPACE">    </token>
     <token name="T_FUNCTION">function</token>
     <token name="T_WHITESPACE"> </token>
-    <token name="T_STRING">facebook_count</token>
+    <token name="T_STRING">facebookCount</token>
     <token name="T_PHPDOX_OPEN_BRACKET">(</token>
     <token name="T_VARIABLE">$url</token>
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>

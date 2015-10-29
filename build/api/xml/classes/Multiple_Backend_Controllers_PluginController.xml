@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\PluginController" namespace="Multiple\Backend\Controllers" name="PluginController" abstract="false" final="false" start="25" end="165">
-  <file path="/var/www/html/pluton/apps/backend/controllers" file="PluginController.php" realpath="/var/www/html/pluton/apps/backend/controllers/PluginController.php" size="6334" time="2015-09-16T21:37:20+00:00" unixtime="1442439440" sha1="457c3242f0a8aa58fccac22fb1d395e7c39f2baa" relative="backend/controllers/PluginController.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\PluginController" namespace="Multiple\Backend\Controllers" name="PluginController" abstract="false" final="false" start="25" end="167">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="PluginController.php" realpath="/var/www/html/pluton/apps/backend/controllers/PluginController.php" size="6534" time="2015-10-24T17:48:29+00:00" unixtime="1445708909" sha1="ee2b77e9351f3b3a15c56a4e6d5654add5c68a55" relative="backend/controllers/PluginController.php"/>
   <docblock>
     <description compact="Classe responsável pela manipulação de plugins no sistema"/>
   </docblock>
@@ -15,12 +15,12 @@
       <description compact="Carrega tabela com uma lista dos plugins instalados"/>
     </docblock>
   </method>
-  <method name="addPluginAction" start="84" end="117" abstract="false" final="false" static="false" visibility="public">
+  <method name="addPluginAction" start="84" end="118" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Adiciona um novo plugin conforme dados recebidos via POST"/>
     </docblock>
   </method>
-  <method name="updatePluginAction" start="122" end="164" abstract="false" final="false" static="false" visibility="public">
+  <method name="updatePluginAction" start="123" end="166" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Atualiza um plugin conforme dados recebidos via POST"/>
     </docblock>
@@ -33,13 +33,13 @@
         <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
       </docblock>
     </method>
-    <method name="getSideBarMenus" start="48" end="67" abstract="false" final="false" static="false" visibility="public">
+    <method name="getSideBarMenus" start="48" end="68" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
         <return description="contendo menus e submenus" type="array"/>
       </docblock>
     </method>
-    <method name="uid" start="74" end="91" abstract="false" final="false" static="false" visibility="public">
+    <method name="uid" start="75" end="92" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
         <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
@@ -49,7 +49,7 @@
       </docblock>
       <parameter name="l" byreference="false" type="integer" default="6"/>
     </method>
-    <method name="dateFormat" start="99" end="106" abstract="false" final="false" static="false" visibility="public">
+    <method name="dateFormat" start="100" end="107" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
         <param description="data a ser alterada" type="object" variable="$data">
@@ -63,7 +63,7 @@
       <parameter name="data" byreference="false" type="{unknown}"/>
       <parameter name="format" byreference="false" type="{unknown}"/>
     </method>
-    <method name="mountArrayMonths" start="112" end="128" abstract="false" final="false" static="false" visibility="public">
+    <method name="mountArrayMonths" start="113" end="129" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
         <return description="contendo os meses do calendário em pt_BR" type="array"/>

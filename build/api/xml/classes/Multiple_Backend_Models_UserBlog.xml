@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\UserBlog" namespace="Multiple\Backend\Models" name="UserBlog" abstract="false" final="false" start="13" end="43">
-  <file path="/var/www/html/pluton/apps/backend/models" file="UserBlog.php" realpath="/var/www/html/pluton/apps/backend/models/UserBlog.php" size="1167" time="2015-09-17T04:23:45+00:00" unixtime="1442463825" sha1="223909eae8b9ecb99071b8e806fbbb09ae1e2ab5" relative="backend/models/UserBlog.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\UserBlog" namespace="Multiple\Backend\Models" name="UserBlog" abstract="false" final="false" start="17" end="47">
+  <file path="/var/www/html/pluton/apps/backend/models" file="UserBlog.php" realpath="/var/www/html/pluton/apps/backend/models/UserBlog.php" size="1249" time="2015-10-29T05:20:28+00:00" unixtime="1446096028" sha1="7cd24ff4c47ae0d683d40408ac8db4eb67c0aca1" relative="backend/models/UserBlog.php"/>
+  <docblock>
+    <description compact="Classe responsável por manipular dados referentes a tabela user_blog"/>
+  </docblock>
   <extends full="Phalcon\Mvc\Model" namespace="Phalcon\Mvc" name="Model" unresolved="true"/>
-  <method name="initialize" start="15" end="19" abstract="false" final="false" static="false" visibility="public"/>
-  <method name="getSource" start="25" end="27" abstract="false" final="false" static="false" visibility="public">
+  <method name="initialize" start="19" end="23" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getSource" start="29" end="31" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Retorna o nome da tabela ao qual a classe referencia no banco de dados"/>
       <return description="nome da tabela" type="string"/>
     </docblock>
   </method>
-  <method name="createUserBlog" start="35" end="42" abstract="false" final="false" static="false" visibility="public">
+  <method name="createUserBlog" start="39" end="46" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Cria uma nova instância da tabela user_blog"/>
       <param description="id do usuário" type="int" variable="$user_id"/>

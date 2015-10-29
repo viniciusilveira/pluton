@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Models\Categories" namespace="Multiple\Backend\Models" name="Categories" abstract="false" final="false" start="15" end="39">
-  <file path="/var/www/html/pluton/apps/backend/models" file="Categories.php" realpath="/var/www/html/pluton/apps/backend/models/Categories.php" size="1112" time="2015-09-17T04:08:08+00:00" unixtime="1442462888" sha1="6337fe83d1738a017e0d74e9172cc6e25e27e2c5" relative="backend/models/Categories.php"/>
+  <file path="/var/www/html/pluton/apps/backend/models" file="Categories.php" realpath="/var/www/html/pluton/apps/backend/models/Categories.php" size="1112" time="2015-09-17T05:03:25+00:00" unixtime="1442466205" sha1="6337fe83d1738a017e0d74e9172cc6e25e27e2c5" relative="backend/models/Categories.php"/>
   <docblock>
     <description compact="Classe responsável por manipular dados referentes as categorias"/>
   </docblock>

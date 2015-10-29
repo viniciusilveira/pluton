@@ -10,6 +10,10 @@
  */
 namespace Multiple\Backend\Models;
 
+
+/**
+ * Classe responsável por manipular dados referentes a tabela user_blog
+ */
 class UserBlog extends \Phalcon\Mvc\Model {
 
     public function initialize() {

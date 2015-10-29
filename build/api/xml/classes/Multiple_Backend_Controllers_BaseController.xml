@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController" abstract="false" final="false" start="27" end="129">
-  <file path="/var/www/html/pluton/apps/backend/controllers" file="BaseController.php" realpath="/var/www/html/pluton/apps/backend/controllers/BaseController.php" size="3766" time="2015-09-16T20:45:10+00:00" unixtime="1442436310" sha1="adfd034e15bd0a472feb161b6be388ffd7b27eec" relative="backend/controllers/BaseController.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\BaseController" namespace="Multiple\Backend\Controllers" name="BaseController" abstract="false" final="false" start="27" end="130">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="BaseController.php" realpath="/var/www/html/pluton/apps/backend/controllers/BaseController.php" size="3813" time="2015-10-24T18:01:21+00:00" unixtime="1445709681" sha1="ac886c0ca1400f3b73f22cedfcdbb5efc58e5d27" relative="backend/controllers/BaseController.php"/>
   <docblock>
     <description compact="Controlador principal do sistema, herdado por todos os outros controlladores"/>
   </docblock>
@@ -11,13 +11,13 @@
       <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
     </docblock>
   </method>
-  <method name="getSideBarMenus" start="48" end="67" abstract="false" final="false" static="false" visibility="public">
+  <method name="getSideBarMenus" start="48" end="68" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
       <return description="contendo menus e submenus" type="array"/>
     </docblock>
   </method>
-  <method name="uid" start="74" end="91" abstract="false" final="false" static="false" visibility="public">
+  <method name="uid" start="75" end="92" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
       <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
@@ -27,7 +27,7 @@
     </docblock>
     <parameter name="l" byreference="false" type="integer" default="6"/>
   </method>
-  <method name="dateFormat" start="99" end="106" abstract="false" final="false" static="false" visibility="public">
+  <method name="dateFormat" start="100" end="107" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
       <param description="data a ser alterada" type="object" variable="$data">
@@ -41,7 +41,7 @@
     <parameter name="data" byreference="false" type="{unknown}"/>
     <parameter name="format" byreference="false" type="{unknown}"/>
   </method>
-  <method name="mountArrayMonths" start="112" end="128" abstract="false" final="false" static="false" visibility="public">
+  <method name="mountArrayMonths" start="113" end="129" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
       <return description="contendo os meses do calendário em pt_BR" type="array"/>
@@ -57,6 +57,7 @@
     <extender full="Multiple\Backend\Controllers\DashboardController" namespace="Multiple\Backend\Controllers" name="DashboardController"/>
     <extender full="Multiple\Backend\Controllers\LoginController" namespace="Multiple\Backend\Controllers" name="LoginController"/>
     <extender full="Multiple\Backend\Controllers\SetupController" namespace="Multiple\Backend\Controllers" name="SetupController"/>
+    <extender full="Multiple\Backend\Controllers\UsersController" namespace="Multiple\Backend\Controllers" name="UsersController"/>
     <extender full="Multiple\Backend\Controllers\SettingsController" namespace="Multiple\Backend\Controllers" name="SettingsController"/>
   </extenders>
 </class>

@@ -16,6 +16,7 @@
  */
 
 namespace Multiple\Backend\Controllers;
+
 use Multiple\Backend\Models\Posts;
 use Multiple\Backend\Models\PostStatus;
 use Multiple\Backend\Models\Categories;

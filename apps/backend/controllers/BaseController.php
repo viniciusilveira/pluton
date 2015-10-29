@@ -47,6 +47,7 @@ class BaseController extends \Phalcon\Mvc\Controller {
      */
     public function getSideBarMenus() {
         $menus = Menu::find(array(
+            'conditions' => 'menu_active = 1',
             'hydration' => Resultset::HYDRATE_ARRAYS
         ))->toArray();
 

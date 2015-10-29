@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/controllers" file="UpdateController.php" realpath="/var/www/html/pluton/apps/backend/controllers/UpdateController.php" size="2329" time="2015-09-16T21:44:31+00:00" unixtime="1442439871" sha1="17f80cc58db8498230ea3bfe6b5ee04fcb67c01f" relative="backend/controllers/UpdateController.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/controllers" file="UpdateController.php" realpath="/var/www/html/pluton/apps/backend/controllers/UpdateController.php" size="2330" time="2015-10-10T19:52:21+00:00" unixtime="1444506741" sha1="48c2806fe1b0da428d50e2c1353e52984e5e1b0e" relative="backend/controllers/UpdateController.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -408,7 +408,7 @@
   </line>
   <line no="55">
     <token name="T_WHITESPACE">    </token>
-    <token name="T_PUBLIC">public</token>
+    <token name="T_PRIVATE">private</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_FUNCTION">function</token>
     <token name="T_WHITESPACE"> </token>

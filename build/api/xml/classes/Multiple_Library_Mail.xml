@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Mail" namespace="Multiple\Library" name="Mail" abstract="false" final="false" start="20" end="69">
-  <file path="/var/www/html/pluton/apps/library" file="Mail.php" realpath="/var/www/html/pluton/apps/library/Mail.php" size="2137" time="2015-09-17T04:51:53+00:00" unixtime="1442465513" sha1="7862fabf6c3d3ccdac2ff25949cafee06b804130" relative="library/Mail.php"/>
+  <file path="/var/www/html/pluton/apps/library" file="Mail.php" realpath="/var/www/html/pluton/apps/library/Mail.php" size="2137" time="2015-09-17T05:03:25+00:00" unixtime="1442466205" sha1="7862fabf6c3d3ccdac2ff25949cafee06b804130" relative="library/Mail.php"/>
   <docblock>
     <description compact="Classe para envios e confirmação de emails utilizando Swift Mailer"/>
   </docblock>

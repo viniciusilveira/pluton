@@ -63,7 +63,7 @@
                         <input type="text" name="submenu2_icon" class="form-control" value="<?= $submenu2['submenu_icon']?>" placeholder="Ícone de exibição">
                     </div>
                     <div class="form-group input-group col-sm-10">
-                        <div class="col-sm-5"><label>Ativar: </label><input type="checkbox" class="my-checkbox" checked></div>
+                        <div class="col-sm-5"><label>Ativar: </label><input type="checkbox" name="menu_active" class="my-checkbox" checked></div>
                     </div>
                     <div class="form-group col-sm-6">
                         <?php if(empty($plugin['plugin_id'])){ ?>
@@ -137,7 +137,7 @@ $("#edit-plugin").click(function(){
 });
 
 $(".my-checkbox").bootstrapSwitch({
-    state: true,
+    state: <?= !empty($menu['menu_active']) ? $menu['menu_active'] : 'false' ?>,
     size: "small",
     offColor: "warning"
 });

@@ -10,6 +10,9 @@
  */
 namespace Multiple\Backend\Models;
 
+/**
+ * Classe responsável por manipular dados referentes aos tipos de usuários
+ */
 class UserType extends \Phalcon\Mvc\Model {
 
     public function initialize() {

@@ -9,7 +9,7 @@
 namespace Multiple\Backend\Controllers;
 
 use Multiple\Library\Analytics;
-
+use Multiple\Library\Adsense;
 use Multiple\Backend\Models\GoogleAccounts;
 
 /**
@@ -25,7 +25,7 @@ class StatisticsController extends BaseController {
         if ($this->session->get("user_id") != NULL) {
             $vars = $this->getUserLoggedInformation();
             $vars['menus'] = $this->getSideBarMenus();
-            $vars['months'] = $sessions['months'];
+
 
             $google_account = GoogleAccounts::findFirst();
             if($google_account->google_analytics_active){
@@ -36,6 +36,7 @@ class StatisticsController extends BaseController {
                 }
                 $sessions = Analytics::getAccessPerMonth($google_account->google_account_login, $google_account->google_account_key_file_name);
                 $vars['sessions'] = $sessions['sessions'];
+                $vars['months'] = $sessions['months'];
                 $vars['total_sessions'] = $sessions['total_sessions'];
 
                 $vars['countries'] = $countries;
@@ -45,6 +46,9 @@ class StatisticsController extends BaseController {
                 $vars['sessions'] = 0;
                 $vars['total_sessions'] = 0;
                 $vars['pageviews'] = 0;
+            }
+            if($google_account->google_adsense_active){
+                $vars['earnings'] = Adsense::getEarnings($google_account->google_account_login, $google_account->google_account_key_file_name);
             }
 
             $this->view->setVars($vars);

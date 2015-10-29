@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class xmlns="http://xml.phpdox.net/src" full="Multiple\Library\Adsense" namespace="Multiple\Library" name="Adsense" abstract="false" final="false" start="16" end="65">
-  <file path="/var/www/html/pluton/apps/library" file="Adsense.php" realpath="/var/www/html/pluton/apps/library/Adsense.php" size="2375" time="2015-09-17T04:49:41+00:00" unixtime="1442465381" sha1="1e2648d20a7a26960bb38a5bd5334bb45c98b7ea" relative="library/Adsense.php"/>
-  <extends full="Multiple\Library\BaseController" namespace="Multiple\Library" name="BaseController" unresolved="true"/>
+  <file path="/var/www/html/pluton/apps/library" file="Adsense.php" realpath="/var/www/html/pluton/apps/library/Adsense.php" size="2341" time="2015-10-10T19:52:21+00:00" unixtime="1444506741" sha1="836dfa137a75173d927dc85958a09cc81660e13b" relative="library/Adsense.php"/>
   <method name="getService" start="24" end="46" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Retorna um objeto do tipo Google_Service_AdSense"/>

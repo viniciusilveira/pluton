@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\LoginController" namespace="Multiple\Backend\Controllers" name="LoginController" abstract="false" final="false" start="23" end="123">
-  <file path="/var/www/html/pluton/apps/backend/controllers" file="LoginController.php" realpath="/var/www/html/pluton/apps/backend/controllers/LoginController.php" size="3513" time="2015-09-16T20:57:08+00:00" unixtime="1442437028" sha1="b616d5509bbe41b4885c48c5684bc7b68808108b" relative="backend/controllers/LoginController.php"/>
+<class xmlns="http://xml.phpdox.net/src" full="Multiple\Backend\Controllers\LoginController" namespace="Multiple\Backend\Controllers" name="LoginController" abstract="false" final="false" start="23" end="129">
+  <file path="/var/www/html/pluton/apps/backend/controllers" file="LoginController.php" realpath="/var/www/html/pluton/apps/backend/controllers/LoginController.php" size="3756" time="2015-10-29T05:14:01+00:00" unixtime="1446095641" sha1="beba73ca584adf73527cb3ca35f3878c66430bf4" relative="backend/controllers/LoginController.php"/>
   <docblock>
     <description compact="Classe responsável pela manipulação de login e sessão do sistema"/>
   </docblock>
@@ -15,19 +15,23 @@
       <description compact="Efetua o login no sistema"/>
     </docblock>
   </method>
-  <method name="newCodeResetPasswordAction" start="67" end="72" abstract="false" final="false" static="false" visibility="public"/>
-  <method name="setMailLibrary" start="77" end="80" abstract="false" final="false" static="false" visibility="private">
+  <method name="newCodeResetPasswordAction" start="70" end="78" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Carrega página para resetar senha do usuário"/>
+    </docblock>
+  </method>
+  <method name="setMailLibrary" start="83" end="86" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Seta uma instância da classe Library\Mail"/>
     </docblock>
   </method>
-  <method name="sendNewPasswordAction" start="86" end="99" abstract="false" final="false" static="false" visibility="public">
+  <method name="sendNewPasswordAction" start="92" end="105" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Envia uma nova senha para o email do usuário"/>
       <return description="true em caso de sucesso ou false em caso de falha" type="boolean"/>
     </docblock>
   </method>
-  <method name="createSession" start="106" end="110" abstract="false" final="false" static="false" visibility="private">
+  <method name="createSession" start="112" end="116" abstract="false" final="false" static="false" visibility="private">
     <docblock>
       <description compact="Inicia a sessão do usuário setando o id e login do mesmo em váriaveis de sessão"/>
       <param description="id do usuário" type="int" variable="$user_id"/>
@@ -36,7 +40,7 @@
     <parameter name="user_id" byreference="false" type="{unknown}"/>
     <parameter name="user_login" byreference="false" type="{unknown}"/>
   </method>
-  <method name="logoffAction" start="116" end="122" abstract="false" final="false" static="false" visibility="public">
+  <method name="logoffAction" start="122" end="128" abstract="false" final="false" static="false" visibility="public">
     <docblock>
       <description compact="Destroi a sessão e redireciona para tela de login"/>
       <return/>
@@ -50,13 +54,13 @@
         <return description="contendo nome de usuário, tipo e imagem de perfil do usuário logado" type="array"/>
       </docblock>
     </method>
-    <method name="getSideBarMenus" start="48" end="67" abstract="false" final="false" static="false" visibility="public">
+    <method name="getSideBarMenus" start="48" end="68" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Busca as opções a serem exibidas no menu lateral do sistema"/>
         <return description="contendo menus e submenus" type="array"/>
       </docblock>
     </method>
-    <method name="uid" start="74" end="91" abstract="false" final="false" static="false" visibility="public">
+    <method name="uid" start="75" end="92" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Gera uma string aleatória contendo números letras maiusculas e minusculas"/>
         <param description="tamanho da chave a ser gerada (6 padrão)" type="object" variable="$l">
@@ -66,7 +70,7 @@
       </docblock>
       <parameter name="l" byreference="false" type="integer" default="6"/>
     </method>
-    <method name="dateFormat" start="99" end="106" abstract="false" final="false" static="false" visibility="public">
+    <method name="dateFormat" start="100" end="107" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Altera o formato da data para human ou database conforme o parametro informado"/>
         <param description="data a ser alterada" type="object" variable="$data">
@@ -80,7 +84,7 @@
       <parameter name="data" byreference="false" type="{unknown}"/>
       <parameter name="format" byreference="false" type="{unknown}"/>
     </method>
-    <method name="mountArrayMonths" start="112" end="128" abstract="false" final="false" static="false" visibility="public">
+    <method name="mountArrayMonths" start="113" end="129" abstract="false" final="false" static="false" visibility="public">
       <docblock>
         <description compact="Monta um array com o nome dos 12 meses do calendário em pt_BR"/>
         <return description="contendo os meses do calendário em pt_BR" type="array"/>

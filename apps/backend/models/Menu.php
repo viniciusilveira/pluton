@@ -45,12 +45,13 @@ class Menu extends \Phalcon\Mvc\Model {
      * @param  int $menu_level_permission    Nível de permissão do menu
      * @return boolean verdadeiro caso sucesso ou falso caso ocorra alguma falha
      */
-    public function updateMenu($menu_id, $menu_icon, $menu_name, $menu_href, $menu_level_permission) {
+    public function updateMenu($menu_id, $menu_icon, $menu_name, $menu_href, $menu_level_permission, $menu_active) {
         $menu = Menu::findFirstByMenu_id($menu_id);
         $menu->menu_icon = $menu_icon;
         $menu->menu_name = $menu_name;
         $menu->menu_href = $menu_href;
         $menu->menu_level_permission = $menu_level_permission;
+        $menu->menu_active = $menu_active;
         $success = $menu->save();
 
         return $success;

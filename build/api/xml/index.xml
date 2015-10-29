@@ -6,17 +6,17 @@
   <namespace name="Multiple\Backend\Models">
     <class name="PostStatus" src="frontend/models/PostStatus.php" xml="classes/Multiple_Backend_Models_PostStatus.xml"/>
     <class name="Submenu" src="backend/models/Submenu.php" description="Classe responsável por manipular os dados referentes aos submenus" xml="classes/Multiple_Backend_Models_Submenu.xml"/>
-    <class name="UserType" src="backend/models/UserType.php" xml="classes/Multiple_Backend_Models_UserType.xml"/>
+    <class name="UserType" src="backend/models/UserType.php" description="Classe responsável por manipular dados referentes aos tipos de usuários" xml="classes/Multiple_Backend_Models_UserType.xml"/>
     <class name="FacebookPages" src="backend/models/FacebookPages.php" description="Classe responsável por manipular dados referentes ao Facebook" xml="classes/Multiple_Backend_Models_FacebookPages.xml"/>
     <class name="Plugin" src="backend/models/Plugin.php" description="Classe responsável por manipular dados referentes aos plugins" xml="classes/Multiple_Backend_Models_Plugin.xml"/>
     <class name="Categories" src="backend/models/Categories.php" description="Classe responsável por manipular dados referentes as categorias" xml="classes/Multiple_Backend_Models_Categories.xml"/>
     <class name="Menu" src="backend/models/Menu.php" description="Classe responsável por manipular dados referentes ao menu" xml="classes/Multiple_Backend_Models_Menu.xml"/>
-    <class name="UserBlog" src="backend/models/UserBlog.php" xml="classes/Multiple_Backend_Models_UserBlog.xml"/>
+    <class name="UserBlog" src="backend/models/UserBlog.php" description="Classe responsável por manipular dados referentes a tabela user_blog" xml="classes/Multiple_Backend_Models_UserBlog.xml"/>
     <class name="Blogs" src="backend/models/Blogs.php" description="Class Blogs" xml="classes/Multiple_Backend_Models_Blogs.xml"/>
     <class name="Users" src="backend/models/Users.php" description="Classe responsável por manipular dados referentes aos usuários" xml="classes/Multiple_Backend_Models_Users.xml"/>
     <class name="Posts" src="backend/models/Posts.php" description="Classe responsável por manipular dados referentes aos Posts" xml="classes/Multiple_Backend_Models_Posts.xml"/>
     <class name="PostCategorie" src="backend/models/PostCategorie.php" description="Classe responsável por manipular dados referentes a tabela post_categorie" xml="classes/Multiple_Backend_Models_PostCategorie.xml"/>
-    <class name="TwitterAccounts" src="backend/models/TwitterAccounts.php" xml="classes/Multiple_Backend_Models_TwitterAccounts.xml"/>
+    <class name="TwitterAccounts" src="backend/models/TwitterAccounts.php" description="Classe responsável pelo gerenciamento de dados referente a contas da rede social twitter" xml="classes/Multiple_Backend_Models_TwitterAccounts.xml"/>
     <class name="GoogleAccounts" src="backend/models/GoogleAccounts.php" description="Classe responsável por manipular dados da conta google do blog" xml="classes/Multiple_Backend_Models_GoogleAccounts.xml"/>
     <class name="Layouts" src="backend/models/Layouts.php" description="Classe responsável por manipular dados referentes ao Layout do blog" xml="classes/Multiple_Backend_Models_Layouts.xml"/>
   </namespace>
@@ -48,15 +48,16 @@
     <class name="PostController" src="backend/controllers/PostController.php" description="Classe responsável pela manipulação das postagens e elementos relacionados as mesmas" xml="classes/Multiple_Backend_Controllers_PostController.xml"/>
     <class name="DashboardController" src="backend/controllers/DashboardController.php" description="Classe responsável por manipular as operações do usuário na área administrativa" xml="classes/Multiple_Backend_Controllers_DashboardController.xml"/>
     <class name="LoginController" src="backend/controllers/LoginController.php" description="Classe responsável pela manipulação de login e sessão do sistema" xml="classes/Multiple_Backend_Controllers_LoginController.xml"/>
-    <class name="FacebookController" src="backend/controllers/FacebookController.php" description="Classe responsável por coletar dados referentes ao facebook" xml="classes/Multiple_Backend_Controllers_FacebookController.xml"/>
     <class name="SetupController" src="backend/controllers/SetupController.php" description="Classe para conexão e configuração dos dados necessários para utilização do sistema" xml="classes/Multiple_Backend_Controllers_SetupController.xml"/>
-    <class name="TwitterSdkController" src="backend/controllers/TwitterSdkController.php" xml="classes/Multiple_Backend_Controllers_TwitterSdkController.xml"/>
+    <class name="UsersController" src="backend/controllers/UsersController.php" description="Classe responsável pelo gerenciamento e controle de usuários" xml="classes/Multiple_Backend_Controllers_UsersController.xml"/>
     <class name="SettingsController" src="backend/controllers/SettingsController.php" description="Classe responsável por manipular as configurações e opções do sistema" xml="classes/Multiple_Backend_Controllers_SettingsController.xml"/>
   </namespace>
   <namespace name="Multiple\Library">
     <class name="Tables" src="library/Tables.php" description="Class Tables Library Responsável por criar todas as tabelas necessárias para o projeto." xml="classes/Multiple_Library_Tables.xml"/>
+    <class name="Facebook" src="library/Facebook.php" description="Classe responsável por coletar dados referentes ao facebook" xml="classes/Multiple_Library_Facebook.xml"/>
+    <class name="TwitterSdk" src="library/TwitterSdk.php" description="Classe responsável pelas funcionalidades da rede social twitter" xml="classes/Multiple_Library_TwitterSdk.xml"/>
     <class name="Mail" src="library/Mail.php" description="Classe para envios e confirmação de emails utilizando Swift Mailer" xml="classes/Multiple_Library_Mail.xml"/>
-    <class name="Analytics" src="library/Analytics.php" xml="classes/Multiple_Library_Analytics.xml"/>
+    <class name="Analytics" src="library/Analytics.php" description="Classe responsável pelo gerenciamento das funcionalidades do Google Analytics" xml="classes/Multiple_Library_Analytics.xml"/>
     <class name="Adsense" src="library/Adsense.php" xml="classes/Multiple_Library_Adsense.xml"/>
   </namespace>
   <namespace name="">

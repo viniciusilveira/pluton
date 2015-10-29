@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="UserBlog.php" realpath="/var/www/html/pluton/apps/backend/models/UserBlog.php" size="1167" time="2015-09-17T04:23:45+00:00" unixtime="1442463825" sha1="223909eae8b9ecb99071b8e806fbbb09ae1e2ab5" relative="backend/models/UserBlog.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="UserBlog.php" realpath="/var/www/html/pluton/apps/backend/models/UserBlog.php" size="1249" time="2015-10-29T05:20:28+00:00" unixtime="1446096028" sha1="7cd24ff4c47ae0d683d40408ac8db4eb67c0aca1" relative="backend/models/UserBlog.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -42,7 +42,17 @@
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
   <line no="12"/>
-  <line no="13">
+  <line no="13"/>
+  <line no="14">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="15">
+    <token name="T_DOC_COMMENT"> * Classe respons&#xE1;vel por manipular dados referentes a tabela user_blog</token>
+  </line>
+  <line no="16">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="17">
     <token name="T_CLASS">class</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">UserBlog</token>
@@ -58,8 +68,8 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="14"/>
-  <line no="15">
+  <line no="18"/>
+  <line no="19">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -71,7 +81,7 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="16">
+  <line no="20">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$this</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -81,7 +91,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="17">
+  <line no="21">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$this</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -97,7 +107,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="18">
+  <line no="22">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$this</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -113,25 +123,25 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="19">
+  <line no="23">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="20"/>
-  <line no="21">
+  <line no="24"/>
+  <line no="25">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="22">
+  <line no="26">
     <token name="T_DOC_COMMENT">     * Retorna o nome da tabela ao qual a classe referencia no banco de dados</token>
   </line>
-  <line no="23">
+  <line no="27">
     <token name="T_DOC_COMMENT">     * @return string nome da tabela</token>
   </line>
-  <line no="24">
+  <line no="28">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="25">
+  <line no="29">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -143,38 +153,38 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="26">
+  <line no="30">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_CONSTANT_ENCAPSED_STRING">"users_blogs"</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="27">
+  <line no="31">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="28"/>
-  <line no="29">
+  <line no="32"/>
+  <line no="33">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="30">
+  <line no="34">
     <token name="T_DOC_COMMENT">     * Cria uma nova inst&#xE2;ncia da tabela user_blog</token>
   </line>
-  <line no="31">
+  <line no="35">
     <token name="T_DOC_COMMENT">     * @param  int $user_id id do usu&#xE1;rio</token>
   </line>
-  <line no="32">
+  <line no="36">
     <token name="T_DOC_COMMENT">     * @param  int $blog_id id do blog</token>
   </line>
-  <line no="33">
+  <line no="37">
     <token name="T_DOC_COMMENT">     * @return boolean          Verdadeiro caso sucesso ou falso caso ocorra algum erro</token>
   </line>
-  <line no="34">
+  <line no="38">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="35">
+  <line no="39">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -190,7 +200,7 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="36">
+  <line no="40">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$user_blog</token>
     <token name="T_WHITESPACE"> </token>
@@ -203,7 +213,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="37">
+  <line no="41">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$user_blog</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -214,7 +224,7 @@
     <token name="T_VARIABLE">$user_id</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="38">
+  <line no="42">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$user_blog</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -225,7 +235,7 @@
     <token name="T_VARIABLE">$blog_id</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="39">
+  <line no="43">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$success</token>
     <token name="T_WHITESPACE"> </token>
@@ -238,20 +248,20 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="40"/>
-  <line no="41">
+  <line no="44"/>
+  <line no="45">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_VARIABLE">$success</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="42">
+  <line no="46">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="43">
+  <line no="47">
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="44"/>
+  <line no="48"/>
 </source>

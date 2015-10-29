@@ -64,6 +64,9 @@ class LoginController extends BaseController {
         echo json_encode($data);
     }
 
+    /**
+     * Carrega página para resetar senha do usuário
+     */
     public function newCodeResetPasswordAction() {
         $preferences = Blogs::findFirst();
         $vars['send_mail'] = $preferences->blog_send_mail;

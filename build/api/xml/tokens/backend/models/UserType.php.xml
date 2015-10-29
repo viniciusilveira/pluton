@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <source xmlns="http://xml.phpdox.net/token">
-  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="UserType.php" realpath="/var/www/html/pluton/apps/backend/models/UserType.php" size="1069" time="2015-09-17T04:25:58+00:00" unixtime="1442463958" sha1="3e4c152328bae5991a14ba5e8976031a33c43c92" relative="backend/models/UserType.php"/>
+  <file xmlns="http://xml.phpdox.net/src" path="/var/www/html/pluton/apps/backend/models" file="UserType.php" realpath="/var/www/html/pluton/apps/backend/models/UserType.php" size="1154" time="2015-10-29T05:20:07+00:00" unixtime="1446096007" sha1="90a752a3fac546d4b9e028773910213770bae267" relative="backend/models/UserType.php"/>
   <line no="1">
     <token name="T_OPEN_TAG">&lt;?php</token>
   </line>
@@ -43,6 +43,15 @@
   </line>
   <line no="12"/>
   <line no="13">
+    <token name="T_DOC_COMMENT">/**</token>
+  </line>
+  <line no="14">
+    <token name="T_DOC_COMMENT"> * Classe respons&#xE1;vel por manipular dados referentes aos tipos de usu&#xE1;rios</token>
+  </line>
+  <line no="15">
+    <token name="T_DOC_COMMENT"> */</token>
+  </line>
+  <line no="16">
     <token name="T_CLASS">class</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_STRING">UserType</token>
@@ -58,8 +67,8 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="14"/>
-  <line no="15">
+  <line no="17"/>
+  <line no="18">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -71,7 +80,7 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="16">
+  <line no="19">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$this</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -81,25 +90,25 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="17">
+  <line no="20">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="18"/>
-  <line no="19">
+  <line no="21"/>
+  <line no="22">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="20">
+  <line no="23">
     <token name="T_DOC_COMMENT">     * Retorna o nome da tabela ao qual a classe referencia no banco de dados</token>
   </line>
-  <line no="21">
+  <line no="24">
     <token name="T_DOC_COMMENT">     * @return string nome da tabela</token>
   </line>
-  <line no="22">
+  <line no="25">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="23">
+  <line no="26">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -111,38 +120,38 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="24">
+  <line no="27">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
     <token name="T_CONSTANT_ENCAPSED_STRING">"user_type"</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="25">
+  <line no="28">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="26"/>
-  <line no="27">
+  <line no="29"/>
+  <line no="30">
     <token name="T_WHITESPACE">    </token>
     <token name="T_DOC_COMMENT">/**</token>
   </line>
-  <line no="28">
+  <line no="31">
     <token name="T_DOC_COMMENT">     * Cria um novo tipo de Usu&#xE1;rio</token>
   </line>
-  <line no="29">
+  <line no="32">
     <token name="T_DOC_COMMENT">     * @param  string $user_type_descr Descri&#xE7;&#xE3;o completa do tipo de usu&#xE1;rio</token>
   </line>
-  <line no="30">
+  <line no="33">
     <token name="T_DOC_COMMENT">     * @param  string $user_type_abrev abrevia&#xE7;&#xE3;o do tipo de usu&#xE1;rio</token>
   </line>
-  <line no="31">
+  <line no="34">
     <token name="T_DOC_COMMENT">     * @return bollean         true caso sucesso, false caso ocorra algum erro</token>
   </line>
-  <line no="32">
+  <line no="35">
     <token name="T_DOC_COMMENT">     */</token>
   </line>
-  <line no="33">
+  <line no="36">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PUBLIC">public</token>
     <token name="T_WHITESPACE"> </token>
@@ -158,7 +167,7 @@
     <token name="T_WHITESPACE"> </token>
     <token name="T_PHPDOX_OPEN_CURLY">{</token>
   </line>
-  <line no="34">
+  <line no="37">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$user_type</token>
     <token name="T_WHITESPACE"> </token>
@@ -171,7 +180,7 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="35">
+  <line no="38">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$user_type</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -182,7 +191,7 @@
     <token name="T_VARIABLE">$user_type_descr</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="36">
+  <line no="39">
     <token name="T_WHITESPACE">        </token>
     <token name="T_VARIABLE">$user_type</token>
     <token name="T_OBJECT_OPERATOR">-&gt;</token>
@@ -193,7 +202,7 @@
     <token name="T_VARIABLE">$user_type_abrev</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="37">
+  <line no="40">
     <token name="T_WHITESPACE">        </token>
     <token name="T_RETURN">return</token>
     <token name="T_WHITESPACE"> </token>
@@ -204,12 +213,12 @@
     <token name="T_PHPDOX_CLOSE_BRACKET">)</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
-  <line no="38">
+  <line no="41">
     <token name="T_WHITESPACE">    </token>
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="39">
+  <line no="42">
     <token name="T_PHPDOX_CLOSE_CURLY">}</token>
   </line>
-  <line no="40"/>
+  <line no="43"/>
 </source>

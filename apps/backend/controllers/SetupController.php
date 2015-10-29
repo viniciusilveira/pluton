@@ -239,7 +239,7 @@ class SetupController extends BaseController {
      * @return boolean true caso sucesso, false caso ocorra algum erro!
      */
     private function createMenus() {
-        $id_menu = Menu::createMenu("fa fa-users", "Usuários", "#sub-users", 2, true);
+        $id_menu = Menu::createMenu("fa fa-users", "Usuários", "#sub-users", 2, 0);
         if ($id_menu > 0) {
             $success = Submenu::createSubmenu($id_menu, "fa fa-user-plus", "Novo", "users/newUser", 1);
             $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "users/listUsers", 2) : false;
@@ -247,7 +247,7 @@ class SetupController extends BaseController {
         else {
             $success = false;
         }
-        $id_menu = $success ? Menu::createMenu("glyphicon glyphicon-tags", "Posts", "#sub-posts", 4, true) : false;
+        $id_menu = $success ? Menu::createMenu("glyphicon glyphicon-tags", "Posts", "#sub-posts", 4, 0) : false;
         if ($id_menu > 0) {
             $success = Submenu::createSubmenu($id_menu, "glyphicon glyphicon-plus", "Novo", "post/index", 1);
             $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "post/listPosts", 2) : false;
@@ -255,10 +255,10 @@ class SetupController extends BaseController {
         else {
             $success = false;
         }
-        $id_menu = $success ? Menu::createMenu("fa fa-cogs", "Configurações", "settings/index", 2, true) : false;
-        $id_menu = $id_menu > 0 ? Menu::createMenu("fa fa-pie-chart", "Estatisticas", "statistics/index", 1, true) : false;
+        $id_menu = $success ? Menu::createMenu("fa fa-cogs", "Configurações", "settings/index", 2, 0) : false;
+        $id_menu = $id_menu > 0 ? Menu::createMenu("fa fa-pie-chart", "Estatisticas", "statistics/index", 1, 0) : false;
         $success = $id_menu > 0 ? Menu::createMenu("glyphicon glyphicon-refresh", "Atualizações", "update/index", 2, true) : false;
-        $id_menu = $success ? Menu::createMenu("fa fa-puzzle-piece", "Plugins", "#sub-plugins", 1, true) : false;
+        $id_menu = $success ? Menu::createMenu("fa fa-puzzle-piece", "Plugins", "#sub-plugins", 1, 0) : false;
         if ($id_menu > 0) {
             $success = Submenu::createSubmenu($id_menu, "glyphicon glyphicon-plus", "Novo", "plugin/index", 1);
             $success = $success ? Submenu::createSubmenu($id_menu, "glyphicon glyphicon-edit", "Editar", "plugin/listPlugins", 1) : false;

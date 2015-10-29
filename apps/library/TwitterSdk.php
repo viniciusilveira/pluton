@@ -9,6 +9,10 @@
  */
 namespace Multiple\Library;
 
+
+/**
+ * Classe responsável pelas funcionalidades da rede social twitter
+ */
 class TwitterSdk extends BaseController {
 
     /**
