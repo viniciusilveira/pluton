@@ -19,6 +19,7 @@ namespace Multiple\Backend\Controllers;
 use Multiple\Backend\Models\UserType;
 use Multiple\Backend\Models\Users;
 use Multiple\Backend\Models\UserBlog;
+use Multiple\Backend\Models\Posts;
 
 
 /**
@@ -45,6 +46,7 @@ class UsersController extends BaseController {
                     $this->response->redirect(URL_PROJECT . "admin");
                 }
                 else {
+                    $posts = Posts::findFirstByPost_author($result->user_id);
                     $vars['user_edit']['user_id'] = $result->user_id;
                     $vars['user_edit']['user_name'] = $result->user_name;
                     $vars['user_edit']['user_login'] = $result->user_login;
@@ -54,6 +56,7 @@ class UsersController extends BaseController {
                     $vars['user_edit']['user_active'] = $result->user_active;
                     $vars['edit_user'] = true;
                     $vars['not_disable'] = ($result->user_id == $this->session->get("user_id")) ? true : false;
+                    $vars['delete'] = !$posts ?  true : false;
                 }
             }
             else {
@@ -222,6 +225,20 @@ class UsersController extends BaseController {
         $data['success'] = Users::ActiveOrdeactiveUser($user_id);
         $data['message'] = 'Usuário Atualizado!';
         echo json_encode($data);
+    }
+
+    /**
+     * Recebe um id de usuário via POST e deleta do banco de dados
+     */
+    public function deleteUserAction(){
+        $this->view->disable();
+        $user_id = intval($this->request->getPost('user_id'));
+        $user_blog = UserBlog::findFirstByUser_id($user_id);
+        $delete = !$user_blog ? true : $user_blog->delete();
+        $user = Users::findFirstByUser_id($user_id);
+        $data['success'] = $delete ? $user->delete() : $delete;
+        echo json_encode($data);
+
     }
 
     /**

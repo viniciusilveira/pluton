@@ -13,7 +13,7 @@ namespace Multiple\Library;
 /**
  * Classe responsável pelas funcionalidades da rede social twitter
  */
-class TwitterSdk extends BaseController {
+class TwitterSdk {
 
     /**
      * Gera o token de acesso a API do twitter através do APPID e APPSECRET informados pelo usuário

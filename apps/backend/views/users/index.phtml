@@ -57,6 +57,11 @@
                         <?php }else{ ?>
                             <input type="hidden" name="user_id" id="inputUser_id" class="form-control" value="">
                             <div class="row text-center">
+                                <?php if($delete){ ?>
+                                    <button type="button" id="delete" class="btn btn-primary btn-lg">
+                                        Apagar
+                                    </button>
+                                <?php } ?>
                                 <?php if(!$not_disable){ ?>
                                     <button type="button" id="deactive" class="btn btn-primary btn-lg">
                                         <?= $user_edit['user_active'] ? 'Desativar' : 'Ativar' ?>
@@ -290,6 +295,47 @@ $("#deactive").click(function(){
     });
 });
 
+
+$("#delete").click(function(){
+    var user_id = $("#inputUser_id").val();
+    var text = 'Tem certeza que deseja excluir este usuário?';
+    swal({
+      title: "Tem certeza disso?",
+      text: text,
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Sim!",
+      cancelButtonText: 'Cancelar',
+      closeOnConfirm: true
+    },
+    function(){
+        $.ajax({
+            url: '<?= URL_PROJECT ?>users/deleteUser',
+            data: 'user_id=' + user_id,
+            type: 'POST',
+            dataType: 'json',
+            success: function(data){
+                if(data.success){
+                    swal({
+                        title: "Sucesso!",
+                        text: 'Usuário excluido',
+                        type: "success",
+                        confirmButtonText: "OK"
+                    });
+                    window.location.href = '<?= URL_PROJECT?>users/listUsers';
+                } else{
+                    swal({
+                      title: "Erro!",
+                        text: 'Erro ao excluir Usuário',
+                        type: "warning",
+                        confirmButtonText: "OK"
+                    });
+                }
+            }
+        })
+    });
+});
 /**
  * Quando clica na imagem abre a opção para upload de arquivo
  */
